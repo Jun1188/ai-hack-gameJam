@@ -687,7 +687,7 @@ MonoBehaviour:
   settingsButton: {fileID: 1309823279}
   quitButton: {fileID: 64771947}
   notice: {fileID: 1949347445}
-  optionsFont: {fileID: 12800000, guid: a65369236702f7846af10899275e8b61, type: 3}
+  optionsFont: {fileID: 12800000, guid: 55777d6b930948c4bb94597bf699225b, type: 3}
 --- !u!114 &1807034844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 55777d6b930948c4bb94597bf699225b, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0

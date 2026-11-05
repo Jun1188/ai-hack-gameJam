@@ -35,6 +35,7 @@ namespace MapleCafe
         private readonly MeshRenderer surface;
         private readonly Material material;
         private readonly Mesh mesh;
+        private readonly MaterialPropertyBlock surfaceProperties = new();
         private readonly Texture2D[] textures = new Texture2D[(int)Finish.Invalid + 1];
 
         internal CafeDrinkSurface(Renderer liquid)
@@ -96,7 +97,8 @@ namespace MapleCafe
             if (drink == null) { Clear(); return; }
             int index = (int)drink.Pattern;
             textures[index] ??= CreatePattern(drink);
-            material.SetTexture("_BaseMap", textures[index]);
+            surfaceProperties.SetTexture("_BaseMap", textures[index]);
+            surface.SetPropertyBlock(surfaceProperties);
             surface.enabled = true;
         }
 
