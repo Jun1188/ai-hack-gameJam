@@ -4,127 +4,127 @@
     "similar": "원하던 그대로는 아니어도 옛 다방에서 마시던 맛과 가까운 구석은 있구먼.",
     "different": "이 맛은 내가 빗댄 쪽과는 한참 다른 길이구먼.",
     "partialGood": "옛맛과 똑같지는 않아도 가까운 한 잔을 찾은 셈이로군.",
-    "timeout": "이야기 나누며 {activeSeconds}초를 기다렸는데 내 잔은 받지 못했구먼. 오늘은 발길을 돌리겠네.",
-    "waitReview": "고르기 전 {inactiveSeconds}초, 고른 뒤 {activeSeconds}초라니, 다방의 여유라고 하기에도 기다림이 길었구먼."
+    "timeout": "이야기 나누며 한참 기다렸는데 내 잔은 받지 못했구먼. 오늘은 발길을 돌리겠네.",
+    "waitReview": "기다림이 길어 여유롭게 즐기지는 못했구먼."
   },
   "cus_gyeongsang": {
     "contrast": "내 고른 건 {requestedTemp} {requested}입니더. 나온 건 {servedTemp} {served}네예.",
     "similar": "같은 건 아이라도 맛이 가까운 데는 있네예. 이 정도면 생각해 볼랍니더.",
     "different": "아이다, 내 입맛은 이쪽 아입니더. 고른 쪽이 따로 있어예.",
     "partialGood": "딱 고른 건 아이라도 비슷한 맛은 챙겨줬네예.",
-    "timeout": "주문하고 {activeSeconds}초 됐는데 잔은 못 받았네예. 장바구니 들고 더 못 서 있겠어예. 갑니더.",
-    "waitReview": "접수 전 {inactiveSeconds}초에 접수 후 {activeSeconds}초까지, 짐 들고 기다리기엔 길었네예."
+    "timeout": "주문한 잔은 아직 못 받았네예. 장바구니 들고 더 못 서 있겠어예. 갑니더.",
+    "waitReview": "짐 들고 기다리기엔 좀 길었네예."
   },
   "cus_jeolla": {
     "contrast": "내가 말한 거시기는 {requestedTemp} {requested}여. 이 잔은 {servedTemp} {served} 쪽이구먼잉.",
     "similar": "딱 그 거시기는 아녀도, 맛이 비슷한 데가 있당께요.",
     "different": "내가 말은 두루뭉술했어도 이런 맛을 바란 건 아닌디잉.",
     "partialGood": "꼭 찾던 그건 아녀도 입맛 가까운 걸 찾았네잉.",
-    "timeout": "수다 떨며 {activeSeconds}초나 기다렸는디 잔은 못 받았네잉. 오늘은 여기까지 하고 갈랑께요.",
-    "waitReview": "고르기 전 {inactiveSeconds}초, 고르고 {activeSeconds}초라니 수다 한바탕 넘게 기다렸당께요."
+    "timeout": "수다 떨며 한참 기다렸는디 잔은 못 받았네잉. 오늘은 여기까지 하고 갈랑께요.",
+    "waitReview": "수다 한바탕 떨 만큼 기다린 건 아쉽당께요."
   },
   "cus_chungcheong": {
     "contrast": "아무거나처럼 들렸어도유, 내 생각은 {requestedTemp} {requested}였슈. 이건 {servedTemp} {served} 쪽이네유.",
     "similar": "바로 그건 아니어도유, 가까운 맛이라 생각은 해 볼 수 있겠슈.",
     "different": "괜찮다고만 하긴 어렵겠네유. 내 바란 쪽하고는 좀 멀어유.",
     "partialGood": "내 뜻하고 아주 같진 않아도 가까이 와 주셨네유.",
-    "timeout": "기다려도 된다곤 했지만 주문하고 {activeSeconds}초면 꽤 됐슈. 잔은 못 받았으니 오늘은 가봐야겠어유.",
-    "waitReview": "접수 전에 {inactiveSeconds}초, 한 뒤에 {activeSeconds}초라서유, 내 기다림도 생각해 주면 좋겠슈."
+    "timeout": "기다려도 된다곤 했지만 꽤 오래됐슈. 잔은 못 받았으니 오늘은 가봐야겠어유.",
+    "waitReview": "기다려도 된다고는 했지만, 조금 길긴 했슈."
   },
   "cus_gangwon": {
     "contrast": "바란 건 {requestedTemp} {requested}였드래요. 지금 건 {servedTemp} {served} 같드래요.",
     "similar": "꼭 같은 건 아니어도 비슷한 맛은 있드래요. 그 점은 좋네요.",
     "different": "산에서 내려오며 생각한 맛은 이쪽이 아니었드래요.",
     "partialGood": "바란 맛 곁까지는 와서 그 점은 반갑드래요.",
-    "timeout": "산 얘기 한참 하며 {activeSeconds}초 기다렸드래요. 잔은 아직 못 받아서 오늘은 돌아갈게요.",
-    "waitReview": "주문 전 {inactiveSeconds}초랑 주문 후 {activeSeconds}초를 기다리니 산길 쉼터보다 오래 머문 느낌이네요."
+    "timeout": "산 얘기를 한참 했는데 잔은 아직 못 받았드래요. 오늘은 돌아갈게요.",
+    "waitReview": "산길 쉼터에서 쉬듯 느긋하게 기다렸지만 좀 길었드래요."
   },
   "cus_jeju": {
     "contrast": "내가 찾은 쪽은 {requestedTemp} {requested}수다. 이 잔은 {servedTemp} {served} 쪽이네요.",
     "similar": "고향서 떠올린 그대로는 아니어도 향이 가까운 쪽은 있수다.",
     "different": "내 바란 맛은 이쪽이 아니우다. 천천히 다시 설명해 드리쿠다.",
     "partialGood": "고향 맛과 같진 않아도 가까운 쪽을 찾았수다.",
-    "timeout": "주문하고 {activeSeconds}초가 지나도 잔은 못 받았수다. 손주 보러 가는 길이라 오늘은 이만 가쿠다.",
-    "waitReview": "고르기 전에 {inactiveSeconds}초, 고른 뒤 {activeSeconds}초 기다린 건 좀 길었수다."
+    "timeout": "오래 기다려도 잔은 못 받았수다. 손주 보러 가는 길이라 오늘은 이만 가쿠다.",
+    "waitReview": "기다림이 좀 길었던 건 아쉽수다."
   },
   "cus_sea": {
     "contrast": "고향 음료에 빗댄 건 {requestedTemp} {requested}였어요. 지금 받은 건 {servedTemp} {served}네요.",
     "similar": "고향에서 마시던 것과 같진 않아도 가까운 맛을 찾을 수 있겠어요.",
     "different": "제가 고향 맛에 비유한 뜻과는 많이 달라요. 다른 쪽을 생각했어요.",
     "partialGood": "정확히 찾던 잔은 아니지만 익숙한 맛에 가까워서 반가웠어요.",
-    "timeout": "가족 생각을 하며 주문 뒤 {activeSeconds}초를 기다렸는데 음료는 못 받았어요. 오늘은 먼저 갈게요.",
-    "waitReview": "주문까지 {inactiveSeconds}초, 주문 뒤 {activeSeconds}초를 기다려서 다음 일정이 조금 걱정됐어요."
+    "timeout": "가족 생각하며 기다렸는데 음료는 못 받았어요. 오늘은 먼저 갈게요.",
+    "waitReview": "기다리는 동안 다음 일정이 조금 걱정됐어요."
   },
   "cus_west": {
     "contrast": "제가 찾은 taste는 {requestedTemp} {requested}예요. 받은 잔은 {servedTemp} {served}네요.",
     "similar": "Not exactly the same, 그래도 제가 찾은 맛과 가까운 느낌이 있어요.",
     "different": "This is different from what I meant. 제가 찾은 맛과는 거리가 있어요.",
     "partialGood": "다른 잔이지만 가까운 맛을 새로 배운 점은 좋았어요.",
-    "timeout": "I have to go now. 주문 뒤 {activeSeconds}초를 기다렸지만 잔은 못 받았어요. 오늘은 여기까지 할게요.",
-    "waitReview": "접수까지 {inactiveSeconds}초, 그 뒤 {activeSeconds}초였어요. A long wait라서 조금 아쉬웠어요."
+    "timeout": "I have to go now. 기다렸지만 잔은 못 받았어요. 오늘은 여기까지 할게요.",
+    "waitReview": "기다림이 길어서 조금 아쉬웠어요."
   },
   "cus_japan": {
     "contrast": "제가 말씀드린 것은 {requestedTemp} {requested}였습니다. 받은 잔은 {servedTemp} {served}인 것 같습니다.",
     "similar": "똑같지는 않지만 비슷한 맛으로 제안해 주신 점은 이해했습니다.",
     "different": "말씀드린 맛과 차이가 커서 이대로 괜찮다고 하기는 어렵겠습니다.",
     "partialGood": "원한 그대로는 아니지만 가까운 맛을 경험한 점은 좋았습니다.",
-    "timeout": "주문 후 {activeSeconds}초를 기다렸지만 아직 받지 못했습니다. 남은 여행 일정이 있어서 이만 가보겠습니다.",
-    "waitReview": "접수 전 {inactiveSeconds}초와 접수 후 {activeSeconds}초를 기다려 여행 시간을 조금 조정해야 했습니다."
+    "timeout": "아직 음료를 받지 못했지만 남은 여행 일정이 있어서 이만 가보겠습니다.",
+    "waitReview": "여행 중에 기다리느라 조금 아쉬웠습니다."
   },
   "cus_china": {
     "contrast": "제가 말한 재료와 맛은 {requestedTemp} {requested} 쪽이에요. 지금 건 {servedTemp} {served}예요.",
     "similar": "완전히 같은 건 아니지만 맛이 비슷한 부분은 있어요. 그건 인정해요.",
     "different": "제가 말한 재료와 맛의 방향이 아니에요. 분명하게 다시 확인하고 싶어요.",
     "partialGood": "처음 고른 건 없어도 가까운 맛을 받은 점은 괜찮았어요.",
-    "timeout": "주문 뒤 {activeSeconds}초가 지났는데 음료를 못 받았어요. 더 기다리지 않고 갈게요.",
-    "waitReview": "접수 전 {inactiveSeconds}초, 후에 {activeSeconds}초였어요. 다음에는 기다리는 시간을 줄여 주면 좋겠어요."
+    "timeout": "한참 기다렸는데 음료를 못 받았어요. 오늘은 이만 갈게요.",
+    "waitReview": "다음에는 조금 더 빨리 받을 수 있으면 좋겠어요."
   },
   "cus_child": {
     "contrast": "내가 생각한 맛은 {requestedTemp} {requested}예요! 이건 {servedTemp} {served}네요.",
     "similar": "똑같진 않지만 내가 생각한 맛이 조금 있어요! 다른 버전 같아요.",
     "different": "내가 고른 맛은 이게 아니에요. 내가 생각한 걸로 받고 싶어요.",
     "partialGood": "내가 상상한 맛이 조금 있어서 그건 좋았어요.",
-    "timeout": "주문하고 {activeSeconds}초나 됐는데 내 음료가 안 왔어요. 오늘은 안 기다리고 갈래요.",
-    "waitReview": "고르기 전에 {inactiveSeconds}초, 고르고 {activeSeconds}초나 기다렸어요. 기다리는 게 길었어요."
+    "timeout": "계속 기다렸는데 내 음료가 안 왔어요. 오늘은 이제 갈래요.",
+    "waitReview": "기다리는 게 길어서 조금 지루했어요."
   },
   "cus_student": {
     "contrast": "제가 생각한 느낌은 {requestedTemp} {requested} 쪽이었는데요. 받은 건 {servedTemp} {served}네요.",
     "similar": "완전 같은 건 아닌데 비슷한 느낌은 있어요. 취향 근처까지는 왔네요.",
     "different": "이건 제 취향 방향이랑 너무 달라요. 이걸로 오케이 하긴 어려울 듯요.",
     "partialGood": "원픽은 아니어도 취향 근처라 그건 괜찮았어요.",
-    "timeout": "주문하고 {activeSeconds}초나 기다렸는데 아직 안 나왔네요. 오늘은 더 안 기다리고 갈게요.",
-    "waitReview": "접수 전 {inactiveSeconds}초에 접수 후 {activeSeconds}초까지, 대기 시간이 좀 길었던 듯요."
+    "timeout": "오래 기다렸는데 아직 안 나왔네요. 오늘은 이만 갈게요.",
+    "waitReview": "기다림이 좀 길었던 건 아쉬워요."
   },
   "cus_pangyo": {
     "contrast": "제가 정리한 니즈는 {requestedTemp} {requested}입니다. 나온 결과는 {servedTemp} {served}네요.",
     "similar": "동일 스펙은 아니지만 맛의 방향은 어느 정도 싱크가 맞네요.",
     "different": "이건 취향 요구사항과 갭이 커서 그대로 수용하기 어렵겠어요.",
     "partialGood": "원래 스펙은 없어도 가까운 대안으로 연결된 점은 괜찮았어요.",
-    "timeout": "주문 이후 {activeSeconds}초 동안 수령을 못 했네요. 다음 일정이 있어서 이 주문은 기다리지 않고 이동하겠습니다.",
-    "waitReview": "접수까지 {inactiveSeconds}초, 이후 {activeSeconds}초라 일정에 딜레이가 생긴 점은 아쉽네요."
+    "timeout": "아직 음료를 받지 못했네요. 다음 일정이 있어 먼저 이동하겠습니다.",
+    "waitReview": "다음 일정이 신경 쓰일 만큼 기다린 점은 아쉽네요."
   },
   "cus_barista": {
     "contrast": "제가 설명한 기준은 {requestedTemp} {requested}였습니다. 이 잔은 {servedTemp} {served} 쪽으로 느껴집니다.",
     "similar": "같은 음료는 아니지만 맛의 구조가 가까운 부분은 확인할 수 있겠네요.",
     "different": "설명한 맛의 기준과 차이가 커서 같은 방향이라고 평가하기는 어렵습니다.",
     "partialGood": "원안과 다르지만 가까운 맛을 비교해 본 점에는 의미가 있었습니다.",
-    "timeout": "주문 후 {activeSeconds}초가 지났지만 아직 시음할 잔을 받지 못했습니다. 오늘 비교는 여기서 마치겠습니다.",
-    "waitReview": "접수 전 {inactiveSeconds}초, 후에 {activeSeconds}초 기다린 시간도 이번 경험의 평가에 포함했습니다."
+    "timeout": "기대하며 기다렸지만 아직 시음할 잔을 받지 못했습니다. 오늘 비교는 여기서 마치겠습니다.",
+    "waitReview": "맛을 기대하며 기다렸는데 조금 길게 느껴졌습니다."
   },
   "cus_trainer": {
     "contrast": "제가 고른 방향은 {requestedTemp} {requested}였어요! 받은 건 {servedTemp} {served}네요.",
     "similar": "고른 것과 같진 않아도 맛과 성분 방향이 비슷한 부분은 좋네요!",
     "different": "제 컨디션에 맞춰 고른 방향이 아니라 이대로 받기는 어렵겠어요.",
     "partialGood": "딱 고른 건 없어도 비슷한 방향으로 챙긴 점은 좋았어요!",
-    "timeout": "주문 후 {activeSeconds}초가 됐는데 음료를 못 받았네요! 다음 일정으로 가야 해서 오늘은 여기까지 할게요.",
-    "waitReview": "접수 전 {inactiveSeconds}초, 후에 {activeSeconds}초를 기다리니 쉬는 시간이 많이 지났네요!"
+    "timeout": "기다렸는데 음료를 못 받았네요! 다음 일정으로 가야 해서 오늘은 여기까지 할게요.",
+    "waitReview": "기다리다 쉬는 시간이 많이 지나버렸네요!"
   },
   "cus_blind": {
     "contrast": "제가 말씀드린 취향은 {requestedTemp} {requested} 쪽입니다. 받은 잔에서는 {servedTemp} {served} 쪽 맛이 느껴지네요.",
     "similar": "고른 조건과 똑같지는 않아도 가까운 맛이 있다는 설명은 이해했습니다.",
     "different": "제가 말한 취향 조건과 달라서 이 잔으로 괜찮다고 하기는 어렵겠네요.",
     "partialGood": "제 취향과 가까운 부분을 설명받을 수 있어서 그 점은 좋았습니다.",
-    "timeout": "주문 뒤 {activeSeconds}초를 기다렸지만 아직 음료를 받지 못했습니다. 오늘은 더 기다리지 않고 가겠습니다.",
-    "waitReview": "접수 전 {inactiveSeconds}초와 후에 {activeSeconds}초를 기다렸습니다. 기다림에 대한 안내가 더 있었으면 좋겠네요."
+    "timeout": "기다렸지만 아직 음료를 받지 못했습니다. 오늘은 이만 가겠습니다.",
+    "waitReview": "기다리는 동안 안내가 더 있었으면 좋겠어요."
   }
 }

@@ -11,6 +11,7 @@ namespace CafeSim
         public Transform eye;
         public float moveSpeed = 3.2f, acceleration = 30f, friction = 35f, mouseSensitivity = 1f;
         public bool Looking => Cursor.lockState == CursorLockMode.Locked;
+        public bool TextInputActive {get;set;}
         Rigidbody body;
         Vector2 input;
         float pitch;
@@ -27,6 +28,7 @@ namespace CafeSim
         {
             var keyboard = Keyboard.current;
             if (keyboard == null || !focused) { input = Vector2.zero; return; }
+            if (TextInputActive) { input = Vector2.zero; return; }
             if (keyboard.tabKey.wasPressedThisFrame) SetLooking(!Looking);
             if (keyboard.escapeKey.wasPressedThisFrame || keyboard.eKey.wasPressedThisFrame) SetLooking(false);
             if (!Looking) { input = Vector2.zero; return; }

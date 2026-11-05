@@ -1,0 +1,453 @@
+{
+  "tableName": "새로운 메뉴",
+  "items": [
+    {
+      "personaId": "cus_elder",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁하겠네.",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다."
+    },
+    {
+      "personaId": "cus_elder",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁하겠네.",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다."
+    },
+    {
+      "personaId": "cus_elder",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁하겠네.",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다."
+    },
+    {
+      "personaId": "cus_elder",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁하겠네.",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다."
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 주이소.",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게)."
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 주이소.",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게)."
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 주이소.",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게)."
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 주이소.",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게)."
+    },
+    {
+      "personaId": "cus_jeolla",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁해요잉.",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다."
+    },
+    {
+      "personaId": "cus_jeolla",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁해요잉.",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다."
+    },
+    {
+      "personaId": "cus_jeolla",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁해요잉.",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다."
+    },
+    {
+      "personaId": "cus_jeolla",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁해요잉.",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다."
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 주시면 좋겠슈.",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다."
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 주시면 좋겠슈.",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다."
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 주시면 좋겠슈.",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다."
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 주시면 좋겠슈.",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다."
+    },
+    {
+      "personaId": "cus_gangwon",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드래요.",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다."
+    },
+    {
+      "personaId": "cus_gangwon",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드래요.",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다."
+    },
+    {
+      "personaId": "cus_gangwon",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드래요.",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다."
+    },
+    {
+      "personaId": "cus_gangwon",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드래요.",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다."
+    },
+    {
+      "personaId": "cus_jeju",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드리쿠다.",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다."
+    },
+    {
+      "personaId": "cus_jeju",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드리쿠다.",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다."
+    },
+    {
+      "personaId": "cus_jeju",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드리쿠다.",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다."
+    },
+    {
+      "personaId": "cus_jeju",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드리쿠다.",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다."
+    },
+    {
+      "personaId": "cus_sea",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드려요.",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다."
+    },
+    {
+      "personaId": "cus_sea",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드려요.",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다."
+    },
+    {
+      "personaId": "cus_sea",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드려요.",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다."
+    },
+    {
+      "personaId": "cus_sea",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드려요.",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다."
+    },
+    {
+      "personaId": "cus_west",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 please, 부탁드려요.",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다."
+    },
+    {
+      "personaId": "cus_west",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 please, 부탁드려요.",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다."
+    },
+    {
+      "personaId": "cus_west",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 please, 부탁드려요.",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다."
+    },
+    {
+      "personaId": "cus_west",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 please, 부탁드려요.",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다."
+    },
+    {
+      "personaId": "cus_japan",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드리겠습니다.",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다."
+    },
+    {
+      "personaId": "cus_japan",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드리겠습니다.",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다."
+    },
+    {
+      "personaId": "cus_japan",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드리겠습니다.",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다."
+    },
+    {
+      "personaId": "cus_japan",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드리겠습니다.",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다."
+    },
+    {
+      "personaId": "cus_china",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 주세요.",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬)."
+    },
+    {
+      "personaId": "cus_china",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 주세요.",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬)."
+    },
+    {
+      "personaId": "cus_china",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 주세요.",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬)."
+    },
+    {
+      "personaId": "cus_china",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 주세요.",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬)."
+    },
+    {
+      "personaId": "cus_child",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 주세요!",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다."
+    },
+    {
+      "personaId": "cus_child",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 주세요!",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다."
+    },
+    {
+      "personaId": "cus_child",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 주세요!",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다."
+    },
+    {
+      "personaId": "cus_child",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 주세요!",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다."
+    },
+    {
+      "personaId": "cus_student",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁해요!",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼)."
+    },
+    {
+      "personaId": "cus_student",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁해요!",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼)."
+    },
+    {
+      "personaId": "cus_student",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁해요!",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼)."
+    },
+    {
+      "personaId": "cus_student",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁해요!",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼)."
+    },
+    {
+      "personaId": "cus_pangyo",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드려요.",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP)."
+    },
+    {
+      "personaId": "cus_pangyo",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드려요.",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP)."
+    },
+    {
+      "personaId": "cus_pangyo",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드려요.",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP)."
+    },
+    {
+      "personaId": "cus_pangyo",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드려요.",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP)."
+    },
+    {
+      "personaId": "cus_barista",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드립니다.",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출)."
+    },
+    {
+      "personaId": "cus_barista",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드립니다.",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출)."
+    },
+    {
+      "personaId": "cus_barista",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드립니다.",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출)."
+    },
+    {
+      "personaId": "cus_barista",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드립니다.",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출)."
+    },
+    {
+      "personaId": "cus_trainer",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 주세요!",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃)."
+    },
+    {
+      "personaId": "cus_trainer",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 주세요!",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃)."
+    },
+    {
+      "personaId": "cus_trainer",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 주세요!",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃)."
+    },
+    {
+      "personaId": "cus_trainer",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 주세요!",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃)."
+    },
+    {
+      "personaId": "cus_blind",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드립니다.",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다."
+    },
+    {
+      "personaId": "cus_blind",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드립니다.",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다."
+    },
+    {
+      "personaId": "cus_blind",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드립니다.",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다."
+    },
+    {
+      "personaId": "cus_blind",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드립니다.",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다."
+    }
+  ]
+}
