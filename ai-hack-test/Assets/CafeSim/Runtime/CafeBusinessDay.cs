@@ -52,7 +52,7 @@ namespace CafeSim
 
         void Update()
         {
-            if(Paused||Closed||session==null||session.Queue==null)return;
+            if(Paused||Closed||CafeStartIris.Active||session==null||session.Queue==null)return;
             Clock=Mathf.Min(closeHour*3600,Clock+Time.unscaledDeltaTime*gameSecondsPerSecond);
             if(Clock>=closeHour*3600){Closed=true;Freeze(true);CafeCollection.Instance.EndDay(Day,Ledger);}
         }

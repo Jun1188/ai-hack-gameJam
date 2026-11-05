@@ -28,7 +28,7 @@ namespace CafeSim
         Texture2D art, title;
         GUIStyle morningStyle, hintStyle;
         AudioSource music, ambience, murmur;
-        float listenerVolume = 1;
+        float listenerVolume = 1, endingVolume = 1;
 
         public static void Play(Mode mode, int morningDay = 0)
         {
@@ -46,11 +46,12 @@ namespace CafeSim
         {
             art = Resources.Load<Texture2D>("CafeEnding/ending_bg");
             title = Resources.Load<Texture2D>("CafeEnding/ending_title");
-            // Optional sound (spec 6). Drop clips with these names into Resources/CafeEnding to enable them.
-            music = Source("CafeEnding/ending_bgm", true);
+            // The ending theme is bundled; optional ambience/murmur can use the same resource folder.
+            music = Source("CafeEnding/ending_bgm", false);
             ambience = Source("CafeEnding/morning_ambience", true);
             murmur = Source("CafeEnding/crowd_murmur", true);
             listenerVolume = AudioListener.volume;
+            endingVolume = Mathf.Clamp01(CafeSettings.Volume);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -61,6 +62,8 @@ namespace CafeSim
             if (clip == null) return null;
             var source = gameObject.AddComponent<AudioSource>();
             source.clip = clip;
+            source.playOnAwake = false;
+            source.spatialBlend = 0;
             source.loop = loop;
             source.volume = 0;
             source.ignoreListenerPause = true;   // the business day pauses the listener when it closes
@@ -70,7 +73,11 @@ namespace CafeSim
 
         void OnDestroy()
         {
-            if (current == this) current = null;
+            if (current == this)
+            {
+                AudioListener.volume = listenerVolume;
+                current = null;
+            }
         }
 
         IEnumerator Run()
@@ -84,22 +91,22 @@ namespace CafeSim
             else
             {
                 if (mode == Mode.Morning) { black = 1; AudioListener.volume = 0; }
-                else yield return Tween(.5f, k => black = k);
+                else yield return Tween(.5f, k => { black = k; AudioListener.volume = listenerVolume * (1 - k); });
             }
 
             if (mode != Mode.Replay)
             {
                 // 2. 아침 문구 with birds and the neighbourhood waking up.
                 StartSound(ambience);
-                yield return Tween(.4f, k => { morningAlpha = k; Volume(ambience, .6f * k); });
+                yield return Tween(.4f, k => { morningAlpha = k; Volume(ambience, .6f * endingVolume * k); });
                 yield return Wait(.7f);
                 yield return Tween(.4f, k => morningAlpha = 1 - k);
             }
 
-            // 3. 일러스트 + ending music and a quiet murmur of voices.
+            // 3. The photo starts the theme once. Waiting for input never restarts it.
             StartSound(music);
             StartSound(murmur);
-            yield return Tween(1.5f, k => { artAlpha = k; Volume(music, .55f * k); Volume(murmur, .18f * k); });
+            yield return Tween(1.5f, k => { artAlpha = k; Volume(music, .55f * endingVolume * k); Volume(murmur, .18f * endingVolume * k); });
             // 4. 감상 시간
             yield return Wait(2f);
             // 5. Thank You For Playing: fades in while rising 10 px (at 1080p).

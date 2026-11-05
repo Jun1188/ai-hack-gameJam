@@ -124,4 +124,8 @@ InitTestScene*.unity*
 claude.md
 CLAUDE.md
 AGENTS.md
+.utmp/
+# Explicitly opted-in build credential; include locally in Resources, never in Git.
+/ai-hack-test/Assets/CafeSim/Resources/CafeApiRuntimeSettings.json
+/ai-hack-test/Assets/CafeSim/Resources/CafeApiRuntimeSettings.json.meta
 .claude/

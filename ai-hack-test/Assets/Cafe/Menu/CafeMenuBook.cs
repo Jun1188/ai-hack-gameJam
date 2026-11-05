@@ -50,6 +50,8 @@ namespace MapleCafe
         private float pinProgress;
         internal bool IsListOpen => isOpen;
         internal bool HasPinnedCard => showPinned && pinProgress > 0f;
+        internal string PinnedDrinkName => showPinned ? pinnedCard?.Item?.name : null;
+        internal bool AllowConversationToggle { get; set; }
 
         internal void SetTutorialCardFocus(bool choosingFirstCard)
         {
@@ -108,7 +110,7 @@ namespace MapleCafe
         private void HandleKeys()
         {
             var keys = Keyboard.current;
-            if (keys!=null && keys[toggleKey].wasPressedThisFrame && (player==null||!player.ExternalUIActive))
+            if (keys!=null && keys[toggleKey].wasPressedThisFrame && (player==null||!player.ExternalUIActive||AllowConversationToggle))
             {
                 if (isOpen)
                 {

@@ -1,7 +1,6 @@
 using CafeSim;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // Title screen "모두의 카페".
@@ -11,10 +10,14 @@ public sealed class MainMenuController : MonoBehaviour
     [SerializeField] private Button startButton, settingsButton, quitButton;
     [SerializeField] private Text notice;
     [SerializeField] private Font optionsFont;
+    [SerializeField] private AudioClip menuMusic;
 
+    private const float MenuMusicVolume = .52f;
+    private const float MenuMusicFadeSeconds = .24f;
     private bool loading, settingsOpen;
     private CafeOptionsGui options;
     private GraphicRaycaster menuRaycaster;
+    private AudioSource menuMusicSource;
 
     private void Awake()
     {
@@ -27,6 +30,17 @@ public sealed class MainMenuController : MonoBehaviour
         // Kept visible from the start for demos, even before the ending has been reached.
         AddReplayButton();
         AddCreditsButton();
+
+        if (menuMusic != null)
+        {
+            menuMusicSource = gameObject.AddComponent<AudioSource>();
+            menuMusicSource.playOnAwake = false;
+            menuMusicSource.clip = menuMusic;
+            menuMusicSource.loop = true;
+            menuMusicSource.spatialBlend = 0f;
+            menuMusicSource.volume = 0f;
+            menuMusicSource.Play();
+        }
     }
 
     private void BuildMenuLabels()
@@ -91,7 +105,13 @@ public sealed class MainMenuController : MonoBehaviour
         if (creditsOpen && Keyboard.current?.escapeKey.wasPressedThisFrame == true)
             creditsOpen = false;
         // The menu buttons stay clickable underneath IMGUI overlays, so they are switched off while one is up.
-        if (menuRaycaster != null) menuRaycaster.enabled = !settingsOpen && !creditsOpen && !CafeEnding.Active;
+        if (menuRaycaster != null) menuRaycaster.enabled = !loading && !settingsOpen && !creditsOpen && !CafeEnding.Active;
+        if (menuMusicSource != null)
+        {
+            float target = loading || CafeEnding.Active ? 0f : MenuMusicVolume;
+            menuMusicSource.volume = Mathf.MoveTowards(menuMusicSource.volume, target,
+                Time.unscaledDeltaTime * MenuMusicVolume / MenuMusicFadeSeconds);
+        }
     }
 
     // ----- Credits -----
@@ -237,7 +257,7 @@ public sealed class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        if (loading)
+        if (loading || CafeStartIris.Active || CafeEnding.Active)
             return;
         if (!Application.CanStreamedLevelBeLoaded(gameScene))
         {
@@ -245,7 +265,8 @@ public sealed class MainMenuController : MonoBehaviour
             return;
         }
         loading = true;
-        SceneManager.LoadScene(gameScene);
+        if (menuRaycaster != null) menuRaycaster.enabled = false;
+        CafeStartIris.Play(gameScene, () => loading = false);
     }
 
     // Same options card as the in-game pause menu; both edit CafeSettings.

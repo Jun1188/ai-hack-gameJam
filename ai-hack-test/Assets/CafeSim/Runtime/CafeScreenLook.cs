@@ -50,7 +50,7 @@ namespace CafeSim
             Shader.SetGlobalFloat(Saturation, saturation);
             Shader.SetGlobalFloat(Contrast, contrast);
             Shader.SetGlobalFloat(Vignette, vignette);
-            Shader.SetGlobalFloat(Grain, grain);
+            Shader.SetGlobalFloat(Grain, CafeStartIris.Active ? 0f : grain);
             ApplyGlow(s);
         }
 
