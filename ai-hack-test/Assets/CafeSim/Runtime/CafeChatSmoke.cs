@@ -38,8 +38,9 @@ namespace CafeSim
             if(!result.modelReady){Finish(s.model.Error??"Model boot timeout");yield break;}
             s.Queue.Tick(31);var c=s.Selected;
             if(c==null){Finish("Customer missing");yield break;}
-            if(!s.SendChat("더 자세히 들려주세요")){Finish("Mapped input rejected");yield break;}
-            result.databaseReply=s.LastReplySource=="database";result.databaseSeconds=s.LastReplySeconds;
+            float retrievalStart=Time.realtimeSinceStartup;
+            string automatic=s.Conversation.AutomaticReply(c,"더 자세히 들려주세요",s.Queue.Knowledge,s.Menu,s.automaticReplyThreshold,out var automaticSource,out _);
+            result.databaseReply=automaticSource=="database"&&CafePrompts.ValidSpeech(automatic);result.databaseSeconds=Time.realtimeSinceStartup-retrievalStart;
             string topic=c.Person.smalltalkTopics.Split(',')[0];
             string prompt=s.Conversation.Prompt(c,topic+" 이야기",s.Queue.Knowledge);
             s.Conversation.Remember(prompt,"테스트 답변이에요.");
@@ -56,6 +57,7 @@ namespace CafeSim
             int oldHistory=c.History.Count;var other=s.Queue.Admit(false);
             if(other!=null){s.SelectCustomer(other.Id);result.selectionIsolated=s.Chat.TrueForAll(x=>!x.StartsWith("나\n",StringComparison.Ordinal));s.SelectCustomer(c.Id);}
             s.SendChat("양자역학 슈뢰딩거 방정식을 풀어줘");
+            deadline=Time.realtimeSinceStartup+310;while(s.ChatBusy&&Time.realtimeSinceStartup<deadline)yield return null;
             result.offTopicClosed=s.ChatClosed&&s.LastReplySource=="closing"&&!s.ChatBusy&&c.History.Count>oldHistory;
             s.ReopenChat();if(c.State==VisitState.Inactive)s.Queue.AcceptOrder();
             if(c.State==VisitState.Active){var m=Array.Find(s.Menu.items,x=>x.Supports("HOT")||x.Supports("ICE"));s.Serve(m.id,m.Supports("HOT")?"HOT":"ICE");result.served=c.State==VisitState.Received;}

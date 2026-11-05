@@ -17,7 +17,8 @@ namespace CafeSim
     [Serializable] public sealed class NewMenuReply { public string personaId,requestId,name,speech,voice; }
     [Serializable] public sealed class ConversationWords { public string[] words; }
     [Serializable] public sealed class ConversationEnding { public string personaId,speech; }
-    [Serializable] public sealed class ConversationTable { public ConversationRow[] items; public ConversationWords[] wordGroups; public ConversationEnding[] endings; }
+    [Serializable] public sealed class ReplyVocabulary { public string personaId; public string[] acknowledgements,clarifications,greetings; public string topicQuestion; }
+    [Serializable] public sealed class ConversationTable { public ConversationRow[] items; public ConversationWords[] wordGroups; public ConversationEnding[] endings; public ReplyVocabulary[] replyVocabulary; }
     public sealed class ConversationHit { public ConversationRow Row; public float Score, QueryScore; }
 
     // Bounded, in-memory context cache. Never persists player text or crosses a visit's history.
@@ -27,6 +28,7 @@ namespace CafeSim
         readonly NewMenuReply[] newMenuReplies;
         readonly ConversationWords[] wordGroups;
         readonly ConversationEnding[] endings;
+        readonly ReplyVocabulary[] replyVocabulary;
         readonly Dictionary<string,string> cache = new Dictionary<string,string>();
         readonly Queue<string> cacheOrder = new Queue<string>();
         public const string SystemPrompt = "당신은 카페 손님이다. 자료의 인물 말투를 따라 직원의 마지막 말에 한국어로 짧게 한두 문장 답한다. " +
@@ -42,6 +44,7 @@ namespace CafeSim
             if(asset==null)throw new InvalidOperationException("Missing conversation database");
             var table=JsonUtility.FromJson<ConversationTable>(asset.text);
             rows=table?.items;wordGroups=table?.wordGroups??Array.Empty<ConversationWords>();endings=table?.endings??Array.Empty<ConversationEnding>();
+            replyVocabulary=table?.replyVocabulary??Array.Empty<ReplyVocabulary>();
             if(rows==null)throw new InvalidOperationException("Invalid conversation database");
             var newMenu=Resources.Load<TextAsset>("CafeKnowledge/NewMenuRequests");
             newMenuReplies=newMenu==null?null:JsonUtility.FromJson<KnowledgeRows<NewMenuReply>>(newMenu.text)?.items;
@@ -131,6 +134,21 @@ namespace CafeSim
                     (string.IsNullOrEmpty(hit.Row.anchor)||Normalize(c.LastThought)==Normalize(hit.Row.anchor)))
                 {reply=hit.Row.response;return true;}
             reply=null;return false;
+        }
+        public string AutomaticReply(CafeVisit c,string input,CafeKnowledge knowledge,MenuTable menu,float threshold,out string source,out bool closed)
+        {
+            closed=false;
+            // Explicit order facts remain authoritative even when conversation is closed.
+            if(TryNewMenuReply(c,input,menu,out var menuReply)){source="new-menu-table";return menuReply;}
+            if(IsOffTopic(c,input)){source="closing";closed=true;return Closing(c);}
+            var hits=Search(c,input);
+            if(hits.Count>0&&hits[0].Score>=Mathf.Clamp01(threshold))
+            {source="database";return knowledge.MaskMenuNames(hits[0].Row.response);}
+            source="vocabulary";
+            var words=Array.Find(replyVocabulary,r=>r.personaId==c.Person.id);
+            if(words==null||words.acknowledgements==null||words.acknowledgements.Length==0||words.clarifications==null||words.clarifications.Length==0)
+                return "말씀은 들었어요. 어떤 뜻인지 조금 더 이야기해 주시겠어요?";
+            return knowledge.MaskMenuNames(CafeReplyComposer.Compose(c,input,words,Expand));
         }
         public string Prompt(CafeVisit c,string input,CafeKnowledge knowledge)
         {
