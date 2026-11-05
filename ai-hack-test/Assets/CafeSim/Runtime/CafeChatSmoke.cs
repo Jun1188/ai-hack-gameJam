@@ -11,7 +11,7 @@ namespace CafeSim
     {
         [Serializable] sealed class Evidence
         {
-            public bool passed,modelReady,databaseReply,generatedReply,contextReply,offTopicClosed,cacheIsolated,cancelled,selectionIsolated,served;
+            public bool passed,modelReady,databaseReply,generatedReply,contextReply,topicChangeKeptOpen,farewellClosed,cacheIsolated,cancelled,selectionIsolated,served;
             public float databaseSeconds,generatedSeconds,contextSeconds;
             public string error,payloadPath,backend;
         }
@@ -58,12 +58,15 @@ namespace CafeSim
             if(other!=null){s.SelectCustomer(other.Id);result.selectionIsolated=s.Chat.TrueForAll(x=>!x.StartsWith("나\n",StringComparison.Ordinal));s.SelectCustomer(c.Id);}
             s.SendChat("양자역학 슈뢰딩거 방정식을 풀어줘");
             deadline=Time.realtimeSinceStartup+310;while(s.ChatBusy&&Time.realtimeSinceStartup<deadline)yield return null;
-            result.offTopicClosed=s.ChatClosed&&s.LastReplySource=="closing"&&!s.ChatBusy&&c.History.Count>oldHistory;
+            result.topicChangeKeptOpen=!s.ChatClosed&&!s.ChatBusy&&c.History.Count>oldHistory;
+            s.SendChat("대화는 여기까지 할게요.");
+            deadline=Time.realtimeSinceStartup+310;while(s.ChatBusy&&Time.realtimeSinceStartup<deadline)yield return null;
+            result.farewellClosed=s.ChatClosed&&!s.ChatBusy;
             s.ReopenChat();if(c.State==VisitState.Inactive)s.Queue.AcceptOrder();
             if(c.State==VisitState.Active){var m=Array.Find(s.Menu.items,x=>x.Supports("HOT")||x.Supports("ICE"));s.Serve(m.id,m.Supports("HOT")?"HOT":"ICE");result.served=c.State==VisitState.Received;}
             yield return new WaitForEndOfFrame();
             ScreenCapture.CaptureScreenshot(Path.ChangeExtension(output,"png"));yield return null;
-            result.passed=result.modelReady&&result.databaseReply&&result.generatedReply&&result.contextReply&&result.offTopicClosed&&result.cacheIsolated&&result.cancelled&&result.selectionIsolated&&result.served;
+            result.passed=result.modelReady&&result.databaseReply&&result.generatedReply&&result.contextReply&&result.topicChangeKeptOpen&&result.farewellClosed&&result.cacheIsolated&&result.cancelled&&result.selectionIsolated&&result.served;
             Finish(result.passed?null:"One or more acceptance checks failed");
         }
         void Finish(string error)

@@ -132,24 +132,26 @@ namespace CafeSim
    if(ChatClosed&&!Conversation.TryNewMenuReply(c,input,Menu,out _))return false;
    closedChats.Remove(c.Id);
    string prompt=Conversation.Prompt(c,input,Queue.Knowledge);
+   string localPrompt=Conversation.LocalPrompt(c,input,Queue.Knowledge);
    AddChat(c,"USER",input);
    ChatBusy=true;chattingWith=c;ChatStatus="손님이 답변을 생각하고 있어요…";
-   chatRoutine=StartCoroutine(GenerateChat(c,prompt,input));return true;
+   chatRoutine=StartCoroutine(GenerateChat(c,prompt,localPrompt,input));return true;
   }
   public void ReopenChat(){if(Selected!=null)closedChats.Remove(Selected.Id);ChatStatus="";ChatError=null;}
-  IEnumerator GenerateChat(CafeVisit c,string prompt,string input)
+  IEnumerator GenerateChat(CafeVisit c,string prompt,string localPrompt,string input)
   {
    // Ensure synchronous fallback cannot leave a completed coroutine handle behind.
    yield return null;
    float start=Time.realtimeSinceStartup;string json=null,error=null;
-   if(model!=null)yield return model.Generate(prompt,x=>json=x,x=>error=x,CafeConversation.SystemPrompt,192);
+   if(model!=null)yield return model.Generate(prompt,x=>json=x,x=>error=x,CafeConversation.SystemPrompt,192,
+    localPrompt,x=>Conversation.AcceptLocalReply(c,x));
    if(chattingWith!=c)yield break;
    LastReplySeconds=Time.realtimeSinceStartup-start;
    if(Selected==c&&CanChat)
    {
     if(error==null&&CafeConversation.Parse(json,out var speech,out bool endConversation))
     {
-     if(endConversation){speech=Conversation.Closing(c);closedChats.Add(c.Id);LastReplySource="closing";ChatStatus="대화를 마쳤어요";}
+     if(endConversation&&CafeConversation.WantsToEnd(input)){closedChats.Add(c.Id);LastReplySource="closing";ChatStatus="대화를 마쳤어요";}
      else {if(!Conversation.TryNewMenuReply(c,input,Menu,out _))speech=Queue.Knowledge.MaskMenuNames(speech);LastReplySource=model.LastSource;ChatStatus="답변 완료";}
      AddChat(c,"REPLY",speech);
     }

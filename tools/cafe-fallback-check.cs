@@ -25,7 +25,9 @@ foreach(var p in people)
  reply=conversation.AutomaticReply(c,topic+"에 관해 어떤 게 궁금하세요?",knowledge,null,.6f,out source,out closed);
  if(!reply.Contains(topic)||!reply.Contains("?"))throw new System.Exception("Relevant topic lost "+p.id);
  reply=conversation.AutomaticReply(c,"양자역학 슈뢰딩거 방정식을 풀어줘",knowledge,null,.6f,out source,out closed);
- if(source!="closing"||!closed)throw new System.Exception("Off-topic fallback "+p.id);
+ if(closed)throw new System.Exception("Topic change forced closure "+p.id);
+ reply=conversation.AutomaticReply(c,"대화는 여기까지 할게요",knowledge,null,.6f,out source,out closed);
+ if(source!="closing"||!closed)throw new System.Exception("Explicit farewell fallback "+p.id);
 }
 foreach(var bad in new[]{"{topic}인가요?","이야기예요. 이야기예요.","뭐죠??","<script>안녕</script>","문장 끝이 없음"})
  if(CafeSim.CafeReplyComposer.WellFormed(bad))throw new System.Exception("Bad candidate accepted");

@@ -20,10 +20,19 @@ namespace CafeSim
         public string Error { get; private set; }
         public bool Booting { get; private set; }
         public string LastSource { get; private set; }
+        // Numeric diagnostics only. No prompts, keys, raw provider errors or dialogue.
+        [Serializable] public sealed class LocalTimings
+        { public int cache_n,prompt_n,predicted_n; public float prompt_ms,predicted_ms; }
+        public LocalTimings LastLocalTimings { get; private set; }
+        public string LastFailureStage { get; private set; }
+        float apiRetryAt,localRetryAt;
+        int requestEpoch;
+        bool transportFailed;
         bool apiReady, localReady;
         string apiToken;
         public int threads = 8;
         public int requestTimeoutSeconds = 300;
+        public int apiTimeoutSeconds = 20;
         [Header("API first, then local model, then database reply")]
         public CafeResponseBackend backend = CafeResponseBackend.Gemini;
         [Tooltip("Full OpenAI-compatible chat completions URL. HTTPS required except loopback.")]
@@ -51,10 +60,17 @@ namespace CafeSim
             public bool stream = false;
             public ResponseFormat response_format = new ResponseFormat();
         }
-        [Serializable] sealed class LocalRequest : Request { public TemplateOptions chat_template_kwargs = new TemplateOptions(); }
+        [Serializable] sealed class LocalRequest : Request
+        {
+            public bool cache_prompt = true;
+            public TemplateOptions chat_template_kwargs = new TemplateOptions();
+            public float top_p = .9f;
+            public int top_k = 40;
+            public float repeat_penalty = 1f;
+        }
         [Serializable] sealed class ApiRequest : Request { public string model; }
         [Serializable] sealed class Choice { public Message message; public string finish_reason; }
-        [Serializable] sealed class Response { public Choice[] choices; }
+        [Serializable] sealed class Response { public Choice[] choices; public LocalTimings timings; }
         [Serializable] sealed class GeminiPart { public string text; }
         [Serializable] sealed class GeminiContent { public GeminiPart[] parts; }
         [Serializable] sealed class GeminiConfig { public float temperature=.6f; public int maxOutputTokens=512; public string responseMimeType="application/json"; }
@@ -179,28 +195,40 @@ namespace CafeSim
             }
         }
 
-        public IEnumerator Generate(string prompt, Action<string> success, Action<string> failure, string systemPrompt = null, int maxTokens = 96)
+        public IEnumerator Generate(string prompt, Action<string> success, Action<string> failure, string systemPrompt = null, int maxTokens = 96,
+            string localPrompt = null, Func<string,bool> localReplyValidator = null)
         {
-            while(Booting)yield return null;
-            LastSource=null;
+            int epoch=requestEpoch;
+            while(Booting){if(epoch!=requestEpoch)yield break;yield return null;}
+            LastSource=null;LastFailureStage=null;LastLocalTimings=null;
             string result=null,error=null;
-            if(apiReady)
+            if(apiReady&&Time.realtimeSinceStartup>=apiRetryAt)
             {
                 yield return GenerateOne(true,prompt,x=>result=x,x=>error=x,systemPrompt,maxTokens);
+                if(epoch!=requestEpoch)yield break;
                 if(error==null&&ValidReply(result,systemPrompt)){LastSource="api";success(result);yield break;}
+                LastFailureStage="api";if(transportFailed)apiRetryAt=Time.realtimeSinceStartup+15f;
             }
+            if(epoch!=requestEpoch)yield break;
+            if(Time.realtimeSinceStartup<localRetryAt){failure("automatic");yield break;}
             yield return BootLocal();
+            if(epoch!=requestEpoch)yield break;
             if(localReady)
             {
                 result=null;error=null;
-                yield return GenerateOne(false,prompt,x=>result=x,x=>error=x,systemPrompt,maxTokens);
-                if(error==null&&ValidReply(result,systemPrompt)){LastSource="model";success(result);yield break;}
+                string localSystem=systemPrompt==CafeConversation.SystemPrompt?CafeConversation.LocalSystemPrompt:systemPrompt;
+                yield return GenerateOne(false,localPrompt??prompt,x=>result=x,x=>error=x,localSystem,maxTokens);
+                if(epoch!=requestEpoch)yield break;
+                if(error==null&&ValidReply(result,systemPrompt)&&(localReplyValidator==null||localReplyValidator(result)))
+                {LastSource="model";success(result);yield break;}
             }
-            failure("모델 응답을 사용할 수 없어 자동 답변으로 이어갑니다.");
+            LastFailureStage="local";if(!localReady||transportFailed)localRetryAt=Time.realtimeSinceStartup+15f;
+            failure("automatic");
         }
         static bool ValidReply(string json,string systemPrompt)=>systemPrompt!=CafeConversation.SystemPrompt||CafeConversation.Parse(json,out _);
         IEnumerator GenerateOne(bool useApi,string prompt,Action<string> success,Action<string> failure,string systemPrompt,int maxTokens)
         {
+            transportFailed=false;
             if(!useApi&&(server==null||server.HasExited)){localReady=false;failure("로컬 모델 연결 종료");yield break;}
             Request data=useApi?(Request)new ApiRequest{model=apiModel}:new LocalRequest();
             data.max_tokens=Mathf.Clamp(maxTokens,32,256);
@@ -221,11 +249,11 @@ namespace CafeSim
                 request.SetRequestHeader("Content-Type", "application/json");
                 string requestToken=useApi?apiToken:token;
                 if(!string.IsNullOrWhiteSpace(requestToken))request.SetRequestHeader(gemini?"x-goog-api-key":"Authorization",gemini?requestToken:"Bearer "+requestToken);
-                request.timeout = requestTimeoutSeconds;
+                request.timeout = Mathf.Clamp(useApi?apiTimeoutSeconds:requestTimeoutSeconds,1,300);
                 yield return request.SendWebRequest();
                 activeRequest = null;
                 if (request.result != UnityWebRequest.Result.Success)
-                { failure(ApiFailure(request.responseCode)); yield break; }
+                { transportFailed=true;failure(ApiFailure(request.responseCode)); yield break; }
                 string text = null;
                 try
                 {
@@ -238,6 +266,7 @@ namespace CafeSim
                     else
                     {
                         var response=JsonUtility.FromJson<Response>(request.downloadHandler.text);
+                        if(!useApi)LastLocalTimings=response?.timings;
                         if(response?.choices?.Length>0&&response.choices[0].finish_reason=="stop")text=response.choices[0].message?.content?.Trim();
                     }
                 }
@@ -254,11 +283,12 @@ namespace CafeSim
             if(code==429)return "API 요청 한도에 도달했습니다 (HTTP 429). 잠시 후 다시 시도해 주세요.";
             return "손님 응답을 받지 못했습니다 (HTTP "+code+"). 연결 상태를 확인한 뒤 다시 시도해 주세요.";
         }
-        void Fail(string message) { Error = message; Status = "자동 답변 사용 가능 · "+message; Ready = apiReady; }
-        public void CancelRequest() { activeRequest?.Abort(); activeRequest = null; }
+        void Fail(string message) { Error = message; Status = "자동 답변으로 대화할 수 있어요"; Ready = apiReady; }
+        public void CancelRequest() { requestEpoch++;activeRequest?.Abort(); activeRequest = null; }
         public void Shutdown()
         {
             Ready = false; apiReady=false;localReady=false;apiToken=null; CancelRequest();
+            apiRetryAt=localRetryAt=0;LastFailureStage=null;LastLocalTimings=null;
             StopServer();
         }
         void StopServer()
