@@ -8,8 +8,8 @@ public static class CafeDataCheck
  {
   var menu=JsonUtility.FromJson<CafeSim.MenuTable>(File.ReadAllText("Assets/CafeSim/Data/menu.json"));
   var people=JsonUtility.FromJson<CafeSim.PersonaTable>(File.ReadAllText("Assets/CafeSim/Data/personas.json"));
-  var kb=new CafeSim.CafeKnowledge();Check(people.items.Length==16&&menu.items.Length==11,"Source table counts");
-  Check(kb.Weights.Length==176&&kb.Situations.Length==33,"Source relation counts");
+  var kb=new CafeSim.CafeKnowledge();Check(people.items.Length==18&&Array.FindAll(people.items,p=>string.IsNullOrEmpty(p.parentPersonaId)).Length==16&&menu.items.Length==11,"16 originals + 2 branches");
+  Check(kb.Weights.Length==198&&kb.Situations.Length==37,"Original and branch relation counts");
   var settings=new CafeSim.CafeQueueSettings{arrivalSeconds=10000,orderSeconds=10000,activeTimeoutSeconds=10000,inactiveCapacity=3};
   int checkedSpeech=0;
   foreach(var p in people.items)
@@ -42,7 +42,7 @@ public static class CafeDataCheck
    Check(!kb.ContainsForbidden(c.Reaction.speech)&&!kb.ContainsForbidden(c.Reaction.reason),"Forbidden customer response");
    Check(!c.Reaction.speech.Contains("그 음료"),"Feedback should describe the actual tastes, not erase both names");
   }
-  string result="PASS imported 16 personas, 11 menus, 176 weights, 33 situations; "+checkedSpeech+" normal orders + 16 off-menu substitutions, no menu-name leakage.";
+  string result="PASS 16 original personas + 2 branches, 11 menus, 198 weights, 37 situations; "+checkedSpeech+" normal orders + 18 off-menu substitutions, no menu-name leakage.";
   File.WriteAllText("../.utmp/cafe-data-check.txt",result);return result;
  }
 }

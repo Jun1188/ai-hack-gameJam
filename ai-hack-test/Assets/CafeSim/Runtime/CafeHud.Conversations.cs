@@ -69,6 +69,7 @@ namespace CafeSim
             string task = session.Selected?.State == VisitState.Active
                 ? string.IsNullOrEmpty(drink) ? "손님과 이야기하고 만들 음료를 골라 주세요." : drink + " · 레시피를 보고 제조한 뒤 손님에게 건네 주세요."
                 : "다음 손님의 주문을 기다려 주세요.";
+            if (TryRecipeStep(out _, out string step)) task = step + "  ·  F";
             GUI.Label(new Rect(x + 18, 68, width - 36, 26), task, artSmall);
             string recipeKey = tutorialMenu != null ? tutorialMenu.toggleKey.ToString() : "Tab";
             GUI.Label(new Rect(x + width - 220, 40, 202, 24), recipeKey + "  레시피 보기 / 닫기", artLabel);

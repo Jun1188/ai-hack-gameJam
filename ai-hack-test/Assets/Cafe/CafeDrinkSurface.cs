@@ -31,7 +31,7 @@ namespace MapleCafe
         private static readonly Drink Yuja = new("유자차", new Color(.86f, .53f, .12f), Finish.Yuja);
         private static readonly Drink Lemonade = new("레몬에이드", new Color(.95f, .75f, .28f), Finish.Lemonade);
         private static readonly Drink Ssanghwa = new("쌍화차", new Color(.31f, .14f, .075f), Finish.Ssanghwa);
-        internal static readonly Drink Invalid = new("신비한 음료", new Color(.58f, .11f, .83f), Finish.Invalid);
+        internal static readonly Drink Invalid = new(CafeSim.CafeQueueSim.FailedDrinkName, new Color(.58f, .11f, .83f), Finish.Invalid);
         private readonly MeshRenderer surface;
         private readonly Material material;
         private readonly Mesh mesh;

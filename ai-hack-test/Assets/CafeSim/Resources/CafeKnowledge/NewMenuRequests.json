@@ -448,6 +448,62 @@
       "name": "차가운 흰 우유",
       "speech": "차가운 흰 우유 부탁드립니다.",
       "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다."
+    },
+    {
+      "personaId": "cus_miku",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드려요.",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다."
+    },
+    {
+      "personaId": "cus_miku",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드려요.",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다."
+    },
+    {
+      "personaId": "cus_miku",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드려요.",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다."
+    },
+    {
+      "personaId": "cus_miku",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드려요.",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다."
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "requestId": "request_mocha",
+      "name": "카페모카",
+      "speech": "카페모카 부탁드립니다.",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다."
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "requestId": "request_peach",
+      "name": "복숭아 에이드",
+      "speech": "복숭아 에이드 부탁드립니다.",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다."
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "requestId": "request_cocoa",
+      "name": "진한 코코아",
+      "speech": "진한 코코아 부탁드립니다.",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다."
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "requestId": "request_milk",
+      "name": "차가운 흰 우유",
+      "speech": "차가운 흰 우유 부탁드립니다.",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다."
     }
   ]
 }

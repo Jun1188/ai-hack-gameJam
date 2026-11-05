@@ -2869,6 +2869,362 @@
       ],
       "minWait": 0,
       "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_0",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_1",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_2",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_3",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_4",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_5",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_6",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_7",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_8",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_9",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_10",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_11",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_12",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_13",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_14",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_15",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_16",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_17",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_18",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_0",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_1",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_2",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_3",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_4",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_5",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_6",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_7",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_8",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_9",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_10",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_11",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_12",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_13",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_14",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_15",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_16",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_17",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_18",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
     }
   ]
 }

@@ -7,7 +7,7 @@ namespace CafeSim
 {
     // ----- Static data (Resources/CafeCollection/collection.json, from 카페_손님_데이터테이블) -----
 
-    [Serializable] public sealed class CollectionCustomerInfo { public string id, name, group, tag, style, greeting; }
+    [Serializable] public sealed class CollectionCustomerInfo { public string id, name, group, tag, style, greeting; public bool optional; }
     [Serializable] public sealed class CollectionPhraseInfo { public string customer, text, line, meaning; public string[] attrs; }
     [Serializable] sealed class CollectionTable { public CollectionCustomerInfo[] customers; public CollectionPhraseInfo[] phrases; }
 
@@ -113,7 +113,9 @@ namespace CafeSim
         public IReadOnlyList<PhraseRecord> Phrases => save.phrases;
         public IReadOnlyList<string> Stamps => save.stamps;
         public int RegularCount { get { int n = 0; foreach (var c in Customers) if (Record(c.id).state == "regular") n++; return n; } }
-        public bool AllRegular => Customers.Count > 0 && RegularCount == Customers.Count;
+        public int RequiredCount => Customers.FindAll(c => !c.optional).Count;
+        public int RequiredRegularCount => Customers.FindAll(c => !c.optional && Record(c.id).state == "regular").Count;
+        public bool AllRegular => RequiredCount > 0 && RequiredRegularCount == RequiredCount;
         public bool HasNews => save.phrases.Exists(p => p.isNew) || save.customers.Exists(c => c.newRegular);
         public string Twist(string id) => twists.TryGetValue(id, out var t) ? t : "";
         public List<VisitSituation> SituationsOf(string id) => situations.TryGetValue(id, out var list) ? list : new List<VisitSituation>();
@@ -298,6 +300,7 @@ namespace CafeSim
             var groups = new Dictionary<string, (bool all, int count)>();
             foreach (var c in Customers)
             {
+                if (c.optional) continue;
                 bool regular = Record(c.id).state == "regular";
                 groups[c.group] = groups.TryGetValue(c.group, out var g) ? (g.all && regular, g.count + 1) : (regular, 1);
             }

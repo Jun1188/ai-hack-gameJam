@@ -68,4 +68,7 @@ def main():
     save(data/'ImportManifest.json',dict(sources=[dict(file=f.name,sha256=hashlib.sha256(f.read_bytes()).hexdigest()) for f in [a.customers,a.menus]],customers=len(people),menus=len(menus),situations=len(situations),offMenuChance=.05,
         projectionNotes=['No named individuals or exact numerical ages were invented.','Numeric bitterness and fruit similarity features are derived heuristics; original menu attributes are retained.','Question-answer, mood, additional drinks, visual parts and animation rows are reference data, not implemented capabilities.']))
     print(f'Imported {len(menus)} menus, {len(people)} customers, {len(situations)} situations, {len(weightrows)} weights, {len(bans)} forbidden forms')
-if __name__=='__main__':main()
+if __name__=='__main__':
+    main()
+    import runpy
+    runpy.run_path(str(Path(__file__).with_name('apply-cafe-persona-branches.py')), run_name='__main__')

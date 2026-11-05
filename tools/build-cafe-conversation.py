@@ -8,6 +8,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1] / 'ai-hack-test/Assets/CafeSim'
 load = lambda p: json.loads((ROOT / p).read_text(encoding='utf-8'))['items']
 people = load('Data/personas.json')
+people = [p for p in people if not p.get('parentPersonaId')]
+previous = ROOT / 'Resources/CafeKnowledge/conversation.json'
+reply_vocabulary = json.loads(previous.read_text(encoding='utf-8')).get('replyVocabulary', []) if previous.exists() else []
+reply_vocabulary = [r for r in reply_vocabulary if r['personaId'] in {p['id'] for p in people}]
 terms = {t['id']: t['text'] for t in load('Resources/CafeKnowledge/terms.json')}
 profiles = {p['personaId']: p['lexiconId'] for p in load('Resources/CafeKnowledge/profiles.json')}
 bindings = load('Resources/CafeKnowledge/bindings.json')
@@ -76,7 +80,7 @@ endings = [
     '그 이야기는 잘 모르겠어요. 이야기는 여기까지 하고 잠깐 쉬겠습니다.',
 ]
 target.write_text(json.dumps(dict(items=rows, wordGroups=[dict(words=g) for g in groups],
-    endings=[dict(personaId=p['id'],speech=s) for p,s in zip(people,endings)]), ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    endings=[dict(personaId=p['id'],speech=s) for p,s in zip(people,endings)], replyVocabulary=reply_vocabulary), ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
 print(f'Built {len(rows)} reply mappings for {len(people)} personas: {target}')
 requests = load('Resources/CafeKnowledge/requests.json')
 new_menu = []
@@ -88,3 +92,7 @@ for p in people:
                              speech=request['name']+' '+ending, voice=p['voice']))
 (target.parent / 'NewMenuRequests.json').write_text(json.dumps(dict(tableName='새로운 메뉴',items=new_menu),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(f'Built {len(new_menu)} persona-specific short answers in 새로운 메뉴')
+
+# Reapply independent branches after rebuilding the original source tables.
+import runpy
+runpy.run_path(str(Path(__file__).with_name('apply-cafe-persona-branches.py')), run_name='__main__')

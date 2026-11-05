@@ -329,6 +329,46 @@
       "weightRule": "단 메뉴 +1",
       "hotDelta": 0,
       "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_miku_0",
+      "personaId": "cus_miku",
+      "context": "잠깐 쉬러 들른 날",
+      "spokenContext": "노래 연습을 마치고 잠깐 쉬러 왔어요.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_miku_1",
+      "personaId": "cus_miku",
+      "context": "다음 일정을 준비하는 날",
+      "spokenContext": "다음 작은 무대에서 부를 노래를 고르는 중이에요.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_kim_gyeran_0",
+      "personaId": "cus_kim_gyeran",
+      "context": "잠깐 쉬러 들른 날",
+      "spokenContext": "회원 수업을 마치고 잠깐 쉬러 왔습니다.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_kim_gyeran_1",
+      "personaId": "cus_kim_gyeran",
+      "context": "다음 일정을 준비하는 날",
+      "spokenContext": "다음 수업 전에 회복하는 시간을 챙기고 있습니다.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
     }
   ]
 }

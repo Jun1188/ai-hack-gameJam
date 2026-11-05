@@ -4,6 +4,7 @@ from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 resource=root/'ai-hack-test/Assets/CafeSim/Resources'
 people=json.loads((resource.parent/'Data/personas.json').read_text(encoding='utf-8'))['items']
+people = [p for p in people if not p.get('parentPersonaId')]
 legacy=json.loads((resource/'CafeVocabulary.json').read_text(encoding='utf-8'))['items']
 out=resource/'CafeKnowledge';out.mkdir(exist_ok=True)
 terms=[];bindings=[]
@@ -59,3 +60,7 @@ save('requests',[dict(id='request_mocha',name='카페모카',temperature='HOT',v
 assert len({t['id'] for t in terms})==len(terms)
 assert all(b['personaId'] in {p['id'] for p in people} and b['termId'] in {t['id'] for t in terms} for b in bindings)
 print(f'Normalized {len(people)} profiles, {len(terms)} terms, {len(bindings)} bindings')
+
+# Reapply independent branches after rebuilding the original source tables.
+import runpy
+runpy.run_path(str(Path(__file__).with_name('apply-cafe-persona-branches.py')), run_name='__main__')

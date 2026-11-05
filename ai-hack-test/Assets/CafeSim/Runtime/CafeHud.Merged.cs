@@ -269,7 +269,7 @@ namespace CafeSim
             Vector2 offset=new Vector2((Screen.width-1280*scale)*.5f,(Screen.height-720*scale)*.5f);
             GUI.matrix=Matrix4x4.TRS(offset,Quaternion.identity,Vector3.one*scale);
             DayStyles();
-            if(!Halted&&!RecipeCardsOpen)DrawCurrentTask();
+            if(!Halted&&!RecipeCardsOpen){DrawCurrentTask();DrawRecipeGuide();}
             if(promptOpen&&!RecipeCardsOpen)DrawChat(scale);
             if(!Halted)DrawControls();
             if (TutorialTabRequired) DrawTutorialTabPrompt(scale, offset);
@@ -375,7 +375,8 @@ namespace CafeSim
             Vector2 offset = (new Vector2(Screen.width, Screen.height) - new Vector2(1280f, 720f) * scale) * .5f;
             float x = (anchor.x - offset.x) / scale;
             float y = (Screen.height - anchor.y - offset.y) / scale;
-            var rect = new Rect(Mathf.Clamp(x - width * .3f, 16, 1264 - width),
+            float right = tutorialMenu != null && tutorialMenu.HasPinnedCard ? 960f : 1264f;
+            var rect = new Rect(Mathf.Clamp(x - width * .3f, 16, right - width),
                 Mathf.Clamp(y - height - 26, 16, 600 - height), width, height);
             if (promptOpen) rect.y = Mathf.Clamp(330 - height, 16, rect.y);
             float tipX = Mathf.Clamp(x, rect.x + 24, rect.xMax - 48);

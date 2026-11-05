@@ -13,6 +13,8 @@ namespace CafeSim
         {
             if (!assetPath.StartsWith(CustomerPath, System.StringComparison.Ordinal)) return;
 
+            if (assetPath.StartsWith(CafeCustomerCatalogImport.DropPath, System.StringComparison.Ordinal)) return;
+
             var importer = (ModelImporter)assetImporter;
             bool isMotion = Path.GetFileNameWithoutExtension(assetPath) is "Idle" or "Walk";
             importer.animationType = ModelImporterAnimationType.Generic;
@@ -29,6 +31,7 @@ namespace CafeSim
         void OnPreprocessAnimation()
         {
             if (!assetPath.StartsWith(CustomerPath, System.StringComparison.Ordinal)) return;
+            if (assetPath.StartsWith(CafeCustomerCatalogImport.DropPath, System.StringComparison.Ordinal)) return;
             var importer = (ModelImporter)assetImporter;
             var clips = importer.defaultClipAnimations;
             foreach (var clip in clips)
@@ -45,6 +48,7 @@ namespace CafeSim
         void OnPreprocessTexture()
         {
             if (!assetPath.StartsWith(CustomerPath, System.StringComparison.Ordinal)) return;
+            if (assetPath.StartsWith(CafeCustomerCatalogImport.DropPath, System.StringComparison.Ordinal)) return;
 
             var importer = (TextureImporter)assetImporter;
             string texture = Path.GetFileNameWithoutExtension(assetPath);
