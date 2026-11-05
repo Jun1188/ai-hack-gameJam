@@ -11,6 +11,7 @@ namespace MapleCafe
         [SerializeField] private Texture2D[] cards;
         [SerializeField] private AudioClip openSound;
         [SerializeField] private AudioClip closeSound;
+        [SerializeField] private Font cardFont;
 
         private const float CardDuration = .21f;
         private const float CardDelay = .047f;
@@ -22,7 +23,9 @@ namespace MapleCafe
 
         private RectTransform canvasRect;
         private RawImage[] views;
+        private CanvasGroup[] iceNotes;
         private RawImage pinnedCard;
+        private CanvasGroup pinnedIceNote;
         private Texture2D beanCursor;
         private AudioSource cardAudio;
         private CursorLockMode previousLock;
@@ -75,7 +78,10 @@ namespace MapleCafe
             if (pinnedCard.enabled)
                 LayoutPinnedCard();
             else if (!showPinned)
+            {
                 pinnedCard.texture = null;
+                if (pinnedIceNote != null) pinnedIceNote.gameObject.SetActive(false);
+            }
             canvasRect.gameObject.SetActive(isOpen || waveTime > 0f || showPinned || pinnedCard.enabled);
         }
 
@@ -133,6 +139,7 @@ namespace MapleCafe
                 if (mouse.leftButton.wasPressedThisFrame)
                 {
                     pinnedCard.texture = view.texture;
+                    if (pinnedIceNote != null) pinnedIceNote.gameObject.SetActive(HasIceNote(view.texture));
                     showPinned = true;
                     stripExitRemaining = 1f;
                     FinishSelection(true);
@@ -200,13 +207,52 @@ namespace MapleCafe
             canvasRect = canvas.GetComponent<RectTransform>();
 
             views = new RawImage[cards.Length];
+            iceNotes = new CanvasGroup[cards.Length];
             for (int i = 0; i < cards.Length; i++)
             {
                 views[i] = CreateCardView(cards[i].name);
                 views[i].texture = cards[i];
+                if (HasIceNote(cards[i])) iceNotes[i] = CreateIceNote(views[i].rectTransform);
             }
             pinnedCard = CreateCardView("Pinned drink card");
             pinnedCard.enabled = false;
+            pinnedIceNote = CreateIceNote(pinnedCard.rectTransform);
+            if (pinnedIceNote != null) pinnedIceNote.gameObject.SetActive(false);
+        }
+
+        private static bool HasIceNote(Texture card)
+            => card.name != "menu_espresso" && card.name != "menu_ssanghwa";
+
+        private CanvasGroup CreateIceNote(RectTransform parent)
+        {
+            if (cardFont == null) return null;
+            var note = new GameObject("ICE base note", typeof(RectTransform), typeof(CanvasGroup), typeof(Image));
+            var rect = (RectTransform)note.transform;
+            rect.SetParent(parent, false);
+            rect.anchorMin = new Vector2(.076f, .037f);
+            rect.anchorMax = new Vector2(.918f, .083f);
+            rect.offsetMin = rect.offsetMax = Vector2.zero;
+            var background = note.GetComponent<Image>();
+            background.color = new Color32(226, 220, 192, 255);
+            background.raycastTarget = false;
+
+            var label = new GameObject("ICE ingredients", typeof(RectTransform), typeof(Text));
+            var labelRect = (RectTransform)label.transform;
+            labelRect.SetParent(rect, false);
+            labelRect.anchorMin = new Vector2(.014f, 0f);
+            labelRect.anchorMax = Vector2.one;
+            labelRect.offsetMin = labelRect.offsetMax = Vector2.zero;
+            var text = label.GetComponent<Text>();
+            text.font = cardFont;
+            text.fontStyle = FontStyle.Bold;
+            text.resizeTextForBestFit = true;
+            text.resizeTextMinSize = 1;
+            text.resizeTextMaxSize = 23;
+            text.alignment = TextAnchor.MiddleLeft;
+            text.color = new Color32(55, 48, 32, 255);
+            text.text = "ICE 기본  ·  얼음 + 물";
+            text.raycastTarget = false;
+            return note.GetComponent<CanvasGroup>();
         }
 
         private RawImage CreateCardView(string name)
@@ -243,6 +289,7 @@ namespace MapleCafe
                     margin + i * (width + gap),
                     Mathf.Lerp(height, -top, eased) + (height + top) * (1f - stripOpacity));
                 view.color = new Color(1f, 1f, 1f, eased * stripOpacity);
+                if (iceNotes[i] != null) iceNotes[i].alpha = view.color.a;
             }
         }
 
@@ -256,6 +303,7 @@ namespace MapleCafe
             pinnedCard.rectTransform.anchoredPosition = new Vector2(
                 viewport.width * .012f, Mathf.Lerp(height * .12f, -viewport.height * .012f, eased));
             pinnedCard.color = new Color(1f, 1f, 1f, eased);
+            if (pinnedIceNote != null) pinnedIceNote.alpha = eased;
         }
 
         private void PlayCardSound(AudioClip clip)
