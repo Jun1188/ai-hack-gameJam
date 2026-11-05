@@ -1,0 +1,103 @@
+{
+  "items": [
+    {
+      "id": "menu_americano",
+      "name": "아메리카노",
+      "category": "커피",
+      "hot": true,
+      "ice": true,
+      "recipe": "에스프레소 샷 + 물",
+      "description": "에스프레소에 물을 탄 쓴 블랙커피"
+    },
+    {
+      "id": "menu_espresso",
+      "name": "에스프레소",
+      "category": "커피",
+      "hot": true,
+      "ice": false,
+      "recipe": "에스프레소 샷",
+      "description": "작은 잔의 진하고 쓴 커피 원액"
+    },
+    {
+      "id": "menu_latte",
+      "name": "카페라떼",
+      "category": "커피",
+      "hot": true,
+      "ice": true,
+      "recipe": "에스프레소 샷 + 우유",
+      "description": "에스프레소와 우유, 달지 않음"
+    },
+    {
+      "id": "menu_vanilla",
+      "name": "바닐라라떼",
+      "category": "커피",
+      "hot": true,
+      "ice": true,
+      "recipe": "에스프레소 샷 + 우유 + 바닐라 시럽",
+      "description": "에스프레소, 우유, 바닐라 시럽. 달고 향긋함"
+    },
+    {
+      "id": "menu_condensed",
+      "name": "연유라떼",
+      "category": "커피",
+      "hot": true,
+      "ice": true,
+      "recipe": "에스프레소 샷 + 우유 + 연유",
+      "description": "에스프레소, 우유, 연유. 진하고 아주 달다"
+    },
+    {
+      "id": "menu_choco",
+      "name": "초코라떼",
+      "category": "우유",
+      "hot": true,
+      "ice": true,
+      "recipe": "우유 + 초코 파우더",
+      "description": "초콜릿과 우유, 갈색, 커피 없음"
+    },
+    {
+      "id": "menu_matcha",
+      "name": "녹차라떼",
+      "category": "우유",
+      "hot": true,
+      "ice": true,
+      "recipe": "우유 + 녹차 파우더",
+      "description": "녹차 가루와 우유, 초록색, 커피 없음"
+    },
+    {
+      "id": "menu_strawberry",
+      "name": "딸기우유",
+      "category": "우유",
+      "hot": false,
+      "ice": true,
+      "recipe": "우유 + 딸기청",
+      "description": "딸기청과 우유, 분홍색"
+    },
+    {
+      "id": "menu_yuja",
+      "name": "유자차",
+      "category": "차",
+      "hot": true,
+      "ice": true,
+      "recipe": "유자청 + 물",
+      "description": "꿀에 잰 유자를 물에 탄 차, 새콤달콤"
+    },
+    {
+      "id": "menu_lemonade",
+      "name": "레몬에이드",
+      "category": "차",
+      "hot": false,
+      "ice": true,
+      "recipe": "레몬청 + 탄산수",
+      "description": "레몬청과 탄산수, 시큼하고 톡 쏨"
+    },
+    {
+      "id": "menu_ssanghwa",
+      "name": "쌍화차",
+      "category": "차",
+      "hot": true,
+      "ice": false,
+      "recipe": "쌍화 원액 + 물 + 견과 토핑",
+      "description": "한약재 달인 전통차, 견과를 띄움"
+    }
+  ]
+}
