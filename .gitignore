@@ -6,6 +6,8 @@
 # See: https://github.com/github/gitignore/tree/main/Global
 #
 .utmp/
+/ai-hack-test/LocalInference/
+/tools/__pycache__/
 /ai-hack-test/[Ll]ibrary/
 /ai-hack-test/[Tt]emp/
 /ai-hack-test/[Oo]bj/

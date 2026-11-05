@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "order",
+      "text": "{opener} {requested}{ending}"
+    },
+    {
+      "id": "reaction",
+      "text": "{fact} {response}"
+    },
+    {
+      "id": "review",
+      "text": "{opinion} {wait}"
+    },
+    {
+      "id": "chatter",
+      "text": "{line}"
+    },
+    {
+      "id": "timeout",
+      "text": "{line}"
+    }
+  ]
+}

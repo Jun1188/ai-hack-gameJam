@@ -1,0 +1,17 @@
+{
+  "platform": "Windows x64 CPU",
+  "model": {
+    "name": "Qwen3-VL-8B-Instruct-Q4_K_M.gguf",
+    "url": "https://huggingface.co/lmstudio-community/Qwen3-VL-8B-Instruct-GGUF/resolve/2e40238691f776f0d2ac8c01fbf2942942f763d8/Qwen3-VL-8B-Instruct-Q4_K_M.gguf",
+    "sha256": "43e5606b05c5df8dfad9894cf631045b395f605c8181fbdd074dc4e7c59d09a0",
+    "bytes": 5027784800,
+    "license": "Apache-2.0"
+  },
+  "engine": {
+    "name": "llama-b12125-bin-win-cpu-x64.zip",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cpu-x64.zip",
+    "sha256": "968091ccb8c230e0cf7e0eed386310703bebae4a4fd4375f0c57db53958307d8",
+    "bytes": 24730921,
+    "license": "MIT"
+  }
+}

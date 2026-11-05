@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {
+      "file": "카페_손님_데이터테이블.xlsx",
+      "sha256": "8caf17025f1c8966b3d77d1eb95e91c926cac1075314f1e77c556d86953de51e"
+    },
+    {
+      "file": "카페_메뉴_데이터테이블.xlsx",
+      "sha256": "edf8a51560a54a150a8a4ec7ab4ad2459e6b9448c1b7c390dc247e657127b43d"
+    }
+  ],
+  "customers": 16,
+  "menus": 11,
+  "situations": 33,
+  "offMenuChance": 0.05,
+  "projectionNotes": [
+    "No named individuals or exact numerical ages were invented.",
+    "Numeric bitterness and fruit similarity features are derived heuristics; original menu attributes are retained.",
+    "Question-answer, mood, additional drinks, visual parts and animation rows are reference data, not implemented capabilities."
+  ]
+}
