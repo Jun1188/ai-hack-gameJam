@@ -2,6 +2,8 @@
 
 `CafeSession`이 선택한 대기 손님의 첫 잡담을 표시한다. 플레이어는 커서 모드에서 왼쪽 한글 입력창에 최대 300자를 넣고 Enter/보내기로 답한다. 조합 중 Enter는 전송하지 않으며 입력 중 이동·시점 전환 키를 막는다. 전송 중에도 큐는 계속 진행한다. 손님 전환·서빙·시간 초과·중단·초기화 시 이전 요청을 폐기한다. 대화 오류는 주문과 서빙을 중단시키지 않는다.
 
+입력창은 새 Input System과 호환되는 UI Toolkit TextField이고 나머지 HUD는 기존 IMGUI다. `CafeChatPanelSettings`·`CafeChatTheme`와 기존 NotoSansKR 폰트에서 만든 `CafeChatKoreanFont`를 Resources에서 읽는다. Input Handling 설정 변경이나 Editor 재시작을 요구하지 않는다. 입력창은 HUD와 동일한 화면 비율에 배치하며 조합 확정 프레임의 Enter는 전송에 쓰지 않는다. `tools/cafe-chat-input-check.cs`로 패널·테마·한글 글리프·문자 보존을 검사한다. 실제 OS 자모 조합은 사용자 Play 검증 항목이다.
+
 ## 검색 및 응답 정책
 
 `Resources/CafeKnowledge/conversation.json`은 기존 96개 대기 잡담 바인딩, 첫 잡담에 연결한 32개 후속 답변, 16개 인사를 담는다. 기존 어휘와 시간·상태 조건, 손님 ID, 첫 잡담 어휘 ID, 예상 질문, 주제 단어, 말투를 연결한다. 12개 동의어 묶음과 16개 말투별 종료 문장도 포함한다. 후속 답변과 동의어는 원본 엑셀 내용과 구분한 수작업 파생 데이터다. 생성된 사용자 대화를 자동으로 DB에 저장하지 않는다.

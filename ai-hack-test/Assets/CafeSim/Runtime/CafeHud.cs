@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace CafeSim
 {
@@ -15,10 +16,58 @@ namespace CafeSim
         Font font;
         string draft="",composition="";
         int draftCustomer;
-        GUIStyle inputStyle;
-        void OnEnable(){if(Keyboard.current!=null){Keyboard.current.onIMECompositionChange+=OnComposition;Keyboard.current.SetIMEEnabled(true);}}
-        void OnDisable(){if(Keyboard.current!=null)Keyboard.current.onIMECompositionChange-=OnComposition;if(player!=null)player.TextInputActive=false;}
-        void OnComposition(UnityEngine.InputSystem.LowLevel.IMECompositionString value){composition=value.ToString();}
+        GameObject inputRoot;
+        TextField chatInput;
+        bool inputFocused;
+        Keyboard imeKeyboard;
+        int compositionFrame=-10;
+        void OnEnable(){BindKeyboard();}
+        void BindKeyboard()
+        {
+            if(imeKeyboard==Keyboard.current)return;
+            if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;
+            imeKeyboard=Keyboard.current;
+            if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange+=OnComposition;
+        }
+        void Update(){BindKeyboard();if(player!=null)player.TextInputActive=inputFocused;}
+        void OnDisable()
+        {
+            if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
+            if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;composition="";
+            if(player!=null)player.TextInputActive=false;
+        }
+        void EnsureChatInput()
+        {
+            if(chatInput!=null)return;
+            inputRoot=new GameObject("Cafe Korean chat input");inputRoot.transform.SetParent(transform,false);
+            var document=inputRoot.AddComponent<UIDocument>();
+            document.panelSettings=Resources.Load<PanelSettings>("CafeChatPanelSettings");
+            if(document.panelSettings==null){Debug.LogError("Missing CafeChatPanelSettings");return;}
+            document.sortingOrder=100;
+            var root=document.rootVisualElement;root.pickingMode=PickingMode.Ignore;
+            chatInput=new TextField{ name="CafeChatInput", maxLength=300, multiline=false, isDelayed=false, selectAllOnFocus=false, selectAllOnMouseUp=false };
+            chatInput.style.position=Position.Absolute;
+            var koreanFont=Resources.Load<UnityEngine.TextCore.Text.FontAsset>("CafeChatKoreanFont");
+            if(koreanFont!=null)
+            {
+                chatInput.style.unityFontDefinition=FontDefinition.FromSDFFont(koreanFont);
+                chatInput.Query<TextElement>().ForEach(element=>element.style.unityFontDefinition=FontDefinition.FromSDFFont(koreanFont));
+            }
+            chatInput.style.color=cream;chatInput.style.backgroundColor=panel;
+            chatInput.RegisterValueChangedCallback(e=>draft=e.newValue);
+            chatInput.RegisterCallback<FocusInEvent>(_=>{inputFocused=true;if(player!=null)player.TextInputActive=true;});
+            chatInput.RegisterCallback<FocusOutEvent>(_=>{inputFocused=false;if(player!=null)player.TextInputActive=false;});
+            chatInput.RegisterCallback<KeyDownEvent>(e=>
+            {
+                if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
+                if(e.keyCode==KeyCode.Escape){chatInput.Blur();e.StopPropagation();return;}
+                if(e.keyCode!=KeyCode.Return&&e.keyCode!=KeyCode.KeypadEnter)return;
+                e.StopPropagation();
+                if(string.IsNullOrEmpty(composition)&&session.SendChat(draft)){draft="";chatInput.SetValueWithoutNotify("");}
+            },TrickleDown.TrickleDown);
+            root.Add(chatInput);
+        }
+        void OnComposition(UnityEngine.InputSystem.LowLevel.IMECompositionString value){composition=value.ToString();compositionFrame=Time.frameCount;}
         readonly Color panel = new Color(0.075f, 0.105f, 0.105f, 0.96f);
         readonly Color cream = new Color(0.95f, 0.92f, 0.82f);
         void Styles()
@@ -33,7 +82,6 @@ namespace CafeSim
             bubble = new GUIStyle(text) { padding = new RectOffset(14, 14, 12, 12) };
             button = new GUIStyle(GUI.skin.button) { font = font, fontSize = 16, fixedHeight = 36, richText = false };
             stars = new GUIStyle(title) { fontSize = 32 }; stars.normal.textColor = new Color(1f, 0.77f, 0.35f);
-            inputStyle=new GUIStyle(GUI.skin.textField){font=font,fontSize=17,richText=false,padding=new RectOffset(8,8,7,7)};
         }
         void Panel(Rect rect)
         {
@@ -59,6 +107,7 @@ namespace CafeSim
         {
             if (session == null) return;
             Styles();
+            EnsureChatInput();
             var previousMatrix = GUI.matrix;
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1280f * scale) * .5f, (Screen.height - 720f * scale) * .5f, 0f), Quaternion.identity, Vector3.one * scale);
@@ -87,21 +136,23 @@ namespace CafeSim
                 GUILayout.Space(8);
             }
             GUILayout.EndScrollView();
-            if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;GUI.FocusControl(null);}
+            if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;chatInput?.SetValueWithoutNotify("");chatInput?.Blur();}
             bool menuInquiry=session.CanChat&&session.Selected.OffMenu&&session.Selected.State==VisitState.Active;
             GUILayout.Label(session.ChatBusy?session.ChatStatus:menuInquiry?"메뉴 밖 주문 · 원하는 메뉴를 물어보세요":session.ChatClosed?"대화를 마쳤어요":"손님에게 이야기하기 · 한글 입력 / Enter 전송",small);
             if(session.ChatClosed&&session.CanChat&&GUILayout.Button("다시 이야기하기",button))session.ReopenChat();
             GUI.enabled=session.CanChat&&!session.ChatBusy&&(!session.ChatClosed||menuInquiry)&&(player==null||!player.Looking);
-            GUI.SetNextControlName("CafeChatInput");
-            draft=GUILayout.TextField(draft,300,inputStyle,GUILayout.Height(38));
-            bool typing=GUI.GetNameOfFocusedControl()=="CafeChatInput"&&GUI.enabled;
-            if(player!=null)player.TextInputActive=typing;
-            var evt=Event.current;
-            bool enter=typing&&evt.type==EventType.KeyDown&&(evt.keyCode==KeyCode.Return||evt.keyCode==KeyCode.KeypadEnter);
+            Rect inputRect=GUILayoutUtility.GetRect(0,38,GUILayout.ExpandWidth(true));
+            if(chatInput!=null&&Event.current.type==EventType.Repaint)
+            {
+                Vector3 position=GUI.matrix.MultiplyPoint3x4(new Vector3(36+inputRect.x,34+inputRect.y,0));
+                chatInput.style.left=position.x;chatInput.style.top=position.y;
+                chatInput.style.width=inputRect.width*scale;chatInput.style.height=38*scale;
+                chatInput.style.fontSize=17*scale;chatInput.SetEnabled(GUI.enabled);
+                if(!GUI.enabled){chatInput.Blur();inputFocused=false;}
+            }
             bool composing=!string.IsNullOrEmpty(composition);
-            if(enter){evt.Use();if(!composing&&session.SendChat(draft)){draft="";GUI.FocusControl("CafeChatInput");}}
             GUILayout.BeginHorizontal();
-            if(GUILayout.Button("보내기",button)&&!composing&&session.SendChat(draft))draft="";
+            if(GUILayout.Button("보내기",button)&&!composing&&session.SendChat(draft)){draft="";chatInput?.SetValueWithoutNotify("");}
             GUI.enabled=true;
             if(session.ChatBusy&&GUILayout.Button("응답 중단",button))session.CancelChat();
             GUILayout.EndHorizontal();
