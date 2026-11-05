@@ -70,6 +70,7 @@ namespace CafeSim
   {
    if(Selected!=null&&(Selected.State==VisitState.Active||Selected.State==VisitState.Inactive)){Phase=Selected.State==VisitState.Active?CafePhase.Choosing:CafePhase.Ordering;return;}
    if(Selected!=null&&Queue.Now<selectedUntil)return;
+   Queue.FillVacancy();
    if(Queue.Active.Count>0)SelectCustomer(Queue.Active[0].Id);else if(Queue.Inactive.Count>0)SelectCustomer(Queue.Inactive[0].Id);else {Selected=null;Phase=CafePhase.Arriving;}
   }
   public void SelectCustomer(int id)

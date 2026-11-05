@@ -21,6 +21,8 @@ namespace CafeSim
         bool inputFocused;
         Keyboard imeKeyboard;
         int compositionFrame=-10;
+        bool inputCanEdit;
+        Rect inputSlot;
         void OnEnable(){BindKeyboard();}
         void BindKeyboard()
         {
@@ -29,7 +31,21 @@ namespace CafeSim
             imeKeyboard=Keyboard.current;
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange+=OnComposition;
         }
-        void Update(){BindKeyboard();if(player!=null)player.TextInputActive=inputFocused;}
+        void Update()
+        {
+            BindKeyboard();
+            // UI Toolkit control state must not depend on whether IMGUI received a
+            // Repaint. Game-view focus, cursor mode and selection can change between them.
+            if(chatInput!=null)
+            {
+                inputCanEdit=session!=null&&session.CanChat&&!session.ChatBusy&&
+                    (!session.ChatClosed||(session.Selected.OffMenu&&session.Selected.State==VisitState.Active))&&
+                    (player==null||!player.Looking);
+                chatInput.SetEnabled(inputCanEdit);
+                if(!inputCanEdit){chatInput.Blur();inputFocused=false;}
+            }
+            if(player!=null)player.TextInputActive=inputFocused;
+        }
         void OnDisable()
         {
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
@@ -46,7 +62,10 @@ namespace CafeSim
             document.sortingOrder=100;
             var root=document.rootVisualElement;root.pickingMode=PickingMode.Ignore;
             chatInput=new TextField{ name="CafeChatInput", maxLength=300, multiline=false, isDelayed=false, selectAllOnFocus=false, selectAllOnMouseUp=false };
+            chatInput.AddToClassList("cafe-chat-input");
             chatInput.style.position=Position.Absolute;
+            chatInput.style.marginTop=0;chatInput.style.marginBottom=0;chatInput.style.marginLeft=0;chatInput.style.marginRight=0;
+            chatInput.style.paddingTop=0;chatInput.style.paddingBottom=0;chatInput.style.paddingLeft=0;chatInput.style.paddingRight=0;
             var koreanFont=Resources.Load<UnityEngine.TextCore.Text.FontAsset>("CafeChatKoreanFont");
             if(koreanFont!=null)
             {
@@ -88,6 +107,36 @@ namespace CafeSim
             Color old = GUI.color; GUI.color = panel;
             GUI.DrawTexture(rect, Texture2D.whiteTexture); GUI.color = old;
         }
+        void ChatPanel()
+        {
+            var bounds=new Rect(20,20,420,598);
+            if(inputSlot.height<=0){Panel(bounds);return;}
+            // IMGUI is composited after UI Toolkit. Leave the real text field uncovered.
+            Panel(new Rect(bounds.x,bounds.y,bounds.width,inputSlot.yMin-bounds.yMin));
+            Panel(new Rect(bounds.x,inputSlot.yMax,bounds.width,bounds.yMax-inputSlot.yMax));
+            Panel(new Rect(bounds.x,inputSlot.y,bounds.xMax>=inputSlot.x?inputSlot.x-bounds.x:0,inputSlot.height));
+            Panel(new Rect(inputSlot.xMax,inputSlot.y,bounds.xMax-inputSlot.xMax,inputSlot.height));
+        }
+        void PositionChatInput(Rect slot,float scale)
+        {
+            inputSlot=slot;
+            Vector3 position=GUI.matrix.MultiplyPoint3x4(new Vector3(slot.x,slot.y,0));
+            chatInput.style.left=position.x;chatInput.style.top=position.y;
+            chatInput.style.width=slot.width*scale;chatInput.style.height=slot.height*scale;
+            chatInput.style.fontSize=17*scale;
+            var inner=chatInput.Q(className:"unity-base-text-field__input");
+            inner.style.minHeight=0;inner.style.height=Length.Percent(100);
+            inner.style.paddingTop=3*scale;inner.style.paddingBottom=3*scale;
+            inner.style.paddingLeft=8*scale;inner.style.paddingRight=8*scale;
+            inner.style.marginTop=0;inner.style.marginBottom=0;inner.style.marginLeft=0;inner.style.marginRight=0;
+            inner.style.color=cream;inner.style.backgroundColor=panel;
+            chatInput.Query<TextElement>().ForEach(element=>
+            {
+                element.style.color=cream;element.style.minHeight=17*scale;element.style.flexGrow=1;
+                element.style.marginTop=0;element.style.marginBottom=0;
+                element.style.paddingTop=0;element.style.paddingBottom=0;
+            });
+        }
         string PhaseText()
         {
             switch (session.Phase)
@@ -111,7 +160,7 @@ namespace CafeSim
             var previousMatrix = GUI.matrix;
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1280f * scale) * .5f, (Screen.height - 720f * scale) * .5f, 0f), Quaternion.identity, Vector3.one * scale);
-            Panel(new Rect(20, 20, 420, 598));
+            ChatPanel();
             GUILayout.BeginArea(new Rect(36, 34, 388, 568));
             GUILayout.Label("느린 한 잔", title);
             GUILayout.Label("LOCAL CAFÉ  /  손님 주문 테스트", small);
@@ -138,17 +187,13 @@ namespace CafeSim
             GUILayout.EndScrollView();
             if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;chatInput?.SetValueWithoutNotify("");chatInput?.Blur();}
             bool menuInquiry=session.CanChat&&session.Selected.OffMenu&&session.Selected.State==VisitState.Active;
-            GUILayout.Label(session.ChatBusy?session.ChatStatus:menuInquiry?"메뉴 밖 주문 · 원하는 메뉴를 물어보세요":session.ChatClosed?"대화를 마쳤어요":"손님에게 이야기하기 · 한글 입력 / Enter 전송",small);
+            GUILayout.Label(!session.CanChat?"후기를 확인한 뒤 다음 손님과 대화할 수 있어요":player!=null&&player.Looking?"E / Esc로 커서를 해제한 뒤 입력창을 누르세요":session.ChatBusy?session.ChatStatus:menuInquiry?"메뉴 밖 주문 · 원하는 메뉴를 물어보세요":session.ChatClosed?"대화를 마쳤어요":"손님에게 이야기하기 · 한글 입력 / Enter 전송",small);
             if(session.ChatClosed&&session.CanChat&&GUILayout.Button("다시 이야기하기",button))session.ReopenChat();
             GUI.enabled=session.CanChat&&!session.ChatBusy&&(!session.ChatClosed||menuInquiry)&&(player==null||!player.Looking);
             Rect inputRect=GUILayoutUtility.GetRect(0,38,GUILayout.ExpandWidth(true));
             if(chatInput!=null&&Event.current.type==EventType.Repaint)
             {
-                Vector3 position=GUI.matrix.MultiplyPoint3x4(new Vector3(36+inputRect.x,34+inputRect.y,0));
-                chatInput.style.left=position.x;chatInput.style.top=position.y;
-                chatInput.style.width=inputRect.width*scale;chatInput.style.height=38*scale;
-                chatInput.style.fontSize=17*scale;chatInput.SetEnabled(GUI.enabled);
-                if(!GUI.enabled){chatInput.Blur();inputFocused=false;}
+                PositionChatInput(new Rect(36+inputRect.x,34+inputRect.y,inputRect.width,38),scale);
             }
             bool composing=!string.IsNullOrEmpty(composition);
             GUILayout.BeginHorizontal();
