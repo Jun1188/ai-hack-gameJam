@@ -104,6 +104,15 @@ namespace CafeSim
             return c;
         }
         public float ReceptionSecondsRemaining => Inactive.Count==0?0:Mathf.Max(0,Settings.orderSeconds*Active.Count-(Now-Inactive[0].ArrivedAt));
+        public CafeVisit FillVacancy()
+        {
+            // Called after the final customer's review has been read. Do not leave an
+            // empty cafe stalled on the periodic arrival timer, or duplicate waiting visits.
+            if(Active.Count>0||Inactive.Count>0)return null;
+            var next=Admit();
+            if(next!=null){nextArrival=Now+Settings.arrivalSeconds;AcceptReadyOrder();}
+            return next;
+        }
         void AcceptReadyOrder()
         {
             if(Inactive.Count>0&&ReceptionSecondsRemaining<=0)AcceptOrder();
