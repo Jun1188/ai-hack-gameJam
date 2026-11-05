@@ -11,6 +11,7 @@ using Debug = UnityEngine.Debug;
 
 namespace CafeSim
 {
+    public enum CafeResponseBackend { LocalModel, CompatibleApi }
     // Scene-local owned process. No dependency on the user's LM Studio/Hub or user paths.
     public sealed class LocalCafeModel : MonoBehaviour
     {
@@ -19,6 +20,14 @@ namespace CafeSim
         public string Error { get; private set; }
         public int threads = 8;
         public int requestTimeoutSeconds = 300;
+        [Header("Live reply connection (database / topic gate stay local)")]
+        public CafeResponseBackend backend = CafeResponseBackend.LocalModel;
+        [Tooltip("Full OpenAI-compatible chat completions URL. HTTPS required except loopback.")]
+        public string apiEndpoint = "";
+        public string apiModel = "";
+        [Tooltip("Environment variable name only. Never put an API key in scene assets. Empty allows an unauthenticated endpoint.")]
+        public string apiKeyEnvironmentVariable = "CAFE_CHAT_API_KEY";
+        public bool UseApi => backend == CafeResponseBackend.CompatibleApi;
         Process server;
         UnityWebRequest activeRequest;
         string baseUrl, token;
@@ -26,15 +35,16 @@ namespace CafeSim
         [Serializable] sealed class Message { public string role, content; }
         [Serializable] sealed class TemplateOptions { public bool enable_thinking = false; }
         [Serializable] sealed class ResponseFormat { public string type = "json_object"; }
-        [Serializable] sealed class Request
+        [Serializable] class Request
         {
             public Message[] messages;
             public float temperature = 0.6f;
             public int max_tokens = 96;
             public bool stream = false;
-            public TemplateOptions chat_template_kwargs = new TemplateOptions();
             public ResponseFormat response_format = new ResponseFormat();
         }
+        [Serializable] sealed class LocalRequest : Request { public TemplateOptions chat_template_kwargs = new TemplateOptions(); }
+        [Serializable] sealed class ApiRequest : Request { public string model; }
         [Serializable] sealed class Choice { public Message message; public string finish_reason; }
         [Serializable] sealed class Response { public Choice[] choices; }
 
@@ -53,6 +63,16 @@ namespace CafeSim
         {
             Shutdown();
             Error = null;
+            ApplyLaunchOptions();
+            if(UseApi)
+            {
+                if(!ValidApiEndpoint(apiEndpoint)||string.IsNullOrWhiteSpace(apiModel))
+                {Fail("API 주소(전체 chat/completions URL)와 모델명을 설정해 주세요. 외부 주소는 HTTPS여야 합니다.");yield break;}
+                token=string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
+                if(!string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)&&string.IsNullOrWhiteSpace(token))
+                {Fail("API 키 환경변수 "+apiKeyEnvironmentVariable+"를 설정한 뒤 응답 연결을 재시작해 주세요.");yield break;}
+                Ready=true;Status="API 설정 준비 완료 · 연결은 전송 시 확인";yield break;
+            }
             if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.WindowsEditor)
             { Fail("이 추론 패키지는 Windows x64용입니다."); yield break; }
             string root = PayloadPath;
@@ -104,18 +124,41 @@ namespace CafeSim
 
         static void DiscardOutput(object sender, DataReceivedEventArgs args) { }
 
-        public IEnumerator Generate(string prompt, Action<string> success, Action<string> failure, string systemPrompt = null)
+        public static bool ValidApiEndpoint(string value)
         {
-            if (!Ready || server == null || server.HasExited) { Ready = false; failure("로컬 모델 연결이 끊어졌습니다. 모델 재시작을 눌러 주세요."); yield break; }
-            var data = new Request { messages = new[] { new Message { role = "system", content = systemPrompt ?? CafePrompts.System },
-                new Message { role = "user", content = prompt } } };
-            using (var request = new UnityWebRequest(baseUrl + "/v1/chat/completions", "POST"))
+            return Uri.TryCreate(value,UriKind.Absolute,out var uri)&&string.IsNullOrEmpty(uri.UserInfo)&&
+                string.IsNullOrEmpty(uri.Query)&&string.IsNullOrEmpty(uri.Fragment)&&
+                (uri.Scheme=="https"||(uri.Scheme=="http"&&uri.IsLoopback));
+        }
+        void ApplyLaunchOptions()
+        {
+            var args=Environment.GetCommandLineArgs();
+            for(int i=0;i+1<args.Length;i++)
+            {
+                switch(args[i])
+                {
+                    case "--cafe-chat-provider":backend=args[++i]=="api"?CafeResponseBackend.CompatibleApi:CafeResponseBackend.LocalModel;break;
+                    case "--cafe-chat-endpoint":apiEndpoint=args[++i];break;
+                    case "--cafe-chat-model":apiModel=args[++i];break;
+                    case "--cafe-chat-key-env":apiKeyEnvironmentVariable=args[++i];break;
+                }
+            }
+        }
+
+        public IEnumerator Generate(string prompt, Action<string> success, Action<string> failure, string systemPrompt = null, int maxTokens = 96)
+        {
+            if (!Ready || (!UseApi&&(server == null || server.HasExited))) { Ready = false; failure("응답 연결이 끊어졌습니다. 응답 연결 재시작을 눌러 주세요."); yield break; }
+            Request data=UseApi?(Request)new ApiRequest{model=apiModel}:new LocalRequest();
+            data.max_tokens=Mathf.Clamp(maxTokens,32,256);
+            data.messages = new[] { new Message { role = "system", content = systemPrompt ?? CafePrompts.System },
+                new Message { role = "user", content = prompt } };
+            using (var request = new UnityWebRequest(UseApi?apiEndpoint:baseUrl + "/v1/chat/completions", "POST"))
             {
                 activeRequest = request;
                 request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(JsonUtility.ToJson(data)));
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                request.SetRequestHeader("Authorization", "Bearer " + token);
+                if(!string.IsNullOrWhiteSpace(token))request.SetRequestHeader("Authorization", "Bearer " + token);
                 request.timeout = requestTimeoutSeconds;
                 yield return request.SendWebRequest();
                 activeRequest = null;

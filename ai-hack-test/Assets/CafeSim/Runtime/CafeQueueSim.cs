@@ -53,13 +53,13 @@ namespace CafeSim
         public event Action<CafeVisit,string,string> Output;
         readonly Persona[] people;readonly MenuTable menu;readonly System.Random random;
         readonly Dictionary<string,int> visits=new Dictionary<string,int>();
-        int nextId;float nextArrival,nextOrder;
+        int nextId;float nextArrival;
         public CafeQueueSim(Persona[] people,MenuTable menu,CafeKnowledge knowledge,CafeQueueSettings settings,int seed)
         {
             settings.Validate();if(people==null||people.Length==0||menu?.items==null||menu.items.Length==0)throw new InvalidOperationException("Empty cafe data");
             foreach(var m in menu.items)knowledge.Similarity(m.id,"HOT",m.id,"HOT");
             this.people=people;this.menu=menu;Knowledge=knowledge;Settings=settings;random=new System.Random(seed);
-            nextArrival=0;nextOrder=settings.orderSeconds;
+            nextArrival=0;
         }
         public void Tick(float dt)
         {
@@ -68,7 +68,7 @@ namespace CafeSim
             float end=Now+dt;
             do {float step=Mathf.Min(.25f,end-Now);Now+=step;UpdateWaits();Expire();
                 if(Now>=nextArrival){Admit();nextArrival=Now+Settings.arrivalSeconds;}
-                if(Now>=nextOrder){AcceptOrder();nextOrder=Now+Settings.orderSeconds;}
+                AcceptReadyOrder();
                 Chatter();
             }while(Now<end-.00001f);
         }
@@ -103,6 +103,11 @@ namespace CafeSim
             Active.Add(c);Emit(c,"ORDER",c.Order.speech);
             return c;
         }
+        public float ReceptionSecondsRemaining => Inactive.Count==0?0:Mathf.Max(0,Settings.orderSeconds*Active.Count-(Now-Inactive[0].ArrivedAt));
+        void AcceptReadyOrder()
+        {
+            if(Inactive.Count>0&&ReceptionSecondsRemaining<=0)AcceptOrder();
+        }
         void UpdateWaits()
         {
             foreach(var c in Inactive)c.InactiveWait=Now-c.ArrivedAt;
@@ -134,7 +139,7 @@ namespace CafeSim
         public bool Serve(int id,string menuId,string temp)
         {
             UpdateWaits();Expire();var c=Active.Find(v=>v.Id==id);var served=Array.Find(menu.items,m=>m.id==menuId);
-            if(c==null||served==null||!served.Supports(temp))return false;
+            if(c==null||served==null||!served.Supports(temp)){AcceptReadyOrder();return false;}
             Active.Remove(c);c.State=VisitState.Received;c.ResolvedAt=Now;c.ServedName=served.name;c.ServedTemperature=temp;
             c.Accuracy=Knowledge.Similarity(c.Order.menuId,c.Order.temperature,menuId,temp);
             string fact="";
@@ -148,7 +153,7 @@ namespace CafeSim
             string waiting=Expand(Knowledge.Retrieve(c,"waitReview",c.ActiveWait),c);
             c.Reaction=new CustomerReaction{speech=Knowledge.Compose("reaction",new Dictionary<string,string>{{"fact",fact},{"response",response}}),stars=stars,
                 reason=Knowledge.Compose("review",new Dictionary<string,string>{{"opinion",opinion},{"wait",waiting}})};
-            Emit(c,"SERVED",Label(served.name,temp)+" | similarity="+c.Accuracy.ToString("F2"));Emit(c,"REACTION",c.Reaction.speech);Finish(c);return true;
+            Emit(c,"SERVED",Label(served.name,temp)+" | similarity="+c.Accuracy.ToString("F2"));Emit(c,"REACTION",c.Reaction.speech);Finish(c);AcceptReadyOrder();return true;
         }
         void Finish(CafeVisit c){Completed.Add(c);if(Completed.Count>64)Completed.RemoveAt(0);}
         public void PublishRating(CafeVisit c){if(c.State==VisitState.Received&&!c.RatingPublished){c.RatingPublished=true;Emit(c,"RATING",c.Reaction.stars+"/5 | "+c.Reaction.reason);}}

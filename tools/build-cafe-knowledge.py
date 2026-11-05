@@ -37,8 +37,8 @@ for person,lines in zip(people,chatter):
     for stage,variants in zip(['inactive','active'],lines):
         for i,text in enumerate(variants):bind(person['id'],'chatter',text,[stage],[0,60,120][i],[60,120,100000][i])
     bind(person['id'],'repeat','제 취향은 분명해요. 제가 고른 잔으로 부탁드려요.',['repeat'])
-    bind(person['id'],'waitReview','주문 전 {inactiveSeconds}초, 주문 후 {activeSeconds}초를 기다린 점은 아쉬워요.',['delayed'])
-    bind(person['id'],'timeout','{lastThought} 주문 후 {activeSeconds}초 동안 받지 못해서 오늘은 그냥 가겠습니다.',['timeout'])
+    bind(person['id'],'waitReview','기다림이 조금 길게 느껴져 아쉬워요.',['delayed'])
+    bind(person['id'],'timeout','기다렸지만 음료를 받지 못해서 오늘은 이만 가겠습니다.',['timeout'])
     bind(person['id'],'similar','원래 부탁한 {requested}는 없지만, {served}에서 비슷한 맛을 찾을 수 있겠네요.',['similar'])
     bind(person['id'],'different','부탁한 {requested}와 받은 {served}는 맛의 방향이 많이 다르네요.',['different'])
     partial=['새벽 스케치 옆에 이 비슷한 맛도 남겨 볼게요.','원안과 다르지만 맛의 방향은 가까운 대안입니다.','목적지는 조금 달라도 비슷한 노선으로 왔네요.','원곡과 다르지만 비슷한 박자가 들립니다.','다른 단어지만 가까운 뜻을 찾은 기분이에요.','고른 꽃과 달라도 비슷한 색의 꽃다발 같네요!','탐사 음료의 다른 버전으로 생각해 볼게요.','예약한 책 대신 같은 주제의 책을 만난 느낌이에요.','수첩에 원래 메뉴와 가까운 맛이라고 적을게요.']

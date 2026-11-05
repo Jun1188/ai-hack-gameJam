@@ -81,6 +81,17 @@ namespace CafeSim
             if(line.Contains("{")||line.Contains("}"))throw new InvalidOperationException("Unresolved sentence slot");
             return line.Trim();
         }
+        // Read-only retrieval for live dialogue: never consumes autonomous chatter terms.
+        public string ConversationContext(CafeVisit c)
+        {
+            if(!profiles.TryGetValue(c.Person.id,out var profile)||!index.TryGetValue(profile+":chatter",out var rows))return "";
+            var lines=new List<string>();var flags=c.Parameters();
+            float wait=c.State==VisitState.Inactive?c.InactiveWait:c.ActiveWait;
+            foreach(var b in rows)
+                if(wait>=b.minWait&&wait<b.maxWait&&(b.requires==null||Array.TrueForAll(b.requires,flags.Contains))&&!lines.Contains(terms[b.termId]))
+                    lines.Add(terms[b.termId]);
+            return string.Join("\n",lines);
+        }
         public float Similarity(string requested,string requestedTemp,string served,string servedTemp)
         {
             if(requested==served)return requestedTemp==servedTemp?1f:.8f;
