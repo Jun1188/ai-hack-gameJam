@@ -22,6 +22,8 @@ namespace CafeSim
     }
     public sealed class CafeVisit
     {
+        internal int? AppearanceSeed;
+        internal CafeCustomerAppearance.Skin? AppearanceSkin;
         public int Id,VisitNumber,InactiveEntries=1,ActiveEntries,UtteranceCount;
         public Persona Person; public CustomerOrder Order; public CustomerReaction Reaction;
         public VisitSituation Situation;

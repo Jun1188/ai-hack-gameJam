@@ -1,3 +1,5 @@
+using System;
+using CafeSim;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +15,7 @@ namespace MapleCafe
         [SerializeField] private AudioClip openSound;
         [SerializeField] private AudioClip closeSound;
         [SerializeField] private Font cardFont;
+        [SerializeField] private TextAsset cardMenuData;
 
         private const float CardDuration = .21f;
         private const float CardDelay = .047f;
@@ -21,12 +24,20 @@ namespace MapleCafe
         private const float PinDuration = .26f;
         private const float CardAspect = 384f / 600f;
         private const float TopScreenShare = 1f / 3f;
+        private const float TemperatureLeft = .05f;
+        private const float TemperatureRight = .51f;
+        private const float TemperatureWidth = .44f;
+        private const float TutorialDimOpacity = .32f;
+        private const float TutorialDimFadeTime = .16f;
 
         private RectTransform canvasRect;
-        private RawImage[] views;
-        private CanvasGroup[] iceNotes;
-        private RawImage pinnedCard;
-        private CanvasGroup pinnedIceNote;
+        private CanvasGroup tutorialSpotlight;
+        private RectTransform tutorialFrame;
+        private RectTransform tutorialDimTop, tutorialDimBottom, tutorialDimLeft, tutorialDimRight;
+        private bool tutorialFocusActive;
+        private bool tutorialFocusUsed;
+        private CardView[] views;
+        private CardView pinnedCard;
         private Texture2D beanCursor;
         private AudioSource cardAudio;
         private CursorLockMode previousLock;
@@ -37,6 +48,14 @@ namespace MapleCafe
         private float waveTime;
         private float stripExitRemaining;
         private float pinProgress;
+        internal bool IsListOpen => isOpen;
+        internal bool HasPinnedCard => showPinned && pinProgress > 0f;
+
+        internal void SetTutorialCardFocus(bool choosingFirstCard)
+        {
+            tutorialFocusActive = choosingFirstCard && isOpen && (tutorialFocusActive || !tutorialFocusUsed);
+            tutorialFocusUsed |= tutorialFocusActive;
+        }
 
         private void Update()
         {
@@ -75,15 +94,15 @@ namespace MapleCafe
             else if (!showPinned)
                 pinProgress = Mathf.MoveTowards(pinProgress, 0f, dt / PinDuration);
 
-            pinnedCard.enabled = pinProgress > 0f;
-            if (pinnedCard.enabled)
+            bool pinnedVisible = pinProgress > 0f;
+            pinnedCard.Rect.gameObject.SetActive(pinnedVisible);
+            if (pinnedVisible)
                 LayoutPinnedCard();
-            else if (!showPinned)
-            {
-                pinnedCard.texture = null;
-                if (pinnedIceNote != null) pinnedIceNote.gameObject.SetActive(false);
-            }
-            canvasRect.gameObject.SetActive(isOpen || waveTime > 0f || showPinned || pinnedCard.enabled);
+            float targetOpacity = tutorialFocusActive && isOpen ? 1f : 0f;
+            tutorialSpotlight.alpha = Mathf.MoveTowards(tutorialSpotlight.alpha, targetOpacity,
+                Time.unscaledDeltaTime / TutorialDimFadeTime);
+            canvasRect.gameObject.SetActive(isOpen || waveTime > 0f || showPinned || pinnedVisible ||
+                tutorialSpotlight.alpha > 0f);
         }
 
         private void HandleKeys()
@@ -134,13 +153,12 @@ namespace MapleCafe
             Vector2 pointer = mouse.position.ReadValue();
             foreach (var view in views)
             {
-                if (view.color.a < .55f || !RectTransformUtility.RectangleContainsScreenPoint(view.rectTransform, pointer))
+                if (view.Group.alpha < .55f || !RectTransformUtility.RectangleContainsScreenPoint(view.Rect, pointer))
                     continue;
 
                 if (mouse.leftButton.wasPressedThisFrame)
                 {
-                    pinnedCard.texture = view.texture;
-                    if (pinnedIceNote != null) pinnedIceNote.gameObject.SetActive(HasIceNote(view.texture));
+                    SetCard(pinnedCard, view.Art.texture, view.Item);
                     showPinned = true;
                     stripExitRemaining = 1f;
                     FinishSelection(true);
@@ -148,7 +166,7 @@ namespace MapleCafe
                 }
                 else
                 {
-                    view.color *= new Color(.86f, .86f, .86f, 1f);
+                    view.Art.color = new Color(.86f, .86f, .86f);
                 }
                 break;
             }
@@ -184,12 +202,10 @@ namespace MapleCafe
             pinProgress = 0f;
             showPinned = false;
             returnTogether = false;
+            tutorialFocusActive = false;
+            if (tutorialSpotlight != null) tutorialSpotlight.alpha = 0f;
             if (cardAudio != null) cardAudio.Stop();
-            if (pinnedCard != null)
-            {
-                pinnedCard.enabled = false;
-                pinnedCard.texture = null;
-            }
+            if (pinnedCard != null) pinnedCard.Rect.gameObject.SetActive(false);
             if (canvasRect != null) canvasRect.gameObject.SetActive(false);
         }
 
@@ -207,65 +223,179 @@ namespace MapleCafe
             overlay.sortingOrder = 40;
             canvasRect = canvas.GetComponent<RectTransform>();
 
-            views = new RawImage[cards.Length];
-            iceNotes = new CanvasGroup[cards.Length];
+            MenuItem[] menu = cardMenuData != null ? JsonUtility.FromJson<MenuTable>(cardMenuData.text)?.items : null;
+            views = new CardView[cards.Length];
             for (int i = 0; i < cards.Length; i++)
             {
-                views[i] = CreateCardView(cards[i].name);
-                views[i].texture = cards[i];
-                if (HasIceNote(cards[i])) iceNotes[i] = CreateIceNote(views[i].rectTransform);
+                Texture2D texture = cards[i];
+                MenuItem item = menu == null ? null : Array.Find(menu, entry => entry.id == texture.name);
+                views[i] = CreateCardView(texture.name);
+                SetCard(views[i], texture, item);
             }
             pinnedCard = CreateCardView("Pinned drink card");
-            pinnedCard.enabled = false;
-            pinnedIceNote = CreateIceNote(pinnedCard.rectTransform);
-            if (pinnedIceNote != null) pinnedIceNote.gameObject.SetActive(false);
+            pinnedCard.Rect.gameObject.SetActive(false);
+            BuildTutorialSpotlight();
         }
 
-        private static bool HasIceNote(Texture card)
-            => card.name != "menu_espresso" && card.name != "menu_ssanghwa";
-
-        private CanvasGroup CreateIceNote(RectTransform parent)
+        private sealed class CardView
         {
-            if (cardFont == null) return null;
-            var note = new GameObject("ICE base note", typeof(RectTransform), typeof(CanvasGroup), typeof(Image));
-            var rect = (RectTransform)note.transform;
-            rect.SetParent(parent, false);
-            rect.anchorMin = new Vector2(.076f, .037f);
-            rect.anchorMax = new Vector2(.918f, .083f);
-            rect.offsetMin = rect.offsetMax = Vector2.zero;
-            var background = note.GetComponent<Image>();
-            background.color = new Color32(226, 220, 192, 255);
-            background.raycastTarget = false;
-
-            var label = new GameObject("ICE ingredients", typeof(RectTransform), typeof(Text));
-            var labelRect = (RectTransform)label.transform;
-            labelRect.SetParent(rect, false);
-            labelRect.anchorMin = new Vector2(.014f, 0f);
-            labelRect.anchorMax = Vector2.one;
-            labelRect.offsetMin = labelRect.offsetMax = Vector2.zero;
-            var text = label.GetComponent<Text>();
-            text.font = cardFont;
-            text.fontStyle = FontStyle.Bold;
-            text.resizeTextForBestFit = true;
-            text.resizeTextMinSize = 1;
-            text.resizeTextMaxSize = 23;
-            text.alignment = TextAnchor.MiddleLeft;
-            text.color = new Color32(55, 48, 32, 255);
-            text.text = "ICE 기본  ·  얼음 + 물";
-            text.raycastTarget = false;
-            return note.GetComponent<CanvasGroup>();
+            public RectTransform Rect;
+            public CanvasGroup Group;
+            public RawImage Art;
+            public GameObject Panel;
+            public Text Name, HotPrice, IcePrice, Ingredients, IceNote;
+            public MenuItem Item;
         }
 
-        private RawImage CreateCardView(string name)
+        private void BuildTutorialSpotlight()
         {
-            var item = new GameObject(name, typeof(RectTransform));
-            var rect = item.GetComponent<RectTransform>();
+            var layer = AddCardRect(canvasRect, "Tutorial spotlight", new Rect(0f, 0f, 1f, 1f));
+            tutorialSpotlight = layer.gameObject.AddComponent<CanvasGroup>();
+            tutorialSpotlight.alpha = 0f;
+            tutorialDimTop = AddDim("Top shade");
+            tutorialDimBottom = AddDim("Bottom shade");
+            tutorialDimLeft = AddDim("Left shade");
+            tutorialDimRight = AddDim("Right shade");
+            tutorialFrame = AddCardRect(layer, "Card list highlight", Rect.zero);
+            const float line = 2f;
+            AddEdge("Top", new Rect(0f, 1f, 1f, 0f), new Vector2(0f, -line), Vector2.zero);
+            AddEdge("Bottom", new Rect(0f, 0f, 1f, 0f), Vector2.zero, new Vector2(0f, line));
+            AddEdge("Left", new Rect(0f, 0f, 0f, 1f), Vector2.zero, new Vector2(line, 0f));
+            AddEdge("Right", new Rect(1f, 0f, 0f, 1f), new Vector2(-line, 0f), Vector2.zero);
+
+            RectTransform AddDim(string name)
+            {
+                var dim = AddCardGraphic<Image>(layer, name, Rect.zero);
+                dim.color = new Color(0f, 0f, 0f, TutorialDimOpacity);
+                return dim.rectTransform;
+            }
+
+            void AddEdge(string name, Rect anchors, Vector2 min, Vector2 max)
+            {
+                var edge = AddCardGraphic<Image>(tutorialFrame, name, anchors);
+                edge.color = CafeHud.TutorialHighlightColor;
+                edge.rectTransform.offsetMin = min;
+                edge.rectTransform.offsetMax = max;
+            }
+        }
+
+        private void LayoutTutorialSpotlight(float left, float bottom, float right, float top)
+        {
+            SetAnchors(tutorialFrame, left, bottom, right, top);
+            SetAnchors(tutorialDimTop, 0f, top, 1f, 1f);
+            SetAnchors(tutorialDimBottom, 0f, 0f, 1f, bottom);
+            SetAnchors(tutorialDimLeft, 0f, bottom, left, top);
+            SetAnchors(tutorialDimRight, right, bottom, 1f, top);
+
+            static void SetAnchors(RectTransform rect, float xMin, float yMin, float xMax, float yMax)
+            {
+                rect.anchorMin = new Vector2(xMin, yMin);
+                rect.anchorMax = new Vector2(xMax, yMax);
+            }
+        }
+
+        private CardView CreateCardView(string name)
+        {
+            var card = new GameObject(name, typeof(RectTransform), typeof(CanvasGroup));
+            var rect = (RectTransform)card.transform;
             rect.SetParent(canvasRect, false);
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
-            var view = item.AddComponent<RawImage>();
-            view.raycastTarget = false;
+            var view = new CardView { Rect = rect, Group = card.GetComponent<CanvasGroup>() };
+
+            var frame = AddCardGraphic<Image>(rect, "Card frame", new Rect(0f, 0f, 1f, .48f));
+            frame.color = new Color32(130, 87, 53, 255);
+            var panel = AddCardGraphic<Image>(frame.rectTransform, "Recipe paper", new Rect(.023f, .038f, .954f, .962f));
+            panel.color = new Color32(246, 232, 202, 255);
+            view.Panel = frame.gameObject;
+            view.Art = AddCardGraphic<RawImage>(rect, "Drink illustration", new Rect(0f, .472f, 1f, .528f));
+            view.Name = AddCardText(panel.rectTransform, "Drink name", new Rect(.05f, .77f, .9f, .21f), 36);
+            view.HotPrice = AddTemperaturePrice(panel.rectTransform, "HOT", new Color32(160, 52, 46, 255), TemperatureLeft);
+            view.IcePrice = AddTemperaturePrice(panel.rectTransform, "ICE", new Color32(38, 90, 150, 255), TemperatureRight);
+            AddCardText(panel.rectTransform, "Ingredient heading", new Rect(.05f, .45f, .9f, .13f), 19).text = "필요 재료";
+            view.Ingredients = AddCardText(panel.rectTransform, "Ingredients", new Rect(.05f, .15f, .9f, .31f), 22);
+            view.Ingredients.alignment = TextAnchor.UpperLeft;
+            view.IceNote = AddCardText(panel.rectTransform, "Ice base", new Rect(.05f, .025f, .9f, .13f), 18);
+            view.IceNote.text = "ICE 기본  ·  얼음 + 물";
             return view;
         }
+
+        private void SetCard(CardView view, Texture texture, MenuItem item)
+        {
+            view.Item = item;
+            view.Art.texture = texture;
+            bool renderText = item != null && cardFont != null;
+            view.Panel.SetActive(renderText);
+            view.Art.rectTransform.anchorMin = new Vector2(0f, renderText ? .472f : 0f);
+            view.Art.uvRect = renderText ? new Rect(0f, .472f, 1f, .528f) : new Rect(0f, 0f, 1f, 1f);
+            if (!renderText) return;
+
+            view.Name.text = item.name;
+            var (hot, ice) = CardPrices(item.id);
+            view.HotPrice.transform.parent.gameObject.SetActive(item.hot);
+            var iceRow = (RectTransform)view.IcePrice.transform.parent;
+            float iceX = item.hot ? TemperatureRight : TemperatureLeft;
+            iceRow.anchorMin = new Vector2(iceX, iceRow.anchorMin.y);
+            iceRow.anchorMax = new Vector2(iceX + TemperatureWidth, iceRow.anchorMax.y);
+            iceRow.gameObject.SetActive(item.ice);
+            view.HotPrice.text = hot;
+            view.IcePrice.text = ice;
+            view.Ingredients.text = "· " + item.recipe.Replace(" + ", "\n· ");
+            view.IceNote.enabled = item.ice;
+        }
+
+        private Text AddTemperaturePrice(RectTransform parent, string temperature, Color32 color, float x)
+        {
+            var row = AddCardRect(parent, temperature + " price row", new Rect(x, .60f, TemperatureWidth, .17f));
+            var badge = AddCardGraphic<Image>(row, temperature + " badge", new Rect(0f, .12f, .35f, .76f));
+            badge.color = color;
+            var label = AddCardText(badge.rectTransform, temperature, new Rect(.06f, 0f, .88f, 1f), 21);
+            label.text = temperature;
+            label.alignment = TextAnchor.MiddleCenter;
+            label.color = Color.white;
+            return AddCardText(row, temperature + " price", new Rect(.40f, 0f, .60f, 1f), 25);
+        }
+
+        private Text AddCardText(RectTransform parent, string name, Rect bounds, int maxSize)
+        {
+            var text = AddCardGraphic<Text>(parent, name, bounds);
+            text.font = cardFont;
+            text.resizeTextForBestFit = true;
+            text.resizeTextMinSize = 1;
+            text.resizeTextMaxSize = maxSize;
+            text.alignment = TextAnchor.MiddleLeft;
+            text.color = new Color32(55, 38, 27, 255);
+            return text;
+        }
+
+        private static T AddCardGraphic<T>(RectTransform parent, string name, Rect bounds) where T : Graphic
+        {
+            var rect = AddCardRect(parent, name, bounds);
+            var graphic = rect.gameObject.AddComponent<T>();
+            graphic.raycastTarget = false;
+            return graphic;
+        }
+
+        private static RectTransform AddCardRect(RectTransform parent, string name, Rect bounds)
+        {
+            var rect = (RectTransform)new GameObject(name, typeof(RectTransform)).transform;
+            rect.SetParent(parent, false);
+            rect.anchorMin = bounds.min;
+            rect.anchorMax = bounds.max;
+            rect.offsetMin = rect.offsetMax = Vector2.zero;
+            return rect;
+        }
+
+        private static (string hot, string ice) CardPrices(string id) => id switch
+        {
+            "menu_americano" => ("4,000원", "4,500원"),
+            "menu_espresso" => ("3,500원", ""),
+            "menu_latte" or "menu_choco" or "menu_yuja" => ("4,500원", "5,000원"),
+            "menu_vanilla" or "menu_condensed" or "menu_matcha" => ("5,000원", "5,500원"),
+            "menu_strawberry" => ("", "5,500원"),
+            "menu_lemonade" => ("", "5,000원"),
+            "menu_ssanghwa" => ("5,500원", ""),
+            _ => ("", "")
+        };
 
         private void LayoutCards(float remaining)
         {
@@ -277,6 +407,16 @@ namespace MapleCafe
             float width = Mathf.Min(availableWidth / views.Length, (viewport.height * TopScreenShare - top) * CardAspect);
             float height = width / CardAspect;
             float stripOpacity = Mathf.SmoothStep(0f, 1f, remaining);
+            if (tutorialFocusActive || tutorialSpotlight.alpha > 0f)
+            {
+                const float padding = 6f;
+                float rowRight = margin + width * views.Length + gap * (views.Length - 1);
+                LayoutTutorialSpotlight(
+                    Mathf.Max(0f, margin - padding) / viewport.width,
+                    Mathf.Max(0f, 1f - (top + height + padding) / viewport.height),
+                    Mathf.Min(1f, (rowRight + padding) / viewport.width),
+                    Mathf.Min(1f, 1f - (top - padding) / viewport.height));
+            }
 
             for (int i = 0; i < views.Length; i++)
             {
@@ -284,13 +424,13 @@ namespace MapleCafe
                 float progress = Mathf.Clamp01((waveTime - delay) / CardDuration);
                 float eased = Mathf.SmoothStep(0f, 1f, progress);
                 var view = views[i];
-                view.enabled = progress > 0f && remaining > 0f;
-                view.rectTransform.sizeDelta = new Vector2(width, height);
-                view.rectTransform.anchoredPosition = new Vector2(
+                view.Rect.gameObject.SetActive(progress > 0f && remaining > 0f);
+                view.Rect.sizeDelta = new Vector2(width, height);
+                view.Rect.anchoredPosition = new Vector2(
                     margin + i * (width + gap),
                     Mathf.Lerp(height, -top, eased) + (height + top) * (1f - stripOpacity));
-                view.color = new Color(1f, 1f, 1f, eased * stripOpacity);
-                if (iceNotes[i] != null) iceNotes[i].alpha = view.color.a;
+                view.Art.color = Color.white;
+                view.Group.alpha = eased * stripOpacity;
             }
         }
 
@@ -300,11 +440,10 @@ namespace MapleCafe
             float width = Mathf.Min(viewport.width * .23f, viewport.height * .43f * CardAspect);
             float height = width / CardAspect;
             float eased = Mathf.SmoothStep(0f, 1f, pinProgress);
-            pinnedCard.rectTransform.sizeDelta = new Vector2(width, height);
-            pinnedCard.rectTransform.anchoredPosition = new Vector2(
+            pinnedCard.Rect.sizeDelta = new Vector2(width, height);
+            pinnedCard.Rect.anchoredPosition = new Vector2(
                 viewport.width * .012f, Mathf.Lerp(height * .12f, -viewport.height * .012f, eased));
-            pinnedCard.color = new Color(1f, 1f, 1f, eased);
-            if (pinnedIceNote != null) pinnedIceNote.alpha = eased;
+            pinnedCard.Group.alpha = eased;
         }
 
         private void PlayCardSound(AudioClip clip)

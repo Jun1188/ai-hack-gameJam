@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Title screen "모두의 카페". The background art already shows the title and menu labels,
-// so the buttons are invisible hit areas laid over them with a soft hover highlight.
+// Title screen "모두의 카페".
 public sealed class MainMenuController : MonoBehaviour
 {
     [SerializeField] private string gameScene = "CafeGame";
@@ -24,9 +23,63 @@ public sealed class MainMenuController : MonoBehaviour
         if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
         if (notice != null) notice.gameObject.SetActive(false);
         if (startButton != null) menuRaycaster = startButton.GetComponentInParent<GraphicRaycaster>();
+        BuildMenuLabels();
         // Kept visible from the start for demos, even before the ending has been reached.
         AddReplayButton();
         AddCreditsButton();
+    }
+
+    private void BuildMenuLabels()
+    {
+        if (optionsFont == null || startButton == null || settingsButton == null || quitButton == null)
+            return;
+        var art = startButton.transform.parent.GetComponent<Image>();
+        if (art == null || art.sprite == null) return;
+
+        // Sample a blank section of the same wood panels over the original painted lettering.
+        CoverPaintedText(art, new Rect(.042f, .602f, .273f, .121f));
+        CoverPaintedText(art, new Rect(.118f, .203f, .062f, .181f));
+        var startCover = AddMenuGraphic<Image>(startButton.transform, "Start label backdrop",
+            new Rect(.245f, .19f, .515f, .62f));
+        startCover.color = new Color32(96, 89, 46, 255);
+
+        AddMenuLabel(art.transform, "모두의 카페", new Rect(.041f, .599f, .274f, .126f), 83);
+        AddMenuLabel(startButton.transform, "게임 시작", new Rect(.25f, 0f, .51f, 1f), 48);
+        AddMenuLabel(settingsButton.transform, "설정", new Rect(.25f, 0f, .26f, 1f), 48);
+        AddMenuLabel(quitButton.transform, "종료", new Rect(.25f, 0f, .26f, 1f), 48);
+    }
+
+    private static void CoverPaintedText(Image art, Rect bounds)
+    {
+        var patch = AddMenuGraphic<RawImage>(art.transform, "Wood behind menu lettering", bounds);
+        patch.transform.SetAsFirstSibling();
+        patch.texture = art.sprite.texture;
+        patch.uvRect = new Rect(bounds.x, .93f, bounds.width, .06f);
+    }
+
+    private void AddMenuLabel(Transform parent, string value, Rect bounds, int maxSize)
+    {
+        var text = AddMenuGraphic<Text>(parent, value, bounds);
+        text.font = optionsFont;
+        text.text = value;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = new Color32(253, 228, 175, 255);
+        text.resizeTextForBestFit = true;
+        text.resizeTextMinSize = 1;
+        text.resizeTextMaxSize = maxSize;
+    }
+
+    private static T AddMenuGraphic<T>(Transform parent, string name, Rect bounds) where T : Graphic
+    {
+        var child = new GameObject(name, typeof(RectTransform), typeof(T));
+        var rect = (RectTransform)child.transform;
+        rect.SetParent(parent, false);
+        rect.anchorMin = bounds.min;
+        rect.anchorMax = bounds.max;
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        var graphic = child.GetComponent<T>();
+        graphic.raycastTarget = false;
+        return graphic;
     }
 
     private void OnDestroy() => options?.Dispose();
@@ -173,12 +226,12 @@ public sealed class MainMenuController : MonoBehaviour
         labelRect.offsetMax = Vector2.zero;
         var text = label.GetComponent<Text>();
         text.text = "엔딩 다시 보기";
-        text.font = Font.CreateDynamicFontFromOSFont(new[] { "Malgun Gothic", "맑은 고딕" }, 30);
-        if (text.font == null && notice != null) text.font = notice.font;
+        // Same lettering as the rebuilt menu labels (BuildMenuLabels) when that font is set.
+        text.font = optionsFont != null ? optionsFont : MenuFont;
         text.fontSize = 30;
-        text.fontStyle = FontStyle.Bold;
+        text.fontStyle = optionsFont != null ? FontStyle.Normal : FontStyle.Bold;
         text.alignment = TextAnchor.MiddleLeft;
-        text.color = new Color32(246, 234, 210, 255);
+        text.color = new Color32(253, 228, 175, 255);
         text.raycastTarget = false;
     }
 

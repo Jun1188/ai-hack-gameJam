@@ -36,6 +36,8 @@ namespace CafeSim
   public CafeConversation Conversation {get;private set;}
   Coroutine chatRoutine,bootRoutine; CafeVisit chattingWith;
   readonly Dictionary<int,Transform> bodies=new Dictionary<int,Transform>();
+  readonly System.Random appearanceRandom = new System.Random();
+  readonly CafeCustomerAppearance.SkinDeck customerSkins = new CafeCustomerAppearance.SkinDeck();
   readonly Dictionary<int,float> ratingDue=new Dictionary<int,float>();
   readonly List<CafeVisit> awaitingRating=new List<CafeVisit>();
   readonly HashSet<int> departed=new HashSet<int>();
@@ -95,7 +97,7 @@ namespace CafeSim
     if(!string.IsNullOrEmpty(c.LastThought)){AddChat(c,"CHATTER",c.LastThought);c.LastChatterAt=Queue.Now;}
    }
    SyncChat();Phase=c.State==VisitState.Active?CafePhase.Choosing:c.State==VisitState.Inactive?CafePhase.Ordering:CafePhase.Rating;
-   selectedUntil=Queue.Now+ratingReadSeconds;if(servedCup!=null)servedCup.SetActive(c.State==VisitState.Received);
+   selectedUntil=Queue.Now+ratingReadSeconds;if(!mergedCafe&&servedCup!=null)servedCup.SetActive(c.State==VisitState.Received);
   }
   void SyncChat()
   {
@@ -111,12 +113,21 @@ namespace CafeSim
   public bool Serve(string menuId,string temperature)
   {
    if(Selected==null||Selected.State!=VisitState.Active)return false;CancelChat();var c=Selected;if(!Queue.Serve(c.Id,menuId,temperature))return false;
-   ServedLabel=c.ServedName+" · "+temperature;Phase=CafePhase.Reaction;if(servedCup!=null)servedCup.SetActive(true);
+   ServedLabel=c.ServedName+" · "+temperature;Phase=CafePhase.Reaction;if(!mergedCafe&&servedCup!=null)servedCup.SetActive(true);
    awaitingRating.Add(c);ratingDue[c.Id]=Queue.Now+reactionReadSeconds;selectedUntil=Queue.Now+reactionReadSeconds+ratingReadSeconds;
    return true;
   }
   public IEnumerable<Transform> Bodies=>bodies.Values;
   public Transform BodyOf(CafeVisit c)=>c!=null&&bodies.TryGetValue(c.Id,out var body)?body:null;
+  internal bool HasStartedDeparture(CafeVisit visit)
+  {
+   if(visit==null||visit.State!=VisitState.Received||!visit.RatingPublished)return false;
+   var body=BodyOf(visit);
+   if(body==null)return departed.Contains(visit.Id);
+   Vector3 route=ThroughDoor(body.position,entrance.position)-body.position;
+   route.y=0f;
+   return route.sqrMagnitude<.0025f||Vector3.Dot(body.forward,route.normalized)>.8f;
+  }
   void RecordDialogue(CafeVisit c,string kind,string line)
   {
    if(kind=="ARRIVING")return;
@@ -185,8 +196,24 @@ namespace CafeSim
    if(!mergedCafe&&Selected!=null&&!visible.Contains(Selected))visible.Insert(0,Selected);var keep=new HashSet<int>();
    for(int i=0;i<visible.Count&&i<12;i++){
     var c=visible[i];keep.Add(c.Id);
-    if(!bodies.TryGetValue(c.Id,out var body)||body==null){body=Instantiate(customer,entrance.position,entrance.rotation);body.name="Customer "+c.Id+" "+c.Person.name;body.gameObject.SetActive(true);bodies[c.Id]=body;
-     foreach(var r in body.GetComponentsInChildren<Renderer>())if(r.name=="Body")r.material.color=Color.HSVToRGB((c.Id*.137f)%1,.35f,.78f);}
+    if (!bodies.TryGetValue(c.Id, out var body) || body == null)
+    {
+     if (mergedCafe)
+     {
+      c.AppearanceSeed ??= appearanceRandom.Next();
+      c.AppearanceSkin ??= customerSkins.Draw(appearanceRandom);
+      body = CafeCustomerAppearance.Spawn(this, c, new System.Random(c.AppearanceSeed.Value));
+     }
+     else
+     {
+      body = Instantiate(customer, entrance.position, entrance.rotation);
+      body.name = "Customer " + c.Id + " " + c.Person.name;
+      body.gameObject.SetActive(true);
+      foreach (var renderer in body.GetComponentsInChildren<Renderer>())
+       if (renderer.name == "Body") renderer.material.color = Color.HSVToRGB((c.Id * .137f) % 1, .35f, .78f);
+     }
+     bodies[c.Id] = body;
+    }
     if(!mergedCafe)
     {
      Vector3 spot=c==Selected?servicePoint.position:new Vector3(c.State==VisitState.Inactive?-3.7f:3.7f,servicePoint.position.y,2.3f+(i%5)*.8f);
@@ -198,6 +225,8 @@ namespace CafeSim
     Vector3 from=body.position;
     body.position=Vector3.MoveTowards(from,ThroughDoor(from,target),1.7f*Time.unscaledDeltaTime);
     Vector3 walk=body.position-from;walk.y=0;
+    if (body.TryGetComponent<CafeCustomerAppearance>(out var appearance))
+     appearance.SetWalking(walk.sqrMagnitude > 1e-8f);
     Quaternion facing=walk.sqrMagnitude>1e-8f?Quaternion.LookRotation(walk):servicePoint.rotation;
     body.rotation=Quaternion.RotateTowards(body.rotation,facing,360*Time.unscaledDeltaTime);
     if(leaving&&(body.position-entrance.position).sqrMagnitude<.0025f)departed.Add(c.Id);

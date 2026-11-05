@@ -12,6 +12,7 @@ namespace CafeSim
         Texture2D trackTex, fillTex;
         GUIStyle artTitle, artValue, artCenter;
         CafeOptionsGui options;
+        RectTransform hudCanvas;
         Sprite paperSprite, trackSprite, fillSprite;
         Text clockLabel;
         RectTransform clockFill;
@@ -56,8 +57,7 @@ namespace CafeSim
             UnityEngine.Cursor.lockState=CursorLockMode.Locked;UnityEngine.Cursor.visible=false;
         }
 
-        // The clock is uGUI rather than IMGUI: IMGUI always draws over every canvas, and the
-        // clock has to sit underneath the Tab drink cards (sorting order 40) when they fan out.
+        // The clock and speech bubble share a canvas below the Tab cards (sorting order 40).
         void UpdateClock()
         {
             if(businessDay==null)return;
@@ -66,18 +66,26 @@ namespace CafeSim
             clockFill.sizeDelta=new Vector2(Mathf.Max(10,(ClockWidth-44)*businessDay.Progress),10);
         }
         const float ClockWidth=212;
-        void BuildClock()
+        RectTransform EnsureHudCanvas()
         {
-            ArtStyles();DayStyles();
-            var root=new GameObject("Business clock",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler));
+            if (hudCanvas != null) return hudCanvas;
+            ArtStyles();
+            var root=new GameObject("Cafe HUD",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler));
             root.transform.SetParent(transform,false);
             var canvas=root.GetComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=30;
             // Same scale as the IMGUI layer: the 1280x720 layout fitted inside the screen.
             var scaler=root.GetComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution=new Vector2(1280,720);scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;
-            paperSprite=Sliced(paperTex,24);trackSprite=Sliced(trackTex,9);fillSprite=Sliced(fillTex,9);
-            var shadow=Box("Shadow",root.transform,paperSprite,new Color(.16f,.09f,.05f,.28f),new Vector2(1,1),new Vector2(-24+4,-20-5),new Vector2(ClockWidth,58));
-            var card=Box("Card",root.transform,paperSprite,Color.white,new Vector2(1,1),new Vector2(-24,-20),new Vector2(ClockWidth,58));
+            paperSprite=Sliced(paperTex,24);
+            return hudCanvas = (RectTransform)root.transform;
+        }
+        void BuildClock()
+        {
+            var root = EnsureHudCanvas();
+            DayStyles();
+            trackSprite=Sliced(trackTex,9);fillSprite=Sliced(fillTex,9);
+            var shadow=Box("Shadow",root,paperSprite,new Color(.16f,.09f,.05f,.28f),new Vector2(1,1),new Vector2(-24+4,-20-5),new Vector2(ClockWidth,58));
+            var card=Box("Card",root,paperSprite,Color.white,new Vector2(1,1),new Vector2(-24,-20),new Vector2(ClockWidth,58));
             var label=new GameObject("Time",typeof(RectTransform),typeof(Text));
             var labelRect=(RectTransform)label.transform;labelRect.SetParent(card,false);
             labelRect.anchorMin=labelRect.anchorMax=labelRect.pivot=new Vector2(0,1);labelRect.anchoredPosition=new Vector2(22,-8);labelRect.sizeDelta=new Vector2(ClockWidth-44,26);

@@ -11,13 +11,31 @@ namespace MapleCafe
     {
         Collider Target { get; }
         string Describe(string heldDrink, bool iced);
-        bool Receive(string drink, bool iced, Color color);
+        bool TryReceive(string drink, bool iced, out Transform mugGrip);
     }
 
     [DefaultExecutionOrder(20)]
     public sealed class CafeBrewStation : MonoBehaviour
     {
         public IDrinkReceiver Receiver { get; set; }
+        internal bool TryGetVisibleBlender(out Bounds bounds)
+        {
+            bounds = default;
+            if (blenderMotor == null || !blenderMotor.enabled || !blenderMotor.gameObject.activeInHierarchy)
+                return false;
+            Vector3 position = blenderMotor.bounds.center;
+            Vector3 point = eyes.WorldToViewportPoint(position);
+            if (point.z <= eyes.nearClipPlane || point.z >= eyes.farClipPlane ||
+                point.x < .025f || point.x > .975f || point.y < .025f || point.y > .975f) return false;
+
+            Vector3 direction = position - eyes.transform.position;
+            Collider obstruction = FirstCollider(new Ray(eyes.transform.position, direction.normalized),
+                direction.magnitude, Receiver?.Target);
+            if (obstruction != null && !obstruction.transform.IsChildOf(mixingTarget.transform)) return false;
+            bounds = blenderMotor.bounds;
+            bounds.Encapsulate(mixingTarget.bounds);
+            return true;
+        }
         internal static string InvalidDrinkName => CafeDrinkSurface.Invalid.Name;
         public enum IngredientKind { Shot, Water, Milk, Vanilla, Condensed, Cocoa, Matcha, Strawberry, Yuja, Lemon, Soda, Ssanghwa, Nuts, Ice }
 
@@ -36,6 +54,7 @@ namespace MapleCafe
         [SerializeField] private Font font;
         [SerializeField] private Ingredient[] ingredients;
         [SerializeField] private Collider mixingTarget;
+        [SerializeField] private Renderer blenderMotor;
         [SerializeField] private Transform mixingModel;
         [SerializeField] private Renderer mixingLiquid;
         [SerializeField] private Transform mixingSpindle;
@@ -82,7 +101,6 @@ namespace MapleCafe
         private AudioSource sound;
         private string finishedDrink;
         private bool finishedIced;
-        private Color finishedColor;
         private CafeDrinkSurface.Drink blendedDrink;
         private Transform[] warningBubbles;
         private Material bubbleMaterial;
@@ -164,7 +182,7 @@ namespace MapleCafe
             return best;
         }
 
-        private Collider FirstCollider(Ray ray, float distance)
+        private Collider FirstCollider(Ray ray, float distance, Collider ignored = null)
         {
             int count = Physics.RaycastNonAlloc(ray, rayHits, distance,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
@@ -173,7 +191,7 @@ namespace MapleCafe
             for (int i = 0; i < count; i++)
             {
                 var hit = rayHits[i];
-                if (hit.collider == playerCollider || hit.distance >= nearestDistance) continue;
+                if (hit.collider == playerCollider || hit.collider == ignored || hit.distance >= nearestDistance) continue;
                 nearest = hit.collider;
                 nearestDistance = hit.distance;
             }
@@ -218,9 +236,11 @@ namespace MapleCafe
             if (target == null) return;
             if (Receiver != null && target == Receiver.Target)
             {
-                // The served mug leaves the bar; a fresh one returns to its saucer.
-                if (holdingMug && finishedDrink != null && Receiver.Receive(finishedDrink, finishedIced, finishedColor))
+                if (holdingMug && finishedDrink != null && Receiver.TryReceive(finishedDrink, finishedIced, out Transform mugGrip))
+                {
+                    CopyMugTo(mugGrip);
                     EmptyMug();
+                }
             }
             else if (target == sinkTarget) EmptyMug();
             else if (target == mugTarget && finishedDrink != null)
@@ -264,6 +284,26 @@ namespace MapleCafe
             }
             else if (target == mugTarget && holdingBlend)
                 StartCoroutine(FillMug());
+        }
+
+        private void CopyMugTo(Transform grip)
+        {
+            var copy = Instantiate(mugVisual, grip, false);
+            copy.name = "Served mug";
+            copy.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            copy.localScale = Vector3.one;
+
+            // The drink and ice use renderer property blocks, which must be copied separately.
+            var sourceRenderers = mugVisual.GetComponentsInChildren<Renderer>(true);
+            var copyRenderers = copy.GetComponentsInChildren<Renderer>(true);
+            var properties = new MaterialPropertyBlock();
+            for (int i = 0; i < sourceRenderers.Length; i++)
+            {
+                sourceRenderers[i].GetPropertyBlock(properties);
+                copyRenderers[i].SetPropertyBlock(properties);
+            }
+            foreach (var collider in copy.GetComponentsInChildren<Collider>(true))
+                collider.enabled = false;
         }
 
         private void EmptyMug()
@@ -407,7 +447,6 @@ namespace MapleCafe
             mugIce?.SetVisible(iceWaterReady && !invalid);
             finishedDrink = drink.Name;
             finishedIced = iceWaterReady && !invalid;
-            finishedColor = drink.Color;
             mugName.text = drink.Name + (invalid ? "" : iceWaterReady ? "  ·  ICE" : "  ·  HOT");
             mugName.color = invalid ? new Color32(243, 174, 255, 255) : new Color32(255, 238, 210, 255);
             SetWarningEffect(invalid);

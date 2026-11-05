@@ -11,7 +11,6 @@ namespace CafeSim
         public MapleCafe.CafeBrewStation station;
         public BoxCollider serveTarget;
         public CharacterController player;
-        public Renderer servedCup;
 
         public Collider Target => serveTarget;
 
@@ -31,17 +30,26 @@ namespace CafeSim
             if(heldDrink==null)return "완성된 머그잔을 들고 오세요";
             if(heldDrink==MapleCafe.CafeBrewStation.InvalidDrinkName)return "신비한 음료는 드릴 수 없어요  ·  싱크대에서 비워 주세요";
             if(Find(heldDrink)==null)return heldDrink+"는 메뉴에 없어요";
+            if (CustomerAtCounter(c) == null) return "손님이 카운터로 오는 중이에요";
             return "F  ·  손님에게 "+CafeQueueSim.Label(heldDrink,iced?"ICE":"HOT")+" 드리기";
         }
 
-        public bool Receive(string drink,bool iced,Color color)
+        public bool TryReceive(string drink, bool iced, out Transform mugGrip)
         {
-            var item=Find(drink);
-            if(Ordering==null||item==null)return false;
-            string temperature=iced?"ICE":"HOT";
-            if(!session.Serve(item.id,temperature))return false;
-            if(servedCup!=null)servedCup.material.color=color;
-            return true;
+            mugGrip = null;
+            var item = Find(drink);
+            var customer = CustomerAtCounter(Ordering);
+            if (item == null || customer == null) return false;
+            mugGrip = customer.PrepareMugGrip();
+            return mugGrip != null && session.Serve(item.id, iced ? "ICE" : "HOT");
+        }
+
+        CafeCustomerAppearance CustomerAtCounter(CafeVisit visit)
+        {
+            var body = session != null ? session.BodyOf(visit) : null;
+            if (body == null || (body.position - session.servicePoint.position).sqrMagnitude > .04f)
+                return null;
+            return body.GetComponent<CafeCustomerAppearance>();
         }
 
         MenuItem Find(string drink)=>session?.Menu?.items==null?null:Array.Find(session.Menu.items,m=>m.name==drink);

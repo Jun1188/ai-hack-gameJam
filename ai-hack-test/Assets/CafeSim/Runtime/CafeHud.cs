@@ -50,6 +50,9 @@ namespace CafeSim
         }
         void OnDisable()
         {
+            if (tutorialMenu != null) tutorialMenu.SetTutorialCardFocus(false);
+            CloseTutorial(false);
+            if(speechRoot!=null)speechRoot.gameObject.SetActive(false);
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
             if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;composition="";
             if(player!=null)player.TextInputActive=false;
@@ -71,10 +74,11 @@ namespace CafeSim
             chatInput.style.marginTop=0;chatInput.style.marginBottom=0;chatInput.style.marginLeft=0;chatInput.style.marginRight=0;
             chatInput.style.paddingTop=0;chatInput.style.paddingBottom=0;chatInput.style.paddingLeft=0;chatInput.style.paddingRight=0;
             var koreanFont=Resources.Load<UnityEngine.TextCore.Text.FontAsset>("CafeChatKoreanFont");
-            if(koreanFont!=null)
+            if (artFont != null || koreanFont != null)
             {
-                chatInput.style.unityFontDefinition=FontDefinition.FromSDFFont(koreanFont);
-                chatInput.Query<TextElement>().ForEach(element=>element.style.unityFontDefinition=FontDefinition.FromSDFFont(koreanFont));
+                var inputFont = artFont != null ? FontDefinition.FromFont(artFont) : FontDefinition.FromSDFFont(koreanFont);
+                chatInput.style.unityFontDefinition = inputFont;
+                chatInput.Query<TextElement>().ForEach(element => element.style.unityFontDefinition = inputFont);
             }
             chatInput.style.color=InputText;chatInput.style.backgroundColor=InputBack;
             chatInput.RegisterValueChangedCallback(e=>draft=e.newValue);

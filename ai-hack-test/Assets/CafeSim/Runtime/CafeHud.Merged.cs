@@ -1,5 +1,8 @@
+using System.Globalization;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 namespace CafeSim
@@ -12,7 +15,10 @@ namespace CafeSim
         public bool mergedCafe;
         public MapleCafe.BaristaView barista;
         public Font artFont;
+        [SerializeField] Font customerSpeechFont;
         public float bubbleSeconds=6f;
+        const float ExtraOrderBubbleSeconds = 3f;
+        const float BubbleDurationReduction = 2f;
         bool promptOpen, subscribed;
         string latestSpeech="", latestKind, deferredSpeech, deferredKind, hint;
         int latestStars=-1, deferredStars=-1;
@@ -22,7 +28,14 @@ namespace CafeSim
         // Menu-card palette: warm paper, dark-brown ink, roasted-orange accent.
         internal static readonly Color paper=new Color32(253,246,228,255), ink=new Color32(66,42,28,255), accent=new Color32(190,104,46,255);
         Texture2D paperTex, tailTex, capTex, buttonTex, buttonHoverTex;
-        GUIStyle artText, artSmall, artLabel, artStars, artCap, artButton, paperBox;
+        GUIStyle artText, artSmall, artLabel, artCap, artButton, paperBox;
+        RectTransform speechRoot, speechShadow, speechPaper, speechTail;
+        Text speechLabel, speechStars;
+        float speechWidth, speechTextHeight, speechTextScale;
+        static readonly Regex SentenceBreak = new Regex(
+            @"([.!?。！？…]+[""'”’」』）)]*)(?:[ \t]+(?=\S)|(?=[가-힣]))");
+        static readonly Regex SpeechLineStart = new Regex(@"^[ \t]*(?=\S)", RegexOptions.Multiline);
+        const string SpeechIndent = "\u00A0\u00A0";
         bool inputStyled;
         void Start(){if(mergedCafe&&session!=null){session.DialogueOutput+=OnDialogue;subscribed=true;}}
         void OnDestroy(){foreach(var t in new[]{paperTex,tailTex,capTex,buttonTex,buttonHoverTex})if(t!=null)Destroy(t);DestroyDayTextures();}
@@ -34,14 +47,19 @@ namespace CafeSim
             int stars=kind=="RATING"?visit.Reaction.stars:-1;
             string speech=kind=="RATING"?visit.Reaction.reason:line;
             if(kind!="RATING"&&Time.unscaledTime<ratingBubbleUntil){if(kind=="CHATTER"&&deferredKind=="ORDER")return;deferredSpeech=speech;deferredSpeaker=visit;deferredStars=stars;deferredKind=kind;return;}
-            ShowSpeech(visit,speech,stars);latestKind=kind;
+            ShowSpeech(visit,speech,stars,kind);
             if(kind=="RATING")ratingBubbleUntil=bubbleUntil;
         }
-        void ShowSpeech(CafeVisit visit,string speech,int stars)
+        void ShowSpeech(CafeVisit visit,string speech,int stars,string kind)
         {
             // Long orders stay up long enough to read; the full history is in the E panel.
-            latestSpeech=speech;speaker=visit;latestStars=stars;bubbleStart=Time.unscaledTime;
-            bubbleDuration=Mathf.Max(bubbleSeconds,speech.Length*.11f);bubbleUntil=bubbleStart+bubbleDuration;
+            string sentences = SentenceBreak.Replace(speech, "$1\n");
+            latestSpeech = SpeechLineStart.Replace(sentences, SpeechIndent);
+            speaker=visit;latestStars=stars;latestKind=kind;bubbleStart=Time.unscaledTime;
+            float readingTime = Mathf.Max(bubbleSeconds, speech.Length * .11f);
+            float orderBonus = kind == "ORDER" ? ExtraOrderBubbleSeconds : 0f;
+            bubbleDuration = Mathf.Max(.1f, readingTime + orderBonus - BubbleDurationReduction);
+            bubbleUntil = bubbleStart + bubbleDuration;
         }
         void SetPrompt(bool value)
         {
@@ -56,7 +74,7 @@ namespace CafeSim
             EnsureChatInput();
             // Speech and hint timers are real-time; hold them while the day is paused.
             if(Halted){float dt=Time.unscaledDeltaTime;bubbleStart+=dt;bubbleUntil+=dt;ratingBubbleUntil+=dt;hintUntil+=dt;if(promptOpen)SetPrompt(false);}
-            if(deferredSpeech!=null&&Time.unscaledTime>=ratingBubbleUntil){ShowSpeech(deferredSpeaker,deferredSpeech,deferredStars);latestKind=deferredKind;deferredSpeech=null;deferredKind=null;}
+            if(deferredSpeech!=null&&Time.unscaledTime>=ratingBubbleUntil){ShowSpeech(deferredSpeaker,deferredSpeech,deferredStars,deferredKind);deferredSpeech=null;deferredKind=null;}
             // Customers order on admission; hold the line until they have walked up to the counter.
             var walker=session.BodyOf(speaker);
             if(speaker!=null&&speaker.State==VisitState.Active&&walker!=null&&Time.unscaledTime<bubbleUntil&&
@@ -67,7 +85,13 @@ namespace CafeSim
             var keys=Keyboard.current;
             if(Application.isFocused&&keys!=null)
             {
-                if(keys.eKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.E);
+                // The tutorial owns Enter/Esc while it is open; otherwise E talks, Q opens the 영업 수첩, Esc pauses.
+                if (TutorialOpen)
+                {
+                    if (keys.enterKey.wasPressedThisFrame || keys.numpadEnterKey.wasPressedThisFrame ||
+                        keys.escapeKey.wasPressedThisFrame) CloseTutorial(true);
+                }
+                else if(keys.eKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.E);
                 else if(keys.qKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Q);
                 else if(keys.escapeKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Escape);
             }
@@ -83,6 +107,43 @@ namespace CafeSim
             CheckNotebookNews();
             cardsWereOpen=barista!=null&&barista.ChoosingMenuCard;
         }
+        void LateUpdate()
+        {
+            if (!mergedCafe || session == null) return;
+
+            var body = session.BodyOf(speaker);
+            bool inView = TryGetSpeechAnchor(body, out Vector3 anchor);
+            // Looking away pauses reading time while the speaker is still in the cafe.
+            if (!Halted && body != null && !inView &&
+                Time.unscaledTime - Time.unscaledDeltaTime < bubbleUntil)
+                bubbleUntil += Time.unscaledDeltaTime;
+
+            bool visible = inView && Time.unscaledTime < bubbleUntil && !string.IsNullOrEmpty(latestSpeech) &&
+                (speaker.State != VisitState.Active || (body.position - session.servicePoint.position).sqrMagnitude <= .04f);
+            if (visible) UpdateSpeech(anchor);
+            else if (speechRoot != null) speechRoot.gameObject.SetActive(false);
+            UpdateTutorial();
+            if (tutorialMenu != null)
+                tutorialMenu.SetTutorialCardFocus(tutorialStage == TutorialStage.ChooseCard &&
+                    !Halted && !promptOpen && !session.ChatBusy);
+        }
+
+        bool TryGetSpeechAnchor(Transform body, out Vector3 anchor)
+        {
+            anchor = default;
+            if (eyes == null && barista != null) eyes = barista.GetComponentInChildren<Camera>();
+            if (body == null || !body.gameObject.activeInHierarchy || eyes == null || !eyes.isActiveAndEnabled)
+                return false;
+
+            Vector3 viewportAnchor = eyes.WorldToViewportPoint(body.position + Vector3.up * 1.9f);
+            if (viewportAnchor.z <= eyes.nearClipPlane || viewportAnchor.z >= eyes.farClipPlane ||
+                viewportAnchor.x < 0f || viewportAnchor.x > 1f ||
+                viewportAnchor.y < 0f || viewportAnchor.y > 1f) return false;
+
+            anchor = eyes.ViewportToScreenPoint(viewportAnchor);
+            return true;
+        }
+
         void StyleChatInput()
         {
             if(inputStyled)return;inputStyled=true;
@@ -90,7 +151,6 @@ namespace CafeSim
             inner.style.borderTopWidth=inner.style.borderBottomWidth=inner.style.borderLeftWidth=inner.style.borderRightWidth=3;
             inner.style.borderTopColor=inner.style.borderBottomColor=inner.style.borderLeftColor=inner.style.borderRightColor=ink;
             inner.style.borderTopLeftRadius=inner.style.borderTopRightRadius=inner.style.borderBottomLeftRadius=inner.style.borderBottomRightRadius=12;
-            if(artFont!=null)chatInput.style.unityFont=artFont;
             // Only the rounded inner box is painted; the outer element would show square corners.
             chatInput.style.backgroundColor=Color.clear;
         }
@@ -130,7 +190,6 @@ namespace CafeSim
             artText=new GUIStyle{font=face,fontSize=18,wordWrap=true,richText=false,padding=new RectOffset(0,0,0,0)};artText.normal.textColor=ink;
             artSmall=new GUIStyle(artText){fontSize=15};
             artLabel=new GUIStyle(artSmall){fontStyle=FontStyle.Bold,wordWrap=false};artLabel.normal.textColor=accent;
-            artStars=new GUIStyle(artText){fontSize=22,wordWrap=false};artStars.normal.textColor=accent;
             artCap=new GUIStyle(artSmall){fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false,border=new RectOffset(10,10,10,10),padding=new RectOffset(8,8,2,3)};
             artCap.normal.background=capTex;artCap.normal.textColor=paper;
             artButton=new GUIStyle(artCap){fontSize=16,border=new RectOffset(12,12,12,12)};
@@ -184,44 +243,128 @@ namespace CafeSim
             Vector2 offset=new Vector2((Screen.width-1280*scale)*.5f,(Screen.height-720*scale)*.5f);
             GUI.matrix=Matrix4x4.TRS(offset,Quaternion.identity,Vector3.one*scale);
             DayStyles();
-            DrawSpeech(scale,offset);
             if(promptOpen)DrawChat(scale);
             if(!Halted)DrawControls();
-            DrawDayOverlay();
+            if (TutorialOpen) DrawTutorial(scale, offset);
+            else
+            {
+                DrawTutorialHint();
+                DrawDayOverlay();
+            }
             GUI.matrix=previous;
         }
-        void DrawSpeech(float scale,Vector2 offset)
+        void BuildSpeech()
         {
-            if(Time.unscaledTime>=bubbleUntil||string.IsNullOrEmpty(latestSpeech))return;
-            var body=session.BodyOf(speaker);
-            if(speaker!=null&&speaker.State==VisitState.Active&&body!=null&&(body.position-session.servicePoint.position).sqrMagnitude>.04f)return;
-            const float width=330,padX=22,padY=16;
-            float starsHeight=latestStars>=0?28:0;
-            float textHeight=Mathf.Min(150,artText.CalcHeight(new GUIContent(latestSpeech),width-padX*2));
-            float height=textHeight+starsHeight+padY*2;
-            // Anchor above the speaker's head; fall back to the top centre when off-screen.
-            Rect rect=new Rect(640-width*.5f,24,width,height);float tipX=-1;
-            if(eyes==null&&barista!=null)eyes=barista.GetComponentInChildren<Camera>();
-            if(body!=null&&eyes!=null)
+            var canvas = EnsureHudCanvas();
+            speechRoot = (RectTransform)new GameObject("Customer speech", typeof(RectTransform)).transform;
+            speechRoot.SetParent(canvas, false);
+            speechRoot.anchorMin = speechRoot.anchorMax = new Vector2(.5f, .5f);
+            var topLeft = new Vector2(0f, 1f);
+            speechShadow = Box("Shadow", speechRoot, paperSprite, new Color(.16f,.09f,.05f,.28f),
+                topLeft, new Vector2(4f, -5f), Vector2.zero);
+            speechPaper = Box("Paper", speechRoot, paperSprite, Color.white, topLeft, Vector2.zero, Vector2.zero);
+            var tail = AddSpeechGraphic<RawImage>("Tail");
+            tail.texture = tailTex;
+            tail.rectTransform.sizeDelta = new Vector2(40f, 30f);
+            speechTail = tail.rectTransform;
+            speechStars = AddSpeechGraphic<Text>("Rating");
+            speechStars.fontSize = 22;
+            speechStars.color = accent;
+            speechStars.horizontalOverflow = HorizontalWrapMode.Overflow;
+            speechLabel = AddSpeechGraphic<Text>("Dialogue");
+            speechLabel.fontSize = 20;
+            speechLabel.color = ink;
+            foreach (var label in new[] { speechStars, speechLabel })
             {
-                Vector3 point=eyes.WorldToScreenPoint(body.position+Vector3.up*1.9f);
-                float x=(point.x-offset.x)/scale,y=(Screen.height-point.y-offset.y)/scale;
-                if(point.z>.2f&&x>-40&&x<1320&&y>-40&&y<760)
+                label.font = customerSpeechFont != null ? customerSpeechFont : artText.font;
+                label.alignment = TextAnchor.UpperLeft;
+                label.supportRichText = false;
+                label.verticalOverflow = VerticalWrapMode.Overflow;
+            }
+        }
+
+        T AddSpeechGraphic<T>(string name) where T : Graphic
+        {
+            var graphic = new GameObject(name, typeof(RectTransform), typeof(T)).GetComponent<T>();
+            var rect = graphic.rectTransform;
+            rect.SetParent(speechRoot, false);
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
+            graphic.raycastTarget = false;
+            return graphic;
+        }
+
+        float MeasureSpeechHeight(string speech, float width)
+        {
+            var settings = speechLabel.GetGenerationSettings(new Vector2(width, 0f));
+            return speechLabel.cachedTextGeneratorForLayout.GetPreferredHeight(speech, settings) / settings.scaleFactor;
+        }
+
+        float MeasureSpeechWidth(string speech, float padding)
+        {
+            const float baseWidth = 330f, maxWidth = 390f, widthStep = 4f;
+            float width = baseWidth;
+            foreach (string line in speech.Split('\n'))
+            {
+                string sentence = line.TrimEnd();
+                int[] glyphStarts = StringInfo.ParseCombiningCharacters(sentence);
+                int last = glyphStarts.Length - 1;
+                while (last > 0 && char.IsPunctuation(sentence, glyphStarts[last]))
+                    last--;
+                if (last <= 0) continue;
+
+                string prefix = sentence.Substring(0, glyphStarts[last]).TrimEnd();
+                if (prefix.Length == 0) continue;
+
+                // If dropping the final glyph and its punctuation removes a line, try to fit them back in.
+                float targetHeight = MeasureSpeechHeight(prefix, width - padding);
+                for (float candidate = width; candidate <= maxWidth; candidate += widthStep)
                 {
-                    rect.x=Mathf.Clamp(x-width*.3f,16,1264-width);rect.y=Mathf.Clamp(y-height-26,16,600-height);
-                    if(promptOpen)rect.y=Mathf.Min(rect.y,330-height);
-                    tipX=Mathf.Clamp(x,rect.x+24,rect.xMax-48);
+                    if (MeasureSpeechHeight(sentence, candidate - padding) > targetHeight) continue;
+                    width = candidate;
+                    break;
                 }
             }
-            // A short pop when a new line starts, like a panel being slapped on.
-            float pop=Mathf.SmoothStep(.82f,1f,(Time.unscaledTime-bubbleStart)/.14f);
-            var unscaled=GUI.matrix;
-            GUIUtility.ScaleAroundPivot(Vector2.one*pop,new Vector2(tipX>=0?tipX:rect.center.x,rect.yMax));
-            Paper(rect);
-            if(tipX>=0&&Event.current.type==EventType.Repaint)GUI.DrawTexture(new Rect(tipX-6,rect.yMax-3,40,30),tailTex);
-            if(latestStars>=0)GUI.Label(new Rect(rect.x+padX,rect.y+padY-2,width-padX*2,28),new string('★',latestStars)+new string('☆',5-latestStars),artStars);
-            GUI.Label(new Rect(rect.x+padX,rect.y+padY+starsHeight,width-padX*2,textHeight),latestSpeech,artText);
-            GUI.matrix=unscaled;
+            return width;
+        }
+
+        void UpdateSpeech(Vector3 anchor)
+        {
+            if (speechRoot == null) BuildSpeech();
+            speechRoot.gameObject.SetActive(true);
+            const float padX = 22f, padY = 16f;
+            float starsHeight = latestStars >= 0 ? 28f : 0f;
+            float textScale = speechLabel.pixelsPerUnit;
+            if (speechLabel.text != latestSpeech || speechTextScale != textScale)
+            {
+                speechLabel.text = latestSpeech;
+                speechTextScale = textScale;
+                speechWidth = MeasureSpeechWidth(latestSpeech, padX * 2);
+                speechTextHeight = MeasureSpeechHeight(latestSpeech, speechWidth - padX * 2);
+            }
+            float width = speechWidth;
+            float height = speechTextHeight + starsHeight + padY * 2;
+            float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
+            Vector2 offset = (new Vector2(Screen.width, Screen.height) - new Vector2(1280f, 720f) * scale) * .5f;
+            float x = (anchor.x - offset.x) / scale;
+            float y = (Screen.height - anchor.y - offset.y) / scale;
+            var rect = new Rect(Mathf.Clamp(x - width * .3f, 16, 1264 - width),
+                Mathf.Clamp(y - height - 26, 16, 600 - height), width, height);
+            if (promptOpen) rect.y = Mathf.Clamp(330 - height, 16, rect.y);
+            float tipX = Mathf.Clamp(x, rect.x + 24, rect.xMax - 48);
+            speechRoot.pivot = new Vector2((tipX - rect.x) / width, 0f);
+            speechRoot.anchoredPosition = new Vector2(tipX - 640f, 360f - rect.yMax);
+            speechRoot.sizeDelta = speechShadow.sizeDelta = speechPaper.sizeDelta = rect.size;
+            speechRoot.localScale = Vector3.one * Mathf.SmoothStep(.82f, 1f, (Time.unscaledTime - bubbleStart) / .14f);
+            speechTail.anchoredPosition = new Vector2(tipX - rect.x - 6f, 3f - height);
+            speechLabel.rectTransform.anchoredPosition = new Vector2(padX, -padY - starsHeight);
+            speechLabel.rectTransform.sizeDelta = new Vector2(width - padX * 2, speechTextHeight);
+            speechStars.enabled = latestStars >= 0;
+            if (speechStars.enabled)
+            {
+                speechStars.text = new string('★', latestStars) + new string('☆', 5 - latestStars);
+                speechStars.rectTransform.anchoredPosition = new Vector2(padX, 2f - padY);
+                speechStars.rectTransform.sizeDelta = new Vector2(width - padX * 2, starsHeight);
+            }
         }
         void DrawControls()
         {
