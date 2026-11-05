@@ -25,7 +25,7 @@ namespace CafeSim
 
         void ReceiptStyles()
         {
-            if (rText != null) return;
+            if (rText != null && zigzagTex != null) return;
             // Malgun Gothic has a real bold face (the receipt leans on bold numbers); other systems keep the game font.
             receiptFont = Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor
                 ? Font.CreateDynamicFontFromOSFont(new[] { "Malgun Gothic", "맑은 고딕" }, 16) : null;
@@ -156,7 +156,7 @@ namespace CafeSim
 
         bool TryAdvanceFromReceipt()
         {
-            if (receiptAdvanceRequested || businessDay == null || !businessDay.Closed || notebookOpen || CafeEnding.Active)
+            if (receiptAdvanceRequested || businessDay == null || !businessDay.Closed || notebookOpen || promptOpen || CafeEnding.Active)
                 return false;
 
             receiptAdvanceRequested = true;

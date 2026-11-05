@@ -83500,7 +83500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255815564}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07073112, y: 0.92789842, z: -0.28368702, w: -0.23135106}
+  m_LocalRotation: {x: -0.07073112, y: 0.9278984, z: -0.28368703, w: -0.23135106}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83611,7 +83611,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 878527c26e894b31bd1fa2849ef5266b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CafeSim.CafeDaylight
   businessDay: {fileID: 1696298714}
 --- !u!1 &1255960737
@@ -113343,11 +113343,12 @@ MonoBehaviour:
   businessDay: {fileID: 1696298714}
   mergedCafe: 1
   barista: {fileID: 797303122}
-  brewStation: {fileID: 1882505473}
-  tutorialMenu: {fileID: 1221991996}
   artFont: {fileID: 12800000, guid: 55777d6b930948c4bb94597bf699225b, type: 3}
   customerSpeechFont: {fileID: 12800000, guid: 2ef1f399fb114bccac32731ef6cd5143, type: 3}
   bubbleSeconds: 6
+  customerVoiceVolume: 0.16
+  brewStation: {fileID: 1882505473}
+  tutorialMenu: {fileID: 1221991996}
   session: {fileID: 1696298711}
   player: {fileID: 0}
 --- !u!114 &1696298711
@@ -113372,6 +113373,7 @@ MonoBehaviour:
   servedCup: {fileID: 1568440186}
   reactionReadSeconds: 3.5
   ratingReadSeconds: 5
+  automaticReplyThreshold: 0.6
   queueSettings:
     inactiveCapacity: 4
     singleOrderingCustomer: 1
@@ -113399,6 +113401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CafeSim.LocalCafeModel
   threads: 8
   requestTimeoutSeconds: 45
+  apiTimeoutSeconds: 20
   backend: 2
   apiEndpoint: https://generativelanguage.googleapis.com/v1beta/models/
   apiModel: gemini-3.5-flash-lite
@@ -123831,28 +123834,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1851833724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851833722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0752d6995d4d619dc75aa1f5c67ea8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::CafeSim.CafeStreetTraffic
-  businessDay: {fileID: 1696298714}
-  roadSurface: {fileID: 1614299322}
-  pavement: {fileID: 2143509596}
-  streetTree: {fileID: 1992972848}
-  oppositeFacades:
-  - {fileID: 1913883754}
-  - {fileID: 454813410}
-  - {fileID: 1556784705}
-  - {fileID: 312612548}
-  passingCarLoop: {fileID: 8300000, guid: 20f1435ce6e14543a3d5d49f0918ab57, type: 3}
 --- !u!4 &1851833723
 Transform:
   m_ObjectHideFlags: 0
@@ -123952,6 +123933,28 @@ Transform:
   - {fileID: 1517979312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1851833724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851833722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0752d6995d4d619dc75aa1f5c67ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CafeSim.CafeStreetTraffic
+  businessDay: {fileID: 1696298714}
+  roadSurface: {fileID: 1614299322}
+  pavement: {fileID: 2143509596}
+  streetTree: {fileID: 1992972848}
+  oppositeFacades:
+  - {fileID: 1913883754}
+  - {fileID: 454813410}
+  - {fileID: 1556784705}
+  - {fileID: 312612548}
+  passingCarLoop: {fileID: 8300000, guid: 20f1435ce6e14543a3d5d49f0918ab57, type: 3}
 --- !u!1 &1851960845
 GameObject:
   m_ObjectHideFlags: 0

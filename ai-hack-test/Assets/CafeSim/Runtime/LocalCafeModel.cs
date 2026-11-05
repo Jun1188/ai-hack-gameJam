@@ -42,6 +42,11 @@ namespace CafeSim
         public string apiKeyEnvironmentVariable = "CAFE_CHAT_API_KEY";
         public bool UseApi => backend != CafeResponseBackend.LocalModel;
         [NonSerialized] public string runtimeApiKey;
+#if UNITY_EDITOR
+        // SessionState survives Play/domain reload, but never serializes a credential into a scene.
+        public const string InspectorKeyEnabled = "CafeSim.LocalCafeModel.InspectorKeyEnabled";
+        public const string InspectorKeyValue = "CafeSim.LocalCafeModel.InspectorKeyValue";
+#endif
         // Gemini key: GEMINI_API_KEY env var, or UserSettings/CafeChatApiKey.txt in the editor (git-ignored). Never hard-code it.
         public void ConfigureGemini()
         {backend=CafeResponseBackend.Gemini;apiEndpoint="https://generativelanguage.googleapis.com/v1beta/models/";apiModel="gemini-3.5-flash-lite";apiKeyEnvironmentVariable="GEMINI_API_KEY";}
@@ -105,17 +110,24 @@ namespace CafeSim
             {
                 if(!ValidApiEndpoint(apiEndpoint)||string.IsNullOrWhiteSpace(apiModel))
                 { yield return BootLocal(); yield break; }
-                apiToken=!string.IsNullOrWhiteSpace(runtimeApiKey)?runtimeApiKey:
-                    string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
-#if UNITY_EDITOR
-                string keyPath=Path.Combine(Application.dataPath,"../UserSettings/CafeChatApiKey.txt");
-                if(string.IsNullOrWhiteSpace(apiToken)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))apiToken=File.ReadAllText(keyPath).Trim();
-#endif
+                apiToken=ConfiguredApiKey();
                 if(!string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)&&string.IsNullOrWhiteSpace(apiToken))
                 { yield return BootLocal(); yield break; }
                 apiReady=true;Ready=true;Status="API 우선 · 실패 시 로컬 모델 / 자동 답변";yield break;
             }
             yield return BootLocal();
+        }
+        string ConfiguredApiKey()
+        {
+            if(!string.IsNullOrWhiteSpace(runtimeApiKey))return runtimeApiKey.Trim();
+            var direct=CafeApiRuntimeSettings.Load();
+            if(direct.directInput)return direct.apiKey?.Trim();
+            string key=string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
+#if UNITY_EDITOR
+            string keyPath=Path.Combine(Application.dataPath,"../UserSettings/CafeChatApiKey.txt");
+            if(string.IsNullOrWhiteSpace(key)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))key=File.ReadAllText(keyPath).Trim();
+#endif
+            return key;
         }
         IEnumerator BootLocal()
         {

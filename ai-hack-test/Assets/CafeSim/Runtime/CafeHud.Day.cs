@@ -21,7 +21,7 @@ namespace CafeSim
 
         void DayStyles()
         {
-            if(artTitle!=null)return;
+            if(artTitle!=null&&trackTex!=null)return;
             trackTex=Rounded(24,7,new Color32(232,214,182,255),ink,2);
             fillTex=Rounded(24,7,accent,ink,2);
             artTitle=new GUIStyle(artText){fontSize=30,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false};

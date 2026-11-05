@@ -20,7 +20,13 @@
 
 ### API 연결 옵션
 
-`LocalCafeModel` 새 컴포넌트의 `backend`는 기본 `Gemini`다. 기존 씬의 직렬화된 제공자 선택은 유지한다. `CompatibleApi`로 바꾸면 실시간 생성에만 외부 OpenAI 호환 Chat Completions API를 사용한다. `apiEndpoint`에는 전체 `/v1/chat/completions` 주소, `apiModel`에는 제공자 모델 ID, `apiKeyEnvironmentVariable`에는 키 **값이 아닌 환경변수 이름**을 넣는다. 기본 이름은 `CAFE_CHAT_API_KEY`다. 키가 없는 자체 서버라면 Inspector에서 환경변수 이름을 비운다. 주소와 모델명만 직렬화되며 키는 프로세스 환경에서 읽고 디스크에 저장하지 않는다.
+MainMenu에서도 `MainMenuController` 컴포넌트 하단의 **API 키 직접 입력** 토글을 사용할 수 있다. CafeGame의 `LocalCafeModel` Inspector와 같은 키/토글을 공유하므로, MainMenu에서 입력한 키는 게임 시작 후 API 연결에 적용된다. MainMenu에 추론 컴포넌트를 추가하거나 로컬 모델을 미리 부팅하지 않는다.
+
+MainMenu의 `MainMenuController`와 CafeGame의 `LocalCafeModel` Inspector에서 **API 키 직접 입력** 토글·마스킹 입력·키 삭제를 함께 제공한다. 사용자 요청으로 토글과 입력 키를 로컬 `Assets/CafeSim/Resources/CafeApiRuntimeSettings.json`에 저장하며, 이 PC에서 만드는 빌드에도 Resources로 포함한다. 해당 파일과 `.meta`는 Git에서 제외한다. 다른 PC에서 빌드할 때는 그 PC에서 키를 다시 입력해야 한다. Play 중 변경 후 **API 키 적용 · 응답 연결 재시작**을 누르면 진행 중 요청을 취소하고 재연결한다. 키 선택은 현재 실행의 인게임 키 → 직접 입력 토글이 켜진 로컬/빌드 설정 → 환경변수/기존 Gemini 로컬 파일 순서다. 토글이 켜진 상태에서 빈 키를 넣으면 기존 환경변수로 되돌아가지 않는다. `LocalModel` 제공자는 API 키를 사용하지 않는다.
+
+2026-11-06 현재 소스 재검사와 남은 사용자 Play 항목은 [cafe-next-steps.md](cafe-next-steps.md)에 기록했다. 앞선 Play/빌드 시간 기록과 최신 검증 범위를 구분한다.
+
+`LocalCafeModel` 새 컴포넌트의 `backend`는 기본 `Gemini`다. 기존 씬의 직렬화된 제공자 선택은 유지한다. `CompatibleApi`로 바꾸면 실시간 생성에만 외부 OpenAI 호환 Chat Completions API를 사용한다. `apiEndpoint`에는 전체 `/v1/chat/completions` 주소, `apiModel`에는 제공자 모델 ID, `apiKeyEnvironmentVariable`에는 키 **값이 아닌 환경변수 이름**을 넣는다. 기본 이름은 `CAFE_CHAT_API_KEY`다. 키가 없는 자체 서버라면 Inspector에서 환경변수 이름을 비운다. 기존 씬에는 주소와 모델명만 직렬화한다. 환경변수 방식은 키를 별도로 저장하지 않으며, 직접 입력을 켠 경우에는 위 로컬/빌드 설정을 사용한다.
 
 빌드에서도 실행 인수로 선택할 수 있다. 환경변수는 실행 전에 사용자가 설정한다. Unity Editor 역시 해당 환경변수를 상속받은 상태로 실행해야 한다.
 
@@ -134,3 +140,13 @@ HTTP 오류 원문·인증 안내·스택·연결 진단은 손님 대사로 넣
 현재 소스를 Unity 6000.6.8f1의 기존 참조 목록과 Roslyn으로 컴파일했다. .NET 격리 하네스는 실제 C# 소스·JSON을 사용하되 Unity의 Resources/JSON/시간/통신을 대체했다. 16명별 자동 답변, 자유 문장 허용, 화제 전환 유지, 명확한 작별, 시스템 진단 필터, 인물 래퍼 재사용/자료 변경, 방문 문맥 분리를 확인했다. API HTTP 오류 7종 및 비정상 응답 7종의 로컬 전환, 양쪽 실패 후 자동 답변, 휴지기/복구, 인증 분리, 타이밍 추출, 생성 중/부팅 대기 중 취소 검사도 통과했다.
 
 연결된 Editor가 없어 Editor 임포트/Play 검사는 하지 않았다. 빌드 생성·외부 API 호출·실제 로컬 추론·실제 입력/화면·연속 대화 품질·현재 코드의 속도 비교는 실행하지 않았다. 앞 절의 Play/55.40초 결과는 이전 코드의 기록이며 이번 변경의 실행 근거가 아니다. `CafeChatSmoke`의 검증 기대도 화제 전환 유지/명확한 작별로 갱신했지만 실행하지 않았다. [이번 검사 근거](cafe-dialogue-freedom-verification.json)를 참고한다.
+
+## 2026-11-06 대화 UI 후속 반영
+
+E는 현재 손님 대화, F2는 주문·이전 대화·정산 정보를 묶은 현황이다. 같은 손님의 방문 기록을 묶어 스크롤로 읽고, 현황에서 연 대화 기록은 현재 손님이어도 읽기 전용이다. E로 연 현재 대화에서만 입력할 수 있다. 상세에서 Esc는 상위 목록으로, 현황 첫 화면에서 Esc는 게임으로 나간다. E로 바로 연 대화는 Esc로 닫는다. 기록 열람은 주문/서빙 대상을 바꾸지 않는다. 대화 중에도 Tab으로 레시피를 열고 닫으며, 레시피가 열린 동안 입력을 막고 초안은 보존한다. 상단 음료 안내에는 선택한 레시피를 쓰고 숨겨진 주문 정답은 공개하지 않는다.
+
+대화·입력 패널을 오른쪽으로 소폭 옮기고 입력 안쪽 여백과 화면/패널 좌표 변환을 보완했다. 실제 Game 화면에서 양쪽 프레임 전체와 첫 글자 표시를 확인했다. 손님 출력에는 새로 합성한 짧은 음절 효과음을 연결했으며 전체 볼륨/음소거/일시정지를 따른다. 사용자 API 정상 확인 후 추가 API 호출은 하지 않았다. 상세 실행 근거는 [cafe-ui-integration-verification.json](cafe-ui-integration-verification.json)에 기록했다.
+
+## 현황 통합과 별도 검증 씬
+
+F2 현황에서 주문·대화 기록·영업 정산을 선택해 확인한다. 주문 선택은 서빙 대상을 바꾸지 않으며 진행 중 주문에는 손님의 실제 요청만 보여 주고 숨긴 메뉴 정답은 드러내지 않는다. 이전 대화에는 입력창을 표시하지 않는다. E는 현재 대화와 프롬프트 전용이다. 정산 영수증과 18:00 노을은 [별도 검증 씬 및 실행 기록](cafe-status-partial-tests.md)을 참고한다.

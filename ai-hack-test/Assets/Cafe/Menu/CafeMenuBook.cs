@@ -51,6 +51,8 @@ namespace MapleCafe
         internal bool IsListOpen => isOpen;
         internal bool HasSelectedCard => showPinned;
         internal bool HasPinnedCard => showPinned && pinProgress > 0f;
+        internal string PinnedDrinkName => showPinned ? pinnedCard?.Item?.name : null;
+        internal bool AllowConversationToggle { get; set; }
         internal bool HasCards => cards != null && cards.Length > 0;
         internal bool TutorialTabRequired { private get; set; }
 
@@ -113,7 +115,7 @@ namespace MapleCafe
         {
             if (TutorialTabRequired) return;
             var keys = Keyboard.current;
-            if (keys!=null && keys[toggleKey].wasPressedThisFrame && (player==null||!player.ExternalUIActive))
+            if (keys!=null && keys[toggleKey].wasPressedThisFrame && (player==null||!player.ExternalUIActive||AllowConversationToggle))
                 ToggleList();
             else if (isOpen && keys?.escapeKey.wasPressedThisFrame == true)
             {

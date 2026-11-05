@@ -1,5 +1,7 @@
 # AutumnCafe + test-serv integration
 
+> 현재 통합판(2026-11-06)의 진입은 `MainMenu → CafeGame`이다. 아래는 이전 merge01 통합 기록이며, 최신 변경·남은 작업·사용자 검증 항목은 [cafe-next-steps.md](cafe-next-steps.md)를 따른다.
+
 Open `ai-hack-test/Assets/Scenes/test-loop-merge01.unity` in Unity 6000.6.8f1.
 The scene combines AutumnCafe at `2c53b5e7` with test-serv ordering,
 conversation, menu service and customer ratings. Both source scenes are preserved.

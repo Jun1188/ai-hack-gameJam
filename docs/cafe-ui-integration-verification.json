@@ -1,0 +1,74 @@
+{
+  "dateKst": "2026-11-06",
+  "baseHead": "fd65fe91",
+  "integratedCommit": "ff896f403eb572b83ff2e99f9426ce8ac844ec70",
+  "integration": "20 non-scene files merged without conflicts; two scenes mapped and saved through Editor APIs; existing URP camera data preserved",
+  "userAcceptance": "Conversation and prompt frames, including their left borders, fully visible",
+  "ui": {
+    "passed": true,
+    "layout": "rightward offset, not horizontal centering",
+    "conversationLeftAt1280": 160,
+    "inputLeftAt1280": 180,
+    "inputInsidePanel": true,
+    "firstGlyphVisible": true,
+    "screenCapture": "input-frames-final.png",
+    "listCapture": "conversation-list-final.png",
+    "actualGameViewChecked": true
+  },
+  "dialogueArchive": {
+    "deduplicated": true,
+    "groupedByPersonaAndVisit": true,
+    "doesNotChangeServingCustomer": true,
+    "absentCustomerReadOnly": true,
+    "keyMap": {
+      "E": "current customer conversation",
+      "F2": "customer conversation list",
+      "Tab": "recipe, including during conversation",
+      "Esc": "back or close"
+    }
+  },
+  "speechSound": {
+    "originalSynthesized": true,
+    "variants": 4,
+    "peak": 0.5539089,
+    "sampleEndpointsSmoothed": true,
+    "globalVolumeAndPause": true,
+    "subjectiveListeningVerified": false
+  },
+  "commitRuntimeChecks": {
+    "scene": "Assets/Scenes/CafeGame.unity",
+    "startIrisFinished": true,
+    "sunsetApplied": true,
+    "sunIntensity": 1.52499998,
+    "carMoved": true,
+    "carSoundMapped": true,
+    "carSoundPlaying": true,
+    "trafficEnabled": true
+  },
+  "api": {
+    "normalityConfirmedBy": "user",
+    "requestViaTextFieldStarted": true,
+    "agentFinalReplyNotClaimed": true,
+    "additionalCallsAfterUserConfirmation": false,
+    "buildConfiguration": "Local Resources JSON contains opted-in toggle and key; JSON and meta excluded from Git",
+    "newPlayerBuildCreated": false
+  },
+  "preservation": {
+    "playModeStopped": true,
+    "collectionProgressRestored": true,
+    "runInBackgroundRestored": true,
+    "packagesUnchanged": true,
+    "separateCustomerCatalogWork": "preserved unstaged; pre-existing CafeCustomerCatalog.Reload line excluded from scoped Session commit"
+  },
+  "finalConsole": {
+    "errors": 0,
+    "warnings": 0,
+    "compilationFailed": false
+  },
+  "notVerified": [
+    "new player build",
+    "physical Korean IME typing",
+    "complete business-day gameplay",
+    "subjective sound quality"
+  ]
+}

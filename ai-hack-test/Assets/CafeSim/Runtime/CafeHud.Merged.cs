@@ -38,7 +38,7 @@ namespace CafeSim
         const string SpeechIndent = "\u00A0\u00A0";
         bool inputStyled;
         void Start(){if(mergedCafe&&session!=null){session.DialogueOutput+=OnDialogue;subscribed=true;}}
-        void OnDestroy(){foreach(var t in new[]{paperTex,tailTex,capTex,buttonTex,buttonHoverTex})if(t!=null)Destroy(t);DestroyDayTextures();}
+        void OnDestroy(){DestroySpeechVoice();foreach(var t in new[]{paperTex,tailTex,capTex,buttonTex,buttonHoverTex})if(t!=null)Destroy(t);DestroyDayTextures();}
         void OnDialogue(CafeVisit visit,string kind,string line)
         {
             if(kind=="USER"||kind=="SERVED")return;
@@ -60,28 +60,28 @@ namespace CafeSim
             float orderBonus = kind == "ORDER" ? ExtraOrderBubbleSeconds : 0f;
             bubbleDuration = Mathf.Max(.1f, readingTime + orderBonus - BubbleDurationReduction);
             bubbleUntil = bubbleStart + bubbleDuration;
+            if(kind=="ORDER"||kind=="CHATTER"||kind=="REPLY"||kind=="REACTION"||kind=="RATING")StartSpeechVoice(visit,speech);
         }
         void SetPrompt(bool value)
         {
             promptOpen=value;
             if(!value){chatInput?.Blur();inputFocused=false;}
             ApplyOverlayControls();
-            if(value&&chatInput!=null)chatInput.schedule.Execute(()=>{if(promptOpen)chatInput.Focus();}).ExecuteLater(80);
+            if(value&&!conversationListOpen&&chatInput!=null)chatInput.schedule.Execute(()=>{if(promptOpen&&!conversationListOpen&&ViewingLiveConversation&&!RecipeCardsOpen)chatInput.Focus();}).ExecuteLater(80);
         }
         void UpdateMerged()
         {
             if(!subscribed&&session!=null){session.DialogueOutput+=OnDialogue;subscribed=true;}
             EnsureChatInput();
             // Speech and hint timers are real-time; hold them while the day is paused.
-            if(Halted){float dt=Time.unscaledDeltaTime;bubbleStart+=dt;bubbleUntil+=dt;ratingBubbleUntil+=dt;hintUntil+=dt;if(promptOpen)SetPrompt(false);}
+            if(Halted){float dt=Time.unscaledDeltaTime;bubbleStart+=dt;bubbleUntil+=dt;ratingBubbleUntil+=dt;hintUntil+=dt;if(promptOpen&&(!businessDay.Closed||(!conversationListOpen&&!conversationFromList)))SetPrompt(false);}
             if(deferredSpeech!=null&&Time.unscaledTime>=ratingBubbleUntil){ShowSpeech(deferredSpeaker,deferredSpeech,deferredStars,deferredKind);deferredSpeech=null;deferredKind=null;}
             // Customers order on admission; hold the line until they have walked up to the counter.
             var walker=session.BodyOf(speaker);
             if(speaker!=null&&speaker.State==VisitState.Active&&walker!=null&&Time.unscaledTime<bubbleUntil&&
                 (walker.position-session.servicePoint.position).sqrMagnitude>.04f)
             {bubbleStart=Time.unscaledTime;bubbleUntil=bubbleStart+bubbleDuration;}
-            if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;chatInput?.SetValueWithoutNotify("");if(promptOpen)SetPrompt(false);}
-            if(promptOpen&&!session.CanChat)SetPrompt(false);
+            if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;chatInput?.SetValueWithoutNotify("");}
             var keys=Keyboard.current;
             if(Application.isFocused&&keys!=null&&!CafeStartIris.BlocksInput)
             {
@@ -97,15 +97,18 @@ namespace CafeSim
                 }
                 else if (enterPressed && TryAdvanceFromReceipt()) return;
                 else if(keys.eKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.E);
+                else if(keys.f2Key.wasPressedThisFrame)HandleOverlayKey(KeyCode.F2);
                 else if(keys.qKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Q);
                 else if(keys.escapeKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Escape);
             }
-            inputCanEdit=promptOpen&&session.CanChat&&!session.ChatBusy&&!session.ChatClosed&&!CafeStartIris.BlocksInput;
+            if(cardsWereOpen&&!RecipeCardsOpen&&promptOpen&&!conversationListOpen)SetPrompt(true);
+            inputCanEdit=CanSubmitConversation;
             if(chatInput!=null)
             {
                 StyleChatInput();
-                chatInput.style.display=promptOpen?DisplayStyle.Flex:DisplayStyle.None;
+                chatInput.style.display=promptOpen&&!conversationListOpen&&!conversationFromList&&!RecipeCardsOpen?DisplayStyle.Flex:DisplayStyle.None;
                 chatInput.SetEnabled(inputCanEdit);
+                if(!inputCanEdit){chatInput.Blur();inputFocused=false;}
             }
             ApplyOverlayControls();
             UpdateClock();
@@ -163,30 +166,47 @@ namespace CafeSim
         {
             bool overlay=promptOpen||Halted;
             if(barista!=null)barista.ExternalUIActive=overlay;
+            if(tutorialMenu!=null)tutorialMenu.AllowConversationToggle=promptOpen&&!Halted&&!CafeEnding.Active&&!CafeStartIris.BlocksInput;
             if (TutorialTabRequired) UnityEngine.Cursor.visible = false;
             else if(overlay){UnityEngine.Cursor.lockState=CursorLockMode.None;UnityEngine.Cursor.visible=true;}
         }
         int shortcutFrame=-1;
         void HandleOverlayKey(KeyCode key)
         {
-            if(shortcutFrame==Time.frameCount||CafeEnding.Active)return;
+            if(shortcutFrame==Time.frameCount||CafeEnding.Active||CafeStartIris.BlocksInput)return;
             if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
             // While typing, E is a letter (and the first jamo of ㄷ); only Esc closes the field.
-            if((key==KeyCode.E||key==KeyCode.Q)&&promptOpen&&(inputFocused||GUIUtility.keyboardControl!=0))return;
+            if((key==KeyCode.E||key==KeyCode.Q)&&promptOpen&&!conversationListOpen&&!conversationFromList&&(inputFocused||GUIUtility.keyboardControl!=0))return;
             // The drink cards own the cursor and Esc while they are open.
             if(barista!=null&&barista.ChoosingMenuCard)return;
+            if(key==KeyCode.Escape&&cardsWereOpen)return;
+            if(key==KeyCode.F2&&(businessDay==null||!businessDay.Paused)){shortcutFrame=Time.frameCount;ToggleConversationList();return;}
+            if(key==KeyCode.Escape&&promptOpen)
+            {
+                shortcutFrame=Time.frameCount;
+                if(!conversationListOpen&&conversationFromList)OpenStatusPage(historyReturnPage);
+                else if(conversationListOpen)BackFromStatus();
+                else CloseConversations();
+                return;
+            }
+            if(key==KeyCode.E&&promptOpen&&(conversationListOpen||conversationFromList)&&!Halted)
+            {
+                shortcutFrame=Time.frameCount;
+                if(session.CanChat)OpenLiveConversation();else ShowHint("현재 대화할 손님이 없어요");
+                return;
+            }
             if(HandleDayKey(key)){shortcutFrame=Time.frameCount;return;}
             if(key==KeyCode.Escape&&!promptOpen)return;
             shortcutFrame=Time.frameCount;
             if(key==KeyCode.E&&!promptOpen&&!session.CanChat){ShowHint(session.Queue!=null&&session.Queue.Inactive.Count>0?"손님이 주문하러 오는 중이에요":"대화할 손님이 없어요");return;}
-            SetPrompt(!promptOpen);
+            if(!promptOpen)OpenLiveConversation();else CloseConversations();
             if(!promptOpen){UnityEngine.Cursor.lockState=CursorLockMode.Locked;UnityEngine.Cursor.visible=false;}
         }
         void ShowHint(string value){hint=value;hintUntil=Time.unscaledTime+2.5f;}
 
         void ArtStyles()
         {
-            if(artText!=null)return;
+            if(artText!=null&&paperTex!=null)return;
             var face=artFont!=null?artFont:font;
             paperTex=Rounded(64,22,paper,ink,3);
             capTex=Rounded(32,9,ink,ink,0);
@@ -249,14 +269,15 @@ namespace CafeSim
             Vector2 offset=new Vector2((Screen.width-1280*scale)*.5f,(Screen.height-720*scale)*.5f);
             GUI.matrix=Matrix4x4.TRS(offset,Quaternion.identity,Vector3.one*scale);
             DayStyles();
-            if(promptOpen)DrawChat(scale);
+            if(!Halted&&!RecipeCardsOpen)DrawCurrentTask();
+            if(promptOpen&&!RecipeCardsOpen)DrawChat(scale);
             if(!Halted)DrawControls();
             if (TutorialTabRequired) DrawTutorialTabPrompt(scale, offset);
             else if (TutorialOpen) DrawTutorial(scale, offset);
             else
             {
                 DrawTutorialHint();
-                DrawDayOverlay();
+                if(!(promptOpen&&(conversationListOpen||conversationFromList)))DrawDayOverlay();
             }
             GUI.matrix=previous;
         }
@@ -380,7 +401,7 @@ namespace CafeSim
                 float w=artSmall.CalcSize(new GUIContent(hint)).x+36;var r=new Rect(1256-w,668,w,38);
                 Paper(r);GUI.Label(new Rect(r.x+18,r.y+10,w,24),hint,artSmall);return;
             }
-            var keys=promptOpen?new[]{"Enter","전송","Esc","닫기"}:new[]{"E","손님과 대화","Tab","메뉴 카드","F","제조 · 서빙","Q","영업 수첩","Esc","일시정지"};
+            var keys=promptOpen?new[]{"Tab","레시피","F2","현황","Esc","나가기"}:new[]{"E","대화","F2","현황","Tab","레시피","F","제조 · 서빙","Q","수첩","Esc","일시정지"};
             float total=20;
             for(int i=0;i<keys.Length;i+=2)total+=Mathf.Max(32,artCap.CalcSize(new GUIContent(keys[i])).x)+8+artSmall.CalcSize(new GUIContent(keys[i+1])).x+18;
             Rect panel=new Rect(1256-total,664,total,42);Paper(panel);
@@ -395,34 +416,20 @@ namespace CafeSim
         }
         void DrawChat(float scale)
         {
-            const float x=24,width=640,labelWidth=72;
-            bool notReady=session.model!=null&&!session.model.Ready&&!session.ChatBusy;
-            string status=session.ChatBusy?session.ChatStatus:session.ChatError??(session.ChatClosed?"대화를 마쳤어요":notReady?session.model.Status:"손님에게 말을 걸어 주문을 알아내 보세요");
-            int first=Mathf.Max(0,session.Chat.Count-5);
-            float textWidth=width-36-labelWidth,logHeight=artSmall.CalcHeight(new GUIContent(status),width-36)+8;
-            for(int i=first;i<session.Chat.Count;i++)logHeight+=artSmall.CalcHeight(new GUIContent(ChatText(session.Chat[i])),textWidth)+8;
-            // Leave a row for "다시 대화" / "응답 중단" only when one of them is shown.
-            float top=(session.ChatClosed||session.ChatBusy?578:600)-logHeight-18;
-            // IMGUI is composited after UI Toolkit, so the card stops above the real text field.
-            Paper(new Rect(x,top,width,618-top));
-            float y=top+16;
-            for(int i=first;i<session.Chat.Count;i++)
-            {
-                string body=ChatText(session.Chat[i]);float h=artSmall.CalcHeight(new GUIContent(body),textWidth)+8;
-                GUI.Label(new Rect(x+18,y,labelWidth,22),ChatLabel(session.Chat[i]),artLabel);
-                GUI.Label(new Rect(x+18+labelWidth,y,textWidth,h),body,artSmall);y+=h;
-            }
-            var old=artSmall.normal.textColor;artSmall.normal.textColor=accent;
-            GUI.Label(new Rect(x+18,y,width-36,40),status,artSmall);artSmall.normal.textColor=old;
-            Rect action=new Rect(x+width-136,578,118,30);
-            if(session.ChatClosed&&GUI.Button(action,"다시 대화",artButton))session.ReopenChat();
-            else if(session.ChatBusy&&GUI.Button(action,"응답 중단",artButton))session.CancelChat();
-            if(Event.current.type==EventType.Repaint)PositionChatInput(new Rect(x,624,width-128,42),scale);
-            GUI.enabled=inputCanEdit&&string.IsNullOrEmpty(composition);
-            if(GUI.Button(new Rect(x+width-118,624,118,42),"전송",artButton)&&session.SendChat(draft)){draft="";chatInput.SetValueWithoutNotify("");}
-            GUI.enabled=true;
+            DrawConversationPanel(scale);
         }
-        static string ChatLabel(string entry){int split=entry.IndexOf('\n');return split<0?"":entry.Substring(0,split)=="손님 답변"?"손님":entry.Substring(0,split);}
-        static string ChatText(string entry){int split=entry.IndexOf('\n');return split<0?entry:entry.Substring(split+1);}
+        static string ChatLabel(string entry)
+        {
+            int split=entry.IndexOf('\n');
+            string kind=split<0?"":entry.Substring(0,split);
+            return kind switch { "USER"=>"나", "REPLY"=>"손님", "손님 답변"=>"손님", "NOTICE"=>"안내",
+                "ORDER"=>"주문", "CHATTER"=>"잡담", "SERVED"=>"제공", "REACTION"=>"반응", "RATING"=>"후기", _=>kind };
+        }
+        static string ChatText(string entry)
+        {
+            int split=entry.IndexOf('\n');string body=split<0?entry:entry.Substring(split+1);
+            if(entry.StartsWith("SERVED\n")){int detail=body.IndexOf(" | similarity=");if(detail>=0)body=body.Substring(0,detail);}
+            return body;
+        }
     }
 }

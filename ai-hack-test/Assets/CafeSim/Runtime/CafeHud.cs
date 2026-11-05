@@ -51,6 +51,7 @@ namespace CafeSim
         }
         void OnDisable()
         {
+            StopSpeechVoice();
             if (tutorialMenu != null) tutorialMenu.SetTutorialCardFocus(false);
             if (TutorialTabRequired)
             {
@@ -60,9 +61,10 @@ namespace CafeSim
             CloseTutorial(false);
             if(speechRoot!=null)speechRoot.gameObject.SetActive(false);
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
-            if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;composition="";
+            if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;inputStyled=false;composition="";
             if(player!=null)player.TextInputActive=false;
             if(barista!=null)barista.ExternalUIActive=false;
+            if(tutorialMenu!=null)tutorialMenu.AllowConversationToggle=false;
             if(session!=null)session.DialogueOutput-=OnDialogue;subscribed=false;
         }
         void EnsureChatInput()
@@ -100,7 +102,7 @@ namespace CafeSim
                 if(e.keyCode==KeyCode.Escape){if(mergedCafe)SetPrompt(false);chatInput.Blur();e.StopPropagation();return;}
                 if(e.keyCode!=KeyCode.Return&&e.keyCode!=KeyCode.KeypadEnter)return;
                 e.StopPropagation();
-                if(string.IsNullOrEmpty(composition)&&session.SendChat(draft)){draft="";chatInput.SetValueWithoutNotify("");}
+                if(string.IsNullOrEmpty(composition)&&(!mergedCafe||CanSubmitConversation)&&session.SendChat(draft)){draft="";chatInput.SetValueWithoutNotify("");}
             },TrickleDown.TrickleDown);
             root.Add(chatInput);
         }
@@ -141,18 +143,27 @@ namespace CafeSim
         {
             inputSlot=slot;
             Vector3 position=GUI.matrix.MultiplyPoint3x4(new Vector3(slot.x,slot.y,0));
-            chatInput.style.left=position.x;chatInput.style.top=position.y;
-            chatInput.style.width=slot.width*scale;chatInput.style.height=slot.height*scale;
-            chatInput.style.fontSize=17*scale;
+            Vector2 start=new Vector2(position.x,position.y),size=new Vector2(slot.width*scale,slot.height*scale);
+            if(chatInput.panel!=null)
+            {
+                Vector2 end=RuntimePanelUtils.ScreenToPanel(chatInput.panel,start+size);
+                start=RuntimePanelUtils.ScreenToPanel(chatInput.panel,start);
+                size=end-start;
+            }
+            float inputScale=size.y/slot.height;
+            chatInput.style.left=start.x;chatInput.style.top=start.y;
+            chatInput.style.width=size.x;chatInput.style.height=size.y;
+            chatInput.style.fontSize=17*inputScale;
             var inner=chatInput.Q(className:"unity-base-text-field__input");
             inner.style.minHeight=0;inner.style.height=Length.Percent(100);
-            inner.style.paddingTop=3*scale;inner.style.paddingBottom=3*scale;
-            inner.style.paddingLeft=8*scale;inner.style.paddingRight=8*scale;
+            inner.style.paddingTop=3*inputScale;inner.style.paddingBottom=3*inputScale;
+            inner.style.paddingLeft=14*inputScale;inner.style.paddingRight=14*inputScale;
+            inner.style.minWidth=0;
             inner.style.marginTop=0;inner.style.marginBottom=0;inner.style.marginLeft=0;inner.style.marginRight=0;
             inner.style.color=InputText;inner.style.backgroundColor=InputBack;
             chatInput.Query<TextElement>().ForEach(element=>
             {
-                element.style.color=InputText;element.style.minHeight=17*scale;element.style.flexGrow=1;
+                element.style.color=InputText;element.style.minHeight=17*inputScale;element.style.flexGrow=1;
                 element.style.marginTop=0;element.style.marginBottom=0;
                 element.style.paddingTop=0;element.style.paddingBottom=0;
             });

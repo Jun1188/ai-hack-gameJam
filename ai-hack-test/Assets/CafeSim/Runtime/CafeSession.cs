@@ -18,6 +18,8 @@ namespace CafeSim
   [NonSerialized] public bool Paused;
   public event Action<CafeVisit,string,string> DialogueOutput;
   public readonly List<string> DialogueLog=new List<string>();
+  readonly List<CafeVisit> conversationVisits=new List<CafeVisit>();
+  public IReadOnlyList<CafeVisit> ConversationVisits=>conversationVisits;
   public MenuTable Menu {get;private set;}
   public Persona Person=>Selected?.Person; public CustomerOrder Order=>Selected?.Order;
   public CustomerReaction Reaction=>Selected?.Reaction; public CafePhase Phase {get;private set;}
@@ -48,7 +50,7 @@ namespace CafeSim
    try {
     CancelChat();if(bootRoutine!=null)StopCoroutine(bootRoutine);bootRoutine=null;
     model?.Shutdown();foreach(var t in bodies.Values)if(t!=null)Destroy(t.gameObject);bodies.Clear();
-    ratingDue.Clear();awaitingRating.Clear();departed.Clear();Chat.Clear();DialogueLog.Clear();Selected=null;Error=null;ServedLabel=null;
+    ratingDue.Clear();awaitingRating.Clear();departed.Clear();Chat.Clear();DialogueLog.Clear();conversationVisits.Clear();Selected=null;Error=null;ServedLabel=null;
     if(menuData==null||personaData==null||customer==null||servicePoint==null||entrance==null)throw new InvalidOperationException("씬 참조 누락");
     Menu=JsonUtility.FromJson<MenuTable>(menuData.text);
     var people=JsonUtility.FromJson<PersonaTable>(personaData.text);
@@ -128,6 +130,7 @@ namespace CafeSim
   void RecordDialogue(CafeVisit c,string kind,string line)
   {
    if(kind=="ARRIVING")return;
+   if(!conversationVisits.Contains(c))conversationVisits.Add(c);
    DialogueLog.Add("#"+c.Id+" "+c.Person.name+" · "+kind+"\n"+line);DialogueOutput?.Invoke(c,kind,line);
   }
   void AddChat(CafeVisit c,string kind,string text)
