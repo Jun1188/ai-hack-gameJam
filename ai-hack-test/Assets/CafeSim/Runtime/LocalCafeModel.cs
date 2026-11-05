@@ -29,6 +29,7 @@ namespace CafeSim
         public string apiKeyEnvironmentVariable = "CAFE_CHAT_API_KEY";
         public bool UseApi => backend != CafeResponseBackend.LocalModel;
         [NonSerialized] public string runtimeApiKey;
+        // Gemini key: GEMINI_API_KEY env var, or UserSettings/CafeChatApiKey.txt in the editor (git-ignored). Never hard-code it.
         public void ConfigureGemini()
         {backend=CafeResponseBackend.Gemini;apiEndpoint="https://generativelanguage.googleapis.com/v1beta/models/";apiModel="gemini-3.5-flash-lite";apiKeyEnvironmentVariable="GEMINI_API_KEY";}
         Process server;
@@ -77,7 +78,8 @@ namespace CafeSim
             {
                 if(!ValidApiEndpoint(apiEndpoint)||string.IsNullOrWhiteSpace(apiModel))
                 {Fail("API 주소(전체 chat/completions URL)와 모델명을 설정해 주세요. 외부 주소는 HTTPS여야 합니다.");yield break;}
-                token=string.IsNullOrWhiteSpace(runtimeApiKey)?(string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable)):runtimeApiKey;
+                token=!string.IsNullOrWhiteSpace(runtimeApiKey)?runtimeApiKey:
+                    string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
 #if UNITY_EDITOR
                 string keyPath=Path.Combine(Application.dataPath,"../UserSettings/CafeChatApiKey.txt");
                 if(string.IsNullOrWhiteSpace(token)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))token=File.ReadAllText(keyPath).Trim();

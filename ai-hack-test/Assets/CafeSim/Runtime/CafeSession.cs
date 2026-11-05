@@ -12,6 +12,8 @@ namespace CafeSim
   public float reactionReadSeconds=3.5f,ratingReadSeconds=5f;
   public CafeQueueSettings queueSettings=new CafeQueueSettings();
   public bool mergedCafe;
+  // Inside of the cafe door. Merged customers queue toward it and enter/leave through it; entrance is the street outside.
+  public Transform doorway;
   public event Action<CafeVisit,string,string> DialogueOutput;
   public readonly List<string> DialogueLog=new List<string>();
   public MenuTable Menu {get;private set;}
@@ -34,6 +36,7 @@ namespace CafeSim
   readonly Dictionary<int,Transform> bodies=new Dictionary<int,Transform>();
   readonly Dictionary<int,float> ratingDue=new Dictionary<int,float>();
   readonly List<CafeVisit> awaitingRating=new List<CafeVisit>();
+  readonly HashSet<int> departed=new HashSet<int>();
   float lastTime,selectedUntil;
   void Start(){RestartModel();}
   public void RestartModel()
@@ -41,7 +44,7 @@ namespace CafeSim
    try {
     CancelChat();if(bootRoutine!=null)StopCoroutine(bootRoutine);bootRoutine=null;
     model?.Shutdown();foreach(var t in bodies.Values)if(t!=null)Destroy(t.gameObject);bodies.Clear();
-    ratingDue.Clear();awaitingRating.Clear();Chat.Clear();DialogueLog.Clear();Selected=null;Error=null;ServedLabel=null;
+    ratingDue.Clear();awaitingRating.Clear();departed.Clear();Chat.Clear();DialogueLog.Clear();Selected=null;Error=null;ServedLabel=null;
     if(menuData==null||personaData==null||customer==null||servicePoint==null||entrance==null)throw new InvalidOperationException("씬 참조 누락");
     Menu=JsonUtility.FromJson<MenuTable>(menuData.text);
     var people=JsonUtility.FromJson<PersonaTable>(personaData.text);
@@ -101,12 +104,14 @@ namespace CafeSim
     Chat.Add(label+"\n"+line);
    }ChatRevision++;
   }
-  public void Serve(string menuId,string temperature)
+  public bool Serve(string menuId,string temperature)
   {
-   if(Selected==null||Selected.State!=VisitState.Active)return;CancelChat();var c=Selected;if(!Queue.Serve(c.Id,menuId,temperature))return;
+   if(Selected==null||Selected.State!=VisitState.Active)return false;CancelChat();var c=Selected;if(!Queue.Serve(c.Id,menuId,temperature))return false;
    ServedLabel=c.ServedName+" · "+temperature;Phase=CafePhase.Reaction;if(servedCup!=null)servedCup.SetActive(true);
    awaitingRating.Add(c);ratingDue[c.Id]=Queue.Now+reactionReadSeconds;selectedUntil=Queue.Now+reactionReadSeconds+ratingReadSeconds;
+   return true;
   }
+  public Transform BodyOf(CafeVisit c)=>c!=null&&bodies.TryGetValue(c.Id,out var body)?body:null;
   void RecordDialogue(CafeVisit c,string kind,string line)
   {
    if(kind=="ARRIVING")return;
@@ -175,16 +180,44 @@ namespace CafeSim
   void UpdateBodies()
   {
    var visible=new List<CafeVisit>();visible.AddRange(Queue.Active);visible.AddRange(Queue.Inactive);
-   if(mergedCafe)foreach(var c in Queue.Completed)if(!c.RatingPublished||Queue.Now-c.ResolvedAt<8)visible.Add(c);
+   // Finished customers keep their body until they have walked out of the door.
+   if(mergedCafe)foreach(var c in Queue.Completed)if(!departed.Contains(c.Id)&&bodies.ContainsKey(c.Id))visible.Add(c);
    if(!mergedCafe&&Selected!=null&&!visible.Contains(Selected))visible.Insert(0,Selected);var keep=new HashSet<int>();
    for(int i=0;i<visible.Count&&i<12;i++){
     var c=visible[i];keep.Add(c.Id);
     if(!bodies.TryGetValue(c.Id,out var body)||body==null){body=Instantiate(customer,entrance.position,entrance.rotation);body.name="Customer "+c.Id+" "+c.Person.name;body.gameObject.SetActive(true);bodies[c.Id]=body;
      foreach(var r in body.GetComponentsInChildren<Renderer>())if(r.name=="Body")r.material.color=Color.HSVToRGB((c.Id*.137f)%1,.35f,.78f);}
-    Vector3 target=mergedCafe?(c.State==VisitState.Active?servicePoint.position:c.State==VisitState.Inactive?servicePoint.position-servicePoint.forward*(1.1f*(Queue.Inactive.IndexOf(c)+1)):c.RatingPublished?entrance.position+servicePoint.right*.8f:servicePoint.position+servicePoint.right*.8f):c==Selected?servicePoint.position:new Vector3(c.State==VisitState.Inactive?-3.7f:3.7f,servicePoint.position.y,2.3f+(i%5)*.8f);
-    body.position=Vector3.MoveTowards(body.position,target,1.7f*Time.unscaledDeltaTime);body.rotation=servicePoint.rotation;
+    if(!mergedCafe)
+    {
+     Vector3 spot=c==Selected?servicePoint.position:new Vector3(c.State==VisitState.Inactive?-3.7f:3.7f,servicePoint.position.y,2.3f+(i%5)*.8f);
+     body.position=Vector3.MoveTowards(body.position,spot,1.7f*Time.unscaledDeltaTime);body.rotation=servicePoint.rotation;continue;
+    }
+    bool leaving=c.State!=VisitState.Active&&c.State!=VisitState.Inactive&&(c.RatingPublished||c.State==VisitState.TimedOut);
+    Vector3 target=c.State==VisitState.Active?servicePoint.position:c.State==VisitState.Inactive?QueueSpot(Queue.Inactive.IndexOf(c)):
+     leaving?entrance.position:servicePoint.position+servicePoint.right*.8f;
+    Vector3 from=body.position;
+    body.position=Vector3.MoveTowards(from,ThroughDoor(from,target),1.7f*Time.unscaledDeltaTime);
+    Vector3 walk=body.position-from;walk.y=0;
+    Quaternion facing=walk.sqrMagnitude>1e-8f?Quaternion.LookRotation(walk):servicePoint.rotation;
+    body.rotation=Quaternion.RotateTowards(body.rotation,facing,360*Time.unscaledDeltaTime);
+    if(leaving&&(body.position-entrance.position).sqrMagnitude<.0025f)departed.Add(c.Id);
    }
    foreach(var id in new List<int>(bodies.Keys))if(!keep.Contains(id)){Destroy(bodies[id].gameObject);bodies.Remove(id);}
+  }
+  Vector3 QueueSpot(int index)
+  {
+   Vector3 line=doorway!=null?doorway.position-servicePoint.position:-servicePoint.forward*5;line.y=0;
+   return servicePoint.position+line.normalized*Mathf.Min(1.05f*(index+1),line.magnitude);
+  }
+  // Walls have no openings for the placeholder bodies to path around, so any trip between
+  // the street and the room is routed through the inside of the door first.
+  Vector3 ThroughDoor(Vector3 from,Vector3 target)
+  {
+   if(doorway==null)return target;
+   Vector3 outward=entrance.position-doorway.position;outward.y=0;outward.Normalize();
+   bool fromOutside=Vector3.Dot(from-doorway.position,outward)>.02f,targetOutside=Vector3.Dot(target-doorway.position,outward)>.02f;
+   Vector3 gap=from-doorway.position;gap.y=0;
+   return fromOutside!=targetOutside&&gap.sqrMagnitude>.0025f?doorway.position:target;
   }
   public void Retry(){RestartModel();}
   public void SkipCustomer(){if(Queue?.Active.Count>0)SelectCustomer(Queue.Active[0].Id);}

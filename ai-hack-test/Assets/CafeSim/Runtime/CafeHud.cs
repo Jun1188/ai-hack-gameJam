@@ -76,7 +76,7 @@ namespace CafeSim
                 chatInput.style.unityFontDefinition=FontDefinition.FromSDFFont(koreanFont);
                 chatInput.Query<TextElement>().ForEach(element=>element.style.unityFontDefinition=FontDefinition.FromSDFFont(koreanFont));
             }
-            chatInput.style.color=cream;chatInput.style.backgroundColor=panel;
+            chatInput.style.color=InputText;chatInput.style.backgroundColor=InputBack;
             chatInput.RegisterValueChangedCallback(e=>draft=e.newValue);
             chatInput.RegisterCallback<FocusInEvent>(_=>{inputFocused=true;if(player!=null)player.TextInputActive=true;});
             chatInput.RegisterCallback<FocusOutEvent>(_=>{inputFocused=false;if(player!=null)player.TextInputActive=false;});
@@ -84,7 +84,8 @@ namespace CafeSim
             {
                 if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
                 // Global overlay shortcuts are processed once in Update, even while this field is focused.
-                if(mergedCafe&&(e.keyCode==KeyCode.Tab||e.keyCode==KeyCode.E||e.keyCode==KeyCode.Escape)){e.StopPropagation();e.PreventDefault();return;}
+                // Esc is handled once in Update; Tab must not move focus out of the field.
+                if(mergedCafe&&(e.keyCode==KeyCode.Tab||e.keyCode==KeyCode.Escape)){e.StopPropagation();e.PreventDefault();return;}
                 if(e.keyCode==KeyCode.Escape){if(mergedCafe)SetPrompt(false);chatInput.Blur();e.StopPropagation();return;}
                 if(e.keyCode!=KeyCode.Return&&e.keyCode!=KeyCode.KeypadEnter)return;
                 e.StopPropagation();
@@ -95,6 +96,8 @@ namespace CafeSim
         void OnComposition(UnityEngine.InputSystem.LowLevel.IMECompositionString value){composition=value.ToString();compositionFrame=Time.frameCount;}
         readonly Color panel = new Color(0.075f, 0.105f, 0.105f, 0.96f);
         readonly Color cream = new Color(0.95f, 0.92f, 0.82f);
+        Color InputText=>mergedCafe?ink:cream;
+        Color InputBack=>mergedCafe?paper:panel;
         void Styles()
         {
             if (text != null) return;
@@ -135,10 +138,10 @@ namespace CafeSim
             inner.style.paddingTop=3*scale;inner.style.paddingBottom=3*scale;
             inner.style.paddingLeft=8*scale;inner.style.paddingRight=8*scale;
             inner.style.marginTop=0;inner.style.marginBottom=0;inner.style.marginLeft=0;inner.style.marginRight=0;
-            inner.style.color=cream;inner.style.backgroundColor=panel;
+            inner.style.color=InputText;inner.style.backgroundColor=InputBack;
             chatInput.Query<TextElement>().ForEach(element=>
             {
-                element.style.color=cream;element.style.minHeight=17*scale;element.style.flexGrow=1;
+                element.style.color=InputText;element.style.minHeight=17*scale;element.style.flexGrow=1;
                 element.style.marginTop=0;element.style.marginBottom=0;
                 element.style.paddingTop=0;element.style.paddingBottom=0;
             });
