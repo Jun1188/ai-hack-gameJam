@@ -10,6 +10,7 @@ namespace CafeSim
   public TextAsset menuData,personaData; public LocalCafeModel model;
   public Transform customer,entrance,servicePoint; public Renderer customerBody; public GameObject servedCup;
   public float reactionReadSeconds=3.5f,ratingReadSeconds=5f;
+  [Range(0,1)] public float automaticReplyThreshold=.60f;
   public CafeQueueSettings queueSettings=new CafeQueueSettings();
   public bool mergedCafe;
   // Inside of the cafe door. Merged customers queue toward it and enter/leave through it; entrance is the street outside.
@@ -143,50 +144,45 @@ namespace CafeSim
    input=input?.Trim();if(ChatBusy||!CanChat||string.IsNullOrWhiteSpace(input)||input.Length>300)return false;
    ChatError=null;LastReplySource=null;
    var c=Selected;
-   if(Conversation.TryNewMenuReply(c,input,Menu,out var menuReply))
-   {
-    closedChats.Remove(c.Id);AddChat(c,"USER",input);AddChat(c,"REPLY",menuReply);
-    LastReplySource="new-menu-table";LastReplySeconds=0;ChatStatus="답변 완료";return true;
-   }
-   if(ChatClosed)return false;
-   if(Conversation.IsOffTopic(c,input))
-   {
-    AddChat(c,"USER",input);AddChat(c,"REPLY",Conversation.Closing(c));closedChats.Add(c.Id);
-    LastReplySource="closing";LastReplySeconds=0;ChatStatus="대화를 마쳤어요";return true;
-   }
+   if(ChatClosed&&!Conversation.TryNewMenuReply(c,input,Menu,out _))return false;
+   closedChats.Remove(c.Id);
    string prompt=Conversation.Prompt(c,input,Queue.Knowledge);
-   bool direct=Conversation.TryDirect(c,input,out var reply);
-   bool cached=!direct&&Conversation.TryCached(prompt,out reply);
-   if(!direct&&!cached&&(model==null||!model.Ready))
-   {ChatError=model?.Error??"로컬 모델을 준비하는 중입니다. 잠시 후 전송하거나 모델 재시작을 눌러 주세요.";return false;}
+   string localPrompt=Conversation.LocalPrompt(c,input,Queue.Knowledge);
    AddChat(c,"USER",input);
-   if(direct||cached){AddChat(c,"REPLY",reply);LastReplySource=direct?"database":"cache";LastReplySeconds=0;ChatStatus="답변 완료";return true;}
    ChatBusy=true;chattingWith=c;ChatStatus="손님이 답변을 생각하고 있어요…";
-   chatRoutine=StartCoroutine(GenerateChat(c,prompt));return true;
+   chatRoutine=StartCoroutine(GenerateChat(c,prompt,localPrompt,input));return true;
   }
   public void ReopenChat(){if(Selected!=null)closedChats.Remove(Selected.Id);ChatStatus="";ChatError=null;}
-  IEnumerator GenerateChat(CafeVisit c,string prompt)
+  IEnumerator GenerateChat(CafeVisit c,string prompt,string localPrompt,string input)
   {
+   // Ensure synchronous fallback cannot leave a completed coroutine handle behind.
+   yield return null;
    float start=Time.realtimeSinceStartup;string json=null,error=null;
-   yield return model.Generate(prompt,x=>json=x,x=>error=x,CafeConversation.SystemPrompt,192);
+   if(model!=null)yield return model.Generate(prompt,x=>json=x,x=>error=x,CafeConversation.SystemPrompt,192,
+    localPrompt,x=>Conversation.AcceptLocalReply(c,x));
    if(chattingWith!=c)yield break;
    LastReplySeconds=Time.realtimeSinceStartup-start;
    if(Selected==c&&CanChat)
    {
     if(error==null&&CafeConversation.Parse(json,out var speech,out bool endConversation))
     {
-     if(endConversation){speech=Conversation.Closing(c);closedChats.Add(c.Id);LastReplySource="closing";ChatStatus="대화를 마쳤어요";}
-     else {speech=Queue.Knowledge.MaskMenuNames(speech);Conversation.Remember(prompt,speech);LastReplySource=model.UseApi?"api":"model";ChatStatus="답변 완료";}
+     if(endConversation&&CafeConversation.WantsToEnd(input)){closedChats.Add(c.Id);LastReplySource="closing";ChatStatus="대화를 마쳤어요";}
+     else {if(!Conversation.TryNewMenuReply(c,input,Menu,out _))speech=Queue.Knowledge.MaskMenuNames(speech);LastReplySource=model.LastSource;ChatStatus="답변 완료";}
      AddChat(c,"REPLY",speech);
     }
-    else {ChatError=error??"답변 형식이 올바르지 않습니다. 문장을 조금 바꾸어 다시 전송해 주세요.";ChatStatus="답변을 다시 요청할 수 있어요";AddChat(c,"NOTICE",ChatError);}
+    else
+    {
+     string automatic=Conversation.AutomaticReply(c,input,Queue.Knowledge,Menu,automaticReplyThreshold,out var source,out bool closed);
+     LastReplySource=source;if(closed)closedChats.Add(c.Id);
+     ChatStatus=closed?"대화를 마쳤어요":"자동 답변 완료";AddChat(c,"REPLY",automatic);
+    }
    }
    ChatBusy=false;chattingWith=null;chatRoutine=null;
   }
   public void CancelChat()
   {
    var c=chattingWith;chattingWith=null;
-   if(chatRoutine!=null)StopCoroutine(chatRoutine);chatRoutine=null;model?.CancelRequest();
+   model?.CancelRequest();if(chatRoutine!=null)StopCoroutine(chatRoutine);chatRoutine=null;
    if(ChatBusy&&c!=null)AddChat(c,"NOTICE","답변 요청을 중단했습니다.");
    ChatBusy=false;ChatStatus="";
   }
