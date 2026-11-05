@@ -30,7 +30,7 @@ namespace CafeSim
         }
         void DestroyDayTextures()
         {
-            options?.Dispose();
+            options?.Dispose();DestroyReceiptTextures();DestroyNotebookTextures();
             foreach(var t in new[]{trackTex,fillTex})if(t!=null)Destroy(t);
             foreach(var s in new[]{paperSprite,trackSprite,fillSprite})if(s!=null)Destroy(s);
         }
@@ -39,6 +39,8 @@ namespace CafeSim
         bool HandleDayKey(KeyCode key)
         {
             if(businessDay==null)return false;
+            // Q opens the 영업 수첩 (pausing the day); Q or Esc closes it again.
+            if(key==KeyCode.Q||(key==KeyCode.Escape&&notebookOpen)){ToggleNotebook();return true;}
             if(businessDay.Closed)return true;
             if(businessDay.Paused)
             {
@@ -107,13 +109,14 @@ namespace CafeSim
         void DrawDayOverlay()
         {
             if(!Halted)return;
+            if(notebookOpen){DrawNotebook();return;}
+            if(businessDay.Closed){DrawClosing();return;}
             if(Event.current.type==EventType.Repaint)
             {
                 var old=GUI.color;GUI.color=new Color(.12f,.07f,.04f,.55f);
                 GUI.DrawTexture(new Rect(-2000,-2000,5280,4720),Texture2D.whiteTexture);GUI.color=old;
             }
-            if(businessDay.Closed)DrawSettlement();
-            else if(optionsOpen)DrawOptions();
+            if(optionsOpen)DrawOptions();
             else DrawPause();
         }
         void DrawPause()
@@ -132,36 +135,6 @@ namespace CafeSim
             bool back=options.Draw(new Rect(640-CafeOptionsGui.Width*.5f,360-CafeOptionsGui.Height*.5f,CafeOptionsGui.Width,CafeOptionsGui.Height));
             if(barista!=null)barista.MouseSensitivity=CafeSettings.MouseSensitivity;
             if(back)optionsOpen=false;
-        }
-        void DrawSettlement()
-        {
-            var card=new Rect(640-240,360-238,480,476);Paper(card);
-            GUI.Label(new Rect(card.x,card.y+26,card.width,40),"영업 종료",artTitle);
-            GUI.Label(new Rect(card.x,card.y+70,card.width,24),CafeBusinessDay.Day+"일차 정산 · 오후 18:00",artCenter);
-            var d=businessDay;float y=card.y+112;
-            Row(ref y,card,"서빙한 음료",d.Served+"잔");
-            Row(ref y,card,"주문 그대로 만든 음료",d.Accurate+"잔");
-            Row(ref y,card,"기다리다 떠난 손님",d.Missed+"명");
-            Row(ref y,card,"평균 별점",d.Served==0?"-":"★ "+d.AverageStars.ToString("0.0"));
-            y+=6;Divider(ref y,card);
-            Row(ref y,card,"음료 판매",Won(d.Sales));
-            Row(ref y,card,"팁 (별 4개 이상)",Won(d.Tips));
-            y+=6;Divider(ref y,card);
-            var old=artValue.normal.textColor;artValue.normal.textColor=accent;
-            Row(ref y,card,"오늘의 수입",Won(d.Sales+d.Tips));artValue.normal.textColor=old;
-            float by=card.yMax-76;
-            if(GUI.Button(new Rect(card.x+36,by,196,48),"다음 영업일",artButton))d.NextDay();
-            if(GUI.Button(new Rect(card.xMax-232,by,196,48),"메인화면으로",artButton))d.ExitToMenu();
-        }
-        void Row(ref float y,Rect card,string label,string value)
-        {
-            GUI.Label(new Rect(card.x+44,y,card.width-88,26),label,artText);
-            GUI.Label(new Rect(card.x+44,y,card.width-88,26),value,artValue);y+=34;
-        }
-        void Divider(ref float y,Rect card)
-        {
-            if(Event.current.type==EventType.Repaint){var old=GUI.color;GUI.color=new Color(ink.r,ink.g,ink.b,.35f);GUI.DrawTexture(new Rect(card.x+44,y,card.width-88,2),Texture2D.whiteTexture);GUI.color=old;}
-            y+=14;
         }
         static string Won(int amount)=>amount.ToString("N0")+"원";
     }

@@ -85,12 +85,14 @@ namespace CafeSim
             var keys=Keyboard.current;
             if(Application.isFocused&&keys!=null)
             {
+                // The tutorial owns Enter/Esc while it is open; otherwise E talks, Q opens the 영업 수첩, Esc pauses.
                 if (TutorialOpen)
                 {
                     if (keys.enterKey.wasPressedThisFrame || keys.numpadEnterKey.wasPressedThisFrame ||
                         keys.escapeKey.wasPressedThisFrame) CloseTutorial(true);
                 }
                 else if(keys.eKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.E);
+                else if(keys.qKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Q);
                 else if(keys.escapeKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Escape);
             }
             inputCanEdit=promptOpen&&session.CanChat&&!session.ChatBusy&&!session.ChatClosed;
@@ -102,6 +104,7 @@ namespace CafeSim
             }
             ApplyOverlayControls();
             UpdateClock();
+            CheckNotebookNews();
             cardsWereOpen=barista!=null&&barista.ChoosingMenuCard;
         }
         void LateUpdate()
@@ -160,10 +163,10 @@ namespace CafeSim
         int shortcutFrame=-1;
         void HandleOverlayKey(KeyCode key)
         {
-            if(shortcutFrame==Time.frameCount)return;
+            if(shortcutFrame==Time.frameCount||CafeEnding.Active)return;
             if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
             // While typing, E is a letter (and the first jamo of ㄷ); only Esc closes the field.
-            if(key==KeyCode.E&&promptOpen&&(inputFocused||GUIUtility.keyboardControl!=0))return;
+            if((key==KeyCode.E||key==KeyCode.Q)&&promptOpen&&(inputFocused||GUIUtility.keyboardControl!=0))return;
             // The drink cards own the cursor and Esc while they are open.
             if(barista!=null&&barista.ChoosingMenuCard)return;
             if(HandleDayKey(key)){shortcutFrame=Time.frameCount;return;}
@@ -370,7 +373,7 @@ namespace CafeSim
                 float w=artSmall.CalcSize(new GUIContent(hint)).x+36;var r=new Rect(1256-w,668,w,38);
                 Paper(r);GUI.Label(new Rect(r.x+18,r.y+10,w,24),hint,artSmall);return;
             }
-            var keys=promptOpen?new[]{"Enter","전송","Esc","닫기"}:new[]{"E","손님과 대화","Tab","메뉴 카드","F","제조 · 서빙","Esc","일시정지"};
+            var keys=promptOpen?new[]{"Enter","전송","Esc","닫기"}:new[]{"E","손님과 대화","Tab","메뉴 카드","F","제조 · 서빙","Q","영업 수첩","Esc","일시정지"};
             float total=20;
             for(int i=0;i<keys.Length;i+=2)total+=Mathf.Max(32,artCap.CalcSize(new GUIContent(keys[i])).x)+8+artSmall.CalcSize(new GUIContent(keys[i+1])).x+18;
             Rect panel=new Rect(1256-total,664,total,42);Paper(panel);
