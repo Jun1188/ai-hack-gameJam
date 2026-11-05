@@ -1,0 +1,106 @@
+{
+  "dateKst": "2026-11-06",
+  "baseCommit": "71ed4ef5",
+  "status": {
+    "toggle": "F2",
+    "categories": [
+      "주문 현황",
+      "이전 대화 목록",
+      "영업·정산 현황"
+    ],
+    "selectionDoesNotChangeCurrentOrder": true,
+    "historyReadOnlyEvenForCurrentCustomer": true,
+    "E": "current live conversation and prompt only",
+    "Esc": "detail -> parent list -> status home -> game",
+    "testedCurrentCustomerId": 7,
+    "EInputEnabled": true,
+    "historyInputEnabled": false,
+    "historyEscReturnedTo": "Conversations",
+    "EContainsOnlyCurrentVisit": true,
+    "samePersonaPastVisitsVisibleOnlyInStatus": true
+  },
+  "previewScene": "Assets/Scenes/CafeReceiptSunsetTest.unity",
+  "usesProduction": [
+    "CafeDayLedger",
+    "CafeHud receipt renderer",
+    "CafeDaylight"
+  ],
+  "receiptCases": [
+    {
+      "case": "mixed",
+      "sales": 20000,
+      "tips": 2500,
+      "waste": 1600,
+      "profit": 20900,
+      "visible": "20,900원",
+      "passed": true
+    },
+    {
+      "case": "empty",
+      "profit": 0,
+      "visible": "0원",
+      "passed": true
+    },
+    {
+      "case": "loss",
+      "waste": 3200,
+      "profit": -3200,
+      "visible": "-3,200원",
+      "passed": true
+    },
+    {
+      "case": "large",
+      "sales": 3580100,
+      "tips": 2000,
+      "waste": 1600,
+      "profit": 3580500,
+      "visible": "3,580,500원",
+      "passed": true
+    }
+  ],
+  "sunset": {
+    "fixedHour": 18,
+    "clockSeconds": 64800,
+    "sunColor": [
+      1,
+      0.51,
+      0.27
+    ],
+    "sunIntensity": 1.3,
+    "morningComparisonHour": 9,
+    "actualRenderedComparison": true
+  },
+  "isolation": {
+    "localModelAndApiDisabled": true,
+    "queueProgressionDisabled": true,
+    "brewingDisabled": true,
+    "notAddedToBuildScenes": true,
+    "editorOnlyPreviewScript": true,
+    "savedCollectionUnchanged": true,
+    "runInBackgroundRestored": true,
+    "normalScenesNotModified": true
+  },
+  "limits": [
+    "Synthetic ledger and controlled time, not a complete business-day playthrough",
+    "No new player build",
+    "No external API calls",
+    "Native physical keyboard/IME not exercised by script-driven navigation"
+  ],
+  "screenshots": [
+    "images/cafe-status-receipt/receipt-empty.png",
+    "images/cafe-status-receipt/receipt-large.png",
+    "images/cafe-status-receipt/receipt-loss.png",
+    "images/cafe-status-receipt/receipt-mixed.png",
+    "images/cafe-status-receipt/status-history.png",
+    "images/cafe-status-receipt/status-home.png",
+    "images/cafe-status-receipt/sun-09.png",
+    "images/cafe-status-receipt/sun-18.png"
+  ],
+  "compile": {
+    "currentUnityEditor": true,
+    "indexOnlyRuntimeSources": 43,
+    "indexOnlyEditorSources": 6,
+    "passed": true,
+    "separateWorkingTreeDependenciesExcluded": true
+  }
+}

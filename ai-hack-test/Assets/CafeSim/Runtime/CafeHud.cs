@@ -55,7 +55,7 @@ namespace CafeSim
             CloseTutorial(false);
             if(speechRoot!=null)speechRoot.gameObject.SetActive(false);
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
-            if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;composition="";
+            if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;inputStyled=false;composition="";
             if(player!=null)player.TextInputActive=false;
             if(barista!=null)barista.ExternalUIActive=false;
             if(tutorialMenu!=null)tutorialMenu.AllowConversationToggle=false;

@@ -74,7 +74,7 @@ namespace CafeSim
             if(!subscribed&&session!=null){session.DialogueOutput+=OnDialogue;subscribed=true;}
             EnsureChatInput();
             // Speech and hint timers are real-time; hold them while the day is paused.
-            if(Halted){float dt=Time.unscaledDeltaTime;bubbleStart+=dt;bubbleUntil+=dt;ratingBubbleUntil+=dt;hintUntil+=dt;if(promptOpen)SetPrompt(false);}
+            if(Halted){float dt=Time.unscaledDeltaTime;bubbleStart+=dt;bubbleUntil+=dt;ratingBubbleUntil+=dt;hintUntil+=dt;if(promptOpen&&(!businessDay.Closed||(!conversationListOpen&&!conversationFromList)))SetPrompt(false);}
             if(deferredSpeech!=null&&Time.unscaledTime>=ratingBubbleUntil){ShowSpeech(deferredSpeaker,deferredSpeech,deferredStars,deferredKind);deferredSpeech=null;deferredKind=null;}
             // Customers order on admission; hold the line until they have walked up to the counter.
             var walker=session.BodyOf(speaker);
@@ -101,7 +101,7 @@ namespace CafeSim
             if(chatInput!=null)
             {
                 StyleChatInput();
-                chatInput.style.display=promptOpen&&!conversationListOpen&&!RecipeCardsOpen?DisplayStyle.Flex:DisplayStyle.None;
+                chatInput.style.display=promptOpen&&!conversationListOpen&&!conversationFromList&&!RecipeCardsOpen?DisplayStyle.Flex:DisplayStyle.None;
                 chatInput.SetEnabled(inputCanEdit);
                 if(!inputCanEdit){chatInput.Blur();inputFocused=false;}
             }
@@ -170,16 +170,23 @@ namespace CafeSim
             if(shortcutFrame==Time.frameCount||CafeEnding.Active||CafeStartIris.Active)return;
             if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
             // While typing, E is a letter (and the first jamo of ㄷ); only Esc closes the field.
-            if((key==KeyCode.E||key==KeyCode.Q)&&promptOpen&&(inputFocused||GUIUtility.keyboardControl!=0))return;
+            if((key==KeyCode.E||key==KeyCode.Q)&&promptOpen&&!conversationListOpen&&!conversationFromList&&(inputFocused||GUIUtility.keyboardControl!=0))return;
             // The drink cards own the cursor and Esc while they are open.
             if(barista!=null&&barista.ChoosingMenuCard)return;
             if(key==KeyCode.Escape&&cardsWereOpen)return;
-            if(key==KeyCode.F2&&!Halted){shortcutFrame=Time.frameCount;ToggleConversationList();return;}
+            if(key==KeyCode.F2&&(businessDay==null||!businessDay.Paused)){shortcutFrame=Time.frameCount;ToggleConversationList();return;}
             if(key==KeyCode.Escape&&promptOpen)
             {
                 shortcutFrame=Time.frameCount;
-                if(!conversationListOpen&&conversationFromList)OpenConversationList();
+                if(!conversationListOpen&&conversationFromList)OpenStatusPage(historyReturnPage);
+                else if(conversationListOpen)BackFromStatus();
                 else CloseConversations();
+                return;
+            }
+            if(key==KeyCode.E&&promptOpen&&(conversationListOpen||conversationFromList)&&!Halted)
+            {
+                shortcutFrame=Time.frameCount;
+                if(session.CanChat)OpenLiveConversation();else ShowHint("현재 대화할 손님이 없어요");
                 return;
             }
             if(HandleDayKey(key)){shortcutFrame=Time.frameCount;return;}
@@ -193,7 +200,7 @@ namespace CafeSim
 
         void ArtStyles()
         {
-            if(artText!=null)return;
+            if(artText!=null&&paperTex!=null)return;
             var face=artFont!=null?artFont:font;
             paperTex=Rounded(64,22,paper,ink,3);
             capTex=Rounded(32,9,ink,ink,0);
@@ -263,7 +270,7 @@ namespace CafeSim
             else
             {
                 DrawTutorialHint();
-                DrawDayOverlay();
+                if(!(promptOpen&&(conversationListOpen||conversationFromList)))DrawDayOverlay();
             }
             GUI.matrix=previous;
         }
@@ -387,7 +394,7 @@ namespace CafeSim
                 float w=artSmall.CalcSize(new GUIContent(hint)).x+36;var r=new Rect(1256-w,668,w,38);
                 Paper(r);GUI.Label(new Rect(r.x+18,r.y+10,w,24),hint,artSmall);return;
             }
-            var keys=promptOpen?new[]{"Tab","레시피","F2","대화 목록","Esc","나가기"}:new[]{"E","대화","F2","대화 목록","Tab","레시피","F","제조 · 서빙","Q","수첩","Esc","일시정지"};
+            var keys=promptOpen?new[]{"Tab","레시피","F2","현황","Esc","나가기"}:new[]{"E","대화","F2","현황","Tab","레시피","F","제조 · 서빙","Q","수첩","Esc","일시정지"};
             float total=20;
             for(int i=0;i<keys.Length;i+=2)total+=Mathf.Max(32,artCap.CalcSize(new GUIContent(keys[i])).x)+8+artSmall.CalcSize(new GUIContent(keys[i+1])).x+18;
             Rect panel=new Rect(1256-total,664,total,42);Paper(panel);

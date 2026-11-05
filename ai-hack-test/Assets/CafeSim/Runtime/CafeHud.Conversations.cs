@@ -11,7 +11,7 @@ namespace CafeSim
         int threadEntryCount = -1;
         float threadHeight;
         bool RecipeCardsOpen => barista != null && barista.ChoosingMenuCard;
-        bool ViewingLiveConversation => session != null && session.CanChat &&
+        bool ViewingLiveConversation => !conversationFromList && session != null && session.CanChat &&
             session.Selected.Person.id == conversationPersona;
         bool CanSubmitConversation => promptOpen && !conversationListOpen && !RecipeCardsOpen &&
             ViewingLiveConversation && !session.ChatBusy && !session.ChatClosed && !Halted && !CafeStartIris.Active;
@@ -30,6 +30,7 @@ namespace CafeSim
                 chatInput?.SetValueWithoutNotify("");
             }
             conversationPersona = persona;
+            if(fromList)historyReturnPage=statusPage;
             conversationFromList = fromList;
             conversationListOpen = false;
             threadEntryCount = -1;
@@ -39,16 +40,13 @@ namespace CafeSim
 
         void OpenConversationList()
         {
-            conversationListOpen = true;
-            chatInput?.Blur();
-            inputFocused = false;
-            SetPrompt(true);
+            OpenStatusPage(StatusPage.Conversations);
         }
 
         void ToggleConversationList()
         {
             if (promptOpen && conversationListOpen) CloseConversations();
-            else OpenConversationList();
+            else OpenStatusPage(StatusPage.Overview);
         }
 
         void CloseConversations()
@@ -80,23 +78,23 @@ namespace CafeSim
         {
             const float x = 160, y = 140, width = 760;
             // Keep a fixed viewport inside the fitted 1280x720 canvas. Only the log scrolls.
-            Paper(new Rect(x, y, width, conversationListOpen ? 462 : 408));
+            Paper(new Rect(x, y, width, conversationListOpen || conversationFromList ? 462 : 408));
             if (conversationListOpen)
             {
-                GUI.Label(new Rect(x + 20, y + 16, 420, 28), "손님별 대화 목록", artText);
-                GUI.Label(new Rect(x + 20, y + 48, width - 40, 24), "손님을 선택하면 이번 영업의 대화 기록을 볼 수 있어요.", artSmall);
-                if (GUI.Button(new Rect(x + width - 138, y + 16, 118, 30), "닫기 · Esc", artButton)) CloseConversations();
-                DrawConversationList(new Rect(x + 20, y + 86, width - 40, 352));
+                DrawStatusPanel();
                 return;
             }
 
-            var visits = new List<CafeVisit>();
-            foreach (var visit in session.ConversationVisits)
-                if (visit.Person?.id == conversationPersona) visits.Add(visit);
+            var visits = ConversationThreadVisits();
             string name = visits.Count > 0 ? visits[visits.Count - 1].Person.name : session.Person?.name ?? "손님";
             GUI.Label(new Rect(x + 20, y + 18, width - 220, 28), name + " · 대화", artText);
-            if (GUI.Button(new Rect(x + width - 174, y + 14, 154, 32), "손님 목록 · F2", artButton)) OpenConversationList();
-            DrawConversationThread(visits, new Rect(x + 20, y + 60, width - 40, 278));
+            if (GUI.Button(new Rect(x + width - 174, y + 14, 154, 32), "현황 · F2", artButton)) OpenStatusPage(StatusPage.Overview);
+            DrawConversationThread(visits, new Rect(x + 20, y + 60, width - 40, conversationFromList ? 320 : 278));
+            if(conversationFromList)
+            {
+                GUI.Label(new Rect(x+20,y+406,width-40,30),"대화 기록 · 읽기 전용    /    Esc 이전 목록    /    E 현재 손님과 대화",artSmall);
+                return;
+            }
 
             bool live = ViewingLiveConversation;
             string status = !live ? "현재 대화할 수 없는 손님이에요. 기록만 볼 수 있어요."
@@ -144,12 +142,25 @@ namespace CafeSim
                 bool live = session.CanChat && session.Person.id == person.id;
                 int visits = 0;
                 foreach (var visit in session.ConversationVisits) if (visit.Person?.id == person.id) visits++;
-                string state = live ? "대화 가능" : "기록 보기 · 입력 불가";
+                string state = live ? "현재 손님 · 기록 보기" : "이전 손님 · 기록 보기";
                 if (GUI.Button(new Rect(0, i * 62, viewport.width - 24, 52),
                     person.name + "   ·   " + visits + "번의 방문   /   " + state, artButton)) chosen = person.id;
             }
             GUI.EndScrollView();
             if (chosen != null) ViewConversation(chosen, true);
+        }
+
+        List<CafeVisit> ConversationThreadVisits()
+        {
+            var visits=new List<CafeVisit>();
+            if(!conversationFromList)
+            {
+                if(session.Selected?.Person.id==conversationPersona)visits.Add(session.Selected);
+                return visits;
+            }
+            foreach(var visit in session.ConversationVisits)
+                if(visit.Person?.id==conversationPersona)visits.Add(visit);
+            return visits;
         }
 
         void DrawConversationThread(List<CafeVisit> visits, Rect viewport)

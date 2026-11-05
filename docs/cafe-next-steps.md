@@ -61,3 +61,12 @@ Unity 컴파일, 16명 대화/자동 답변, 큐·유사도 72조합, 격리된 
 - [x] 검사 후 Play 종료, Run In Background 원래 설정 복원, 검사 전 수집 진행 파일 복원.
 
 상세: [cafe-ui-integration-verification.json](cafe-ui-integration-verification.json). 키를 포함한 새 플레이어 빌드와 실제 IME·연속 대화·전체 영업 루프 검증은 여전히 별도다.
+
+## 현황 통합 및 부분 씬 검증 (후속)
+
+- [x] F2에 주문·이전 대화·영업/정산을 통합하고 항목 선택 → 상세 확인 → Esc 상위 이동을 연결했다. E에는 현재 대화/프롬프트만 남겼다. 현황의 대화는 읽기 전용이고 현재 주문 대상은 바뀌지 않는다.
+- [x] 별도 `CafeReceiptSunsetTest`에서 실제 영수증 렌더러와 Ledger를 재사용해 20,900원 / 0원 / -3,200원 / 3,580,500원 표시를 확인했다.
+- [x] 실제 CafeDaylight를 18:00에 고정해 오전/노을 렌더 차이, 색상 (1, 0.51, 0.27), 강도 1.3을 확인했다.
+- [x] 검증 씬은 빌드 목록에 추가하지 않았으며 API·손님 큐·제조를 비활성화했다. 검사 전후 수집 저장 파일은 동일하다.
+
+[검증 씬 여는 방법과 화면](cafe-status-partial-tests.md), [구조화한 근거](cafe-status-partial-verification.json). 새 플레이어 빌드와 하루 전체 플레이 검증은 수행하지 않았다.
