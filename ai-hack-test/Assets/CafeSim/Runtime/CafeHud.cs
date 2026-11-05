@@ -167,7 +167,7 @@ namespace CafeSim
         }
         void OnGUI()
         {
-            if (session == null) return;
+            if (session == null || (mergedCafe && CafeStartIris.Active)) return;
             Styles();
             EnsureChatInput();
             if(mergedCafe){DrawMerged();return;}

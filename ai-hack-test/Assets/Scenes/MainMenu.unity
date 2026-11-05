@@ -688,6 +688,7 @@ MonoBehaviour:
   quitButton: {fileID: 64771947}
   notice: {fileID: 1949347445}
   optionsFont: {fileID: 12800000, guid: 55777d6b930948c4bb94597bf699225b, type: 3}
+  menuMusic: {fileID: 8300000, guid: 32a984bf12a14e9c969153c22b51dae2, type: 3}
 --- !u!114 &1807034844
 MonoBehaviour:
   m_ObjectHideFlags: 0

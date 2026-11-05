@@ -83,7 +83,7 @@ namespace CafeSim
             if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;chatInput?.SetValueWithoutNotify("");if(promptOpen)SetPrompt(false);}
             if(promptOpen&&!session.CanChat)SetPrompt(false);
             var keys=Keyboard.current;
-            if(Application.isFocused&&keys!=null)
+            if(Application.isFocused&&keys!=null&&!CafeStartIris.Active)
             {
                 // The tutorial owns Enter/Esc while it is open; otherwise E talks, Q opens the 영업 수첩, Esc pauses.
                 if (TutorialOpen)

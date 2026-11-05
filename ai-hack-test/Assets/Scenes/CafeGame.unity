@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1255815566}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -28485,7 +28485,7 @@ Camera:
   m_GameObject: {fileID: 402802090}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.78, g: 0.69, b: 0.55, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -83484,8 +83484,9 @@ GameObject:
   - component: {fileID: 1255815565}
   - component: {fileID: 1255815566}
   - component: {fileID: 1255815567}
+  - component: {fileID: 1255815568}
   m_Layer: 0
-  m_Name: Late afternoon sunlight
+  m_Name: Sun | cafe business hours
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83499,7 +83500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255815564}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14917287, y: 0.6172885, z: -0.12068839, w: 0.76297885}
+  m_LocalRotation: {x: -0.07073112, y: 0.92789842, z: -0.28368702, w: -0.23135106}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83516,8 +83517,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 0.83, b: 0.63, a: 1}
-  m_Intensity: 1.9
+  m_Color: {r: 1, g: 0.91, b: 0.79, a: 1}
+  m_Intensity: 1.45
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -83600,6 +83601,19 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &1255815568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255815564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878527c26e894b31bd1fa2849ef5266b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::CafeSim.CafeDaylight
+  businessDay: {fileID: 1696298714}
 --- !u!1 &1255960737
 GameObject:
   m_ObjectHideFlags: 0
@@ -107776,7 +107790,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.45, y: -0.21, z: 0}
-  m_LocalScale: {x: 4.64, y: 0.13, z: 21}
+  m_LocalScale: {x: 4.64, y: 0.13, z: 58.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1851833723}
@@ -123809,6 +123823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851833723}
+  - component: {fileID: 1851833724}
   m_Layer: 0
   m_Name: 04 View through the windows
   m_TagString: Untagged
@@ -123816,6 +123831,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1851833724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851833722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0752d6995d4d619dc75aa1f5c67ea8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::CafeSim.CafeStreetTraffic
+  businessDay: {fileID: 1696298714}
+  roadSurface: {fileID: 1614299322}
+  pavement: {fileID: 2143509596}
+  streetTree: {fileID: 1992972848}
+  oppositeFacades:
+  - {fileID: 1913883754}
+  - {fileID: 454813410}
+  - {fileID: 1556784705}
+  - {fileID: 312612548}
+  passingCarLoop: {fileID: 8300000, guid: 20f1435ce6e14543a3d5d49f0918ab57, type: 3}
 --- !u!4 &1851833723
 Transform:
   m_ObjectHideFlags: 0
@@ -142816,7 +142853,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.65, y: -0.145, z: 0}
-  m_LocalScale: {x: 3.04, y: 0.16, z: 20}
+  m_LocalScale: {x: 3.04, y: 0.16, z: 58.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1851833723}

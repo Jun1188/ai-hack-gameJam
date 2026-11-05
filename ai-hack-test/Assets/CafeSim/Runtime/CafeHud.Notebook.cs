@@ -63,8 +63,9 @@ namespace CafeSim
         void CheckNotebookNews()
         {
             if (notebookAutoChecked || businessDay == null || session == null || session.Queue == null) return;
-            notebookAutoChecked = true;
             var collection = CafeCollection.Instance;
+            if (CafeStartIris.Active && !collection.EndingPending) return;
+            notebookAutoChecked = true;
             if (collection.EndingPending && !CafeEnding.Active)
             {
                 // A saved ending replaces this business day: the morning starts with everyone outside.
