@@ -19,6 +19,8 @@ namespace CafeSim
         Texture2D zigzagTex, stampTex, softBoxTex, primaryTex, primaryHoverTex, secondaryTex, secondaryHoverTex;
         GUIStyle rText, rSmall, rTiny, rBold, rTitle, rHead, rTotal, rQuote, rStampLabel, rStampGrade, rBoxStyle, rStampStyle, rPrimary, rSecondary;
         Font receiptFont;
+        // Shader looks (Assets/CafeSim/Shaders); loaded from Resources so builds include them. Null falls back to flat fills.
+        Material paperMat, stampWearMat;
 
         void ReceiptStyles()
         {
@@ -54,6 +56,14 @@ namespace CafeSim
             secondaryHoverTex = Rounded(32, 8, receiptBox, receiptInk, 2);
             rPrimary = ReceiptButton(primaryTex, primaryHoverTex, receiptPaper);
             rSecondary = ReceiptButton(secondaryTex, secondaryHoverTex, receiptInk);
+            paperMat = LoadMaterial("CafeShaders/ReceiptPaper");
+            stampWearMat = LoadMaterial("CafeShaders/StampWear");
+        }
+
+        static Material LoadMaterial(string path)
+        {
+            var source = Resources.Load<Material>(path);
+            return source != null && source.shader.isSupported ? new Material(source) : null;
         }
 
         GUIStyle ReceiptButton(Texture2D normal, Texture2D hover, Color text)
@@ -80,6 +90,8 @@ namespace CafeSim
         {
             foreach (var t in new[] { zigzagTex, stampTex, softBoxTex, primaryTex, primaryHoverTex, secondaryTex, secondaryHoverTex }) if (t != null) Destroy(t);
             if (receiptBackdrop != null) { receiptBackdrop.Release(); Destroy(receiptBackdrop); }
+            if (paperMat != null) Destroy(paperMat);
+            if (stampWearMat != null) Destroy(stampWearMat);
         }
 
         // ----- Blurred backdrop: one capture at closing time, downsampled so bilinear scaling blurs it -----
@@ -158,7 +170,13 @@ namespace CafeSim
             {
                 Fill(new Rect(paper.x + 2, paper.y + 4, paper.width + 2, paper.height + 6), new Color(0, 0, 0, .16f));
                 Fill(new Rect(paper.x + 1, paper.y + 2, paper.width, paper.height + 4), new Color(0, 0, 0, .12f));
-                Fill(paper, receiptPaper);
+                if (paperMat != null)
+                {
+                    paperMat.SetVector("_Size", new Vector4(paper.width, paper.height, 0, 0));
+                    paperMat.SetFloat("_Seed", CafeBusinessDay.Day);
+                    Graphics.DrawTexture(paper, Texture2D.whiteTexture, paperMat);
+                }
+                else Fill(paper, receiptPaper);
                 GUI.DrawTextureWithTexCoords(new Rect(paper.x, paper.yMax, paper.width, 7), zigzagTex,
                     new Rect(0, 0, paper.width / 14f, 1));
             }
@@ -330,13 +348,31 @@ namespace CafeSim
             var matrix = GUI.matrix;
             GUIUtility.RotateAroundPivot(-9, rect.center);
             var old = GUI.color;
-            GUI.color = new Color(1, 1, 1, .9f);
+            // Bleed: the ink soaks a little into the paper, so a faint halo is printed first.
+            var offsets = new[] { new Vector2(-.9f, 0), new Vector2(.9f, 0), new Vector2(0, -.9f), new Vector2(0, .9f),
+                new Vector2(.7f, .7f), new Vector2(-.7f, -.7f) };
+            GUI.color = new Color(1, 1, 1, .16f);
+            foreach (var o in offsets) StampInk(new Rect(rect.position + o, rect.size), grade);
+            GUI.color = new Color(1, 1, 1, .88f);
+            StampInk(rect, grade);
+            GUI.color = old;
+            // Wear: paper shows through where the rubber did not take ink.
+            if (stampWearMat != null)
+            {
+                stampWearMat.SetVector("_Size", new Vector4(rect.width, rect.height, 0, 0));
+                stampWearMat.SetFloat("_Seed", CafeBusinessDay.Day * 3.1f + (grade.Length > 0 ? grade[0] % 7 : 0));
+                Graphics.DrawTexture(new Rect(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4), Texture2D.whiteTexture, stampWearMat);
+            }
+            GUI.matrix = matrix;
+        }
+
+        void StampInk(Rect rect, string grade)
+        {
             rStampStyle.Draw(rect, false, false, false, false);
             rStampStyle.Draw(new Rect(rect.x + 4, rect.y + 4, rect.width - 8, rect.height - 8), false, false, false, false);
-            GUI.color = old;
+            // GUI.color (set by the caller) tints the labels too, giving the halo and the main print their strength.
             GUI.Label(new Rect(rect.x, rect.y + 7, rect.width, 14), "응대 등급", rStampLabel);
             GUI.Label(new Rect(rect.x, rect.y + 20, rect.width, 36), grade, rStampGrade);
-            GUI.matrix = matrix;
         }
 
         // Decorative barcode, stable per day number.
