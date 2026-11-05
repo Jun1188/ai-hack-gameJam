@@ -25,8 +25,9 @@ namespace MapleCafe
         public bool ExternalUIActive
         {
             get=>externalUIActive;
-            set {if(externalUIActive!=value)ignoreLookUntilFrame=Time.frameCount+2;externalUIActive=value;}
+            set {if(externalUIActive!=value){ignoreLookUntilFrame=Time.frameCount+2;menuChangedFrame=Time.frameCount;}externalUIActive=value;}
         }
+        public bool ChoosingMenuCard => choosingMenuCard;
         public bool CanInteract => !ExternalUIActive && !choosingMenuCard && menuChangedFrame != Time.frameCount
             && Application.isFocused && Cursor.lockState == CursorLockMode.Locked;
 

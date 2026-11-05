@@ -129,21 +129,62 @@ namespace CafeSim.Editor
         [Serializable] sealed class PayloadFile { public string path, sha256; public long bytes; }
         [Serializable] sealed class PayloadManifest { public bool normalTextPassed; public PayloadFile[] files; }
         public int callbackOrder => 50;
-        static bool IncludesCafe()
+        // Set in preprocess so postprocess only copies the payload into builds that actually run the local model.
+        static bool payloadRequired;
+
+        // A scene runs the local model when it has a LocalCafeModel left on the LocalModel backend (0, also the
+        // default when the field is not serialized), or a CafeSession without any LocalCafeModel, because the
+        // session then adds one at runtime with the default backend. API/Gemini scenes need no payload.
+        static bool SceneUsesLocalModel(string scenePath)
+        {
+            if (scenePath == CafeSceneBuilder.ScenePath) return true;
+            if (!File.Exists(scenePath)) return false;
+            string modelGuid = AssetDatabase.AssetPathToGUID(MonoScriptPath(typeof(LocalCafeModel)));
+            string sessionGuid = AssetDatabase.AssetPathToGUID(MonoScriptPath(typeof(CafeSession)));
+            string[] lines = File.ReadAllLines(scenePath);
+            bool hasModel = false, hasSession = false;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (!lines[i].Contains("m_Script:")) continue;
+                if (sessionGuid != "" && lines[i].Contains(sessionGuid)) hasSession = true;
+                if (modelGuid == "" || !lines[i].Contains(modelGuid)) continue;
+                hasModel = true;
+                int backend = 0;
+                for (int j = i + 1; j < lines.Length && !lines[j].StartsWith("--- !u!"); j++)
+                    if (lines[j].StartsWith("  backend: ") && int.TryParse(lines[j].Substring(11).Trim(), out int value))
+                    { backend = value; break; }
+                if (backend == (int)CafeResponseBackend.LocalModel) return true;
+            }
+            return hasSession && !hasModel;
+        }
+
+        static string MonoScriptPath(Type type)
+        {
+            foreach (string guid in AssetDatabase.FindAssets(type.Name + " t:MonoScript"))
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                if (AssetDatabase.LoadAssetAtPath<MonoScript>(path)?.GetClass() == type) return path;
+            }
+            return "";
+        }
+
+        static bool BuildUsesLocalModel()
         {
             foreach (var scene in EditorBuildSettings.scenes)
-                if (scene.enabled && scene.path == CafeSceneBuilder.ScenePath) return true;
-            // Explicit BuildPlayerOptions can use a different scene list; prebuild report covers this below.
+                if (scene.enabled && SceneUsesLocalModel(scene.path)) return true;
             return false;
         }
+
         public void OnPreprocessBuild(BuildReport report)
         {
-            // Payload is always included for Windows builds of this cafe branch.
-            if (report.summary.platform != BuildTarget.StandaloneWindows64)
+            payloadRequired = BuildUsesLocalModel();
+            if (!payloadRequired)
             {
-                if (IncludesCafe()) throw new BuildFailedException("Cafe local inference supports Windows x64 only.");
+                Debug.Log("No build scene uses the local cafe model; skipping the local inference payload.");
                 return;
             }
+            if (report.summary.platform != BuildTarget.StandaloneWindows64)
+                throw new BuildFailedException("Cafe local inference supports Windows x64 only.");
             var root = LocalCafeModel.PayloadPath;
             if (!File.Exists(Path.Combine(root,"manifest.json")) || !File.Exists(Path.Combine(root,"model.gguf")) ||
                 !File.Exists(Path.Combine(root,"engine/llama-server.exe")))
@@ -152,7 +193,7 @@ namespace CafeSim.Editor
         }
         public void OnPostprocessBuild(BuildReport report)
         {
-            if (report.summary.platform != BuildTarget.StandaloneWindows64) return;
+            if (!payloadRequired || report.summary.platform != BuildTarget.StandaloneWindows64) return;
             string output = report.summary.outputPath;
             string target = Path.Combine(Path.GetDirectoryName(output), Path.GetFileNameWithoutExtension(output) + "_Data/StreamingAssets/CafeLocal");
             CopyTree(LocalCafeModel.PayloadPath, target);

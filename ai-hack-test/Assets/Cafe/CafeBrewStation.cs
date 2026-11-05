@@ -6,9 +6,19 @@ using UnityEngine.UI;
 
 namespace MapleCafe
 {
+    // Something outside the bar that accepts a finished mug, such as a customer at the counter.
+    public interface IDrinkReceiver
+    {
+        Collider Target { get; }
+        string Describe(string heldDrink, bool iced);
+        bool Receive(string drink, bool iced, Color color);
+    }
+
     [DefaultExecutionOrder(20)]
     public sealed class CafeBrewStation : MonoBehaviour
     {
+        public IDrinkReceiver Receiver { get; set; }
+        internal static string InvalidDrinkName => CafeDrinkSurface.Invalid.Name;
         public enum IngredientKind { Shot, Water, Milk, Vanilla, Condensed, Cocoa, Matcha, Strawberry, Yuja, Lemon, Soda, Ssanghwa, Nuts, Ice }
 
         [Serializable]
@@ -71,6 +81,8 @@ namespace MapleCafe
         private CharacterController playerCollider;
         private AudioSource sound;
         private string finishedDrink;
+        private bool finishedIced;
+        private Color finishedColor;
         private CafeDrinkSurface.Drink blendedDrink;
         private Transform[] warningBubbles;
         private Material bubbleMaterial;
@@ -129,13 +141,14 @@ namespace MapleCafe
         {
             var ray = eyes.ViewportPointToRay(new Vector3(.5f, .5f));
             var direct = FirstCollider(ray, Reach);
-            if (direct != null && Array.IndexOf(targets, direct) >= 0)
+            if (direct != null && (Array.IndexOf(targets, direct) >= 0 || direct == Receiver?.Target))
                 return direct;
 
             Collider best = null;
             float bestScore = AimMargin;
-            foreach (var target in targets)
+            for (int i = 0; i <= targets.Length; i++)
             {
+                var target = i < targets.Length ? targets[i] : Receiver?.Target;
                 if (target == null || !target.enabled || !target.gameObject.activeInHierarchy) continue;
                 Vector3 center = target.bounds.center;
                 float depth = Vector3.Dot(center - ray.origin, ray.direction);
@@ -170,6 +183,8 @@ namespace MapleCafe
         private string Describe(Collider target, Ingredient ingredient)
         {
             if (target == null) return "";
+            if (Receiver != null && target == Receiver.Target)
+                return Receiver.Describe(holdingMug ? finishedDrink : null, finishedIced);
             if (finishedDrink != null)
             {
                 if (target == mugTarget) return holdingMug ? "F  ·  머그잔 내려놓기" : "F  ·  완성된 머그잔 들기";
@@ -201,20 +216,13 @@ namespace MapleCafe
         private void Interact(Collider target, Ingredient ingredient)
         {
             if (target == null) return;
-            if (target == sinkTarget)
+            if (Receiver != null && target == Receiver.Target)
             {
-                ReturnHeld();
-                SetMugHeld(false);
-                ResetMix();
-                finishedDrink = null;
-                drinkSurface.Clear();
-                SetWarningEffect(false);
-                mugName.enabled = false;
-                mugName.text = "";
-                mugLiquid.enabled = false;
-                mugIce?.SetVisible(false);
-                RefreshStatus();
+                // The served mug leaves the bar; a fresh one returns to its saucer.
+                if (holdingMug && finishedDrink != null && Receiver.Receive(finishedDrink, finishedIced, finishedColor))
+                    EmptyMug();
             }
+            else if (target == sinkTarget) EmptyMug();
             else if (target == mugTarget && finishedDrink != null)
             {
                 SetMugHeld(!holdingMug);
@@ -256,6 +264,21 @@ namespace MapleCafe
             }
             else if (target == mugTarget && holdingBlend)
                 StartCoroutine(FillMug());
+        }
+
+        private void EmptyMug()
+        {
+            ReturnHeld();
+            SetMugHeld(false);
+            ResetMix();
+            finishedDrink = null;
+            drinkSurface.Clear();
+            SetWarningEffect(false);
+            mugName.enabled = false;
+            mugName.text = "";
+            mugLiquid.enabled = false;
+            mugIce?.SetVisible(false);
+            RefreshStatus();
         }
 
         private string IngredientBlock(IngredientKind kind)
@@ -383,6 +406,8 @@ namespace MapleCafe
             if (!invalid && iceWaterReady) mugIce?.SetDrinkColor(drink.Color);
             mugIce?.SetVisible(iceWaterReady && !invalid);
             finishedDrink = drink.Name;
+            finishedIced = iceWaterReady && !invalid;
+            finishedColor = drink.Color;
             mugName.text = drink.Name + (invalid ? "" : iceWaterReady ? "  ·  ICE" : "  ·  HOT");
             mugName.color = invalid ? new Color32(243, 174, 255, 255) : new Color32(255, 238, 210, 255);
             SetWarningEffect(invalid);

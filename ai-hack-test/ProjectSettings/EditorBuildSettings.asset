@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: deffef70b0eab8644a7cfe91d286627e
+  - enabled: 1
+    path: Assets/Scenes/test-loop-merge02.unity
+    guid: 5fb506ad06aad414aa4f96023f9de828
+  - enabled: 1
     path: Assets/Scenes/AutumnCafe.unity
     guid: b8955f0d1afdac7419e19db421828291
   - enabled: 1

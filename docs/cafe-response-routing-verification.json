@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-06",
+  "timezone": "Asia/Seoul",
+  "unity": "6000.6.8f1",
+  "scene": "Assets/Scenes/test-loop-merge02.unity",
+  "playMode": true,
+  "playStopped": true,
+  "sceneSaved": false,
+  "buildCreated": false,
+  "compileErrors": 0,
+  "finalConsoleErrors": 0,
+  "algorithm": "authored phrase generate-filter-rank; heuristic, not a trained Korean fluency model",
+  "checks": {
+    "personas": 16,
+    "thresholdBoundary": true,
+    "topicEvidence": true,
+    "greetingIntent": true,
+    "acknowledgementIntent": true,
+    "repetitionPenalty": true,
+    "malformedCandidatesRejected": true,
+    "uiToolkitKoreanAndReturnEvent": true,
+    "mockApiSuccess": true,
+    "apiFailureToRealLocal": true,
+    "bothFailureToMacro": true,
+    "bothFailureToVocabulary": true,
+    "cancellation": true,
+    "selectionIsolation": true,
+    "servingCancellation": true,
+    "noLateReply": true
+  },
+  "seconds": {
+    "mockApi": 0.0142555237,
+    "apiFailureToRealLocalIncludingBoot": 55.3956223,
+    "macroFallback": 4.113533,
+    "vocabularyFallback": 4.085083
+  },
+  "samples": {
+    "vocabularyGreeting": "안녕하우꽈?"
+  },
+  "limitations": [
+    "Synthetic TextField content and KeyDown event, not physical keyboard or OS IME",
+    "API success used loopback mock; external API success not established",
+    "Real local output included awkward wording; long fallback latency remains",
+    "Heuristic surface checks and authored templates do not prove general Korean grammar or semantic adequacy"
+  ],
+  "packageHashes": {
+    "manifest": "43C1FBBE674CEAF102FFC95051E6FD2AFAE7AB19B4B20E07B6F9C41E19431A88",
+    "lock": "87310D08345245D6A5CABC6B80CE56E8992B6E5FD44814F79FAC4CB2037FF5E4"
+  }
+}
