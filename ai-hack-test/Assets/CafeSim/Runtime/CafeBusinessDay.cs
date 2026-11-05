@@ -10,7 +10,16 @@ namespace CafeSim
         public CafeSession session;
         public MapleCafe.BaristaView barista;
         public float openHour=9, closeHour=18, gameSecondsPerSecond=180;
-        public int drinkPrice=4500, tipPerStar=500;
+        public int drinkPrice=4500, tipPerStar=500, wastedCupCost=1600;
+        // Per-drink menu prices; a drink missing here sells for drinkPrice.
+        public CafeDrinkPrice[] prices={
+            new CafeDrinkPrice{menuId="menu_americano",price=4500},new CafeDrinkPrice{menuId="menu_espresso",price=4000},
+            new CafeDrinkPrice{menuId="menu_latte",price=5000},new CafeDrinkPrice{menuId="menu_vanilla",price=5500},
+            new CafeDrinkPrice{menuId="menu_condensed",price=5500},new CafeDrinkPrice{menuId="menu_choco",price=5500},
+            new CafeDrinkPrice{menuId="menu_matcha",price=5500},new CafeDrinkPrice{menuId="menu_strawberry",price=6000},
+            new CafeDrinkPrice{menuId="menu_yuja",price=5000},new CafeDrinkPrice{menuId="menu_lemonade",price=5500},
+            new CafeDrinkPrice{menuId="menu_ssanghwa",price=5000}};
+        public readonly CafeDayLedger Ledger=new CafeDayLedger();
         public string mainMenuScene="MainMenu";
 
         // Survives the scene reload that starts the next day; the main menu starts over at day 1.
@@ -21,7 +30,8 @@ namespace CafeSim
         public bool Paused {get;private set;}
         public bool Closed {get;private set;}
         public int Served {get;private set;} public int Accurate {get;private set;} public int Missed {get;private set;}
-        public int StarTotal {get;private set;} public int Sales {get;private set;} public int Tips {get;private set;}
+        public int StarTotal {get;private set;}
+        public int Sales=>Ledger.Sales; public int Tips=>Ledger.Tips;
         public float AverageStars=>Served==0?0:StarTotal/(float)Served;
         public float Progress=>Mathf.InverseLerp(openHour*3600,closeHour*3600,Clock);
 
@@ -45,13 +55,20 @@ namespace CafeSim
         {
             if(Closed)return;
             // Stars are decided when the drink is handed over, so a late review still counts.
-            if(kind=="SERVED")
+            if(kind=="USER")Ledger.Ask(visit);
+            else if(kind=="SERVED")
             {
                 int stars=visit.Reaction?.stars??0;
                 Served++;StarTotal+=stars;if(visit.Accuracy>=.999f)Accurate++;
-                Sales+=drinkPrice;Tips+=Mathf.Max(0,stars-3)*tipPerStar;
+                // The customer pays for what they ordered (the menu item behind their request).
+                Ledger.Served(visit,PriceOf(visit.Order?.menuId),tipPerStar,wastedCupCost);
             }
-            else if(kind=="RATING"&&visit.State==VisitState.TimedOut)Missed++;
+            else if(kind=="RATING"&&visit.State==VisitState.TimedOut){Missed++;Ledger.TimedOut(visit);}
+        }
+        public int PriceOf(string menuId)
+        {
+            if(prices!=null)foreach(var p in prices)if(p!=null&&p.menuId==menuId)return p.price;
+            return drinkPrice;
         }
 
         public void SetPaused(bool value)

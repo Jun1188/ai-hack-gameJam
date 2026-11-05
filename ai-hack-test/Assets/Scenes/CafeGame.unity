@@ -21493,7 +21493,7 @@ Transform:
   m_GameObject: {fileID: 310989261}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.133, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47624,7 +47624,7 @@ Transform:
   m_GameObject: {fileID: 673046926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.012, z: 0}
+  m_LocalPosition: {x: -0.15, y: 0.012, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49190,7 +49190,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696930615}
-  m_Text: MAPLE  &  MUG
+  m_Text: MODU  COFFEE
   m_OffsetZ: 0
   m_CharacterSize: 0.01204
   m_LineSpacing: 1
@@ -75017,7 +75017,7 @@ Transform:
   m_GameObject: {fileID: 1064529145}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.056, z: 0}
+  m_LocalPosition: {x: -0.09, y: 0.056, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84189,7 +84189,7 @@ Transform:
   m_GameObject: {fileID: 1263931320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.15, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113310,6 +113310,30 @@ MonoBehaviour:
   gameSecondsPerSecond: 180
   drinkPrice: 4500
   tipPerStar: 500
+  wastedCupCost: 1600
+  prices:
+  - menuId: menu_americano
+    price: 4500
+  - menuId: menu_espresso
+    price: 4000
+  - menuId: menu_latte
+    price: 5000
+  - menuId: menu_vanilla
+    price: 5500
+  - menuId: menu_condensed
+    price: 5500
+  - menuId: menu_choco
+    price: 5500
+  - menuId: menu_matcha
+    price: 5500
+  - menuId: menu_strawberry
+    price: 6000
+  - menuId: menu_yuja
+    price: 5000
+  - menuId: menu_lemonade
+    price: 5500
+  - menuId: menu_ssanghwa
+    price: 5000
   mainMenuScene: MainMenu
 --- !u!114 &1696298715
 MonoBehaviour:
@@ -116224,7 +116248,7 @@ Transform:
   m_GameObject: {fileID: 1762503252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.012, z: 0}
+  m_LocalPosition: {x: 0.133, y: 0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124285,7 +124309,7 @@ Transform:
   m_GameObject: {fileID: 1857186979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.056, z: 0}
+  m_LocalPosition: {x: 0.193, y: 0.056, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126194,7 +126218,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878245974}
-  m_Text: MAPLE & MUG
+  m_Text: MODU COFFEE
   m_OffsetZ: 0
   m_CharacterSize: 0.00516
   m_LineSpacing: 1
