@@ -1,5 +1,7 @@
 # ai-hack-gameJam
 
+카페 브랜치의 데이터 갱신·로컬 모델 준비를 맡은 에이전트는 먼저 [공유 설치 지침](docs/cafe-agent-setup.md)을 읽어 주세요. 모델과 llama.cpp는 Git에 포함하지 않으며, 다른 PC에서는 사용자 승인을 받은 뒤에만 다운로드합니다. 큐·검색형 대사 테스트 자체는 모델 없이 실행할 수 있습니다.
+
 
 
 ## 원론적인 PR의 작업 흐름은 Feature / hotfix -> develop -> Master 입니다.  
