@@ -27,7 +27,7 @@ namespace CafeSim
         void Update()
         {
             var keyboard = Keyboard.current;
-            if (keyboard == null || !focused) { input = Vector2.zero; return; }
+            if (keyboard == null || !focused || CafeStartIris.BlocksInput) { input = Vector2.zero; return; }
             if (TextInputActive) { input = Vector2.zero; return; }
             if (keyboard.tabKey.wasPressedThisFrame) SetLooking(!Looking);
             if (keyboard.escapeKey.wasPressedThisFrame || keyboard.eKey.wasPressedThisFrame) SetLooking(false);
@@ -42,6 +42,7 @@ namespace CafeSim
         }
         void FixedUpdate()
         {
+            if (CafeStartIris.BlocksInput) return;
             Vector3 wish = transform.right * input.x + transform.forward * input.y;
             wish = Vector3.ClampMagnitude(wish, 1f);
             Vector3 velocity = body.linearVelocity;

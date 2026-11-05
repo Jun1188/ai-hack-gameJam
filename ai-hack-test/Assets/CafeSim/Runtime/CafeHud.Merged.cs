@@ -83,19 +83,24 @@ namespace CafeSim
             if(draftCustomer!=session.CustomerNumber){draft="";draftCustomer=session.CustomerNumber;chatInput?.SetValueWithoutNotify("");if(promptOpen)SetPrompt(false);}
             if(promptOpen&&!session.CanChat)SetPrompt(false);
             var keys=Keyboard.current;
-            if(Application.isFocused&&keys!=null&&!CafeStartIris.Active)
+            if(Application.isFocused&&keys!=null&&!CafeStartIris.BlocksInput)
             {
+                bool enterPressed = keys.enterKey.wasPressedThisFrame || keys.numpadEnterKey.wasPressedThisFrame;
                 // The tutorial owns Enter/Esc while it is open; otherwise E talks, Q opens the 영업 수첩, Esc pauses.
-                if (TutorialOpen)
+                if (TutorialTabRequired)
                 {
-                    if (keys.enterKey.wasPressedThisFrame || keys.numpadEnterKey.wasPressedThisFrame ||
-                        keys.escapeKey.wasPressedThisFrame) CloseTutorial(true);
+                    if (keys.tabKey.wasPressedThisFrame) AdvanceTutorialTabPrompt();
                 }
+                else if (TutorialOpen)
+                {
+                    if (enterPressed || keys.escapeKey.wasPressedThisFrame) CloseTutorial(true);
+                }
+                else if (enterPressed && TryAdvanceFromReceipt()) return;
                 else if(keys.eKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.E);
                 else if(keys.qKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Q);
                 else if(keys.escapeKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Escape);
             }
-            inputCanEdit=promptOpen&&session.CanChat&&!session.ChatBusy&&!session.ChatClosed;
+            inputCanEdit=promptOpen&&session.CanChat&&!session.ChatBusy&&!session.ChatClosed&&!CafeStartIris.BlocksInput;
             if(chatInput!=null)
             {
                 StyleChatInput();
@@ -109,7 +114,7 @@ namespace CafeSim
         }
         void LateUpdate()
         {
-            if (!mergedCafe || session == null) return;
+            if (!mergedCafe || session == null || CafeStartIris.BlocksInput) return;
 
             var body = session.BodyOf(speaker);
             bool inView = TryGetSpeechAnchor(body, out Vector3 anchor);
@@ -158,7 +163,8 @@ namespace CafeSim
         {
             bool overlay=promptOpen||Halted;
             if(barista!=null)barista.ExternalUIActive=overlay;
-            if(overlay){UnityEngine.Cursor.lockState=CursorLockMode.None;UnityEngine.Cursor.visible=true;}
+            if (TutorialTabRequired) UnityEngine.Cursor.visible = false;
+            else if(overlay){UnityEngine.Cursor.lockState=CursorLockMode.None;UnityEngine.Cursor.visible=true;}
         }
         int shortcutFrame=-1;
         void HandleOverlayKey(KeyCode key)
@@ -245,7 +251,8 @@ namespace CafeSim
             DayStyles();
             if(promptOpen)DrawChat(scale);
             if(!Halted)DrawControls();
-            if (TutorialOpen) DrawTutorial(scale, offset);
+            if (TutorialTabRequired) DrawTutorialTabPrompt(scale, offset);
+            else if (TutorialOpen) DrawTutorial(scale, offset);
             else
             {
                 DrawTutorialHint();

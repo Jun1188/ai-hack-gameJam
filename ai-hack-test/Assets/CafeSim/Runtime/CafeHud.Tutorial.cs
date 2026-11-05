@@ -8,52 +8,78 @@ namespace CafeSim
         internal static readonly Color32 TutorialHighlightColor = new(255, 200, 105, 255);
         [SerializeField] CafeBrewStation brewStation;
         [SerializeField] CafeMenuBook tutorialMenu;
-        enum TutorialStage { WaitingForCustomer, ChooseCard, MakeDrink, WaitingForDeparture, ReopenMenu, CloseMenu, Done }
+        enum TutorialStage { WaitingForCustomer, OpenMenu, ChooseCard, FindBlender, MakeDrink, Done }
         TutorialStage tutorialStage;
         CafeVisit tutorialCustomer;
         Bounds tutorialBounds;
         bool TutorialOpen => tutorialStage == TutorialStage.MakeDrink;
+        bool TutorialTabRequired => tutorialStage == TutorialStage.OpenMenu;
 
         void UpdateTutorial()
         {
-            if (tutorialMenu == null || brewStation == null || businessDay == null || CafeBusinessDay.Day != 1 ||
+            if (tutorialMenu == null || !tutorialMenu.isActiveAndEnabled || !tutorialMenu.HasCards ||
+                brewStation == null || businessDay == null || CafeBusinessDay.Day != 1 ||
                 tutorialStage == TutorialStage.Done || Halted || promptOpen || session.ChatBusy) return;
+
+            // Keep completed lessons when the current customer leaves without a drink.
+            if (tutorialCustomer == null || tutorialCustomer.State == VisitState.TimedOut)
+                tutorialCustomer = ArrivedTutorialCustomer();
 
             switch (tutorialStage)
             {
                 case TutorialStage.WaitingForCustomer:
-                    CafeVisit customer = session.Selected;
-                    Transform body = session.BodyOf(customer);
-                    if (customer?.State == VisitState.Active && !string.IsNullOrWhiteSpace(customer.Order?.speech) &&
-                        body != null && body.gameObject.activeInHierarchy &&
-                        (body.position - session.servicePoint.position).sqrMagnitude <= .0001f)
-                    {
-                        tutorialCustomer = customer;
+                    if (tutorialCustomer == null) break;
+                    if (tutorialMenu.HasSelectedCard)
+                        tutorialStage = TutorialStage.FindBlender;
+                    else if (tutorialMenu.IsListOpen)
                         tutorialStage = TutorialStage.ChooseCard;
-                    }
+                    else
+                        BeginTutorialTabPrompt();
                     break;
                 case TutorialStage.ChooseCard:
-                    if (tutorialCustomer.State == VisitState.TimedOut)
-                        tutorialStage = TutorialStage.WaitingForCustomer;
-                    else if (tutorialCustomer.State == VisitState.Received)
-                        tutorialStage = TutorialStage.WaitingForDeparture;
+                    if (tutorialCustomer?.State == VisitState.Received)
+                        tutorialStage = TutorialStage.Done;
+                    else if (tutorialMenu.HasSelectedCard)
+                        tutorialStage = TutorialStage.FindBlender;
+                    break;
+                case TutorialStage.FindBlender:
+                    if (tutorialCustomer?.State == VisitState.Received)
+                        tutorialStage = TutorialStage.Done;
                     else
                         WatchForBlender();
                     break;
-                case TutorialStage.WaitingForDeparture:
-                    if (tutorialCustomer.State == VisitState.TimedOut)
-                        tutorialStage = TutorialStage.WaitingForCustomer;
-                    else if (session.HasStartedDeparture(tutorialCustomer))
-                        tutorialStage = tutorialMenu.IsListOpen ? TutorialStage.CloseMenu : TutorialStage.ReopenMenu;
-                    break;
-                case TutorialStage.ReopenMenu:
-                    if (tutorialMenu.IsListOpen) tutorialStage = TutorialStage.CloseMenu;
-                    break;
-                case TutorialStage.CloseMenu:
-                    if (!tutorialMenu.IsListOpen)
-                        tutorialStage = tutorialMenu.HasPinnedCard ? TutorialStage.ReopenMenu : TutorialStage.Done;
-                    break;
             }
+        }
+
+        CafeVisit ArrivedTutorialCustomer()
+        {
+            CafeVisit customer = session.Selected;
+            Transform body = session.BodyOf(customer);
+            return customer?.State == VisitState.Active && !string.IsNullOrWhiteSpace(customer.Order?.speech) &&
+                body != null && body.gameObject.activeInHierarchy &&
+                (body.position - session.servicePoint.position).sqrMagnitude <= .0001f
+                ? customer : null;
+        }
+
+        void BeginTutorialTabPrompt()
+        {
+            tutorialStage = TutorialStage.OpenMenu;
+            tutorialMenu.TutorialTabRequired = true;
+            businessDay.SetPaused(true);
+            ApplyOverlayControls();
+        }
+
+        void AdvanceTutorialTabPrompt()
+        {
+            tutorialStage = TutorialStage.ChooseCard;
+            EndTutorialTabPrompt();
+            tutorialMenu.ToggleList();
+        }
+
+        void EndTutorialTabPrompt()
+        {
+            if (tutorialMenu != null) tutorialMenu.TutorialTabRequired = false;
+            if (businessDay != null) businessDay.SetPaused(false);
         }
 
         void WatchForBlender()
@@ -70,10 +96,10 @@ namespace CafeSim
             ApplyOverlayControls();
         }
 
-        void CloseTutorial(bool resumeInput, bool skip = false)
+        void CloseTutorial(bool resumeInput)
         {
             if (!TutorialOpen) return;
-            tutorialStage = skip ? TutorialStage.Done : TutorialStage.WaitingForDeparture;
+            tutorialStage = TutorialStage.Done;
             if (businessDay != null) businessDay.SetPaused(false);
             if (!resumeInput) return;
             ApplyOverlayControls();
@@ -89,11 +115,8 @@ namespace CafeSim
             if (Halted || promptOpen || session.ChatBusy || tutorialMenu == null) return;
             string message = tutorialStage switch
             {
-                TutorialStage.ChooseCard when tutorialMenu.IsListOpen => "주문에 맞는 메뉴 카드를 클릭하면 왼쪽 위에 확대돼요.",
-                TutorialStage.ChooseCard when tutorialMenu.HasPinnedCard => "카드를 펼쳐 둔 채 뒤돌아서 블렌더를 보세요.",
-                TutorialStage.ChooseCard => "Tab으로 메뉴 카드를 열고, 원하는 카드를 클릭해 확대하세요.",
-                TutorialStage.ReopenMenu => "Tab을 눌러 카드 목록으로 돌아가세요. 목록에서 Tab을 한 번 더 누르면 닫혀요.",
-                TutorialStage.CloseMenu => "Tab을 한 번 더 눌러 카드 목록을 닫으세요.",
+                TutorialStage.ChooseCard => "주문에 맞는 메뉴 카드를 클릭하면 왼쪽 위에 확대돼요.",
+                TutorialStage.FindBlender => "확대된 카드를 참고해 뒤돌아서 블렌더를 보세요.",
                 _ => null
             };
             if (message == null) return;
@@ -106,10 +129,20 @@ namespace CafeSim
             GUI.Label(new Rect(panel.x + 20f, panel.y + 27f, width - 40f, height), message, artText);
         }
 
-        void DrawTutorial(float scale, Vector2 offset)
+        void DrawTutorialTabPrompt(float scale, Vector2 offset)
         {
-            Rect screen = new Rect(-offset / scale, new Vector2(Screen.width, Screen.height) / scale);
-            bool hasFocus = TryGetTutorialScreenBounds(scale, offset, screen, out Rect focus);
+            const string message = "Tab을 눌러 메뉴 카드를 여세요.";
+            var screen = new Rect(-offset / scale, new Vector2(Screen.width, Screen.height) / scale);
+            var panel = new Rect(380f, 486f, 520f, 100f);
+            DrawTutorialSpotlight(screen, true, new Rect(panel.x - 5f, panel.y - 5f, panel.width + 10f, panel.height + 10f));
+            Paper(panel, shadow: false);
+            GUI.Label(new Rect(panel.x + 20f, panel.y + 14f, 460f, 22f), "첫 근무 안내", artLabel);
+            GUI.Label(new Rect(panel.x + 20f, panel.y + 43f, 68f, 36f), "Tab", artCap);
+            GUI.Label(new Rect(panel.x + 102f, panel.y + 50f, 398f, 30f), message, artText);
+        }
+
+        void DrawTutorialSpotlight(Rect screen, bool hasFocus, Rect focus)
+        {
             if (Event.current.type == EventType.Repaint)
             {
                 var previous = GUI.color;
@@ -132,7 +165,13 @@ namespace CafeSim
                 }
                 GUI.color = previous;
             }
+        }
 
+        void DrawTutorial(float scale, Vector2 offset)
+        {
+            var screen = new Rect(-offset / scale, new Vector2(Screen.width, Screen.height) / scale);
+            bool hasFocus = TryGetTutorialScreenBounds(scale, offset, screen, out Rect focus);
+            DrawTutorialSpotlight(screen, hasFocus, focus);
             const string title = "카드를 보고 음료 만들기";
             const string body = "확대된 카드에 적힌 재료를 F로 집어 제조 컵에 넣으세요. 재료를 모두 넣은 뒤 빈손으로 제조 컵에 F를 눌러 블렌딩하고, 머그잔에 옮기세요.";
             const float width = 550f, margin = 24f;
@@ -153,9 +192,7 @@ namespace CafeSim
             GUI.Label(new Rect(panel.x + 22, panel.y + 14, width - 44, 22), "첫 근무 안내", artLabel);
             GUI.Label(new Rect(panel.x + 22, panel.y + 40, width - 44, 27), title, artText);
             GUI.Label(new Rect(panel.x + 22, panel.y + 70, width - 44, bodyHeight), body, artText);
-            if (GUI.Button(new Rect(panel.x + 22, panel.yMax - 45, 145, 30), "안내 건너뛰기", artButton))
-                CloseTutorial(true, skip: true);
-            else if (GUI.Button(new Rect(panel.xMax - 156, panel.yMax - 45, 134, 30), "계속  Enter", artButton))
+            if (GUI.Button(new Rect(panel.xMax - 184, panel.yMax - 45, 162, 30), "안내 끝내기  Enter", artButton))
                 CloseTutorial(true);
         }
 

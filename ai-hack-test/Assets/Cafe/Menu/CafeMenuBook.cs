@@ -27,7 +27,7 @@ namespace MapleCafe
         private const float TemperatureLeft = .05f;
         private const float TemperatureRight = .51f;
         private const float TemperatureWidth = .44f;
-        private const float TutorialDimOpacity = .32f;
+        private const float TutorialDimOpacity = .72f;
         private const float TutorialDimFadeTime = .16f;
 
         private RectTransform canvasRect;
@@ -49,7 +49,10 @@ namespace MapleCafe
         private float stripExitRemaining;
         private float pinProgress;
         internal bool IsListOpen => isOpen;
+        internal bool HasSelectedCard => showPinned;
         internal bool HasPinnedCard => showPinned && pinProgress > 0f;
+        internal bool HasCards => cards != null && cards.Length > 0;
+        internal bool TutorialTabRequired { private get; set; }
 
         internal void SetTutorialCardFocus(bool choosingFirstCard)
         {
@@ -59,6 +62,7 @@ namespace MapleCafe
 
         private void Update()
         {
+            if (CafeStartIris.BlocksInput) return;
             if (Application.isFocused)
                 HandleKeys();
             if (canvasRect == null)
@@ -83,7 +87,7 @@ namespace MapleCafe
                     returnTogether = false;
                     waveTime = end;
                 }
-                if (isOpen && !returnTogether && Application.isFocused) HandleCardPointer();
+                if (isOpen && !returnTogether && !TutorialTabRequired && Application.isFocused) HandleCardPointer();
             }
 
             if (showPinned && stripExitRemaining == 0f)
@@ -107,41 +111,45 @@ namespace MapleCafe
 
         private void HandleKeys()
         {
+            if (TutorialTabRequired) return;
             var keys = Keyboard.current;
             if (keys!=null && keys[toggleKey].wasPressedThisFrame && (player==null||!player.ExternalUIActive))
-            {
-                if (isOpen)
-                {
-                    FinishSelection(false);
-                    PlayCardSound(closeSound);
-                }
-                else if (cards != null && cards.Length > 0)
-                {
-                    if (canvasRect == null)
-                        BuildStrip();
-                    if (showPinned || pinProgress > 0f)
-                    {
-                        showPinned = false;
-                        returnTogether = true;
-                    }
-                    else if (waveTime == 0f)
-                    {
-                        returnTogether = false;
-                    }
-                    canvasRect.gameObject.SetActive(true);
-                    previousLock = Cursor.lockState;
-                    previousVisible = Cursor.visible;
-                    isOpen = true;
-                    if (player != null) player.SetChoosingMenuCard(true);
-                    ShowBeanCursor();
-                    PlayCardSound(openSound);
-                }
-            }
+                ToggleList();
             else if (isOpen && keys?.escapeKey.wasPressedThisFrame == true)
             {
                 FinishSelection(false);
                 PlayCardSound(closeSound);
             }
+        }
+
+        internal void ToggleList()
+        {
+            if (isOpen)
+            {
+                FinishSelection(false);
+                PlayCardSound(closeSound);
+                return;
+            }
+            if (!HasCards) return;
+
+            if (canvasRect == null)
+                BuildStrip();
+            if (showPinned || pinProgress > 0f)
+            {
+                showPinned = false;
+                returnTogether = true;
+            }
+            else if (waveTime == 0f)
+            {
+                returnTogether = false;
+            }
+            canvasRect.gameObject.SetActive(true);
+            previousLock = Cursor.lockState;
+            previousVisible = Cursor.visible;
+            isOpen = true;
+            if (player != null) player.SetChoosingMenuCard(true);
+            ShowBeanCursor();
+            PlayCardSound(openSound);
         }
 
         private void HandleCardPointer()
@@ -453,6 +461,7 @@ namespace MapleCafe
             {
                 cardAudio = gameObject.AddComponent<AudioSource>();
                 cardAudio.playOnAwake = false;
+                cardAudio.ignoreListenerPause = true;
                 cardAudio.spatialBlend = 0f;
                 cardAudio.volume = .45f;
             }

@@ -24,7 +24,7 @@ namespace MapleCafe
         private int ignoreLookUntilFrame;
         public bool ExternalUIActive
         {
-            get=>externalUIActive || CafeSim.CafeStartIris.Active;
+            get=>externalUIActive || CafeSim.CafeStartIris.BlocksInput;
             set {if(externalUIActive!=value){ignoreLookUntilFrame=Time.frameCount+2;menuChangedFrame=Time.frameCount;}externalUIActive=value;}
         }
         public bool ChoosingMenuCard => choosingMenuCard;
@@ -48,6 +48,11 @@ namespace MapleCafe
 
         private void Update()
         {
+            if (CafeSim.CafeStartIris.BlocksInput)
+            {
+                ignoreLookUntilFrame = Time.frameCount + 1;
+                return;
+            }
             if (ExternalUIActive || choosingMenuCard || menuChangedFrame == Time.frameCount)
             {
                 UpdateGait(0f, Time.deltaTime);
