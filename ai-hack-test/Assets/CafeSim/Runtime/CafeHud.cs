@@ -4,7 +4,8 @@ using UnityEngine.UIElements;
 
 namespace CafeSim
 {
-    public sealed class CafeHud : MonoBehaviour
+    [DefaultExecutionOrder(-90)]
+    public sealed partial class CafeHud : MonoBehaviour
     {
         public CafeSession session;
         public CafeFirstPersonController player;
@@ -34,6 +35,7 @@ namespace CafeSim
         void Update()
         {
             BindKeyboard();
+            if(mergedCafe){UpdateMerged();return;}
             // UI Toolkit control state must not depend on whether IMGUI received a
             // Repaint. Game-view focus, cursor mode and selection can change between them.
             if(chatInput!=null)
@@ -51,6 +53,8 @@ namespace CafeSim
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
             if(inputRoot!=null)Destroy(inputRoot);inputRoot=null;chatInput=null;inputFocused=false;composition="";
             if(player!=null)player.TextInputActive=false;
+            if(barista!=null)barista.ExternalUIActive=false;
+            if(session!=null)session.DialogueOutput-=OnDialogue;subscribed=false;
         }
         void EnsureChatInput()
         {
@@ -79,7 +83,9 @@ namespace CafeSim
             chatInput.RegisterCallback<KeyDownEvent>(e=>
             {
                 if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
-                if(e.keyCode==KeyCode.Escape){chatInput.Blur();e.StopPropagation();return;}
+                // Global overlay shortcuts are processed once in Update, even while this field is focused.
+                if(mergedCafe&&(e.keyCode==KeyCode.Tab||e.keyCode==KeyCode.E||e.keyCode==KeyCode.Escape)){e.StopPropagation();e.PreventDefault();return;}
+                if(e.keyCode==KeyCode.Escape){if(mergedCafe)SetPrompt(false);chatInput.Blur();e.StopPropagation();return;}
                 if(e.keyCode!=KeyCode.Return&&e.keyCode!=KeyCode.KeypadEnter)return;
                 e.StopPropagation();
                 if(string.IsNullOrEmpty(composition)&&session.SendChat(draft)){draft="";chatInput.SetValueWithoutNotify("");}
@@ -157,6 +163,7 @@ namespace CafeSim
             if (session == null) return;
             Styles();
             EnsureChatInput();
+            if(mergedCafe){DrawMerged();return;}
             var previousMatrix = GUI.matrix;
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1280f * scale) * .5f, (Screen.height - 720f * scale) * .5f, 0f), Quaternion.identity, Vector3.one * scale);

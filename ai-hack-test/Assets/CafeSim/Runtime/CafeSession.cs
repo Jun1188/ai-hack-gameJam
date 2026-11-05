@@ -11,6 +11,9 @@ namespace CafeSim
   public Transform customer,entrance,servicePoint; public Renderer customerBody; public GameObject servedCup;
   public float reactionReadSeconds=3.5f,ratingReadSeconds=5f;
   public CafeQueueSettings queueSettings=new CafeQueueSettings();
+  public bool mergedCafe;
+  public event Action<CafeVisit,string,string> DialogueOutput;
+  public readonly List<string> DialogueLog=new List<string>();
   public MenuTable Menu {get;private set;}
   public Persona Person=>Selected?.Person; public CustomerOrder Order=>Selected?.Order;
   public CustomerReaction Reaction=>Selected?.Reaction; public CafePhase Phase {get;private set;}
@@ -23,7 +26,7 @@ namespace CafeSim
   public string ChatError {get;private set;}
   public string LastReplySource {get;private set;}
   public float LastReplySeconds {get;private set;}
-  public bool CanChat=>Selected!=null&&(Selected.State==VisitState.Inactive||Selected.State==VisitState.Active);
+  public bool CanChat=>Selected!=null&&((!mergedCafe&&Selected.State==VisitState.Inactive)||Selected.State==VisitState.Active);
   readonly HashSet<int> closedChats=new HashSet<int>();
   public bool ChatClosed=>Selected!=null&&closedChats.Contains(Selected.Id);
   public CafeConversation Conversation {get;private set;}
@@ -38,7 +41,7 @@ namespace CafeSim
    try {
     CancelChat();if(bootRoutine!=null)StopCoroutine(bootRoutine);bootRoutine=null;
     model?.Shutdown();foreach(var t in bodies.Values)if(t!=null)Destroy(t.gameObject);bodies.Clear();
-    ratingDue.Clear();awaitingRating.Clear();Chat.Clear();Selected=null;Error=null;ServedLabel=null;
+    ratingDue.Clear();awaitingRating.Clear();Chat.Clear();DialogueLog.Clear();Selected=null;Error=null;ServedLabel=null;
     if(menuData==null||personaData==null||customer==null||servicePoint==null||entrance==null)throw new InvalidOperationException("씬 참조 누락");
     Menu=JsonUtility.FromJson<MenuTable>(menuData.text);
     var people=JsonUtility.FromJson<PersonaTable>(personaData.text);
@@ -62,6 +65,7 @@ namespace CafeSim
   void OnOutput(CafeVisit c,string kind,string line)
   {
    if(kind=="ORDER"){if(chattingWith==c)CancelChat();closedChats.Remove(c.Id);}
+   RecordDialogue(c,kind,line);
    var flags=new List<string>(c.Parameters());flags.Sort();
    Debug.Log("[Cafe] "+kind+" | t="+Queue.Now.ToString("F2")+" customer="+c.Id+" persona="+c.Person.id+" "+c.Person.name+" inactive="+c.InactiveWait.ToString("F1")+" active="+c.ActiveWait.ToString("F1")+" flags="+string.Join(",",flags)+" | "+line);
    if(Selected==c)SyncChat();if(kind=="RATING"&&Selected==c){Phase=CafePhase.Rating;selectedUntil=Queue.Now+ratingReadSeconds;}
@@ -76,7 +80,7 @@ namespace CafeSim
   public void SelectCustomer(int id)
   {
    var c=Queue?.Active.Find(v=>v.Id==id)??Queue?.Inactive.Find(v=>v.Id==id)??Queue?.Completed.Find(v=>v.Id==id&&v.RatingPublished);
-   if(c==null)return;if(c!=Selected){CancelChat();ChatError=null;}Selected=c;
+   if(c==null||(mergedCafe&&c.State==VisitState.Inactive))return;if(c!=Selected){CancelChat();ChatError=null;}Selected=c;
    if((c.State==VisitState.Inactive||c.State==VisitState.Active)&&string.IsNullOrEmpty(c.LastThought))
    {
     float wait=c.State==VisitState.Inactive?c.InactiveWait:c.ActiveWait;
@@ -103,10 +107,15 @@ namespace CafeSim
    ServedLabel=c.ServedName+" · "+temperature;Phase=CafePhase.Reaction;if(servedCup!=null)servedCup.SetActive(true);
    awaitingRating.Add(c);ratingDue[c.Id]=Queue.Now+reactionReadSeconds;selectedUntil=Queue.Now+reactionReadSeconds+ratingReadSeconds;
   }
+  void RecordDialogue(CafeVisit c,string kind,string line)
+  {
+   if(kind=="ARRIVING")return;
+   DialogueLog.Add("#"+c.Id+" "+c.Person.name+" · "+kind+"\n"+line);DialogueOutput?.Invoke(c,kind,line);
+  }
   void AddChat(CafeVisit c,string kind,string text)
   {
    // Player text and generated replies stay in memory, never in the shared queue event log.
-   c.History.Add(kind+"\n"+text);if(c.History.Count>80)c.History.RemoveAt(0);
+   c.History.Add(kind+"\n"+text);RecordDialogue(c,kind,text);
    if(Selected==c)SyncChat();
   }
   public bool SendChat(string input)
@@ -166,12 +175,13 @@ namespace CafeSim
   void UpdateBodies()
   {
    var visible=new List<CafeVisit>();visible.AddRange(Queue.Active);visible.AddRange(Queue.Inactive);
-   if(Selected!=null&&!visible.Contains(Selected))visible.Insert(0,Selected);var keep=new HashSet<int>();
+   if(mergedCafe)foreach(var c in Queue.Completed)if(!c.RatingPublished||Queue.Now-c.ResolvedAt<8)visible.Add(c);
+   if(!mergedCafe&&Selected!=null&&!visible.Contains(Selected))visible.Insert(0,Selected);var keep=new HashSet<int>();
    for(int i=0;i<visible.Count&&i<12;i++){
     var c=visible[i];keep.Add(c.Id);
     if(!bodies.TryGetValue(c.Id,out var body)||body==null){body=Instantiate(customer,entrance.position,entrance.rotation);body.name="Customer "+c.Id+" "+c.Person.name;body.gameObject.SetActive(true);bodies[c.Id]=body;
      foreach(var r in body.GetComponentsInChildren<Renderer>())if(r.name=="Body")r.material.color=Color.HSVToRGB((c.Id*.137f)%1,.35f,.78f);}
-    Vector3 target=c==Selected?servicePoint.position:new Vector3(c.State==VisitState.Inactive?-3.7f:3.7f,servicePoint.position.y,2.3f+(i%5)*.8f);
+    Vector3 target=mergedCafe?(c.State==VisitState.Active?servicePoint.position:c.State==VisitState.Inactive?servicePoint.position-servicePoint.forward*(1.1f*(Queue.Inactive.IndexOf(c)+1)):c.RatingPublished?entrance.position+servicePoint.right*.8f:servicePoint.position+servicePoint.right*.8f):c==Selected?servicePoint.position:new Vector3(c.State==VisitState.Inactive?-3.7f:3.7f,servicePoint.position.y,2.3f+(i%5)*.8f);
     body.position=Vector3.MoveTowards(body.position,target,1.7f*Time.unscaledDeltaTime);body.rotation=servicePoint.rotation;
    }
    foreach(var id in new List<int>(bodies.Keys))if(!keep.Contains(id)){Destroy(bodies[id].gameObject);bodies.Remove(id);}

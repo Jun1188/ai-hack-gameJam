@@ -8,6 +8,7 @@ namespace CafeSim
     [Serializable] public sealed class CafeQueueSettings
     {
         public int inactiveCapacity=4;
+        public bool singleOrderingCustomer=false, exactTimeout=false;
         public float arrivalSeconds=60, orderSeconds=60, activeTimeoutSeconds=180, chatterSeconds=30;
         public float inactivePenaltyPerSecond=.005f,activePenaltyPerSecond=.008f,offMenuChance=.05f;
         public void Validate()
@@ -94,7 +95,7 @@ namespace CafeSim
         }
         public CafeVisit AcceptOrder()
         {
-            if(Inactive.Count==0)return null;
+            if(Inactive.Count==0||(Settings.singleOrderingCustomer&&Active.Count>0))return null;
             var c=Inactive[0];Inactive.RemoveAt(0);c.InactiveWait=Now-c.ArrivedAt;c.OrderedAt=Now;c.ActiveEntries++;c.State=VisitState.Active;c.LastChatterAt=Now;
             string opener=Knowledge.Retrieve(c,"opener",0),ending=Knowledge.Retrieve(c,"ending",0);
             if(c.VisitNumber>1)opener=Knowledge.Retrieve(c,"repeat",0)+" "+opener;
@@ -115,7 +116,8 @@ namespace CafeSim
         }
         void AcceptReadyOrder()
         {
-            if(Inactive.Count>0&&ReceptionSecondsRemaining<=0)AcceptOrder();
+            if(Settings.singleOrderingCustomer){if(Active.Count==0&&Inactive.Count>0)AcceptOrder();}
+            else if(Inactive.Count>0&&ReceptionSecondsRemaining<=0)AcceptOrder();
         }
         void UpdateWaits()
         {
@@ -139,7 +141,7 @@ namespace CafeSim
         {
             for(int i=Active.Count-1;i>=0;i--)
             {
-                var c=Active[i];if(c.ActiveWait<Settings.activeTimeoutSeconds*(c.Situation?.patienceScale??1))continue;
+                var c=Active[i];if(c.ActiveWait<Settings.activeTimeoutSeconds*(Settings.exactTimeout?1:(c.Situation?.patienceScale??1)))continue;
                 Active.RemoveAt(i);c.State=VisitState.TimedOut;c.ResolvedAt=Now;
                 string line=Expand(Knowledge.Retrieve(c,"timeout",c.ActiveWait),c);
                 c.Reaction=new CustomerReaction{speech=line,reason=line,stars=0};c.RatingPublished=true;Finish(c);Emit(c,"RATING", "0/5 | "+line);
@@ -173,7 +175,7 @@ namespace CafeSim
             if(kind=="ORDER")c.Order.speech=text;
             if(kind=="REACTION")c.Reaction.speech=text;
             if(kind=="RATING")c.Reaction.reason=Knowledge.MaskMenuNames(c.Reaction.reason);
-            c.LastLine=text;c.UtteranceCount++;c.History.Add(kind+"\n"+text);if(c.History.Count>16)c.History.RemoveAt(0);Output?.Invoke(c,kind,text);
+            c.LastLine=text;c.UtteranceCount++;c.History.Add(kind+"\n"+text);Output?.Invoke(c,kind,text);
         }
         public static string Label(string name,string temp)=>(temp=="HOT"?"따뜻한 ":"아이스 ")+name;
     }

@@ -20,7 +20,14 @@ namespace MapleCafe
         private bool choosingMenuCard;
         private int menuChangedFrame = -1;
 
-        public bool CanInteract => !choosingMenuCard && menuChangedFrame != Time.frameCount
+        private bool externalUIActive;
+        private int ignoreLookUntilFrame;
+        public bool ExternalUIActive
+        {
+            get=>externalUIActive;
+            set {if(externalUIActive!=value)ignoreLookUntilFrame=Time.frameCount+2;externalUIActive=value;}
+        }
+        public bool CanInteract => !ExternalUIActive && !choosingMenuCard && menuChangedFrame != Time.frameCount
             && Application.isFocused && Cursor.lockState == CursorLockMode.Locked;
 
         public void SetChoosingMenuCard(bool choosing)
@@ -39,7 +46,7 @@ namespace MapleCafe
 
         private void Update()
         {
-            if (choosingMenuCard || menuChangedFrame == Time.frameCount)
+            if (ExternalUIActive || choosingMenuCard || menuChangedFrame == Time.frameCount)
             {
                 UpdateGait(0f, Time.deltaTime);
                 return;
@@ -58,11 +65,12 @@ namespace MapleCafe
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
+                    ignoreLookUntilFrame=Time.frameCount+2;
                 }
                 UpdateGait(0f, Time.deltaTime);
                 return;
             }
-            if (mouse != null) Look(mouse.delta.ReadValue() * mouseSensitivity);
+            if (mouse != null && Time.frameCount > ignoreLookUntilFrame) Look(mouse.delta.ReadValue() * mouseSensitivity);
             Vector2 input = keys == null ? Vector2.zero : new Vector2(
                 (keys.dKey.isPressed ? 1f : 0f) - (keys.aKey.isPressed ? 1f : 0f),
                 (keys.wKey.isPressed ? 1f : 0f) - (keys.sKey.isPressed ? 1f : 0f));

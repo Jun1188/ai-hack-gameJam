@@ -8,6 +8,7 @@ namespace MapleCafe
     public sealed class CafeMenuBook : MonoBehaviour
     {
         [SerializeField] private BaristaView player;
+        public Key toggleKey=Key.Tab;
         [SerializeField] private Texture2D[] cards;
         [SerializeField] private AudioClip openSound;
         [SerializeField] private AudioClip closeSound;
@@ -88,7 +89,7 @@ namespace MapleCafe
         private void HandleKeys()
         {
             var keys = Keyboard.current;
-            if (keys?.tabKey.wasPressedThisFrame == true)
+            if (keys!=null && keys[toggleKey].wasPressedThisFrame && (player==null||!player.ExternalUIActive))
             {
                 if (isOpen)
                 {

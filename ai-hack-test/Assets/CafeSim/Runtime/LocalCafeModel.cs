@@ -11,7 +11,7 @@ using Debug = UnityEngine.Debug;
 
 namespace CafeSim
 {
-    public enum CafeResponseBackend { LocalModel, CompatibleApi }
+    public enum CafeResponseBackend { LocalModel, CompatibleApi, Gemini }
     // Scene-local owned process. No dependency on the user's LM Studio/Hub or user paths.
     public sealed class LocalCafeModel : MonoBehaviour
     {
@@ -27,7 +27,10 @@ namespace CafeSim
         public string apiModel = "";
         [Tooltip("Environment variable name only. Never put an API key in scene assets. Empty allows an unauthenticated endpoint.")]
         public string apiKeyEnvironmentVariable = "CAFE_CHAT_API_KEY";
-        public bool UseApi => backend == CafeResponseBackend.CompatibleApi;
+        public bool UseApi => backend != CafeResponseBackend.LocalModel;
+        [NonSerialized] public string runtimeApiKey;
+        public void ConfigureGemini()
+        {backend=CafeResponseBackend.Gemini;apiEndpoint="https://generativelanguage.googleapis.com/v1beta/models/";apiModel="gemini-3.5-flash-lite";apiKeyEnvironmentVariable="GEMINI_API_KEY";}
         Process server;
         UnityWebRequest activeRequest;
         string baseUrl, token;
@@ -47,6 +50,12 @@ namespace CafeSim
         [Serializable] sealed class ApiRequest : Request { public string model; }
         [Serializable] sealed class Choice { public Message message; public string finish_reason; }
         [Serializable] sealed class Response { public Choice[] choices; }
+        [Serializable] sealed class GeminiPart { public string text; }
+        [Serializable] sealed class GeminiContent { public GeminiPart[] parts; }
+        [Serializable] sealed class GeminiConfig { public float temperature=.6f; public int maxOutputTokens=512; public string responseMimeType="application/json"; }
+        [Serializable] sealed class GeminiRequest { public GeminiContent systemInstruction; public GeminiContent[] contents; public GeminiConfig generationConfig=new GeminiConfig(); }
+        [Serializable] sealed class GeminiCandidate { public GeminiContent content; public string finishReason; }
+        [Serializable] sealed class GeminiResponse { public GeminiCandidate[] candidates; }
 
         public static string PayloadPath
         {
@@ -68,7 +77,11 @@ namespace CafeSim
             {
                 if(!ValidApiEndpoint(apiEndpoint)||string.IsNullOrWhiteSpace(apiModel))
                 {Fail("API 주소(전체 chat/completions URL)와 모델명을 설정해 주세요. 외부 주소는 HTTPS여야 합니다.");yield break;}
-                token=string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
+                token=string.IsNullOrWhiteSpace(runtimeApiKey)?(string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable)):runtimeApiKey;
+#if UNITY_EDITOR
+                string keyPath=Path.Combine(Application.dataPath,"../UserSettings/CafeChatApiKey.txt");
+                if(string.IsNullOrWhiteSpace(token)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))token=File.ReadAllText(keyPath).Trim();
+#endif
                 if(!string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)&&string.IsNullOrWhiteSpace(token))
                 {Fail("API 키 환경변수 "+apiKeyEnvironmentVariable+"를 설정한 뒤 응답 연결을 재시작해 주세요.");yield break;}
                 Ready=true;Status="API 설정 준비 완료 · 연결은 전송 시 확인";yield break;
@@ -137,7 +150,7 @@ namespace CafeSim
             {
                 switch(args[i])
                 {
-                    case "--cafe-chat-provider":backend=args[++i]=="api"?CafeResponseBackend.CompatibleApi:CafeResponseBackend.LocalModel;break;
+                    case "--cafe-chat-provider":string provider=args[++i];if(provider=="gemini")ConfigureGemini();else backend=provider=="api"?CafeResponseBackend.CompatibleApi:CafeResponseBackend.LocalModel;break;
                     case "--cafe-chat-endpoint":apiEndpoint=args[++i];break;
                     case "--cafe-chat-model":apiModel=args[++i];break;
                     case "--cafe-chat-key-env":apiKeyEnvironmentVariable=args[++i];break;
@@ -152,30 +165,52 @@ namespace CafeSim
             data.max_tokens=Mathf.Clamp(maxTokens,32,256);
             data.messages = new[] { new Message { role = "system", content = systemPrompt ?? CafePrompts.System },
                 new Message { role = "user", content = prompt } };
-            using (var request = new UnityWebRequest(UseApi?apiEndpoint:baseUrl + "/v1/chat/completions", "POST"))
+            bool gemini=backend==CafeResponseBackend.Gemini;
+            string endpoint=gemini?apiEndpoint.TrimEnd('/')+"/"+Uri.EscapeDataString(apiModel)+":generateContent":UseApi?apiEndpoint:baseUrl+"/v1/chat/completions";
+            string payload=JsonUtility.ToJson(data);
+            if(gemini)payload=JsonUtility.ToJson(new GeminiRequest{
+                systemInstruction=new GeminiContent{parts=new[]{new GeminiPart{text=systemPrompt??CafePrompts.System}}},
+                contents=new[]{new GeminiContent{parts=new[]{new GeminiPart{text=prompt}}}}
+            });
+            using (var request = new UnityWebRequest(endpoint, "POST"))
             {
                 activeRequest = request;
-                request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(JsonUtility.ToJson(data)));
+                request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(payload));
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                if(!string.IsNullOrWhiteSpace(token))request.SetRequestHeader("Authorization", "Bearer " + token);
+                if(!string.IsNullOrWhiteSpace(token))request.SetRequestHeader(gemini?"x-goog-api-key":"Authorization",gemini?token:"Bearer "+token);
                 request.timeout = requestTimeoutSeconds;
                 yield return request.SendWebRequest();
                 activeRequest = null;
                 if (request.result != UnityWebRequest.Result.Success)
-                { failure("손님 응답을 받지 못했습니다 (HTTP " + request.responseCode + "). 같은 요청을 다시 시도할 수 있습니다."); yield break; }
+                { failure(ApiFailure(request.responseCode)); yield break; }
                 string text = null;
                 try
                 {
-                    var response = JsonUtility.FromJson<Response>(request.downloadHandler.text);
-                    if (response?.choices?.Length > 0 && response.choices[0].finish_reason == "stop")
-                        text = response.choices[0].message?.content?.Trim();
+                    if(gemini)
+                    {
+                        var response=JsonUtility.FromJson<GeminiResponse>(request.downloadHandler.text);
+                        if(response?.candidates?.Length>0&&response.candidates[0].finishReason=="STOP")
+                        {var parts=response.candidates[0].content?.parts;if(parts!=null){text="";foreach(var part in parts)text+=part.text;text=text.Trim();}}
+                    }
+                    else
+                    {
+                        var response=JsonUtility.FromJson<Response>(request.downloadHandler.text);
+                        if(response?.choices?.Length>0&&response.choices[0].finish_reason=="stop")text=response.choices[0].message?.content?.Trim();
+                    }
                 }
                 catch (Exception) { }
                 if (string.IsNullOrWhiteSpace(text) || text.Length > 3000)
                 { failure("손님 응답이 비어 있거나 잘렸습니다. 다시 시도해 주세요."); yield break; }
                 success(text);
             }
+        }
+        public static string ApiFailure(long code)
+        {
+            if(code==402)return "Gemini 프로젝트의 선불 크레딧이 소진되었습니다 (HTTP 402). 충전하거나 다른 API 키를 적용해 주세요.";
+            if(code==401||code==403)return "API 인증 또는 접근 권한을 확인해 주세요 (HTTP "+code+").";
+            if(code==429)return "API 요청 한도에 도달했습니다 (HTTP 429). 잠시 후 다시 시도해 주세요.";
+            return "손님 응답을 받지 못했습니다 (HTTP "+code+"). 연결 상태를 확인한 뒤 다시 시도해 주세요.";
         }
         void Fail(string message) { Error = message; Status = message; Ready = false; }
         public void CancelRequest() { activeRequest?.Abort(); activeRequest = null; }
