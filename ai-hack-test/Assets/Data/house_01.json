@@ -1,0 +1,3122 @@
+{
+  "id": "house_01",
+  "name": "농장 · 무너진 곳간 수리",
+  "description": "무너진 건물 정리 → 재료의 노드 위치·형태 맞추기 → 곳간 재건",
+  "width": 30,
+  "depth": 26,
+  "grandfatherSpawn": {
+    "x": -1,
+    "y": 0,
+    "z": -3.4
+  },
+  "robotSpawn": {
+    "x": 3.5,
+    "y": 0,
+    "z": -3
+  },
+  "objects": [
+    {
+      "id": "K1",
+      "definitionId": "foundation",
+      "position": {
+        "x": -2.2,
+        "y": 0.2,
+        "z": -1.5
+      },
+      "initialNodeId": "N1",
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "K2",
+      "definitionId": "foundation",
+      "position": {
+        "x": 2.2,
+        "y": 0.2,
+        "z": -1.5
+      },
+      "initialNodeId": "N2",
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "K3",
+      "definitionId": "foundation",
+      "position": {
+        "x": -2.2,
+        "y": 0.2,
+        "z": 1.5
+      },
+      "initialNodeId": "N3",
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "K4",
+      "definitionId": "foundation",
+      "position": {
+        "x": 2.2,
+        "y": 0.2,
+        "z": 1.5
+      },
+      "initialNodeId": "N4",
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "K5",
+      "definitionId": "foundation",
+      "position": {
+        "x": 0,
+        "y": 0.2,
+        "z": -2.7
+      },
+      "initialNodeId": "",
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "K6",
+      "definitionId": "foundation",
+      "position": {
+        "x": 0,
+        "y": 0.2,
+        "z": 2.7
+      },
+      "initialNodeId": "",
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "FR1",
+      "definitionId": "floor_frame",
+      "position": {
+        "x": -1.7,
+        "y": 0.22,
+        "z": -1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "J1",
+      "definitionId": "joist",
+      "position": {
+        "x": -0.85,
+        "y": 0.37,
+        "z": -1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 90,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "J2",
+      "definitionId": "joist",
+      "position": {
+        "x": 0.0,
+        "y": 0.52,
+        "z": -1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 180,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "J3",
+      "definitionId": "joist",
+      "position": {
+        "x": 0.85,
+        "y": 0.22,
+        "z": -1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 270,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "J4",
+      "definitionId": "joist",
+      "position": {
+        "x": 1.7,
+        "y": 0.37,
+        "z": -1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "DK1",
+      "definitionId": "deck",
+      "position": {
+        "x": -1.7,
+        "y": 0.52,
+        "z": -0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 90,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "LW1",
+      "definitionId": "long_plain",
+      "position": {
+        "x": -1.4,
+        "y": 0.18,
+        "z": 1.7
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "LW2",
+      "definitionId": "long_window",
+      "position": {
+        "x": 1.4,
+        "y": 0.2,
+        "z": -1.7
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "SW1",
+      "definitionId": "short_plain",
+      "position": {
+        "x": 0.85,
+        "y": 0.52,
+        "z": -0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "SW2",
+      "definitionId": "short_door",
+      "position": {
+        "x": 1.7,
+        "y": 0.22,
+        "z": -0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 90,
+      "visualEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "U1",
+      "definitionId": "top_frame",
+      "position": {
+        "x": -1.7,
+        "y": 0.37,
+        "z": 0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 180,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "U2",
+      "definitionId": "top_frame",
+      "position": {
+        "x": -0.85,
+        "y": 0.52,
+        "z": 0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 270,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "R1",
+      "definitionId": "rafter",
+      "position": {
+        "x": 0.0,
+        "y": 0.22,
+        "z": 0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      }
+    },
+    {
+      "id": "R2",
+      "definitionId": "rafter",
+      "position": {
+        "x": 0.85,
+        "y": 0.37,
+        "z": 0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 90,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      }
+    },
+    {
+      "id": "R3",
+      "definitionId": "rafter",
+      "position": {
+        "x": 1.7,
+        "y": 0.52,
+        "z": 0.425
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 180,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      }
+    },
+    {
+      "id": "R4",
+      "definitionId": "rafter",
+      "position": {
+        "x": -1.7,
+        "y": 0.22,
+        "z": 1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 270,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      }
+    },
+    {
+      "id": "R5",
+      "definitionId": "rafter",
+      "position": {
+        "x": -0.85,
+        "y": 0.37,
+        "z": 1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 0,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      }
+    },
+    {
+      "id": "RP1",
+      "definitionId": "roof",
+      "position": {
+        "x": 0.0,
+        "y": 0.52,
+        "z": 1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 90,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "RP2",
+      "definitionId": "roof",
+      "position": {
+        "x": 0.85,
+        "y": 0.22,
+        "z": 1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 180,
+      "visualEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "DR1",
+      "definitionId": "door",
+      "position": {
+        "x": 1.7,
+        "y": 0.37,
+        "z": 1.275
+      },
+      "scale": {
+        "x": 0.78,
+        "y": 0.78,
+        "z": 0.78
+      },
+      "rotation": 270,
+      "visualEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "D_courtyard",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": 0
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 6,
+        "y": 0.7,
+        "z": 6
+      }
+    },
+    {
+      "id": "D_path_0",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -3.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_1",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -4.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_2",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -5.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_3",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -6.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_4",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_5",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -8.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_grass_0",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -7,
+        "y": 0.015,
+        "z": -3
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_1",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -7,
+        "y": 0.015,
+        "z": 2
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_2",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -5,
+        "y": 0.015,
+        "z": 6
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_3",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 5,
+        "y": 0.015,
+        "z": -5
+      },
+      "rotation": 270,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_4",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 7,
+        "y": 0.015,
+        "z": 2
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_5",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 8,
+        "y": 0.015,
+        "z": -2
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_6",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 4,
+        "y": 0.015,
+        "z": 7
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_7",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -3,
+        "y": 0.015,
+        "z": -7
+      },
+      "rotation": 270,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_fence_0",
+      "definitionId": "fence_post",
+      "position": {
+        "x": -5,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_0_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -4,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_0_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -4,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_1",
+      "definitionId": "fence_post",
+      "position": {
+        "x": -3,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_1_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -2,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_1_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -2,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_2",
+      "definitionId": "fence_post",
+      "position": {
+        "x": -1,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_2_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 0,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_2_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 0,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_3",
+      "definitionId": "fence_post",
+      "position": {
+        "x": 1,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_3_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 2,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_3_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 2,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_4",
+      "definitionId": "fence_post",
+      "position": {
+        "x": 3,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_4_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 4,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_4_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 4,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_5",
+      "definitionId": "fence_post",
+      "position": {
+        "x": 5,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_0",
+      "definitionId": "rubble",
+      "position": {
+        "x": -6.0,
+        "y": 0.2,
+        "z": 4.0
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_1",
+      "definitionId": "rubble",
+      "position": {
+        "x": -5.4,
+        "y": 0.2,
+        "z": 4.0
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_2",
+      "definitionId": "rubble",
+      "position": {
+        "x": -4.8,
+        "y": 0.2,
+        "z": 4.0
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_3",
+      "definitionId": "rubble",
+      "position": {
+        "x": -6.0,
+        "y": 0.2,
+        "z": 4.55
+      },
+      "rotation": 270,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_4",
+      "definitionId": "rubble",
+      "position": {
+        "x": -5.4,
+        "y": 0.2,
+        "z": 4.55
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_5",
+      "definitionId": "rubble",
+      "position": {
+        "x": -4.8,
+        "y": 0.2,
+        "z": 4.55
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_6",
+      "definitionId": "rubble",
+      "position": {
+        "x": -6.0,
+        "y": 0.2,
+        "z": 5.1
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "FARM_SOIL_0",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": -10,
+        "y": 0.012,
+        "z": -3
+      },
+      "scale": {
+        "x": 3.5,
+        "y": 0.7,
+        "z": 3.8
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_0_0",
+      "definitionId": "crop",
+      "position": {
+        "x": -11.1,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_0_1",
+      "definitionId": "crop",
+      "position": {
+        "x": -10.379999999999999,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_0_2",
+      "definitionId": "crop",
+      "position": {
+        "x": -9.66,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_0_3",
+      "definitionId": "crop",
+      "position": {
+        "x": -8.94,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_1_0",
+      "definitionId": "crop",
+      "position": {
+        "x": -11.1,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_1_1",
+      "definitionId": "crop",
+      "position": {
+        "x": -10.379999999999999,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_1_2",
+      "definitionId": "crop",
+      "position": {
+        "x": -9.66,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_1_3",
+      "definitionId": "crop",
+      "position": {
+        "x": -8.94,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_2_0",
+      "definitionId": "crop",
+      "position": {
+        "x": -11.1,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_2_1",
+      "definitionId": "crop",
+      "position": {
+        "x": -10.379999999999999,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_2_2",
+      "definitionId": "crop",
+      "position": {
+        "x": -9.66,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_0_2_3",
+      "definitionId": "crop",
+      "position": {
+        "x": -8.94,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_SOIL_1",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": -10,
+        "y": 0.012,
+        "z": 3
+      },
+      "scale": {
+        "x": 3.5,
+        "y": 0.7,
+        "z": 3.8
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_0_0",
+      "definitionId": "crop",
+      "position": {
+        "x": -11.1,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_0_1",
+      "definitionId": "crop",
+      "position": {
+        "x": -10.379999999999999,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_0_2",
+      "definitionId": "crop",
+      "position": {
+        "x": -9.66,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_0_3",
+      "definitionId": "crop",
+      "position": {
+        "x": -8.94,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_1_0",
+      "definitionId": "crop",
+      "position": {
+        "x": -11.1,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_1_1",
+      "definitionId": "crop",
+      "position": {
+        "x": -10.379999999999999,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_1_2",
+      "definitionId": "crop",
+      "position": {
+        "x": -9.66,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_1_3",
+      "definitionId": "crop",
+      "position": {
+        "x": -8.94,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_2_0",
+      "definitionId": "crop",
+      "position": {
+        "x": -11.1,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_2_1",
+      "definitionId": "crop",
+      "position": {
+        "x": -10.379999999999999,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_2_2",
+      "definitionId": "crop",
+      "position": {
+        "x": -9.66,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_1_2_3",
+      "definitionId": "crop",
+      "position": {
+        "x": -8.94,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_SOIL_2",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 10,
+        "y": 0.012,
+        "z": -3
+      },
+      "scale": {
+        "x": 3.5,
+        "y": 0.7,
+        "z": 3.8
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_0_0",
+      "definitionId": "crop",
+      "position": {
+        "x": 8.9,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_0_1",
+      "definitionId": "crop",
+      "position": {
+        "x": 9.620000000000001,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_0_2",
+      "definitionId": "crop",
+      "position": {
+        "x": 10.34,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_0_3",
+      "definitionId": "crop",
+      "position": {
+        "x": 11.06,
+        "y": 0.15,
+        "z": -4.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_1_0",
+      "definitionId": "crop",
+      "position": {
+        "x": 8.9,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_1_1",
+      "definitionId": "crop",
+      "position": {
+        "x": 9.620000000000001,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_1_2",
+      "definitionId": "crop",
+      "position": {
+        "x": 10.34,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_1_3",
+      "definitionId": "crop",
+      "position": {
+        "x": 11.06,
+        "y": 0.15,
+        "z": -3.15
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_2_0",
+      "definitionId": "crop",
+      "position": {
+        "x": 8.9,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_2_1",
+      "definitionId": "crop",
+      "position": {
+        "x": 9.620000000000001,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_2_2",
+      "definitionId": "crop",
+      "position": {
+        "x": 10.34,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_2_2_3",
+      "definitionId": "crop",
+      "position": {
+        "x": 11.06,
+        "y": 0.15,
+        "z": -2.3
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_SOIL_3",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 10,
+        "y": 0.012,
+        "z": 3
+      },
+      "scale": {
+        "x": 3.5,
+        "y": 0.7,
+        "z": 3.8
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_0_0",
+      "definitionId": "crop",
+      "position": {
+        "x": 8.9,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_0_1",
+      "definitionId": "crop",
+      "position": {
+        "x": 9.620000000000001,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_0_2",
+      "definitionId": "crop",
+      "position": {
+        "x": 10.34,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_0_3",
+      "definitionId": "crop",
+      "position": {
+        "x": 11.06,
+        "y": 0.15,
+        "z": 2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_1_0",
+      "definitionId": "crop",
+      "position": {
+        "x": 8.9,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_1_1",
+      "definitionId": "crop",
+      "position": {
+        "x": 9.620000000000001,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_1_2",
+      "definitionId": "crop",
+      "position": {
+        "x": 10.34,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_1_3",
+      "definitionId": "crop",
+      "position": {
+        "x": 11.06,
+        "y": 0.15,
+        "z": 2.85
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_2_0",
+      "definitionId": "crop",
+      "position": {
+        "x": 8.9,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_2_1",
+      "definitionId": "crop",
+      "position": {
+        "x": 9.620000000000001,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_2_2",
+      "definitionId": "crop",
+      "position": {
+        "x": 10.34,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    },
+    {
+      "id": "FARM_CROP_3_2_3",
+      "definitionId": "crop",
+      "position": {
+        "x": 11.06,
+        "y": 0.15,
+        "z": 3.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": 0
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N1",
+      "name": "조립 노드",
+      "position": {
+        "x": -2.2,
+        "y": 0,
+        "z": -1.5
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 1.25,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N2",
+      "name": "조립 노드",
+      "position": {
+        "x": 2.2,
+        "y": 0,
+        "z": -1.5
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 1.25,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N3",
+      "name": "조립 노드",
+      "position": {
+        "x": -2.2,
+        "y": 0,
+        "z": 1.5
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 1.25,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N4",
+      "name": "조립 노드",
+      "position": {
+        "x": 2.2,
+        "y": 0,
+        "z": 1.5
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 1.25,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N5",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1.5
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 1.25,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N6",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 1.5
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 1.25,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N7",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 0.4,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N8",
+      "name": "조립 노드",
+      "position": {
+        "x": -1.8,
+        "y": 0.42,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N7"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N9",
+      "name": "조립 노드",
+      "position": {
+        "x": -0.6,
+        "y": 0.42,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N7"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N10",
+      "name": "조립 노드",
+      "position": {
+        "x": 0.6,
+        "y": 0.42,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N7"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N11",
+      "name": "조립 노드",
+      "position": {
+        "x": 1.8,
+        "y": 0.42,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N7"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N12",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 0.6,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N8",
+        "N9",
+        "N10",
+        "N11"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N13",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 0.72,
+        "z": 1.8
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N12"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N14",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 0.72,
+        "z": -1.8
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N13"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N15",
+      "name": "조립 노드",
+      "position": {
+        "x": -2.5,
+        "y": 0.72,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N13",
+        "N14"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N16",
+      "name": "조립 노드",
+      "position": {
+        "x": 2.5,
+        "y": 0.72,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N15"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N17",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 2.82,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N18",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 3.0,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N19",
+      "name": "조립 노드",
+      "position": {
+        "x": -2.3,
+        "y": 3.12,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N17",
+        "N18"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N20",
+      "name": "조립 노드",
+      "position": {
+        "x": 2.3,
+        "y": 3.12,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N17",
+        "N18"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N21",
+      "name": "조립 노드",
+      "position": {
+        "x": -1.15,
+        "y": 3.12,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N17",
+        "N18",
+        "N19",
+        "N20"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N22",
+      "name": "조립 노드",
+      "position": {
+        "x": 1.15,
+        "y": 3.12,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N17",
+        "N18",
+        "N19",
+        "N20"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N23",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 3.12,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N17",
+        "N18",
+        "N21",
+        "N22"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N24",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 3.27,
+        "z": 1.1
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N19",
+        "N20",
+        "N21",
+        "N22",
+        "N23"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N25",
+      "name": "조립 노드",
+      "position": {
+        "x": 0,
+        "y": 3.27,
+        "z": -1.1
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N19",
+        "N20",
+        "N21",
+        "N22",
+        "N23"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "N26",
+      "name": "조립 노드",
+      "position": {
+        "x": 2.61,
+        "y": 0.75,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ],
+      "allowStructuralOverlap": true,
+      "interactionRadius": 3.6,
+      "role": "construction",
+      "displayScale": 1
+    },
+    {
+      "id": "C1",
+      "name": "임시 정리장",
+      "position": {
+        "x": -5,
+        "y": 0,
+        "z": -2.8
+      },
+      "capacity": 5,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "temporary",
+      "displayScale": 0.35
+    },
+    {
+      "id": "C2",
+      "name": "임시 정리장",
+      "position": {
+        "x": -5,
+        "y": 0,
+        "z": 0
+      },
+      "capacity": 5,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "temporary",
+      "displayScale": 0.35
+    },
+    {
+      "id": "C3",
+      "name": "임시 정리장",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": -2.8
+      },
+      "capacity": 5,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "temporary",
+      "displayScale": 0.35
+    },
+    {
+      "id": "C4",
+      "name": "임시 정리장",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 0
+      },
+      "capacity": 5,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "temporary",
+      "displayScale": 0.35
+    },
+    {
+      "id": "C5",
+      "name": "임시 정리장",
+      "position": {
+        "x": -3.8,
+        "y": 0,
+        "z": -4.6
+      },
+      "capacity": 5,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "temporary",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT1",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": -6.3,
+        "y": 0,
+        "z": 3.2
+      },
+      "capacity": 4,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT2",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": -3.7,
+        "y": 0,
+        "z": 4.4
+      },
+      "capacity": 2,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT3",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": -0.9,
+        "y": 0,
+        "z": 5.2
+      },
+      "capacity": 2,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT4",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": 1.9,
+        "y": 0,
+        "z": 5.2
+      },
+      "capacity": 2,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT5",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": 4.7,
+        "y": 0,
+        "z": 4.4
+      },
+      "capacity": 5,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT6",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": 7.2,
+        "y": 0,
+        "z": 2
+      },
+      "capacity": 2,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    },
+    {
+      "id": "SORT7",
+      "name": "재료 분류 위치",
+      "position": {
+        "x": -7.8,
+        "y": 0,
+        "z": 0
+      },
+      "capacity": 3,
+      "layerHeight": 0.35,
+      "requiresNodes": [],
+      "allowStructuralOverlap": false,
+      "interactionRadius": 1.6,
+      "role": "sorting",
+      "displayScale": 0.35
+    }
+  ],
+  "goals": [
+    {
+      "nodeId": "N1",
+      "kind": "foundation",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N2",
+      "kind": "foundation",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N3",
+      "kind": "foundation",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N4",
+      "kind": "foundation",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N5",
+      "kind": "foundation",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N6",
+      "kind": "foundation",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N7",
+      "kind": "floor_frame",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6"
+      ]
+    },
+    {
+      "nodeId": "N8",
+      "kind": "joist",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": [
+        "N7"
+      ]
+    },
+    {
+      "nodeId": "N9",
+      "kind": "joist",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": [
+        "N7"
+      ]
+    },
+    {
+      "nodeId": "N10",
+      "kind": "joist",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": [
+        "N7"
+      ]
+    },
+    {
+      "nodeId": "N11",
+      "kind": "joist",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": [
+        "N7"
+      ]
+    },
+    {
+      "nodeId": "N12",
+      "kind": "deck",
+      "level": 0,
+      "rotation": -1,
+      "adjusted": false,
+      "prerequisites": [
+        "N8",
+        "N9",
+        "N10",
+        "N11"
+      ]
+    },
+    {
+      "nodeId": "N13",
+      "kind": "long_plain",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N12"
+      ]
+    },
+    {
+      "nodeId": "N14",
+      "kind": "long_window",
+      "level": 0,
+      "rotation": 180,
+      "adjusted": false,
+      "prerequisites": [
+        "N13"
+      ]
+    },
+    {
+      "nodeId": "N15",
+      "kind": "short_plain",
+      "level": 0,
+      "rotation": 90,
+      "adjusted": false,
+      "prerequisites": [
+        "N13",
+        "N14"
+      ]
+    },
+    {
+      "nodeId": "N16",
+      "kind": "short_door",
+      "level": 0,
+      "rotation": 90,
+      "adjusted": false,
+      "prerequisites": [
+        "N15"
+      ]
+    },
+    {
+      "nodeId": "N17",
+      "kind": "top_frame",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": true,
+      "prerequisites": [
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ]
+    },
+    {
+      "nodeId": "N18",
+      "kind": "top_frame",
+      "level": 0,
+      "rotation": 180,
+      "adjusted": true,
+      "prerequisites": [
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ]
+    },
+    {
+      "nodeId": "N19",
+      "kind": "rafter",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N17",
+        "N18"
+      ]
+    },
+    {
+      "nodeId": "N20",
+      "kind": "rafter",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N17",
+        "N18"
+      ]
+    },
+    {
+      "nodeId": "N21",
+      "kind": "rafter",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N17",
+        "N18",
+        "N19",
+        "N20"
+      ]
+    },
+    {
+      "nodeId": "N22",
+      "kind": "rafter",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N17",
+        "N18",
+        "N19",
+        "N20"
+      ]
+    },
+    {
+      "nodeId": "N23",
+      "kind": "rafter",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N17",
+        "N18",
+        "N21",
+        "N22"
+      ]
+    },
+    {
+      "nodeId": "N24",
+      "kind": "roof",
+      "level": 0,
+      "rotation": 0,
+      "adjusted": false,
+      "prerequisites": [
+        "N19",
+        "N20",
+        "N21",
+        "N22",
+        "N23"
+      ]
+    },
+    {
+      "nodeId": "N25",
+      "kind": "roof",
+      "level": 0,
+      "rotation": 180,
+      "adjusted": false,
+      "prerequisites": [
+        "N19",
+        "N20",
+        "N21",
+        "N22",
+        "N23"
+      ]
+    },
+    {
+      "nodeId": "N26",
+      "kind": "door",
+      "level": 0,
+      "rotation": 90,
+      "adjusted": false,
+      "prerequisites": [
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "name": "1 · 기초",
+      "nodes": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6"
+      ],
+      "hint": "밀려난 두 블록을 제자리로 밀기"
+    },
+    {
+      "name": "2 · 바닥 틀",
+      "nodes": [
+        "N7"
+      ],
+      "hint": "기초 여섯 곳이 먼저"
+    },
+    {
+      "name": "3 · 장선",
+      "nodes": [
+        "N8",
+        "N9",
+        "N10",
+        "N11"
+      ],
+      "hint": "두 뼘 간격으로 고르게"
+    },
+    {
+      "name": "4 · 바닥판",
+      "nodes": [
+        "N12"
+      ],
+      "hint": "장선 네 개 위에 덮기"
+    },
+    {
+      "name": "5 · 긴 벽",
+      "nodes": [
+        "N13",
+        "N14"
+      ],
+      "hint": "뒤 벽 다음 창문 벽, 창문은 바람 쪽"
+    },
+    {
+      "name": "6 · 짧은 벽",
+      "nodes": [
+        "N15",
+        "N16"
+      ],
+      "hint": "옆 벽 다음 문 벽, 문은 마당 쪽"
+    },
+    {
+      "name": "7 · 윗틀",
+      "nodes": [
+        "N17",
+        "N18"
+      ],
+      "hint": "두 윗틀의 모서리를 맞춰 겹치기"
+    },
+    {
+      "name": "8 · 서까래",
+      "nodes": [
+        "N19",
+        "N20",
+        "N21",
+        "N22",
+        "N23"
+      ],
+      "hint": "양 끝을 세운 다음 안쪽, 가운데 순서"
+    },
+    {
+      "name": "9 · 지붕판",
+      "nodes": [
+        "N24",
+        "N25"
+      ],
+      "hint": "서까래 다섯 쌍 위에 덮기"
+    },
+    {
+      "name": "10 · 문짝",
+      "nodes": [
+        "N26"
+      ],
+      "hint": "벽 네 장이 서면 문짝을 달 수 있음"
+    }
+  ],
+  "backgroundMaterialId": "ground",
+  "soundId": "ambience",
+  "repair": {
+    "debrisIds": [
+      "FR1",
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "DK1",
+      "LW1",
+      "LW2",
+      "SW1",
+      "SW2",
+      "U1",
+      "U2",
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "RP1",
+      "RP2",
+      "DR1"
+    ],
+    "temporaryNodes": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5"
+    ],
+    "arrangementGoals": [
+      {
+        "nodeId": "SORT1",
+        "kind": "joist",
+        "level": 0,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT1",
+        "kind": "joist",
+        "level": 1,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT1",
+        "kind": "joist",
+        "level": 2,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT1",
+        "kind": "joist",
+        "level": 3,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT2",
+        "kind": "long_plain",
+        "level": 0,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT2",
+        "kind": "long_window",
+        "level": 1,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT3",
+        "kind": "short_plain",
+        "level": 0,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT3",
+        "kind": "short_door",
+        "level": 1,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT4",
+        "kind": "roof",
+        "level": 0,
+        "rotation": 180,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT4",
+        "kind": "roof",
+        "level": 1,
+        "rotation": 180,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT5",
+        "kind": "rafter",
+        "level": 0,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT5",
+        "kind": "rafter",
+        "level": 1,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT5",
+        "kind": "rafter",
+        "level": 2,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT5",
+        "kind": "rafter",
+        "level": 3,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT5",
+        "kind": "rafter",
+        "level": 4,
+        "rotation": 90,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT6",
+        "kind": "top_frame",
+        "level": 0,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT6",
+        "kind": "top_frame",
+        "level": 1,
+        "rotation": 180,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT7",
+        "kind": "floor_frame",
+        "level": 0,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT7",
+        "kind": "deck",
+        "level": 1,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      },
+      {
+        "nodeId": "SORT7",
+        "kind": "door",
+        "level": 2,
+        "rotation": 0,
+        "adjusted": false,
+        "prerequisites": []
+      }
+    ]
+  }
+}

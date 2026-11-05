@@ -1,0 +1,993 @@
+{
+  "id": "well_01",
+  "name": "태풍이 지나간 뒤",
+  "description": "회상으로 원래 구조를 확인하고 로봇에게 복원을 부탁하세요.",
+  "width": 24,
+  "depth": 20,
+  "grandfatherSpawn": {
+    "x": 0,
+    "y": 0,
+    "z": -3
+  },
+  "robotSpawn": {
+    "x": 2.5,
+    "y": 0,
+    "z": -3
+  },
+  "objects": [
+    {
+      "id": "B1",
+      "definitionId": "large_stone",
+      "position": {
+        "x": -4.2,
+        "y": 0.3,
+        "z": -2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "T1",
+      "definitionId": "small_stone",
+      "position": {
+        "x": -2.8,
+        "y": 0.225,
+        "z": -2.0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "B2",
+      "definitionId": "large_stone",
+      "position": {
+        "x": -4.2,
+        "y": 0.3,
+        "z": -0.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "T2",
+      "definitionId": "small_stone",
+      "position": {
+        "x": -2.8,
+        "y": 0.225,
+        "z": -0.7
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "B3",
+      "definitionId": "large_stone",
+      "position": {
+        "x": -4.2,
+        "y": 0.3,
+        "z": 0.6000000000000001
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "T3",
+      "definitionId": "small_stone",
+      "position": {
+        "x": -2.8,
+        "y": 0.225,
+        "z": 0.6000000000000001
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "B4",
+      "definitionId": "large_stone",
+      "position": {
+        "x": -4.2,
+        "y": 0.3,
+        "z": 1.9000000000000004
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "T4",
+      "definitionId": "small_stone",
+      "position": {
+        "x": -2.8,
+        "y": 0.225,
+        "z": 1.9000000000000004
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "S1",
+      "definitionId": "support",
+      "position": {
+        "x": 5,
+        "y": 1.2,
+        "z": -2
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "S2",
+      "definitionId": "support",
+      "position": {
+        "x": 5,
+        "y": 1.2,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "P1",
+      "definitionId": "pulley",
+      "position": {
+        "x": 4.5,
+        "y": 0.175,
+        "z": 2.5
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "C1",
+      "definitionId": "crate",
+      "position": {
+        "x": 0,
+        "y": 0.5,
+        "z": -4.5
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_courtyard",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": 0
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 6,
+        "y": 0.7,
+        "z": 6
+      }
+    },
+    {
+      "id": "D_path_0",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -3.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_1",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -4.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_2",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -5.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_3",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -6.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_4",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_path_5",
+      "definitionId": "dirt_patch",
+      "position": {
+        "x": 0,
+        "y": 0.012,
+        "z": -8.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1.8,
+        "y": 0.7,
+        "z": 1.1
+      }
+    },
+    {
+      "id": "D_grass_0",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -7,
+        "y": 0.015,
+        "z": -3
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_1",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -7,
+        "y": 0.015,
+        "z": 2
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_2",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -5,
+        "y": 0.015,
+        "z": 6
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_3",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 5,
+        "y": 0.015,
+        "z": -5
+      },
+      "rotation": 270,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_4",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 7,
+        "y": 0.015,
+        "z": 2
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_5",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 8,
+        "y": 0.015,
+        "z": -2
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_6",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": 4,
+        "y": 0.015,
+        "z": 7
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_grass_7",
+      "definitionId": "grass_patch",
+      "position": {
+        "x": -3,
+        "y": 0.015,
+        "z": -7
+      },
+      "rotation": 270,
+      "scale": {
+        "x": 2.4,
+        "y": 1,
+        "z": 1.8
+      }
+    },
+    {
+      "id": "D_fence_0",
+      "definitionId": "fence_post",
+      "position": {
+        "x": -5,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_0_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -4,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_0_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -4,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_1",
+      "definitionId": "fence_post",
+      "position": {
+        "x": -3,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_1_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -2,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_1_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": -2,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_2",
+      "definitionId": "fence_post",
+      "position": {
+        "x": -1,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_2_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 0,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_2_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 0,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_3",
+      "definitionId": "fence_post",
+      "position": {
+        "x": 1,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_3_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 2,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_3_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 2,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_4",
+      "definitionId": "fence_post",
+      "position": {
+        "x": 3,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_4_0.4",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 4,
+        "y": 0.4,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rail_4_0.8",
+      "definitionId": "fence_rail",
+      "position": {
+        "x": 4,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_fence_5",
+      "definitionId": "fence_post",
+      "position": {
+        "x": 5,
+        "y": 0.55,
+        "z": 7.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_shed",
+      "definitionId": "shed",
+      "position": {
+        "x": 7,
+        "y": 1.4,
+        "z": 5.5
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_0",
+      "definitionId": "rubble",
+      "position": {
+        "x": -6.0,
+        "y": 0.2,
+        "z": 4.0
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_1",
+      "definitionId": "rubble",
+      "position": {
+        "x": -5.4,
+        "y": 0.2,
+        "z": 4.0
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_2",
+      "definitionId": "rubble",
+      "position": {
+        "x": -4.8,
+        "y": 0.2,
+        "z": 4.0
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_3",
+      "definitionId": "rubble",
+      "position": {
+        "x": -6.0,
+        "y": 0.2,
+        "z": 4.55
+      },
+      "rotation": 270,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_4",
+      "definitionId": "rubble",
+      "position": {
+        "x": -5.4,
+        "y": 0.2,
+        "z": 4.55
+      },
+      "rotation": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_5",
+      "definitionId": "rubble",
+      "position": {
+        "x": -4.8,
+        "y": 0.2,
+        "z": 4.55
+      },
+      "rotation": 90,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "D_rubble_6",
+      "definitionId": "rubble",
+      "position": {
+        "x": -6.0,
+        "y": 0.2,
+        "z": 5.1
+      },
+      "rotation": 180,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N1",
+      "name": "배치 노드",
+      "position": {
+        "x": -1.15,
+        "y": 0,
+        "z": -1.15
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "N2",
+      "name": "배치 노드",
+      "position": {
+        "x": 1.15,
+        "y": 0,
+        "z": -1.15
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "N3",
+      "name": "배치 노드",
+      "position": {
+        "x": 1.15,
+        "y": 0,
+        "z": 1.15
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "N4",
+      "name": "배치 노드",
+      "position": {
+        "x": -1.15,
+        "y": 0,
+        "z": 1.15
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "N5",
+      "name": "배치 노드",
+      "position": {
+        "x": -1.9,
+        "y": 0,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "N6",
+      "name": "배치 노드",
+      "position": {
+        "x": 1.9,
+        "y": 0,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "N7",
+      "name": "상부 노드",
+      "position": {
+        "x": 0,
+        "y": 2.5,
+        "z": 0
+      },
+      "capacity": 1,
+      "layerHeight": 0.6,
+      "requiresNodes": [
+        "N5",
+        "N6"
+      ]
+    },
+    {
+      "id": "A1",
+      "name": "임시 노드",
+      "position": {
+        "x": 1.8,
+        "y": 0,
+        "z": 4.5
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "A2",
+      "name": "임시 노드",
+      "position": {
+        "x": 2.9000000000000004,
+        "y": 0,
+        "z": 4.5
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "A3",
+      "name": "임시 노드",
+      "position": {
+        "x": 4.0,
+        "y": 0,
+        "z": 4.5
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    },
+    {
+      "id": "A4",
+      "name": "임시 노드",
+      "position": {
+        "x": 5.1000000000000005,
+        "y": 0,
+        "z": 4.5
+      },
+      "capacity": 2,
+      "layerHeight": 0.6
+    }
+  ],
+  "goals": [
+    {
+      "nodeId": "N1",
+      "level": 0,
+      "kind": "large_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N1",
+      "level": 1,
+      "kind": "small_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N2",
+      "level": 0,
+      "kind": "large_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N2",
+      "level": 1,
+      "kind": "small_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N3",
+      "level": 0,
+      "kind": "large_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N3",
+      "level": 1,
+      "kind": "small_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N4",
+      "level": 0,
+      "kind": "large_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N4",
+      "level": 1,
+      "kind": "small_stone",
+      "rotation": -1,
+      "prerequisites": []
+    },
+    {
+      "nodeId": "N5",
+      "level": 0,
+      "kind": "support",
+      "rotation": -1,
+      "prerequisites": [
+        "N1",
+        "N2",
+        "N3",
+        "N4"
+      ]
+    },
+    {
+      "nodeId": "N6",
+      "level": 0,
+      "kind": "support",
+      "rotation": -1,
+      "prerequisites": [
+        "N1",
+        "N2",
+        "N3",
+        "N4"
+      ]
+    },
+    {
+      "nodeId": "N7",
+      "level": 0,
+      "kind": "pulley",
+      "rotation": 90,
+      "prerequisites": [
+        "N5",
+        "N6"
+      ]
+    }
+  ],
+  "backgroundMaterialId": "ground",
+  "soundId": "ambience"
+}

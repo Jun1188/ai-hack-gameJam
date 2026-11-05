@@ -1,0 +1,480 @@
+{
+  "objects": [
+    {
+      "id": "large_stone",
+      "name": "큰 돌",
+      "kind": "large_stone",
+      "size": {
+        "x": 0.9,
+        "y": 0.6,
+        "z": 0.8
+      },
+      "prefabId": "cube",
+      "materialId": "stone",
+      "soundId": "place",
+      "movable": true,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "small_stone",
+      "name": "작은 돌",
+      "kind": "small_stone",
+      "size": {
+        "x": 0.65,
+        "y": 0.45,
+        "z": 0.6
+      },
+      "prefabId": "cube",
+      "materialId": "stone_light",
+      "soundId": "place",
+      "movable": true,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "support",
+      "name": "지지대",
+      "kind": "support",
+      "size": {
+        "x": 0.35,
+        "y": 2.4,
+        "z": 0.35
+      },
+      "prefabId": "cube",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "pulley",
+      "name": "도르래",
+      "kind": "pulley",
+      "size": {
+        "x": 0.5,
+        "y": 0.35,
+        "z": 4.2
+      },
+      "prefabId": "pulley",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "crate",
+      "name": "상자",
+      "kind": "scenery",
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "prefabId": "cube",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "dirt_patch",
+      "name": "흙길",
+      "kind": "scenery",
+      "size": {
+        "x": 1,
+        "y": 0.035,
+        "z": 1
+      },
+      "prefabId": "cube",
+      "materialId": "dirt",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": false,
+      "preservePrefabMaterials": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "grass_patch",
+      "name": "풀밭",
+      "kind": "scenery",
+      "size": {
+        "x": 1,
+        "y": 0.08,
+        "z": 1
+      },
+      "prefabId": "cube",
+      "materialId": "grass",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": false,
+      "preservePrefabMaterials": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "fence_post",
+      "name": "울타리 기둥",
+      "kind": "scenery",
+      "size": {
+        "x": 0.18,
+        "y": 1.1,
+        "z": 0.18
+      },
+      "prefabId": "cube",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": true,
+      "preservePrefabMaterials": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "fence_rail",
+      "name": "울타리 가로대",
+      "kind": "scenery",
+      "size": {
+        "x": 1.8,
+        "y": 0.12,
+        "z": 0.13
+      },
+      "prefabId": "cube",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": true,
+      "preservePrefabMaterials": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "rubble",
+      "name": "무너진 돌",
+      "kind": "scenery",
+      "size": {
+        "x": 0.6,
+        "y": 0.4,
+        "z": 0.5
+      },
+      "prefabId": "cube",
+      "materialId": "rock",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": true,
+      "preservePrefabMaterials": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "shed",
+      "name": "태풍에 상한 창고",
+      "kind": "scenery",
+      "size": {
+        "x": 3,
+        "y": 2.8,
+        "z": 2.4
+      },
+      "prefabId": "house",
+      "materialId": "cloth",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": true,
+      "preservePrefabMaterials": true,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "foundation",
+      "name": "기초 블록",
+      "kind": "foundation",
+      "size": {
+        "x": 0.55,
+        "y": 0.4,
+        "z": 0.55
+      },
+      "prefabId": "cube",
+      "materialId": "rock",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": true,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "floor_frame",
+      "name": "바닥 틀",
+      "kind": "floor_frame",
+      "size": {
+        "x": 5.2,
+        "y": 0.2,
+        "z": 3.8
+      },
+      "prefabId": "floor_frame",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "joist",
+      "name": "장선",
+      "kind": "joist",
+      "size": {
+        "x": 0.18,
+        "y": 0.18,
+        "z": 3.45
+      },
+      "prefabId": "cube",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "deck",
+      "name": "바닥판",
+      "kind": "deck",
+      "size": {
+        "x": 5.1,
+        "y": 0.12,
+        "z": 3.7
+      },
+      "prefabId": "cube",
+      "materialId": "cloth",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "long_plain",
+      "name": "뒤 긴 벽",
+      "kind": "long_plain",
+      "size": {
+        "x": 5.1,
+        "y": 2.1,
+        "z": 0.18
+      },
+      "prefabId": "wall_plain",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "long_window",
+      "name": "창문 긴 벽",
+      "kind": "long_window",
+      "size": {
+        "x": 5.1,
+        "y": 2.1,
+        "z": 0.18
+      },
+      "prefabId": "wall_window",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "short_plain",
+      "name": "옆 짧은 벽",
+      "kind": "short_plain",
+      "size": {
+        "x": 3.7,
+        "y": 2.1,
+        "z": 0.18
+      },
+      "prefabId": "wall_plain",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "short_door",
+      "name": "문 짧은 벽",
+      "kind": "short_door",
+      "size": {
+        "x": 3.7,
+        "y": 2.1,
+        "z": 0.18
+      },
+      "prefabId": "wall_door",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "top_frame",
+      "name": "윗틀",
+      "kind": "top_frame",
+      "size": {
+        "x": 5.3,
+        "y": 0.18,
+        "z": 3.9
+      },
+      "prefabId": "top_frame",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "rafter",
+      "name": "서까래 한 쌍",
+      "kind": "rafter",
+      "size": {
+        "x": 0.18,
+        "y": 1.1,
+        "z": 4.2
+      },
+      "prefabId": "rafter_pair",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      }
+    },
+    {
+      "id": "roof",
+      "name": "지붕판",
+      "kind": "roof",
+      "size": {
+        "x": 5.6,
+        "y": 1.1,
+        "z": 2.2
+      },
+      "prefabId": "roof_panel",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "door",
+      "name": "문짝",
+      "kind": "door",
+      "size": {
+        "x": 0.95,
+        "y": 1.95,
+        "z": 0.12
+      },
+      "prefabId": "cube",
+      "materialId": "wood",
+      "soundId": "place",
+      "movable": true,
+      "pushOnly": false,
+      "storageEuler": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "crop",
+      "name": "농작물",
+      "kind": "scenery",
+      "prefabId": "cube",
+      "materialId": "grass",
+      "soundId": "place",
+      "movable": false,
+      "blocksMovement": false,
+      "size": {
+        "x": 0.26,
+        "y": 0.3,
+        "z": 0.26
+      }
+    }
+  ]
+}

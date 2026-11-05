@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6b9625a8ed335498f71207eb9d66e7, type: 3}
+  m_Name: PrototypeCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::GrandpaRobot.Data.AssetCatalog
+  objectDefinitions: {fileID: 4900000, guid: 62355ea4ba653a14ca3f76952c95c042, type: 3}
+  stages:
+  - {fileID: 4900000, guid: 2954d68381217fa4bad4cdf2c99acccf, type: 3}
+  - {fileID: 4900000, guid: 418539f6a62e8484ba89c78354aa3bc2, type: 3}
+  - {fileID: 4900000, guid: 2351b4934002052428f66d50fa33097a, type: 3}
+  prefabs:
+  - id: cube
+    asset: {fileID: 5128963208644754849, guid: 9fccda7647fdef141a64428372232c80, type: 3}
+  - id: pulley
+    asset: {fileID: 5591537107769293031, guid: 63d9afc9975ee8e49b225f6e939b34e1, type: 3}
+  - id: house
+    asset: {fileID: 4352708128767253684, guid: eff819435f00de247a246581d488573b, type: 3}
+  - id: grandfather
+    asset: {fileID: 874396490919905107, guid: 0488aaef3bdc91043aaab0c0f2b45bb0, type: 3}
+  - id: floor_frame
+    asset: {fileID: 3922838814108465799, guid: d8936fa79c8f7724a823da7b053dca41, type: 3}
+  - id: wall_plain
+    asset: {fileID: 7742236607649005603, guid: b19b94b372aaab24bbb4f424d92085b3, type: 3}
+  - id: wall_window
+    asset: {fileID: 4157688620429381406, guid: ccfa9aff95672b340a97b3afcb0078fd, type: 3}
+  - id: wall_door
+    asset: {fileID: 1647645526744447379, guid: aa6e98008536dd24eb8484c02bd1f486, type: 3}
+  - id: top_frame
+    asset: {fileID: 1989618758962081781, guid: 1615b7b1304ad0748bf6af09789ac9ec, type: 3}
+  - id: rafter_pair
+    asset: {fileID: 4482303784103552456, guid: 0da25664b59ae154fa9c9cd051bf015c, type: 3}
+  - id: roof_panel
+    asset: {fileID: 3397249139828449443, guid: 7eae526cfb5eca64c8bffd74525db90e, type: 3}
+  materials:
+  - id: ground
+    asset: {fileID: 2100000, guid: 7dca815b17792ea449b8e40abbb90241, type: 2}
+  - id: stone
+    asset: {fileID: 2100000, guid: 2cbc7854a8a0666429e8d857f17d0be0, type: 2}
+  - id: stone_light
+    asset: {fileID: 2100000, guid: 3a52e4f1d12d77f42b84eaf0ce97a1f8, type: 2}
+  - id: wood
+    asset: {fileID: 2100000, guid: a0dc712396c7c5342aa1f1277396e198, type: 2}
+  - id: dark
+    asset: {fileID: 2100000, guid: cae3aa9f64d152248be75aab1a58a1ef, type: 2}
+  - id: node
+    asset: {fileID: 2100000, guid: 1360a66925bfdd742b0a10b96cf47579, type: 2}
+  - id: robot
+    asset: {fileID: 2100000, guid: 5f8a7b026f594054dbe1d8575288f1df, type: 2}
+  - id: cloth
+    asset: {fileID: 2100000, guid: 517de7b0537141c4f8827dd263616715, type: 2}
+  - id: skin
+    asset: {fileID: 2100000, guid: f3f50cb25dd2ef84aaebb2512bdd315d, type: 2}
+  - id: hat
+    asset: {fileID: 2100000, guid: a110409631378b746a4d302df6de3eee, type: 2}
+  - id: dirt
+    asset: {fileID: 2100000, guid: a7b19b269f6358444a855a640322c3a2, type: 2}
+  - id: grass
+    asset: {fileID: 2100000, guid: bd1010eeed11b6e4dab7c088d0419fd1, type: 2}
+  - id: rock
+    asset: {fileID: 2100000, guid: 944dfdaa212ac314a82da0eae06322d4, type: 2}
+  - id: ghost
+    asset: {fileID: 2100000, guid: feb2b9eb786f0764c999b54897bd6627, type: 2}
+  sounds:
+  - id: ambience
+    asset: {fileID: 8300000, guid: b3818466640b4384dbf68b8f6315edb2, type: 3}
+  - id: place
+    asset: {fileID: 8300000, guid: 69723ae7862aba846b1584f5c18315f6, type: 3}
+  uiFont: {fileID: 0}

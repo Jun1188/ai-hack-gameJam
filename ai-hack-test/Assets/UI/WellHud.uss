@@ -1,0 +1,24 @@
+.hud { flex-grow: 1; min-width: 0; min-height: 0; overflow: hidden; color: rgb(32,46,48); font-size: 16px; }
+.panel { background-color: rgb(246,243,230); padding: 12px; flex-shrink: 0; }
+.header { border-left-width: 5px; border-left-color: rgb(65,151,154); }
+.row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+.heading { justify-content: space-between; }
+.title { font-size: 22px; -unity-font-style: bold; white-space: normal; flex-shrink: 1; }
+.help { font-size: 13px; color: rgb(76,91,91); }
+Label { white-space: normal; flex-shrink: 1; min-width: 0; }
+Button { min-height: 34px; padding: 6px 12px; margin: 3px; background-color: rgb(218,230,222); color: rgb(28,48,48); border-width: 0; }
+Button:hover { background-color: rgb(190,218,207); }
+.world { flex-grow: 1; flex-shrink: 1; min-height: 0; overflow: hidden; }
+.footer { flex-direction: row; align-items: center; flex-wrap: wrap; }
+.message { flex-grow: 1; flex-basis: 450px; margin-right: 12px; }
+.actions { justify-content: flex-end; flex-shrink: 0; }
+.notice { align-self: center; background-color: rgb(204,238,222); padding: 8px; margin: 8px; display: none; }
+.world-label { position: absolute; width: 50px; height: 24px; background-color: rgb(35,64,66); color: white; -unity-text-align: middle-center; font-size: 13px; }
+.scrim { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,0.45); align-items: center; justify-content: center; display: none; padding: 16px; }
+.dialog { width: 680px; max-width: 100%; max-height: 100%; overflow: hidden; }
+#prompt { min-height: 80px; max-height: 200px; flex-shrink: 1; margin-top: 12px; margin-bottom: 12px; }
+#prompt .unity-text-input { white-space: normal; background-color: white; color: rgb(24,34,38); font-size: 18px; padding: 8px; }
+.compact .title { font-size: 18px; }
+.compact .panel { padding: 8px; }
+.compact .message { flex-basis: 100%; }
+.compact .actions { flex-grow: 1; }

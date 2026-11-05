@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="WellHud.uss" />
+    <ui:VisualElement name="hud" class="hud">
+        <ui:VisualElement class="header panel">
+            <ui:VisualElement class="row heading">
+                <ui:Label name="title" text="농장 / 무너진 곳간 복구" class="title" />
+                <ui:VisualElement class="row"><ui:Button name="house" text="곳간" /><ui:Button name="well" text="우물" /></ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label text="WASD 이동 · Q 회상 · E 부탁 · R / Shift+R 회전 · + / − 줌" class="help" />
+            <ui:Label name="phase" text="잔해 정리 → 위치·형태 맞추기 → 곳간 재건" />
+            <ui:Label name="status" text="로봇 연결 대기" class="help" />
+        </ui:VisualElement>
+        <ui:VisualElement name="world" class="world">
+            <ui:Label name="recall" text="회상 · 로봇에게는 이 모습이 보이지 않습니다" class="notice" />
+            <ui:Label name="success" text="복구를 마쳤습니다. 초기화로 다시 시작할 수 있습니다." class="notice" />
+        </ui:VisualElement>
+        <ui:VisualElement class="footer panel">
+            <ui:Label name="message" text="Q로 회상하고 E로 로봇에게 부탁해 주세요." class="message" />
+            <ui:VisualElement class="row actions"><ui:Button name="recall-button" text="회상 [Q]" /><ui:Button name="request" text="부탁 [E]" /><ui:Button name="stop" text="초기화" /></ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="chat" class="scrim">
+            <ui:VisualElement class="dialog panel">
+                <ui:Label text="로봇에게 부탁하기" class="title" />
+                <ui:Label text="한글/영문 입력 · Ctrl+Enter 전송 · Esc 닫기 · 예: LW1을 C1에 놓아" />
+                <ui:TextField name="prompt" multiline="true" max-length="1000" />
+                <ui:VisualElement class="row actions"><ui:Button name="send" text="부탁하기" /><ui:Button name="close" text="닫기 [Esc]" /></ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

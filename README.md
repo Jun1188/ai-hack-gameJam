@@ -1,5 +1,12 @@
 # ai-hack-gameJam
 
+## 할아버지와 로봇 — 곳간·우물 프로토타입
+
+Unity `6000.6.8f1`에서 `ai-hack-test/Assets/Scenes/WellPrototype.unity`를 열어 실행합니다.
+농장에서 잔해 정리 → 위치·형태 맞추기 → 곳간 재건 순서로 진행합니다. 플레이 검증은 Editor Play Mode에서 수행하며 새 빌드는 만들지 않습니다.
+로봇 중계·조작법·데이터 구조·검증 방법은 [프로토타입 안내](docs/well-prototype.md)를 참고하세요.
+엑셀 기반 10단계·26부품 곳간 조립은 [곳간 퍼즐 안내](docs/house-puzzle.md)를 참고하세요.
+
 
 
 ## 원론적인 PR의 작업 흐름은 Feature / hotfix -> develop -> Master 입니다.  

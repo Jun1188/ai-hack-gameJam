@@ -14,6 +14,7 @@
 /ai-hack-test/[Ll]ogs/
 /ai-hack-test/[Uu]ser[Ss]ettings/
 *.log
+tools/__pycache__/
 
 
 
@@ -118,8 +119,13 @@ InitTestScene*.unity*
 /ai-hack-test/[Aa]ssets/[Ss]ceneDependencyCache*
 
 
-# Claude context/config files
+# Agent instructions and context files
 claude.md
 CLAUDE.md
 AGENTS.md
+AGENTS.local.md
+CLAUDE.local.md
+GEMINI.md
+**/.agents/**/*.md
+**/.codex/**/*.md
 .claude/
