@@ -1,0 +1,75 @@
+{
+  "historicalBuildEvidence": {
+    "unity": "6000.6.8f1",
+    "build": {
+      "status": "completed",
+      "buildId": "build_ca2ae3001c4e",
+      "result": "Succeeded",
+      "buildTimeMs": 88201,
+      "totalErrors": 0,
+      "totalWarnings": 496,
+      "outputPath": "C:/Users/by365/Documents/GitHub/ai-hack-gameJam/ai-hack-test/Builds/CafeChat-20261105-Api/CafeChat.exe"
+    },
+    "localPlayer": {
+      "passed": true,
+      "modelReady": true,
+      "databaseReply": true,
+      "generatedReply": true,
+      "contextReply": true,
+      "offTopicClosed": true,
+      "cacheIsolated": true,
+      "cancelled": true,
+      "selectionIsolated": true,
+      "served": true,
+      "databaseSeconds": 0.0,
+      "generatedSeconds": 27.918556213378906,
+      "contextSeconds": 27.05514144897461,
+      "error": "",
+      "payloadPath": "C:/Users/by365/Documents/GitHub/ai-hack-gameJam/ai-hack-test/Builds/CafeChat-20261105-Api/CafeChat_Data/StreamingAssets\\CafeLocal",
+      "backend": "local"
+    },
+    "compatibleApiMockPlayer": {
+      "passed": true,
+      "modelReady": true,
+      "databaseReply": true,
+      "generatedReply": true,
+      "contextReply": true,
+      "offTopicClosed": true,
+      "cacheIsolated": true,
+      "cancelled": true,
+      "selectionIsolated": true,
+      "served": true,
+      "databaseSeconds": 0.0,
+      "generatedSeconds": 0.01749134063720703,
+      "contextSeconds": 0.0115203857421875,
+      "error": "",
+      "payloadPath": "C:/Users/by365/Documents/GitHub/ai-hack-gameJam/ai-hack-test/Builds/CafeChat-20261105-Api/CafeChat_Data/StreamingAssets\\CafeLocal",
+      "backend": "api"
+    },
+    "apiMockContract": {
+      "requests": 2,
+      "korean": true,
+      "model": true,
+      "authorization": true,
+      "context": true
+    },
+    "externalApiCalled": false,
+    "osImeCompositionVerified": false,
+    "notes": [
+      "Build warnings: installed inference compute shaders report variant warnings; zero build errors.",
+      "Automated tests use explicit command line opt-in only.",
+      "User-owned active game window preserved."
+    ]
+  },
+  "priorCafeChatBuildsDeleted": true,
+  "currentRevision": {
+    "buildPerformed": false,
+    "playPerformed": false,
+    "compilationPassed": true,
+    "receptionTimingPassed": true,
+    "newMenuPersonaPairs": 64,
+    "naturalFollowupCases": 96,
+    "queueAndDataRegressionPassed": true,
+    "liveSemanticReplyNotVerified": true
+  }
+}

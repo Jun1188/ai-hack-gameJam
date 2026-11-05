@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "personaId": "cus_elder",
+      "lexiconId": "cus_elder"
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "lexiconId": "cus_gyeongsang"
+    },
+    {
+      "personaId": "cus_jeolla",
+      "lexiconId": "cus_jeolla"
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "lexiconId": "cus_chungcheong"
+    },
+    {
+      "personaId": "cus_gangwon",
+      "lexiconId": "cus_gangwon"
+    },
+    {
+      "personaId": "cus_jeju",
+      "lexiconId": "cus_jeju"
+    },
+    {
+      "personaId": "cus_sea",
+      "lexiconId": "cus_sea"
+    },
+    {
+      "personaId": "cus_west",
+      "lexiconId": "cus_west"
+    },
+    {
+      "personaId": "cus_japan",
+      "lexiconId": "cus_japan"
+    },
+    {
+      "personaId": "cus_china",
+      "lexiconId": "cus_china"
+    },
+    {
+      "personaId": "cus_child",
+      "lexiconId": "cus_child"
+    },
+    {
+      "personaId": "cus_student",
+      "lexiconId": "cus_student"
+    },
+    {
+      "personaId": "cus_pangyo",
+      "lexiconId": "cus_pangyo"
+    },
+    {
+      "personaId": "cus_barista",
+      "lexiconId": "cus_barista"
+    },
+    {
+      "personaId": "cus_trainer",
+      "lexiconId": "cus_trainer"
+    },
+    {
+      "personaId": "cus_blind",
+      "lexiconId": "cus_blind"
+    }
+  ]
+}
