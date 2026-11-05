@@ -186,8 +186,22 @@ namespace CafeSim
             // Two equal buttons spanning the receipt's width: secondary on the left, primary on the right.
             float rowWidth = ReceiptWidth * fit, buttonGap = 12, buttonWidth = (rowWidth - buttonGap) * .5f;
             float bx = 640 - rowWidth * .5f, by = top + (height + 7) * fit + gap;
-            if (GUI.Button(new Rect(bx, by, buttonWidth, buttonHeight), "메인화면으로", rSecondary)) businessDay.ExitToMenu();
-            if (GUI.Button(new Rect(bx + buttonWidth + buttonGap, by, buttonWidth, buttonHeight), "다음 영업일  →", rPrimary)) businessDay.NextDay();
+            // On the day the last customer became a regular, dismissing the receipt saves the pending ending
+            // (it plays next morning, even if the game is quit in between).
+            var collection = CafeCollection.Instance;
+            if (GUI.Button(new Rect(bx, by, buttonWidth, buttonHeight), "메인화면으로", rSecondary))
+            {
+                collection.MarkEndingPending(CafeBusinessDay.Day + 1);
+                businessDay.ExitToMenu();
+            }
+            if (GUI.Button(new Rect(bx + buttonWidth + buttonGap, by, buttonWidth, buttonHeight), "다음 영업일  →", rPrimary))
+            {
+                if (collection.EndingDue) BeginEnding();
+                else businessDay.NextDay();
+            }
+            var hint = Center(Derive(rSmall, 12));
+            hint.normal.textColor = new Color(1, .95f, .85f, .9f);
+            GUI.Label(new Rect(bx, by + buttonHeight + 2, rowWidth, 16), "Q  영업 수첩 보기", hint);
         }
 
         // Lays out (and, when receiptPaint is set, draws) the receipt; returns its height.
@@ -268,6 +282,26 @@ namespace CafeSim
                 Dots(x, y, w); y += 10;
             }
 
+            // 오늘 배운 말: phrases added to the 동네 사전 today (they show as NEW in the notebook).
+            var learned = CafeCollection.Instance.LearnedToday;
+            RText(new Rect(x, y, w, 20), "오늘 배운 말", rHeadSmall);
+            RText(new Rect(x, y, w, 20), learned.Count + "개", rBoldSmall, TextAnchor.MiddleRight);
+            y += 23;
+            if (learned.Count == 0)
+            {
+                RText(new Rect(x, y, w, 18), "오늘은 새로 배운 말이 없어요", rSmall);
+                y += 20;
+            }
+            for (int i = 0; i < learned.Count && i < 3; i++)
+            {
+                RText(new Rect(x, y, w * .6f, 19), "“" + learned[i].text + "”", rBold);
+                RText(new Rect(x, y, w, 19), learned[i].meaning, rText, TextAnchor.MiddleRight);
+                y += 20;
+            }
+            if (learned.Count > 3) { RText(new Rect(x, y, w, 18), $"외 {learned.Count - 3}개는 영업 수첩에", rSmall); y += 20; }
+            y += 4;
+            Dots(x, y, w); y += 10;
+
             Row(ref y, x, w, "매출", Won(ledger.Sales));
             Row(ref y, x, w, "팁", "+" + Won(ledger.Tips));
             Row(ref y, x, w, $"재료 손실 (버린 음료 {ledger.WastedCups}잔)", ledger.WasteCost > 0 ? "-" + Won(ledger.WasteCost) : Won(0));
@@ -295,7 +329,7 @@ namespace CafeSim
             y += 30;
             RText(new Rect(x, y, w, 12), "MODU CAFE   /   DAY " + day.ToString("0000"), rTinyCenter);
             y += 15;
-            RText(new Rect(x, y, w, 18), "다음 영업일에 또 만나요", rBoldCenter);
+            RText(new Rect(x, y, w, 18), CafeCollection.Instance.EndingDue ? "내일 아침, 카페 앞으로 와 주세요" : "다음 영업일에 또 만나요", rBoldCenter);
             y += 30;
             return y - paper.y;
         }

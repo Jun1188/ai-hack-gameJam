@@ -25,6 +25,8 @@ namespace CafeSim
         // Survives the scene reload that starts the next day; the main menu starts over at day 1.
         public static int Day {get;private set;}=1;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] static void ResetDay()=>Day=1;
+        // After the ending, "게임 시작" continues as free play from the ending's morning.
+        public static void ContinueFrom(int day)=>Day=Mathf.Max(1,day);
 
         public float Clock {get;private set;}
         public bool Paused {get;private set;}
@@ -40,6 +42,9 @@ namespace CafeSim
             Clock=openHour*3600;
             AudioListener.volume=CafeSettings.Volume;
             if(barista!=null)barista.MouseSensitivity=CafeSettings.MouseSensitivity;
+            var collection=CafeCollection.Instance;collection.BeginDay();
+            if(session!=null&&session.personaData!=null&&session.menuData!=null)
+                collection.Bind(JsonUtility.FromJson<PersonaTable>(session.personaData.text),JsonUtility.FromJson<MenuTable>(session.menuData.text));
         }
         void OnEnable(){if(session!=null)session.DialogueOutput+=OnDialogue;}
         void OnDisable(){if(session!=null)session.DialogueOutput-=OnDialogue;}
@@ -49,11 +54,12 @@ namespace CafeSim
         {
             if(Paused||Closed||session==null||session.Queue==null)return;
             Clock=Mathf.Min(closeHour*3600,Clock+Time.unscaledDeltaTime*gameSecondsPerSecond);
-            if(Clock>=closeHour*3600){Closed=true;Freeze(true);}
+            if(Clock>=closeHour*3600){Closed=true;Freeze(true);CafeCollection.Instance.EndDay(Day,Ledger);}
         }
         void OnDialogue(CafeVisit visit,string kind,string line)
         {
             if(Closed)return;
+            CafeCollection.Instance.Observe(visit,kind,line,session!=null?session.Queue?.Knowledge:null,Day);
             // Stars are decided when the drink is handed over, so a late review still counts.
             if(kind=="USER")Ledger.Ask(visit);
             else if(kind=="SERVED")

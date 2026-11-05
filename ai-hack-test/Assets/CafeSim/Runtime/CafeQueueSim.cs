@@ -101,6 +101,10 @@ namespace CafeSim
             if(c.VisitNumber>1)opener=Knowledge.Retrieve(c,"repeat",0)+" "+opener;
             c.Order.speech=Knowledge.Compose("order",new Dictionary<string,string>{{"opener",opener},{"requested",Knowledge.Describe(c.Order.menuId,c.RequestedName)+"를 "+(c.Order.temperature=="HOT"?"따뜻하게":"차갑게")+" 한 잔"},{"ending",ending}});
             if(c.Situation!=null)c.Order.speech=c.Situation.spokenContext+" "+c.Order.speech;
+            // 도감: the customer's own phrases for this drink (what the 동네 사전 collects), and a regular's greeting.
+            string phrases=CafeCollection.Instance.OrderLines(c,out string greeting);
+            if(!string.IsNullOrEmpty(phrases))c.Order.speech+=" "+phrases;
+            if(!string.IsNullOrEmpty(greeting))c.Order.speech=greeting+" "+c.Order.speech;
             Active.Add(c);Emit(c,"ORDER",c.Order.speech);
             return c;
         }

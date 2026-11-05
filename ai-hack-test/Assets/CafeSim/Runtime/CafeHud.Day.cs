@@ -29,7 +29,7 @@ namespace CafeSim
         }
         void DestroyDayTextures()
         {
-            options?.Dispose();DestroyReceiptTextures();
+            options?.Dispose();DestroyReceiptTextures();DestroyNotebookTextures();
             foreach(var t in new[]{trackTex,fillTex})if(t!=null)Destroy(t);
             foreach(var s in new[]{paperSprite,trackSprite,fillSprite})if(s!=null)Destroy(s);
         }
@@ -38,6 +38,8 @@ namespace CafeSim
         bool HandleDayKey(KeyCode key)
         {
             if(businessDay==null)return false;
+            // Q opens the 영업 수첩 (pausing the day); Q or Esc closes it again.
+            if(key==KeyCode.Q||(key==KeyCode.Escape&&notebookOpen)){ToggleNotebook();return true;}
             if(businessDay.Closed)return true;
             if(businessDay.Paused)
             {
@@ -99,6 +101,7 @@ namespace CafeSim
         void DrawDayOverlay()
         {
             if(!Halted)return;
+            if(notebookOpen){DrawNotebook();return;}
             if(businessDay.Closed){DrawClosing();return;}
             if(Event.current.type==EventType.Repaint)
             {
