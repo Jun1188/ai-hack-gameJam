@@ -1223,6 +1223,158 @@
     {
       "id": "t0305",
       "text": "네, 고른 잔이 맞습니다. 고맙습니다."
+    },
+    {
+      "id": "branch_cus_miku_0",
+      "text": "연습을 마쳐서요. 오늘은 향과 질감의 박자가 잘 맞는 한 잔을 골라 볼게요."
+    },
+    {
+      "id": "branch_cus_miku_1",
+      "text": " 부탁드려요."
+    },
+    {
+      "id": "branch_cus_miku_2",
+      "text": "네, 이 향과 부드러움이에요. 첫 음부터 잘 맞네요."
+    },
+    {
+      "id": "branch_cus_miku_3",
+      "text": "제가 고른 맛의 박자와 조금 달라요. 향과 온도를 다시 확인해 주실래요?"
+    },
+    {
+      "id": "branch_cus_miku_4",
+      "text": "고른 맛 그대로라 잠깐 쉬는 시간도 작은 앙코르 같아요."
+    },
+    {
+      "id": "branch_cus_miku_5",
+      "text": "기대했던 맛과 달라서 이번 한 잔은 조금 아쉽네요."
+    },
+    {
+      "id": "branch_cus_miku_6",
+      "text": "다음 작은 무대에서 부를 노래의 첫 소절을 생각하고 있어요."
+    },
+    {
+      "id": "branch_cus_miku_7",
+      "text": "연습 쉬는 시간이 조금 지나갔네요. 제 주문 차례는 언제쯤일까요?"
+    },
+    {
+      "id": "branch_cus_miku_8",
+      "text": "곧 다시 연습하러 가야 해서요. 주문 순서를 확인하고 싶어요."
+    },
+    {
+      "id": "branch_cus_miku_9",
+      "text": "오늘은 조용히 쉬면서 좋아하는 리듬을 떠올리고 있어요."
+    },
+    {
+      "id": "branch_cus_miku_10",
+      "text": "주문한 잔을 기다리고 있어요. 다음 연습 전에 마실 수 있을까요?"
+    },
+    {
+      "id": "branch_cus_miku_11",
+      "text": "연습 시작 시간이 가까워졌네요. 제 잔이 얼마나 남았는지 알려 주실래요?"
+    },
+    {
+      "id": "branch_cus_miku_12",
+      "text": "또 왔어요. 오늘도 제 취향의 박자를 맞춰 볼까요?"
+    },
+    {
+      "id": "branch_cus_miku_13",
+      "text": "기다리는 사이 쉬는 시간이 많이 줄었네요."
+    },
+    {
+      "id": "branch_cus_miku_14",
+      "text": "아직 잔을 못 받았네요. 다음 연습 시간이 돼서 오늘은 이만 갈게요."
+    },
+    {
+      "id": "branch_cus_miku_15",
+      "text": "같은 곡은 아니어도 비슷한 분위기의 맛은 느껴져요."
+    },
+    {
+      "id": "branch_cus_miku_16",
+      "text": "원했던 향과 질감의 방향이 많이 달라요. 다시 확인하고 싶어요."
+    },
+    {
+      "id": "branch_cus_miku_17",
+      "text": "정확히 고른 맛은 아니지만 비슷한 방향으로 챙겨 주신 점은 좋아요."
+    },
+    {
+      "id": "branch_cus_miku_18",
+      "text": "제가 고른 건 {requestedTemp} {requested} 쪽이고, 받은 건 {servedTemp} {served}네요."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_0",
+      "text": "좋습니다. 오늘 컨디션에 맞게 맛과 성분부터 골라 보죠."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_1",
+      "text": " 부탁드립니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_2",
+      "text": "좋습니다. 말씀드린 맛과 성분 방향이 맞아요."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_3",
+      "text": "제가 고른 맛과 조금 다르네요. 성분과 온도를 한 번만 다시 봐 주시겠어요?"
+    },
+    {
+      "id": "branch_cus_kim_gyeran_4",
+      "text": "이렇게 제 취향대로 쉬어 가니 다음 일정도 든든하겠네요."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_5",
+      "text": "오늘 고른 방향과 달라서 이 한 잔은 조금 아쉽습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_6",
+      "text": "오늘 수업을 마치고 잠깐 회복하는 시간을 갖고 있습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_7",
+      "text": "쉬는 시간이 조금 지나갔네요. 제 주문 차례는 언제쯤일까요?"
+    },
+    {
+      "id": "branch_cus_kim_gyeran_8",
+      "text": "다음 수업 시간이 가까워져서요. 주문 순서를 확인하고 싶습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_9",
+      "text": "운동 뒤에는 쉬는 시간도 챙겨야죠. 오늘은 천천히 숨을 고르고 있습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_10",
+      "text": "주문한 잔을 기다리고 있습니다. 다음 일정 전에 받을 수 있을까요?"
+    },
+    {
+      "id": "branch_cus_kim_gyeran_11",
+      "text": "다음 수업을 준비해야 해서요. 제 잔이 얼마나 남았는지 확인 부탁드립니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_12",
+      "text": "또 왔습니다. 오늘도 제 취향대로 꾸준히 골라 볼게요."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_13",
+      "text": "기다리는 동안 쉬는 시간이 많이 지나갔네요."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_14",
+      "text": "아직 음료를 못 받았네요. 다음 수업 시간이 돼서 오늘은 이만 가겠습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_15",
+      "text": "고른 것과 같지는 않아도 맛과 성분의 방향은 가까운 부분이 있네요."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_16",
+      "text": "원했던 성분과 맛의 방향이 많이 달라서 다시 확인하고 싶습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_17",
+      "text": "정확히 고른 것은 아니어도 비슷하게 챙겨 주신 부분은 좋습니다."
+    },
+    {
+      "id": "branch_cus_kim_gyeran_18",
+      "text": "제가 고른 방향은 {requestedTemp} {requested}였고, 받은 건 {servedTemp} {served}네요."
     }
   ]
 }

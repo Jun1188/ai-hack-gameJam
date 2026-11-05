@@ -63,6 +63,14 @@
     {
       "personaId": "cus_blind",
       "lexiconId": "cus_blind"
+    },
+    {
+      "personaId": "cus_miku",
+      "lexiconId": "cus_miku"
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "lexiconId": "cus_kim_gyeran"
     }
   ]
 }

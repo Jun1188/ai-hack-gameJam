@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-06",
+  "scope": "Four downloaded customer assets and matching persona appearance/voice updates",
+  "compile": {
+    "result": "pass",
+    "method": "Connected Unity 6000.6.8f1 Editor recompile",
+    "compilationFailed": false
+  },
+  "assetImport": {
+    "result": "pass",
+    "families": [
+      {
+        "resource": "CafeCustomers/Incoming/child/Appearance",
+        "personas": [
+          "cus_child"
+        ],
+        "status": "ready"
+      },
+      {
+        "resource": "CafeCustomers/Incoming/middle_male_trainer/Appearance",
+        "personas": [
+          "cus_chungcheong",
+          "cus_gangwon",
+          "cus_trainer",
+          "cus_blind"
+        ],
+        "status": "ready"
+      },
+      {
+        "resource": "CafeCustomers/Incoming/young_female_miku/Appearance",
+        "personas": [
+          "cus_west",
+          "cus_china",
+          "cus_barista"
+        ],
+        "status": "ready"
+      },
+      {
+        "resource": "CafeCustomers/Incoming/young_male_black/Appearance",
+        "personas": [
+          "cus_sea",
+          "cus_japan",
+          "cus_pangyo"
+        ],
+        "status": "ready"
+      }
+    ],
+    "sourceManifest": "ai-hack-test/Assets/CafeSim/Data/CustomerDeliveryManifest.json",
+    "all28SourceHashesMatch": true,
+    "note": "Shared Miku/Black models, Idle and textures reused; supplied Walk files imported separately. New Trainer/Child sources imported."
+  },
+  "editorChecks": {
+    "catalogContracts": "pass; descriptions, mapping/conflicts, prepared prefab, review exclusion, resource load, deletion cleanup",
+    "delivery": "pass; 4 keys load exact prepared prefabs; 16 personas spawned in isolated previews with mug grips; 11 mapped, 5 existing category fallbacks",
+    "prompts": "pass; young female Miku appearance and middle-aged male trainer descriptions agree",
+    "personaReimportOverrides": "pass; fields agree with live personas and import script syntax valid",
+    "data": "pass; 16 personas, 11 menus, 176 weights, 33 situations and order/reaction checks",
+    "queue": "pass; FIFO, waits, chatter, expiry, duplicate/idempotent service, similarity regression",
+    "persistedWalkReferences": "pass; both saved controller files contain the newly imported supplied Walk GUIDs"
+  },
+  "visual": {
+    "method": "Actual Spawn via reflection, isolated Editor PreviewRenderUtility and Idle clip sample",
+    "path": "docs/images/cafe-customer-delivery-preview.png",
+    "order": [
+      "Miku",
+      "Trainer",
+      "Black",
+      "Child"
+    ],
+    "limits": "Static model/material preview; renderer bounds include import padding, not an exact body-height measurement. Does not establish gait or cafe lighting."
+  },
+  "play": {
+    "agentStarted": false,
+    "existingUserPlayStopped": "explicit user approval",
+    "loopAndGait": "user validation pending"
+  },
+  "build": "not run",
+  "packages": {
+    "manifest.json": "43c1fbbe674ceaf102ffc95051e6fd2afae7ab19b4b20e07b6f9c41e19431a88",
+    "packages-lock.json": "87310d08345245d6a5cabc6b80ce56e8992b6e5fd44814f79fac4cb2037ff5e4"
+  },
+  "evidence": [
+    ".utmp/cafe-customer-assets-check.txt",
+    ".utmp/cafe-customer-delivery-check.txt",
+    ".utmp/cafe-data-check.txt",
+    ".utmp/cafe-queue-check.txt"
+  ],
+  "sourceHashes": {
+    "Runtime/CafeCustomerCatalog.cs": "8b2f9df691e70117fb7da4891c6eb4aff270c3b06428303e6058dc5640ff40e0",
+    "Runtime/CafeCustomerAppearance.cs": "015c6b6caff3863617a250e7cad0690211876edac3cc8902394c68c220060c02",
+    "Runtime/CafeConversation.cs": "9b2360ad869783ffa081a18f475498179fbed973c284c7b82ce224a35df9e333",
+    "Runtime/CafeSession.cs": "a0c2d92870424c0a4104cee51f44ae6a8e7cc675b596089ffd2486dada0fd84a",
+    "Runtime/CafeQueueSim.cs": "b8d940fecb8e10ac79f56174d51ee48865029ab259d6a1e753c7ab4b3c73a276",
+    "Editor/CafeCustomerCatalogImport.cs": "cd145b9249652b3e1df9f6e14d6c4e9fb9bbe07301895b54e2b10aa555c9e723",
+    "Editor/CafeCustomerDelivery.cs": "8bbe63cfed2195122cad806906a841296d1975c09bd1692902969c881c697cae",
+    "Data/personas.json": "56d53f7ced33ee0df7c65d1b29ead825dd9a99e5d038648a7fd134be226dc0cc",
+    "Data/PersonaAssetOverrides.json": "19987ccf5a4a9299abc659fab975815144b45b745ca22ed4765267476093cc85"
+  }
+}

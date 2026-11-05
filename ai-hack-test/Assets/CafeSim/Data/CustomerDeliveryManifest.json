@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-06",
+  "items": [
+    {
+      "archive": "miku_.zip",
+      "sha256": "7fbaabbd582d5196e7e12e2b4d4a415dfd62460f8dcab3a08c47b13d4fe3b07b",
+      "files": [
+        {
+          "source": "me___.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Miku/Model.fbx",
+          "sha256": "9e53974a320a9db5fce30c9f4fc15a4548937149a04c34382b9c8b608a4cb867",
+          "reused": true
+        },
+        {
+          "source": "Breathing Idle.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Miku/Idle.fbx",
+          "sha256": "3d5b2b4f54d12bdc6c98a30a4ee9775b9d2f81ee31ec9946494c8662469851b2",
+          "reused": true
+        },
+        {
+          "source": "Walking.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/young_female_miku/Walk.fbx",
+          "sha256": "49db6d17dce3c57c3b127c3c1c92ba4509f650110b18a74ed9b4315111090d1d",
+          "reused": false
+        },
+        {
+          "source": "meee_image/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Miku/Color.jpg",
+          "sha256": "54aadd44e16fd0bfa2f0855ecbb33976ab954255df0b2b7290c603716e2c5832",
+          "reused": true
+        },
+        {
+          "source": "meee_image/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Miku/Normal.png",
+          "sha256": "94bfea450caf1a1d3050291ea834eeae8f7adc3aa85ca463a9522d853c0a8d08",
+          "reused": true
+        },
+        {
+          "source": "meee_image/3d_humanoid_character_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Miku/Metallic.jpg",
+          "sha256": "a5d65e0c1f73d47ad4296ed16bcdd7c43e088d5f94eb6ab15aa2172d0319e34d",
+          "reused": true
+        },
+        {
+          "source": "meee_image/3d_humanoid_character_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Miku/Roughness.jpg",
+          "sha256": "830a2bdc54600fbb31c57878493f3cc68c18ece5cfc832c1259fab15cb0bb586",
+          "reused": true
+        }
+      ]
+    },
+    {
+      "archive": "black.zip",
+      "sha256": "bc21767419aa8a0e6fa234e9beb612d2517dbc244f101b655928767f477e939f",
+      "files": [
+        {
+          "source": "black.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Black/Model.fbx",
+          "sha256": "8010de4b8d5c9534f5d5eab8a00718b71053bf9d08068012c510ff4c8b9ecb03",
+          "reused": true
+        },
+        {
+          "source": "Idle.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Black/Idle.fbx",
+          "sha256": "9769b5a0aad24f04af95e1a8677655e4673a33eab243142885f3c661e6edc17d",
+          "reused": true
+        },
+        {
+          "source": "Walking.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/young_male_black/Walk.fbx",
+          "sha256": "386f683728d167e7afca46c97d8a5196e7fe6e96f1a8d4e99e4a3d295819c95b",
+          "reused": false
+        },
+        {
+          "source": "black_image/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Black/Color.jpg",
+          "sha256": "d949f457333c46dbf3bdc91107ba943e15bb707659ca6021a934a0db149459fb",
+          "reused": true
+        },
+        {
+          "source": "black_image/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Black/Normal.png",
+          "sha256": "9d597987763ba1857c0e5229ed83c84728263e05a876048f7d7bc08aa61745d8",
+          "reused": true
+        },
+        {
+          "source": "black_image/3d_character_model_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Black/Metallic.jpg",
+          "sha256": "2143e62657c9f9680ee5497bcf227d6d7e5e3a13df9f20d7391716e02cf747b9",
+          "reused": true
+        },
+        {
+          "source": "black_image/3d_character_model_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Black/Roughness.jpg",
+          "sha256": "9f9e9a6b1f70fa83ce271886d98644bb2efe84f9038b2c8d17a7ca17781df82f",
+          "reused": true
+        }
+      ]
+    },
+    {
+      "archive": "trainer_.zip",
+      "sha256": "061427a8206d8b20042e2c885514d4cb5d9347c65a0e21fc901764d526c56092",
+      "files": [
+        {
+          "source": "trainer.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Model.fbx",
+          "sha256": "e8600a23e6f490193d798a46c2b8ca543b629ff6b7284db9e6b4fea233269331",
+          "reused": false
+        },
+        {
+          "source": "Breathing Idle.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Idle.fbx",
+          "sha256": "36b6e54d8d387ba486a6f6bacdefb05cad946c42a5bd440d6961c3ec0c0282ec",
+          "reused": false
+        },
+        {
+          "source": "Walking.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Walk.fbx",
+          "sha256": "ebbaefc9fc40eb6ba07c4d38c9f5b0c6b61980ac25fe6bad16d53ed45a6b86bd",
+          "reused": false
+        },
+        {
+          "source": "trainer_image/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Color.jpg",
+          "sha256": "c9d11ab2c7346f78238aa4ad3f275ded68e2559023ae49b3ea5172e15bf4ac82",
+          "reused": false
+        },
+        {
+          "source": "trainer_image/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Normal.png",
+          "sha256": "3914d78e8f84e1c120b43346d21d218cec2df50c996d41022d641abaab39194f",
+          "reused": false
+        },
+        {
+          "source": "trainer_image/old_man_3d_model_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Metallic.jpg",
+          "sha256": "37d24e0c0f0c1807d3c97aee757a28ad292e041066b6c8a6adaf6725d3a6d6d8",
+          "reused": false
+        },
+        {
+          "source": "trainer_image/old_man_3d_model_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Roughness.jpg",
+          "sha256": "d065d934757e83dbb1280273db7a1f746fe97987d6e1f7971dd9d8ede475b269",
+          "reused": false
+        }
+      ]
+    },
+    {
+      "archive": "child.zip",
+      "sha256": "b9fdb418cd4f25e63db629dd417a9e616a451c9bab81b2af49f789be9e55114d",
+      "files": [
+        {
+          "source": "child.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Model.fbx",
+          "sha256": "8f666395b97f30b3cabc1fe830bfaa1068582c197e4735bc4c722a16e91c944c",
+          "reused": false
+        },
+        {
+          "source": "Neutral Idle.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Idle.fbx",
+          "sha256": "0a14ba6a8e6091b3683dabd8452639ed33b6ec3bf369825388bbba9ff85a0df5",
+          "reused": false
+        },
+        {
+          "source": "Walking (1).fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Walk.fbx",
+          "sha256": "c7bc5433c74503f23c4fa63014ade9ff4965b1e210de6c1d0fa21d91d0257268",
+          "reused": false
+        },
+        {
+          "source": "child_image/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Color.jpg",
+          "sha256": "5018309cac78e4e71e52a4e188b2532e3af200f8f9f1d6e32df4dc375ae9327d",
+          "reused": false
+        },
+        {
+          "source": "child_image/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Normal.png",
+          "sha256": "3df8b56a3696d9e779051044e94dad28337a67b44c4eec63752a539af1957648",
+          "reused": false
+        },
+        {
+          "source": "child_image/stylized_character_3d_model_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Metallic.jpg",
+          "sha256": "49d96e6b77d2de6b2db1eb4c1ed8c742698cd99b66aa61194f5eb66717653f36",
+          "reused": false
+        },
+        {
+          "source": "child_image/stylized_character_3d_model_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Roughness.jpg",
+          "sha256": "a740059336fb95e2eb7853ad8b5462f1fc6a8f9884ce29e722812cbf2bdd3e7e",
+          "reused": false
+        }
+      ]
+    }
+  ]
+}

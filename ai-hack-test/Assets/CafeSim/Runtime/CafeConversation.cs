@@ -203,6 +203,8 @@ namespace CafeSim
             if(personaWrappers.TryGetValue(key,out var wrapper))return wrapper;
             var sb=new StringBuilder("손님 자료 (배경과 말투, 답변 후보가 아님): ");sb.Append(p.name);
             sb.Append("\n인물: ").Append(p.ageDescription).Append(" / ").Append(p.origin);
+            if (!string.IsNullOrEmpty(p.parentPersonaId))
+                sb.Append("\n외형: ").Append(p.modelBase).Append(" / ").Append(p.hair).Append(" / ").Append(p.top).Append(" / ").Append(p.bottom);
             sb.Append("\n배경: ").Append(p.setting).Append("\n말투: ").Append(p.voice);
             sb.Append("\n소통: ").Append(p.communicationPoint).Append(" / ").Append(p.answerStyle);
             sb.Append("\n알고 있는 것: ").Append(p.knowledgeLevel).Append("\n취향: ").Append(p.taste);

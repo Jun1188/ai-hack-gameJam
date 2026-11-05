@@ -20,7 +20,7 @@ namespace CafeSim
         static readonly Color nbTrack = new Color32(228, 214, 186, 255);
 
         bool notebookOpen, notebookPausedDay, notebookAutoChecked, endingAfterNotebook;
-        int notebookTab, phraseFilter, phraseCustomerFilter = -1;
+        int notebookTab, phraseFilter, phraseCustomerFilter = -1, regularPage;
         string selectedCustomer, selectedPhrase;
         float notebookOpenedAt, phraseScroll;
         Texture2D bookTex, silhouetteTex, chipTex, roundTex;
@@ -56,6 +56,7 @@ namespace CafeSim
             notebookTab = fresh == null && newPhrase ? 1 : 0;
             if (fresh != null) selectedCustomer = fresh.id;
             if (selectedCustomer == null && collection.Customers.Count > 0) selectedCustomer = collection.Customers[0].id;
+            regularPage = Mathf.Max(0, collection.Customers.FindIndex(c => c.id == selectedCustomer)) / 16;
             if (!businessDay.Closed && !businessDay.Paused) { businessDay.SetPaused(true); notebookPausedDay = true; }
         }
 
@@ -198,9 +199,11 @@ namespace CafeSim
             if (regulars > 0) Box(232, 220, Mathf.Max(12, 554f * regulars / Mathf.Max(1, total)), 9, nbGreen);
 
             float animate = Mathf.Clamp01((Time.unscaledTime - notebookOpenedAt - .25f) / .35f);
-            for (int i = 0; i < total && i < 16; i++)
+            int pages = Mathf.Max(1, (total + 15) / 16);
+            regularPage = Mathf.Clamp(regularPage, 0, pages - 1);
+            for (int i = 0; i < 16 && regularPage * 16 + i < total; i++)
             {
-                var info = collection.Customers[i];
+                var info = collection.Customers[regularPage * 16 + i];
                 var record = collection.Record(info.id);
                 float x = 232 + (i % 4) * 140, y = 248 + (i / 4) * 129, cx = x + 66;
                 if (selectedCustomer == info.id)
@@ -228,12 +231,20 @@ namespace CafeSim
             }
 
             Dotted(232, 786, 554);
-            Label(232, 798, 554, 22, "손님을 선택하면 오른쪽에 기록이 펼쳐집니다.", 15, nbMuted);
+            Label(232, 798, 400, 22, "손님을 선택하면 오른쪽에 기록이 펼쳐집니다.", 15, nbMuted);
+            if (pages > 1)
+            {
+                Label(650, 794, 32, 30, "‹", 24, nbInk, true);
+                Label(690, 798, 58, 24, $"{regularPage + 1}/{pages}", 15, nbMuted, false, TextAnchor.MiddleCenter);
+                Label(756, 794, 30, 30, "›", 24, nbInk, true);
+                if (Click(642, 790, 40, 36)) regularPage = (regularPage + pages - 1) % pages;
+                if (Click(750, 790, 40, 36)) regularPage = (regularPage + 1) % pages;
+            }
             // The ending hint: what happens when every page is filled.
             string hint = collection.AllRegular
-                ? "동네 사람 모두가 단골이 되었어요. 곧 이 카페에 특별한 날이 찾아올 것 같아요…"
-                : regulars >= total / 2
-                    ? $"단골이 {total - regulars}명 남았어요. 모두 모이는 날, 이 카페에 특별한 일이 생길 거예요."
+                ? "기본 손님 16명이 모두 단골이 되었어요. 곧 특별한 날이 찾아올 것 같아요…"
+                : collection.RequiredRegularCount >= collection.RequiredCount / 2
+                    ? $"기본 손님 {collection.RequiredCount - collection.RequiredRegularCount}명 남았어요. 분기 손님은 선택 항목이에요."
                     : "열여섯 명 모두가 단골이 되는 날, 이 카페에 특별한 일이 생길지도 몰라요…";
             Label(232, 824, 554, 24, hint, 15, collection.AllRegular ? nbRed : nbGreen, true);
         }

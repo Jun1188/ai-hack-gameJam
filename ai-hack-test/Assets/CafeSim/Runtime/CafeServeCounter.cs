@@ -28,9 +28,10 @@ namespace CafeSim
             var c=Ordering;
             if(c==null)return session!=null&&session.Selected!=null&&session.Selected.State==VisitState.Received?"음료를 맛보는 중이에요":"주문한 손님이 없어요";
             if(heldDrink==null)return "완성된 머그잔을 들고 오세요";
-            if(heldDrink==MapleCafe.CafeBrewStation.InvalidDrinkName)return "신비한 음료는 드릴 수 없어요  ·  싱크대에서 비워 주세요";
-            if(Find(heldDrink)==null)return heldDrink+"는 메뉴에 없어요";
+            bool failed=heldDrink==MapleCafe.CafeBrewStation.InvalidDrinkName;
+            if(!failed&&Find(heldDrink)==null)return heldDrink+"는 메뉴에 없어요";
             if (CustomerAtCounter(c) == null) return "손님이 카운터로 오는 중이에요";
+            if(failed)return "F  ·  신비한 음료 드리기  ·  별점 1점";
             return "F  ·  손님에게 "+CafeQueueSim.Label(heldDrink,iced?"ICE":"HOT")+" 드리기";
         }
 
@@ -38,10 +39,11 @@ namespace CafeSim
         {
             mugGrip = null;
             var item = Find(drink);
+            bool failed=drink==MapleCafe.CafeBrewStation.InvalidDrinkName;
             var customer = CustomerAtCounter(Ordering);
-            if (item == null || customer == null) return false;
+            if ((!failed&&item == null) || customer == null) return false;
             mugGrip = customer.PrepareMugGrip();
-            return mugGrip != null && session.Serve(item.id, iced ? "ICE" : "HOT");
+            return mugGrip != null && session.Serve(failed?CafeQueueSim.FailedDrinkId:item.id, iced ? "ICE" : "HOT");
         }
 
         CafeCustomerAppearance CustomerAtCounter(CafeVisit visit)

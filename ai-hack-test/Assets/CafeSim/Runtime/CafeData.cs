@@ -17,7 +17,7 @@ namespace CafeSim
         public string[] preferredMenuIds;
         public int age;
         public string ageDescription,group,origin,communicationPoint,knowledgeLevel,answerStyle,expressionReference,twist,smalltalkTopics,difficulty;
-        public string modelBase,hair,top,bottom,accessory;
+        public string modelBase,hair,top,bottom,accessory,parentPersonaId;
         public float hotPreference=.5f;
     }
     [Serializable] public sealed class CustomerOrder { public string speech, menuId, temperature; }

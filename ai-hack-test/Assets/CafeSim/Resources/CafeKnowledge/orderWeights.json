@@ -879,6 +879,116 @@
       "personaId": "cus_blind",
       "menuId": "menu_ssanghwa",
       "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_espresso",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_lemonade",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_espresso",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_matcha",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_yuja",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
     }
   ]
 }

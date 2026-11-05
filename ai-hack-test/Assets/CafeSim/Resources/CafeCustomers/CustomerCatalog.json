@@ -1,0 +1,74 @@
+{
+    "items": [
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/child/Appearance",
+            "description": "아동 외형 (파일명 추정)",
+            "mappingReason": "파일명 연령·성별/역할과 기존 페르소나의 외형 참조 일치. 지역·국적·성격은 추정하지 않음.",
+            "status": "ready",
+            "personaIds": [
+                "cus_child"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.2000000476837158
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/middle_male_trainer/Appearance",
+            "description": "중년 남성 · 김계란 전용 외형",
+            "mappingReason": "사용자 지정 독립 분기만 연결. 기존 연령·성별 범주의 페르소나는 유지.",
+            "status": "ready",
+            "personaIds": [
+                "cus_kim_gyeran"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.75
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/young_female_miku/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/young_female_miku/Appearance",
+            "description": "청년 여성 · 통통한 미쿠 전용 외형",
+            "mappingReason": "사용자 지정 독립 분기만 연결. 기존 연령·성별 범주의 페르소나는 유지.",
+            "status": "ready",
+            "personaIds": [
+                "cus_miku"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.6399999856948853
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/young_male_black/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/young_male_black/Appearance",
+            "description": "청년 남성 외형 (파일명 추정)",
+            "mappingReason": "파일명 연령·성별/역할과 기존 페르소나의 외형 참조 일치. 지역·국적·성격은 추정하지 않음.",
+            "status": "ready",
+            "personaIds": [
+                "cus_sea",
+                "cus_japan",
+                "cus_pangyo"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.75
+        }
+    ]
+}

@@ -23,7 +23,6 @@ namespace CafeSim
     public sealed class CafeVisit
     {
         internal int? AppearanceSeed;
-        internal CafeCustomerAppearance.Skin? AppearanceSkin;
         public int Id,VisitNumber,InactiveEntries=1,ActiveEntries,UtteranceCount;
         public Persona Person; public CustomerOrder Order; public CustomerReaction Reaction;
         public VisitSituation Situation;
@@ -48,6 +47,9 @@ namespace CafeSim
     // Time is supplied by the caller. No scene/UI dependencies; deadlines are evaluated before service.
     public sealed class CafeQueueSim
     {
+        public const string FailedDrinkId = "failed_drink";
+        public const string FailedDrinkName = "신비한 음료";
+        public const double MikuArrivalChance = .05;
         public readonly List<CafeVisit> Inactive=new List<CafeVisit>(),Active=new List<CafeVisit>();
         public readonly List<CafeVisit> Completed=new List<CafeVisit>();
         public readonly CafeQueueSettings Settings;
@@ -57,6 +59,15 @@ namespace CafeSim
         readonly Persona[] people;readonly MenuTable menu;readonly System.Random random;
         readonly Dictionary<string,int> visits=new Dictionary<string,int>();
         int nextId;float nextArrival;
+        internal static Persona ChoosePersona(Persona[] candidates, System.Random random)
+        {
+            int miku = Array.FindIndex(candidates, p => p.id == "cus_miku");
+            // A one-person MVP must remain directly selectable; ordinary casts retain uniform selection.
+            if (miku < 0 || candidates.Length == 1) return candidates[random.Next(candidates.Length)];
+            if (random.NextDouble() < MikuArrivalChance) return candidates[miku];
+            int other = random.Next(candidates.Length - 1);
+            return candidates[other >= miku ? other + 1 : other];
+        }
         public CafeQueueSim(Persona[] people,MenuTable menu,CafeKnowledge knowledge,CafeQueueSettings settings,int seed)
         {
             settings.Validate();if(people==null||people.Length==0||menu?.items==null||menu.items.Length==0)throw new InvalidOperationException("Empty cafe data");
@@ -78,7 +89,7 @@ namespace CafeSim
         public CafeVisit Admit(bool? offMenu=null)
         {
             if(Inactive.Count>=Settings.inactiveCapacity){RejectedArrivals++;return null;}
-            var p=people[random.Next(people.Length)];int visit=visits.TryGetValue(p.id,out int previous)?previous+1:1;visits[p.id]=visit;
+            var p=ChoosePersona(people,random);int visit=visits.TryGetValue(p.id,out int previous)?previous+1:1;visits[p.id]=visit;
             var c=new CafeVisit{Id=++nextId,Person=p,VisitNumber=visit,ArrivedAt=Now,LastChatterAt=Now,State=VisitState.Inactive,OffMenu=offMenu??random.NextDouble()<Settings.offMenuChance};
             var available=CafePrompts.OrderMenu(p,menu).items;
             if(available.Length==0)throw new InvalidOperationException("No order candidates for "+p.id);
@@ -156,21 +167,23 @@ namespace CafeSim
         public bool Serve(int id,string menuId,string temp)
         {
             UpdateWaits();Expire();var c=Active.Find(v=>v.Id==id);var served=Array.Find(menu.items,m=>m.id==menuId);
-            if(c==null||served==null||!served.Supports(temp)){AcceptReadyOrder();return false;}
-            Active.Remove(c);c.State=VisitState.Received;c.ResolvedAt=Now;c.ServedName=served.name;c.ServedTemperature=temp;
-            c.Accuracy=Knowledge.Similarity(c.Order.menuId,c.Order.temperature,menuId,temp);
+            bool failed=menuId==FailedDrinkId;
+            if(c==null||(!failed&&(served==null||!served.Supports(temp)))||(temp!="HOT"&&temp!="ICE")){AcceptReadyOrder();return false;}
+            Active.Remove(c);c.State=VisitState.Received;c.ResolvedAt=Now;c.ServedName=failed?FailedDrinkName:served.name;c.ServedTemperature=temp;
+            c.Accuracy=failed?0:Knowledge.Similarity(c.Order.menuId,c.Order.temperature,menuId,temp);
             string fact="";
             if(c.Order.menuId!=menuId||c.Order.temperature!=temp)
                 fact=Expand(Knowledge.Retrieve(c,"contrast",c.ActiveWait),c);
             string response=Knowledge.Retrieve(c,c.Accuracy>=.999f?"match":c.OffMenu?(c.Accuracy>=.7f?"similar":"different"):"wrong",c.ActiveWait);
             response=Expand(response,c);
-            int stars=Mathf.Clamp(Mathf.RoundToInt(1+4*c.Accuracy-c.InactiveWait*Settings.inactivePenaltyPerSecond-c.ActiveWait*Settings.activePenaltyPerSecond),1,5);
+            int stars=failed?1:Mathf.Clamp(Mathf.RoundToInt(1+4*c.Accuracy-c.InactiveWait*Settings.inactivePenaltyPerSecond-c.ActiveWait*Settings.activePenaltyPerSecond),1,5);
             if(c.Accuracy<.999f)stars=Mathf.Min(4,stars);
             string opinion=Knowledge.Retrieve(c,c.Accuracy>=.999f&&stars>=4?"good":c.Accuracy>=.7f&&stars>=3?"partialGood":"bad",c.ActiveWait);
             string waiting=Expand(Knowledge.Retrieve(c,"waitReview",c.ActiveWait),c);
             c.Reaction=new CustomerReaction{speech=Knowledge.Compose("reaction",new Dictionary<string,string>{{"fact",fact},{"response",response}}),stars=stars,
                 reason=Knowledge.Compose("review",new Dictionary<string,string>{{"opinion",opinion},{"wait",waiting}})};
-            Emit(c,"SERVED",Label(served.name,temp)+" | similarity="+c.Accuracy.ToString("F2"));Emit(c,"REACTION",c.Reaction.speech);Finish(c);AcceptReadyOrder();return true;
+            if(failed)c.Reaction.reason="레시피에 맞지 않는 신비한 음료를 받았어요. "+c.Reaction.reason;
+            Emit(c,"SERVED",Label(c.ServedName,temp)+" | similarity="+c.Accuracy.ToString("F2"));Emit(c,"REACTION",c.Reaction.speech);Finish(c);AcceptReadyOrder();return true;
         }
         void Finish(CafeVisit c){Completed.Add(c);if(Completed.Count>64)Completed.RemoveAt(0);}
         public void PublishRating(CafeVisit c){if(c.State==VisitState.Received&&!c.RatingPublished){c.RatingPublished=true;Emit(c,"RATING",c.Reaction.stars+"/5 | "+c.Reaction.reason);}}

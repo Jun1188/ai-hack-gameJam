@@ -8,32 +8,6 @@ namespace CafeSim
     public sealed class CafeCustomerAppearance : MonoBehaviour
     {
         const string AssetPath = "CafeCustomers/";
-        const double MikuChance = .05;
-
-        internal enum Skin { BlackMale, BlackFemale, StudentMale, StudentFemale, Miku }
-
-        internal sealed class SkinDeck
-        {
-            readonly Skin[] regular = { Skin.BlackMale, Skin.BlackFemale, Skin.StudentMale, Skin.StudentFemale };
-            int remaining;
-            Skin? lastRegular;
-
-            internal Skin Draw(System.Random random)
-            {
-                if (random.NextDouble() < MikuChance) return Skin.Miku;
-                if (remaining == 0) remaining = regular.Length;
-
-                int index = random.Next(remaining);
-                if (remaining == regular.Length && regular[index] == lastRegular)
-                    index = (index + random.Next(1, remaining)) % remaining;
-
-                Skin selected = regular[index];
-                regular[index] = regular[--remaining];
-                regular[remaining] = selected;
-                lastRegular = selected;
-                return selected;
-            }
-        }
 
         static readonly Color32[] ShirtColors =
         {
@@ -57,15 +31,25 @@ namespace CafeSim
         Transform rightHand, mugGrip;
         float walkWeight;
         bool walking;
+        Animator customAnimator;
+        string locomotionParameter;
+        float animatorSpeed = 1f;
 
         internal static Transform Spawn(CafeSession session, CafeVisit visit, System.Random random)
         {
-            bool miku = visit.AppearanceSkin == Skin.Miku;
-            bool student = visit.AppearanceSkin is Skin.StudentMale or Skin.StudentFemale;
-            bool female = visit.AppearanceSkin is Skin.BlackFemale or Skin.StudentFemale;
+            var asset = CafeCustomerCatalog.Choose(visit.Person.id, random);
+            if (asset != null)
+            {
+                var custom = SpawnCatalog(session, visit, asset);
+                if (custom != null) return custom;
+            }
+            // A missing delivered model falls back within the same persona category.
+            bool miku = (visit.Person.modelBase ?? "").Contains("miku");
+            bool student = (visit.Person.modelBase ?? "").Contains("teen");
+            bool female = (visit.Person.gender ?? "").Contains("여성");
             string style = miku ? "Miku" : student ? "Student" : "Black";
             string folder = AssetPath + style + "/";
-            var prefab = Resources.Load<GameObject>(folder + (female ? "Female" : "Model"));
+            var prefab = Resources.Load<GameObject>(folder + (female && !miku ? "Female" : "Model"));
             var root = new GameObject($"Customer {visit.Id} {visit.Person.name}");
             root.transform.SetPositionAndRotation(session.entrance.position, session.entrance.rotation);
             root.name += $" ({style}{(miku ? "" : female ? " F" : " M")})";
@@ -85,6 +69,44 @@ namespace CafeSim
                 bone => bone.name.EndsWith("RightHand", StringComparison.Ordinal));
             appearance.SetMaterial(model, folder, miku, student, random);
             appearance.SetAnimation(model, folder);
+            return root.transform;
+        }
+
+        static Transform SpawnCatalog(CafeSession session, CafeVisit visit, CustomerAssetEntry entry)
+        {
+            var prefab = Resources.Load<GameObject>(entry.resource);
+            var idle = CafeCustomerCatalog.Clip(entry.idleResource, entry.idleClip);
+            var walk = CafeCustomerCatalog.Clip(entry.walkResource, entry.walkClip);
+            var rig = prefab == null ? null : prefab.GetComponentInChildren<Animator>();
+            bool controller = !string.IsNullOrEmpty(entry.controllerParameter);
+            if (prefab == null || rig == null || controller && rig.runtimeAnimatorController == null || !controller && (idle == null || walk == null))
+            {
+                Debug.LogWarning("[Cafe] Customer asset unavailable; using existing appearance: " + entry.resource, session);
+                return null;
+            }
+            var root = new GameObject($"Customer {visit.Id} {visit.Person.name} ({entry.resource})");
+            root.transform.SetPositionAndRotation(session.entrance.position, session.entrance.rotation);
+            var appearance = root.AddComponent<CafeCustomerAppearance>();
+            appearance.session = session;
+            var pivot = new GameObject("Appearance").transform;
+            pivot.SetParent(root.transform, false);
+            var model = Instantiate(prefab, pivot, false);
+            appearance.AlignModel(model, pivot, entry.height);
+            var animator = model.GetComponentInChildren<Animator>();
+            if (animator != null && animator.isHuman)
+                appearance.rightHand = animator.GetBoneTransform(HumanBodyBones.RightHand);
+            if (appearance.rightHand == null)
+                appearance.rightHand = Array.Find(model.GetComponentsInChildren<Transform>(),
+                    bone => bone.name.EndsWith("RightHand", StringComparison.Ordinal));
+            // Retain authored outfit, textures and accessories on imported models.
+            if (!string.IsNullOrEmpty(entry.controllerParameter) && animator != null)
+            {
+                appearance.customAnimator = animator;
+                appearance.locomotionParameter = entry.controllerParameter;
+                appearance.animatorSpeed = animator.speed;
+                animator.applyRootMotion = false;
+            }
+            else appearance.SetAnimation(model, idle, walk);
             return root.transform;
         }
 
@@ -181,7 +203,12 @@ namespace CafeSim
                 Debug.LogWarning("Missing customer animations: " + folder, this);
                 return;
             }
-            var animator = model.GetComponent<Animator>();
+            SetAnimation(model, idle, walk);
+        }
+
+        void SetAnimation(GameObject model, AnimationClip idle, AnimationClip walk)
+        {
+            var animator = model.GetComponentInChildren<Animator>();
             if (animator == null) animator = model.AddComponent<Animator>();
             animator.applyRootMotion = false;
             animator.cullingMode = AnimatorCullingMode.CullUpdateTransforms;
@@ -202,6 +229,13 @@ namespace CafeSim
 
         void Update()
         {
+            if (customAnimator != null)
+            {
+                customAnimator.speed = session == null || session.Paused ? 0f : animatorSpeed;
+                if (locomotionParameter == "Walking") customAnimator.SetBool(locomotionParameter, walking);
+                else customAnimator.SetFloat(locomotionParameter, walking ? 1f : 0f);
+                return;
+            }
             if (!graph.IsValid()) return;
             if (session == null || session.Paused)
             {

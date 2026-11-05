@@ -23,6 +23,7 @@ styles={
 'cus_blind':('어떤 맛인지 설명을 듣고 제 취향으로 고르고 싶어요.',' 부탁드립니다.','네, 설명한 맛과 제가 고른 방향이 맞네요.','제가 말씀드린 취향 조건을 다시 확인해 주시겠어요?','설명을 듣고 제 선택대로 받을 수 있어서 좋았어요.','말씀드린 취향과 달라서 다시 확인하고 싶네요.','산책하며 들었던 음악의 멜로디를 떠올리고 있어요.')}
 items=[];chatter=[]
 people=json.loads((res.parent/'Data/personas.json').read_text(encoding='utf-8'))['items']
+people = [p for p in people if not p.get('parentPersonaId')]
 assert {p['id'] for p in people}==set(styles)
 for p in people:
     a=styles[p['id']]
@@ -50,3 +51,7 @@ for p in people:
                      [a[6],after,after+' 기다린 시간도 생각해 주시면 좋겠어요.'] ])
 (res/'CafeVocabulary.json').write_text(json.dumps(dict(version=2,items=items),ensure_ascii=False,indent=2),encoding='utf-8')
 (res.parent/'Data/ChatterLexicon.json').write_text(json.dumps(dict(items=[dict(personaId=p['id'],inactive=c[0],active=c[1]) for p,c in zip(people,chatter)]),ensure_ascii=False,indent=2),encoding='utf-8')
+
+# Reapply independent branches after rebuilding the original source tables.
+import runpy
+runpy.run_path(str(Path(__file__).with_name('apply-cafe-persona-branches.py')), run_name='__main__')

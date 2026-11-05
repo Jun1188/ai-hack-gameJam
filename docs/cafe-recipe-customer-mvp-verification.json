@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-06",
+  "unity": "6000.6.8f1",
+  "compile": "pass",
+  "mikuArrivalChance": 0.05,
+  "layout": {
+    "mode": "Edit Mode rendering of actual recipe, task and conversation UI",
+    "resolutions": [
+      [
+        1280,
+        720
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        2560,
+        1080
+      ]
+    ],
+    "result": "fully visible and separate regions"
+  },
+  "play": {
+    "scene": "Assets/Scenes/CafeCustomerMvp.unity",
+    "result": "all 18 arrivals/models/orders/serving/hand grips/ratings passed",
+    "method": "session and MVP button methods called through Editor API, not physical input",
+    "records": [
+      "cus_elder | Customer 1 어르신 (Black M) | failed | stars=1 | reply=vocabulary",
+      "cus_gyeongsang | Customer 1 경상도 손님 (Black F) | normal | stars=5 | reply=vocabulary",
+      "cus_jeolla | Customer 1 전라도 손님 (Black F) | failed | stars=1 | reply=vocabulary",
+      "cus_chungcheong | Customer 1 충청도 손님 (Black M) | normal | stars=5 | reply=vocabulary",
+      "cus_gangwon | Customer 1 강원도 손님 (Black M) | failed | stars=1 | reply=vocabulary",
+      "cus_jeju | Customer 1 제주 손님 (Black F) | normal | stars=5 | reply=vocabulary",
+      "cus_sea | Customer 1 동남아 출신 손님 (CafeCustomers/Incoming/young_male_black/Appearance) | failed | stars=1 | reply=vocabulary",
+      "cus_west | Customer 1 서양 손님 (Black F) | normal | stars=5 | reply=vocabulary",
+      "cus_japan | Customer 1 일본 손님 (CafeCustomers/Incoming/young_male_black/Appearance) | failed | stars=1 | reply=vocabulary",
+      "cus_china | Customer 1 중국 손님 (Black F) | normal | stars=5 | reply=vocabulary",
+      "cus_child | Customer 1 아이 (CafeCustomers/Incoming/child/Appearance) | failed | stars=1 | reply=vocabulary",
+      "cus_student | Customer 1 학생 (Student M) | normal | stars=5 | reply=vocabulary",
+      "cus_pangyo | Customer 1 판교 회사원 (CafeCustomers/Incoming/young_male_black/Appearance) | failed | stars=1 | reply=vocabulary",
+      "cus_barista | Customer 1 바리스타 지망생 (Black F) | normal | stars=5 | reply=vocabulary",
+      "cus_trainer | Customer 1 트레이너 (Black F) | failed | stars=1 | reply=vocabulary",
+      "cus_blind | Customer 1 시각장애인 손님 (Black M) | normal | stars=5 | reply=vocabulary",
+      "cus_miku | Customer 1 미쿠 (CafeCustomers/Incoming/young_female_miku/Appearance) | failed | stars=1 | reply=vocabulary",
+      "cus_kim_gyeran | Customer 1 김계란 (CafeCustomers/Incoming/middle_male_trainer/Appearance) | normal | stars=5 | reply=vocabulary"
+    ]
+  },
+  "liveReplies": [
+    {
+      "persona": "cus_miku",
+      "source": "api",
+      "seconds": 0.850692749,
+      "theme": "song rehearsal and rhythm"
+    },
+    {
+      "persona": "cus_kim_gyeran",
+      "source": "api",
+      "seconds": 1.08742523,
+      "theme": "walking/rest and recovery"
+    }
+  ],
+  "contracts": "PASS: Miku 5% arrival interval, other arrivals and direct MVP selection; failed serving and 1-star receipts for every persona, off-menu and both temperatures; unknown/double/late serving rejected; card recipes match brewing; shot preparation, ICE base, blending, mug and wrong-mixture recovery guidance. No main-scene Play/build.",
+  "data": "PASS 16 original personas + 2 branches, 11 menus, 198 weights, 37 situations; 72 normal orders + 18 off-menu substitutions, no menu-name leakage.",
+  "missingScripts": {
+    "CafeGame": 0,
+    "CafeCustomerMvp": 0
+  },
+  "newAssetGuidAndReferences": "pass",
+  "projectSettingsDiff": false,
+  "build": "not run",
+  "packages": {
+    "manifest.json": "43c1fbbe674ceaf102ffc95051e6fd2afae7ab19b4b20e07b6f9c41e19431a88",
+    "packages-lock.json": "87310d08345245d6a5cabc6b80ce56e8992b6e5fd44814f79fac4cb2037ff5e4"
+  },
+  "notVerified": [
+    "main-scene continuous brewing/physical F key/card selection animation",
+    "OS IME",
+    "notebook page interaction",
+    "other PC"
+  ],
+  "sourceHashes": {
+    "ai-hack-test/Assets/Cafe/Menu/CafeMenuBook.cs": "eaae26f84f1baa5b7ffdb4108c76028d2c442b28d6066ad6c51919116f76fddf",
+    "ai-hack-test/Assets/CafeSim/Runtime/CafeQueueSim.cs": "78b4092a4e4ed217647f5ee40aa80c4f92bc87c299c5646f58649d776d7087ef",
+    "ai-hack-test/Assets/CafeSim/Runtime/CafeServeCounter.cs": "38205a1b02abf3bc5e484f03116b976043be0fc62c01e124cebc28b8da913a10",
+    "ai-hack-test/Assets/Cafe/CafeBrewStation.Guidance.cs": "e55bb2876194557635c944a766cb3f66fc9c9b445d47120827cebe61a90b8b58",
+    "ai-hack-test/Assets/CafeSim/Editor/CafeCustomerMvpBuilder.cs": "abe52f02f9adc47f23937907391317bfd4dd6ba809d5f4533f687c837966c67a",
+    "ai-hack-test/Assets/CafeSim/Runtime/CafeCustomerMvp.cs": "76674305d8d665cc17bfffa3af5c423f77b72dde12ed24a772205b66011e8778",
+    "ai-hack-test/Assets/CafeSim/Runtime/CafeHud.Guidance.cs": "c209be22fd9472aa1f7f801df5d6986d7a098b0bfa01b1389c070a9b9445b6d8"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-06",
+  "scope": "Restore original personas and isolate Miku/Kim Gyeran as authored branches",
+  "originalPersonaCount": 16,
+  "branchCount": 2,
+  "total": 18,
+  "preservation": {
+    "originalSectionsEqualGitHead": [
+      "Data/personas.json:items",
+      "Data/ChatterLexicon.json:items",
+      "Resources/CafeVocabulary.json:items",
+      "Resources/CafeKnowledge/profiles.json:items",
+      "Resources/CafeKnowledge/orderWeights.json:items",
+      "Resources/CafeKnowledge/situations.json:items",
+      "Resources/CafeKnowledge/bindings.json:items",
+      "Resources/CafeKnowledge/conversation.json:items",
+      "Resources/CafeKnowledge/conversation.json:endings",
+      "Resources/CafeKnowledge/conversation.json:replyVocabulary",
+      "Resources/CafeCollection/collection.json:customers",
+      "Resources/CafeCollection/collection.json:phrases"
+    ],
+    "originalTermsEqualGitHead": true
+  },
+  "branches": [
+    {
+      "id": "cus_miku",
+      "parent": "cus_barista",
+      "name": "미쿠",
+      "identity": "청년 여성·통통한 미쿠 스타일"
+    },
+    {
+      "id": "cus_kim_gyeran",
+      "parent": "cus_trainer",
+      "name": "김계란",
+      "identity": "중년 남성·운동 코치"
+    }
+  ],
+  "authoring": "Data/PersonaBranches.json; tools/apply-cafe-persona-branches.py",
+  "checks": {
+    "generatorIdempotent": "pass",
+    "scriptSyntax": "pass",
+    "unityCompile": "pass",
+    "exclusiveModelMapping": "pass",
+    "independentDialogueFollowups": "pass",
+    "mugGrips": "pass",
+    "legacyVocabulary": "pass",
+    "separateCollectionProgress": "pass",
+    "original16EndingGate": "pass",
+    "originalPromptIsolation": "pass",
+    "orders": "72 normal + 18 off-menu substitutions pass; 18 people/198 weights/37 situations",
+    "queue": "pass FIFO, timeouts, chatter, duplicate service, similarity regression",
+    "branchPortraits": "pass; two portraits rendered from actual branch models, visually inspected and Resources loads confirmed",
+    "originalIcons": "untouched"
+  },
+  "notebook": {
+    "entries": 18,
+    "pageSize": 16,
+    "optionalBranches": 2,
+    "requiredForEnding": 16,
+    "layoutAndPhysicalPaging": "user Play validation pending"
+  },
+  "runtimeAI": "not called; scripted/retrieved dialogue only verified",
+  "play": "agent did not start Play",
+  "build": "not run",
+  "saveData": "not written/reset by checks",
+  "evidence": [
+    ".utmp/cafe-persona-branch-check.txt",
+    ".utmp/cafe-persona-branch-preservation.json",
+    ".utmp/cafe-data-check.txt",
+    ".utmp/cafe-queue-check.txt"
+  ],
+  "sourceHashes": {
+    "Data/personas.json": "c1743446595844e40f27d51d47843cd9da11d6077c993fd98f98e4c9ad0ec6b1",
+    "Data/PersonaBranches.json": "758872db866cd068c5e412212f3f3f07e9697d7f10b33c80f06f34e12b1acac8",
+    "Runtime/CafeData.cs": "01b4be254d480a31783adf4f2d614b0922fd95b203ec05d2f0e9032e4d08cfc1",
+    "Runtime/CafeCustomerCatalog.cs": "dceaceaac1dcf51cdf53b9876d6f4b2f4c0b788a7c66498ca06f3749f976e8de",
+    "Runtime/CafeConversation.cs": "1adf44b314c1942650450a51325bfb8057ba76ddcb408343a8fa060b605e440d",
+    "Runtime/CafeCollection.cs": "3521a5a72990dffc2d61bff9eb853e6ded4fb3dad591a21a2c9b6d80957351f2",
+    "Runtime/CafeHud.Notebook.cs": "5eb49fa77c6e8f74a440e781510d5b6f500dbdb8c7d987a420dcbb7e4464c695"
+  },
+  "packages": {
+    "manifest.json": "43c1fbbe674ceaf102ffc95051e6fd2afae7ab19b4b20e07b6f9c41e19431a88",
+    "packages-lock.json": "87310d08345245d6a5cabc6b80ce56e8992b6e5fd44814f79fac4cb2037ff5e4"
+  }
+}

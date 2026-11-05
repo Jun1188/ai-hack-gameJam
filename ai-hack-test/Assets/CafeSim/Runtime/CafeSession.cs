@@ -39,7 +39,6 @@ namespace CafeSim
   Coroutine chatRoutine,bootRoutine; CafeVisit chattingWith;
   readonly Dictionary<int,Transform> bodies=new Dictionary<int,Transform>();
   readonly System.Random appearanceRandom = new System.Random();
-  readonly CafeCustomerAppearance.SkinDeck customerSkins = new CafeCustomerAppearance.SkinDeck();
   readonly Dictionary<int,float> ratingDue=new Dictionary<int,float>();
   readonly List<CafeVisit> awaitingRating=new List<CafeVisit>();
   readonly HashSet<int> departed=new HashSet<int>();
@@ -54,6 +53,7 @@ namespace CafeSim
     if(menuData==null||personaData==null||customer==null||servicePoint==null||entrance==null)throw new InvalidOperationException("씬 참조 누락");
     Menu=JsonUtility.FromJson<MenuTable>(menuData.text);
     var people=JsonUtility.FromJson<PersonaTable>(personaData.text);
+    CafeCustomerCatalog.Reload();
     Queue=new CafeQueueSim(people.items,Menu,new CafeKnowledge(),queueSettings,Environment.TickCount);
     Conversation=new CafeConversation();closedChats.Clear();ChatError=null;ChatStatus="";
     if(model==null)model=GetComponent<LocalCafeModel>()??gameObject.AddComponent<LocalCafeModel>();
@@ -201,7 +201,6 @@ namespace CafeSim
      if (mergedCafe)
      {
       c.AppearanceSeed ??= appearanceRandom.Next();
-      c.AppearanceSkin ??= customerSkins.Draw(appearanceRandom);
       body = CafeCustomerAppearance.Spawn(this, c, new System.Random(c.AppearanceSeed.Value));
      }
      else

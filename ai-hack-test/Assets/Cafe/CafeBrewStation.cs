@@ -15,7 +15,7 @@ namespace MapleCafe
     }
 
     [DefaultExecutionOrder(20)]
-    public sealed class CafeBrewStation : MonoBehaviour
+    public sealed partial class CafeBrewStation : MonoBehaviour
     {
         public IDrinkReceiver Receiver { get; set; }
         internal bool TryGetVisibleBlender(out Bounds bounds)
@@ -446,7 +446,7 @@ namespace MapleCafe
             if (!invalid && iceWaterReady) mugIce?.SetDrinkColor(drink.Color);
             mugIce?.SetVisible(iceWaterReady && !invalid);
             finishedDrink = drink.Name;
-            finishedIced = iceWaterReady && !invalid;
+            finishedIced = iceWaterReady;
             mugName.text = drink.Name + (invalid ? "" : iceWaterReady ? "  ·  ICE" : "  ·  HOT");
             mugName.color = invalid ? new Color32(243, 174, 255, 255) : new Color32(255, 238, 210, 255);
             SetWarningEffect(invalid);

@@ -52,6 +52,7 @@ namespace MapleCafe
         internal bool HasSelectedCard => showPinned;
         internal bool HasPinnedCard => showPinned && pinProgress > 0f;
         internal string PinnedDrinkName => showPinned ? pinnedCard?.Item?.name : null;
+        internal MenuItem PinnedItem => showPinned ? pinnedCard?.Item : null;
         internal bool AllowConversationToggle { get; set; }
         internal bool HasCards => cards != null && cards.Length > 0;
         internal bool TutorialTabRequired { private get; set; }
@@ -447,12 +448,16 @@ namespace MapleCafe
         private void LayoutPinnedCard()
         {
             Rect viewport = canvasRect.rect;
-            float width = Mathf.Min(viewport.width * .23f, viewport.height * .43f * CardAspect);
+            // Reserve the right column; the task/chat panels end at x=920 in the fitted HUD.
+            float scale = Mathf.Min(viewport.width / 1280f, viewport.height / 720f);
+            Vector2 inset = (viewport.size - new Vector2(1280f, 720f) * scale) * .5f;
+            float width = 272f * scale;
             float height = width / CardAspect;
             float eased = Mathf.SmoothStep(0f, 1f, pinProgress);
             pinnedCard.Rect.sizeDelta = new Vector2(width, height);
             pinnedCard.Rect.anchoredPosition = new Vector2(
-                viewport.width * .012f, Mathf.Lerp(height * .12f, -viewport.height * .012f, eased));
+                viewport.width - inset.x - 24f * scale - width,
+                Mathf.Lerp(height, -inset.y - 140f * scale, eased));
             pinnedCard.Group.alpha = eased;
         }
 
