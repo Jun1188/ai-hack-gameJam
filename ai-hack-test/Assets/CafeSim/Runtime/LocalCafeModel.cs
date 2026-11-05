@@ -18,10 +18,23 @@ namespace CafeSim
         public bool Ready { get; private set; }
         public string Status { get; private set; } = "로컬 모델 준비 전";
         public string Error { get; private set; }
+        public bool Booting { get; private set; }
+        public string LastSource { get; private set; }
+        // Numeric diagnostics only. No prompts, keys, raw provider errors or dialogue.
+        [Serializable] public sealed class LocalTimings
+        { public int cache_n,prompt_n,predicted_n; public float prompt_ms,predicted_ms; }
+        public LocalTimings LastLocalTimings { get; private set; }
+        public string LastFailureStage { get; private set; }
+        float apiRetryAt,localRetryAt;
+        int requestEpoch;
+        bool transportFailed;
+        bool apiReady, localReady;
+        string apiToken;
         public int threads = 8;
         public int requestTimeoutSeconds = 300;
-        [Header("Live reply connection (database / topic gate stay local)")]
-        public CafeResponseBackend backend = CafeResponseBackend.LocalModel;
+        public int apiTimeoutSeconds = 20;
+        [Header("API first, then local model, then database reply")]
+        public CafeResponseBackend backend = CafeResponseBackend.Gemini;
         [Tooltip("Full OpenAI-compatible chat completions URL. HTTPS required except loopback.")]
         public string apiEndpoint = "";
         public string apiModel = "";
@@ -47,10 +60,17 @@ namespace CafeSim
             public bool stream = false;
             public ResponseFormat response_format = new ResponseFormat();
         }
-        [Serializable] sealed class LocalRequest : Request { public TemplateOptions chat_template_kwargs = new TemplateOptions(); }
+        [Serializable] sealed class LocalRequest : Request
+        {
+            public bool cache_prompt = true;
+            public TemplateOptions chat_template_kwargs = new TemplateOptions();
+            public float top_p = .9f;
+            public int top_k = 40;
+            public float repeat_penalty = 1f;
+        }
         [Serializable] sealed class ApiRequest : Request { public string model; }
         [Serializable] sealed class Choice { public Message message; public string finish_reason; }
-        [Serializable] sealed class Response { public Choice[] choices; }
+        [Serializable] sealed class Response { public Choice[] choices; public LocalTimings timings; }
         [Serializable] sealed class GeminiPart { public string text; }
         [Serializable] sealed class GeminiContent { public GeminiPart[] parts; }
         [Serializable] sealed class GeminiConfig { public float temperature=.6f; public int maxOutputTokens=512; public string responseMimeType="application/json"; }
@@ -72,22 +92,35 @@ namespace CafeSim
         public IEnumerator Boot()
         {
             Shutdown();
+            Booting = true;
+            try { yield return BootConnection(); }
+            finally { Booting = false; }
+        }
+        IEnumerator BootConnection()
+        {
             Error = null;
             ApplyLaunchOptions();
+            if(backend==CafeResponseBackend.Gemini&&string.IsNullOrWhiteSpace(apiEndpoint))ConfigureGemini();
             if(UseApi)
             {
                 if(!ValidApiEndpoint(apiEndpoint)||string.IsNullOrWhiteSpace(apiModel))
-                {Fail("API 주소(전체 chat/completions URL)와 모델명을 설정해 주세요. 외부 주소는 HTTPS여야 합니다.");yield break;}
-                token=!string.IsNullOrWhiteSpace(runtimeApiKey)?runtimeApiKey:
+                { yield return BootLocal(); yield break; }
+                apiToken=!string.IsNullOrWhiteSpace(runtimeApiKey)?runtimeApiKey:
                     string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
 #if UNITY_EDITOR
                 string keyPath=Path.Combine(Application.dataPath,"../UserSettings/CafeChatApiKey.txt");
-                if(string.IsNullOrWhiteSpace(token)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))token=File.ReadAllText(keyPath).Trim();
+                if(string.IsNullOrWhiteSpace(apiToken)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))apiToken=File.ReadAllText(keyPath).Trim();
 #endif
-                if(!string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)&&string.IsNullOrWhiteSpace(token))
-                {Fail("API 키 환경변수 "+apiKeyEnvironmentVariable+"를 설정한 뒤 응답 연결을 재시작해 주세요.");yield break;}
-                Ready=true;Status="API 설정 준비 완료 · 연결은 전송 시 확인";yield break;
+                if(!string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)&&string.IsNullOrWhiteSpace(apiToken))
+                { yield return BootLocal(); yield break; }
+                apiReady=true;Ready=true;Status="API 우선 · 실패 시 로컬 모델 / 자동 답변";yield break;
             }
+            yield return BootLocal();
+        }
+        IEnumerator BootLocal()
+        {
+            if(localReady&&server!=null&&!server.HasExited)yield break;
+            StopServer();
             if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.WindowsEditor)
             { Fail("이 추론 패키지는 Windows x64용입니다."); yield break; }
             string root = PayloadPath;
@@ -118,23 +151,25 @@ namespace CafeSim
                 if (!server.Start()) throw new InvalidOperationException();
                 server.BeginOutputReadLine(); server.BeginErrorReadLine();
             }
-            catch (Exception e) { Fail("추론 엔진을 시작하지 못했습니다: " + e.GetType().Name); Shutdown(); yield break; }
+            catch (Exception e) { Fail("추론 엔진을 시작하지 못했습니다: " + e.GetType().Name); StopServer(); yield break; }
             Status = "로컬 모델을 메모리에 불러오는 중…";
             float deadline = Time.realtimeSinceStartup + 240f;
             while (Time.realtimeSinceStartup < deadline)
             {
-                if (server == null || server.HasExited) { Fail("추론 엔진이 종료되었습니다. 메모리와 배포 파일을 확인하세요."); Shutdown(); yield break; }
+                if (server == null || server.HasExited) { Fail("추론 엔진이 종료되었습니다. 메모리와 배포 파일을 확인하세요."); StopServer(); yield break; }
                 using (var health = UnityWebRequest.Get(baseUrl + "/health"))
                 {
                     health.timeout = 3;
                     health.SetRequestHeader("Authorization", "Bearer " + token);
+                    activeRequest=health;
                     yield return health.SendWebRequest();
+                    activeRequest=null;
                     if (health.result == UnityWebRequest.Result.Success && !server.HasExited)
-                    { Ready = true; Status = "로컬 모델 준비 완료 · 오프라인 CPU"; yield break; }
+                    { localReady = true; Ready = true; Error=null; Status = "로컬 모델 준비 완료 · 실패 시 자동 답변"; yield break; }
                 }
                 yield return new WaitForSecondsRealtime(0.5f);
             }
-            Fail("모델 로딩 시간이 초과되었습니다. 다시 시도해 주세요."); Shutdown();
+            Fail("모델 로딩 시간이 초과되었습니다. 자동 답변을 사용합니다."); StopServer();
         }
 
         static void DiscardOutput(object sender, DataReceivedEventArgs args) { }
@@ -160,15 +195,47 @@ namespace CafeSim
             }
         }
 
-        public IEnumerator Generate(string prompt, Action<string> success, Action<string> failure, string systemPrompt = null, int maxTokens = 96)
+        public IEnumerator Generate(string prompt, Action<string> success, Action<string> failure, string systemPrompt = null, int maxTokens = 96,
+            string localPrompt = null, Func<string,bool> localReplyValidator = null)
         {
-            if (!Ready || (!UseApi&&(server == null || server.HasExited))) { Ready = false; failure("응답 연결이 끊어졌습니다. 응답 연결 재시작을 눌러 주세요."); yield break; }
-            Request data=UseApi?(Request)new ApiRequest{model=apiModel}:new LocalRequest();
+            int epoch=requestEpoch;
+            while(Booting){if(epoch!=requestEpoch)yield break;yield return null;}
+            LastSource=null;LastFailureStage=null;LastLocalTimings=null;
+            string result=null,error=null;
+            if(apiReady&&Time.realtimeSinceStartup>=apiRetryAt)
+            {
+                yield return GenerateOne(true,prompt,x=>result=x,x=>error=x,systemPrompt,maxTokens);
+                if(epoch!=requestEpoch)yield break;
+                if(error==null&&ValidReply(result,systemPrompt)){LastSource="api";success(result);yield break;}
+                LastFailureStage="api";if(transportFailed)apiRetryAt=Time.realtimeSinceStartup+15f;
+            }
+            if(epoch!=requestEpoch)yield break;
+            if(Time.realtimeSinceStartup<localRetryAt){failure("automatic");yield break;}
+            yield return BootLocal();
+            if(epoch!=requestEpoch)yield break;
+            if(localReady)
+            {
+                result=null;error=null;
+                string localSystem=systemPrompt==CafeConversation.SystemPrompt?CafeConversation.LocalSystemPrompt:systemPrompt;
+                yield return GenerateOne(false,localPrompt??prompt,x=>result=x,x=>error=x,localSystem,maxTokens);
+                if(epoch!=requestEpoch)yield break;
+                if(error==null&&ValidReply(result,systemPrompt)&&(localReplyValidator==null||localReplyValidator(result)))
+                {LastSource="model";success(result);yield break;}
+            }
+            LastFailureStage="local";if(!localReady||transportFailed)localRetryAt=Time.realtimeSinceStartup+15f;
+            failure("automatic");
+        }
+        static bool ValidReply(string json,string systemPrompt)=>systemPrompt!=CafeConversation.SystemPrompt||CafeConversation.Parse(json,out _);
+        IEnumerator GenerateOne(bool useApi,string prompt,Action<string> success,Action<string> failure,string systemPrompt,int maxTokens)
+        {
+            transportFailed=false;
+            if(!useApi&&(server==null||server.HasExited)){localReady=false;failure("로컬 모델 연결 종료");yield break;}
+            Request data=useApi?(Request)new ApiRequest{model=apiModel}:new LocalRequest();
             data.max_tokens=Mathf.Clamp(maxTokens,32,256);
             data.messages = new[] { new Message { role = "system", content = systemPrompt ?? CafePrompts.System },
                 new Message { role = "user", content = prompt } };
-            bool gemini=backend==CafeResponseBackend.Gemini;
-            string endpoint=gemini?apiEndpoint.TrimEnd('/')+"/"+Uri.EscapeDataString(apiModel)+":generateContent":UseApi?apiEndpoint:baseUrl+"/v1/chat/completions";
+            bool gemini=useApi&&backend==CafeResponseBackend.Gemini;
+            string endpoint=gemini?apiEndpoint.TrimEnd('/')+"/"+Uri.EscapeDataString(apiModel)+":generateContent":useApi?apiEndpoint:baseUrl+"/v1/chat/completions";
             string payload=JsonUtility.ToJson(data);
             if(gemini)payload=JsonUtility.ToJson(new GeminiRequest{
                 systemInstruction=new GeminiContent{parts=new[]{new GeminiPart{text=systemPrompt??CafePrompts.System}}},
@@ -180,12 +247,13 @@ namespace CafeSim
                 request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(payload));
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                if(!string.IsNullOrWhiteSpace(token))request.SetRequestHeader(gemini?"x-goog-api-key":"Authorization",gemini?token:"Bearer "+token);
-                request.timeout = requestTimeoutSeconds;
+                string requestToken=useApi?apiToken:token;
+                if(!string.IsNullOrWhiteSpace(requestToken))request.SetRequestHeader(gemini?"x-goog-api-key":"Authorization",gemini?requestToken:"Bearer "+requestToken);
+                request.timeout = Mathf.Clamp(useApi?apiTimeoutSeconds:requestTimeoutSeconds,1,300);
                 yield return request.SendWebRequest();
                 activeRequest = null;
                 if (request.result != UnityWebRequest.Result.Success)
-                { failure(ApiFailure(request.responseCode)); yield break; }
+                { transportFailed=true;failure(ApiFailure(request.responseCode)); yield break; }
                 string text = null;
                 try
                 {
@@ -198,6 +266,7 @@ namespace CafeSim
                     else
                     {
                         var response=JsonUtility.FromJson<Response>(request.downloadHandler.text);
+                        if(!useApi)LastLocalTimings=response?.timings;
                         if(response?.choices?.Length>0&&response.choices[0].finish_reason=="stop")text=response.choices[0].message?.content?.Trim();
                     }
                 }
@@ -214,11 +283,17 @@ namespace CafeSim
             if(code==429)return "API 요청 한도에 도달했습니다 (HTTP 429). 잠시 후 다시 시도해 주세요.";
             return "손님 응답을 받지 못했습니다 (HTTP "+code+"). 연결 상태를 확인한 뒤 다시 시도해 주세요.";
         }
-        void Fail(string message) { Error = message; Status = message; Ready = false; }
-        public void CancelRequest() { activeRequest?.Abort(); activeRequest = null; }
+        void Fail(string message) { Error = message; Status = "자동 답변으로 대화할 수 있어요"; Ready = apiReady; }
+        public void CancelRequest() { requestEpoch++;activeRequest?.Abort(); activeRequest = null; }
         public void Shutdown()
         {
-            Ready = false; CancelRequest();
+            Ready = false; apiReady=false;localReady=false;apiToken=null; CancelRequest();
+            apiRetryAt=localRetryAt=0;LastFailureStage=null;LastLocalTimings=null;
+            StopServer();
+        }
+        void StopServer()
+        {
+            localReady=false;
             if (server == null) return;
             try { if (!server.HasExited) { server.Kill(); server.WaitForExit(3000); } }
             catch (Exception e) { Debug.LogWarning("Cafe local process cleanup: " + e.GetType().Name); }

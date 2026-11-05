@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-06",
+  "unityReferenceVersion": "6000.6.8f1",
+  "compile": {
+    "kind": "Roslyn using existing Unity Assembly-CSharp response file and reference assemblies; outputs redirected to ignored .utmp",
+    "exitCode": 0,
+    "errors": 0,
+    "warnings": ["FindFirstObjectByType deprecated", "EventBase.PreventDefault deprecated", "DEVELOPMENT_BUILD directive deprecated"],
+    "editorImportExecuted": false
+  },
+  "isolatedChecks": {
+    "runner": ".utmp/cafe-pipeline-check/Check.csproj",
+    "kind": "Actual runtime C# and JSON with substituted Unity Resources, JsonUtility, time and UnityWebRequest; no real HTTP or inference",
+    "exitCode": 0,
+    "personas": 16,
+    "httpErrorSimulationCodes": [0, 401, 402, 403, 429, 500, 503],
+    "invalidApiResponseSimulations": [
+      "HTTP 200 containing API diagnostic speech",
+      "HTTP 200 containing server diagnostic speech",
+      "HTTP 200 containing HTTP status diagnostic speech",
+      "empty speech",
+      "invalid response envelope JSON",
+      "finish_reason length",
+      "empty choices"
+    ],
+    "passed": [
+      "API success short-circuits local generation",
+      "HTTP and invalid API response fall through to local generation",
+      "Both transport failures return internal automatic handoff, never raw error speech",
+      "Final automatic reply is valid guest speech",
+      "15 second transport cooldown skips failed connections and recovers afterwards",
+      "Malformed content alone does not open a transport cooldown",
+      "API and local authorization remain separate",
+      "API request uses 20 second default deadline",
+      "Local request includes explicit cache_prompt true and its own compact prompt",
+      "Local numeric timings are extracted",
+      "Cancellation prevents callbacks and fallback after the aborted request",
+      "Cancellation during startup wait produces no late callback",
+      "Authored persona wrapper cache reuses data and invalidates after persona changes",
+      "Player dialogue remains isolated by visit",
+      "Novel local speech need not match supplied candidates or punctuation templates",
+      "Recent repeated local speech is rejected",
+      "Changing topic does not automatically close chat",
+      "Explicit farewell closes automatic conversation",
+      "Provider diagnostics and unresolved slots are rejected",
+      "Ordinary guest stories involving API errors remain allowed",
+      "16 persona automatic reply, threshold, intent, retrieval and anti-repetition checks"
+    ]
+  },
+  "notExecuted": [
+    "Unity Editor import and Play Mode",
+    "Game build or built player execution",
+    "External API calls",
+    "Real local inference or local server startup",
+    "Physical input and UI observation",
+    "Before/after latency comparison and actual KV cache hit measurement",
+    "Continuous dialogue quality, story consistency and player enjoyment",
+    "Updated CafeChatSmoke"
+  ],
+  "scope": {
+    "sceneOrPrefabChanged": false,
+    "queueOrScoringChanged": false,
+    "newStoryContentImplemented": false,
+    "longVisitModeImplemented": false,
+    "committedOrPushed": false
+  },
+  "sourceSha256": {
+    "CafeConversation.cs": "345570D3BD36455E1D1CFA7F902AFF5FE056BA3A2E1351B2C985405BEFCD9622",
+    "LocalCafeModel.cs": "53C1C23327C8C94E770C143FDF91AB88F10F48F0078A3938CBEDD2D45727FF47",
+    "CafeSession.cs": "AA6493EAF8E4196C0864AA8E9FCEF85FB0765D82B8431CB70147D766B0889E49",
+    "CafeChatSmoke.cs": "6216449A4EDC7276C034EA61A5EF19EE30B2D72984B9147F5D85776EE86A2C68"
+  },
+  "unchangedPackageSha256": {
+    "manifest.json": "43C1FBBE674CEAF102FFC95051E6FD2AFAE7AB19B4B20E07B6F9C41E19431A88",
+    "packages-lock.json": "87310D08345245D6A5CABC6B80CE56E8992B6E5FD44814F79FAC4CB2037FF5E4"
+  },
+  "limitations": [
+    "Synthetic transport checks do not establish actual networking or process cleanup behavior",
+    "Error speech detection is a diagnostic-shape heuristic, not a semantic classifier",
+    "No measured speedup or real dialogue quality claim is made",
+    "Earlier Play results and timings describe earlier source and are not current acceptance evidence"
+  ]
+}
