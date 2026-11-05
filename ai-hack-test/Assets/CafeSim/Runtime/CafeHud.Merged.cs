@@ -20,12 +20,12 @@ namespace CafeSim
         float bubbleStart, bubbleUntil, bubbleDuration, ratingBubbleUntil, hintUntil;
         Camera eyes;
         // Menu-card palette: warm paper, dark-brown ink, roasted-orange accent.
-        readonly Color paper=new Color32(253,246,228,255), ink=new Color32(66,42,28,255), accent=new Color32(190,104,46,255);
+        internal static readonly Color paper=new Color32(253,246,228,255), ink=new Color32(66,42,28,255), accent=new Color32(190,104,46,255);
         Texture2D paperTex, tailTex, capTex, buttonTex, buttonHoverTex;
         GUIStyle artText, artSmall, artLabel, artStars, artCap, artButton, paperBox;
         bool inputStyled;
         void Start(){if(mergedCafe&&session!=null){session.DialogueOutput+=OnDialogue;subscribed=true;}}
-        void OnDestroy(){foreach(var t in new[]{paperTex,tailTex,capTex,buttonTex,buttonHoverTex})if(t!=null)Destroy(t);}
+        void OnDestroy(){foreach(var t in new[]{paperTex,tailTex,capTex,buttonTex,buttonHoverTex})if(t!=null)Destroy(t);DestroyDayTextures();}
         void OnDialogue(CafeVisit visit,string kind,string line)
         {
             if(kind=="USER"||kind=="SERVED")return;
@@ -54,6 +54,8 @@ namespace CafeSim
         {
             if(!subscribed&&session!=null){session.DialogueOutput+=OnDialogue;subscribed=true;}
             EnsureChatInput();
+            // Speech and hint timers are real-time; hold them while the day is paused.
+            if(Halted){float dt=Time.unscaledDeltaTime;bubbleStart+=dt;bubbleUntil+=dt;ratingBubbleUntil+=dt;hintUntil+=dt;if(promptOpen)SetPrompt(false);}
             if(deferredSpeech!=null&&Time.unscaledTime>=ratingBubbleUntil){ShowSpeech(deferredSpeaker,deferredSpeech,deferredStars);latestKind=deferredKind;deferredSpeech=null;deferredKind=null;}
             // Customers order on admission; hold the line until they have walked up to the counter.
             var walker=session.BodyOf(speaker);
@@ -76,6 +78,8 @@ namespace CafeSim
                 chatInput.SetEnabled(inputCanEdit);
             }
             ApplyOverlayControls();
+            UpdateClock();
+            cardsWereOpen=barista!=null&&barista.ChoosingMenuCard;
         }
         void StyleChatInput()
         {
@@ -90,8 +94,9 @@ namespace CafeSim
         }
         void ApplyOverlayControls()
         {
-            if(barista!=null)barista.ExternalUIActive=promptOpen;
-            if(promptOpen){UnityEngine.Cursor.lockState=CursorLockMode.None;UnityEngine.Cursor.visible=true;}
+            bool overlay=promptOpen||Halted;
+            if(barista!=null)barista.ExternalUIActive=overlay;
+            if(overlay){UnityEngine.Cursor.lockState=CursorLockMode.None;UnityEngine.Cursor.visible=true;}
         }
         int shortcutFrame=-1;
         void HandleOverlayKey(KeyCode key)
@@ -102,6 +107,7 @@ namespace CafeSim
             if(key==KeyCode.E&&promptOpen&&(inputFocused||GUIUtility.keyboardControl!=0))return;
             // The drink cards own the cursor and Esc while they are open.
             if(barista!=null&&barista.ChoosingMenuCard)return;
+            if(HandleDayKey(key)){shortcutFrame=Time.frameCount;return;}
             if(key==KeyCode.Escape&&!promptOpen)return;
             shortcutFrame=Time.frameCount;
             if(key==KeyCode.E&&!promptOpen&&!session.CanChat){ShowHint(session.Queue!=null&&session.Queue.Inactive.Count>0?"손님이 주문하러 오는 중이에요":"대화할 손님이 없어요");return;}
@@ -137,7 +143,7 @@ namespace CafeSim
             paperBox.Draw(rect,false,false,false,false);
         }
         // Rounded card with an inked outline, drawn as a nine-slice background.
-        static Texture2D Rounded(int size,float radius,Color fill,Color line,float width)
+        internal static Texture2D Rounded(int size,float radius,Color fill,Color line,float width)
         {
             var tex=new Texture2D(size,size,TextureFormat.RGBA32,false){wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Bilinear};
             var pixels=new Color[size*size];float half=size*.5f;
@@ -175,9 +181,11 @@ namespace CafeSim
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);
             Vector2 offset=new Vector2((Screen.width-1280*scale)*.5f,(Screen.height-720*scale)*.5f);
             GUI.matrix=Matrix4x4.TRS(offset,Quaternion.identity,Vector3.one*scale);
+            DayStyles();
             DrawSpeech(scale,offset);
             if(promptOpen)DrawChat(scale);
-            DrawControls();
+            if(!Halted)DrawControls();
+            DrawDayOverlay();
             GUI.matrix=previous;
         }
         void DrawSpeech(float scale,Vector2 offset)
@@ -220,7 +228,7 @@ namespace CafeSim
                 float w=artSmall.CalcSize(new GUIContent(hint)).x+36;var r=new Rect(1256-w,668,w,38);
                 Paper(r);GUI.Label(new Rect(r.x+18,r.y+10,w,24),hint,artSmall);return;
             }
-            var keys=promptOpen?new[]{"Enter","전송","Esc","닫기"}:new[]{"E","손님과 대화","Tab","메뉴 카드","F","제조 · 서빙"};
+            var keys=promptOpen?new[]{"Enter","전송","Esc","닫기"}:new[]{"E","손님과 대화","Tab","메뉴 카드","F","제조 · 서빙","Esc","일시정지"};
             float total=20;
             for(int i=0;i<keys.Length;i+=2)total+=Mathf.Max(32,artCap.CalcSize(new GUIContent(keys[i])).x)+8+artSmall.CalcSize(new GUIContent(keys[i+1])).x+18;
             Rect panel=new Rect(1256-total,664,total,42);Paper(panel);

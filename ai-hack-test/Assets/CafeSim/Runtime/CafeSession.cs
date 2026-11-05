@@ -14,6 +14,7 @@ namespace CafeSim
   public bool mergedCafe;
   // Inside of the cafe door. Merged customers queue toward it and enter/leave through it; entrance is the street outside.
   public Transform doorway;
+  [NonSerialized] public bool Paused;
   public event Action<CafeVisit,string,string> DialogueOutput;
   public readonly List<string> DialogueLog=new List<string>();
   public MenuTable Menu {get;private set;}
@@ -60,6 +61,8 @@ namespace CafeSim
   void Update()
   {
    if(Queue==null||Error!=null)return;
+   // A paused or closed business day stops the queue clock and the walking customers.
+   if(Paused){lastTime=Time.realtimeSinceStartup;return;}
    float now=Time.realtimeSinceStartup,dt=Mathf.Max(0,now-lastTime);lastTime=now;Queue.Tick(dt);
    for(int i=awaitingRating.Count-1;i>=0;i--){var c=awaitingRating[i];if(Queue.Now<ratingDue[c.Id])continue;awaitingRating.RemoveAt(i);ratingDue.Remove(c.Id);Queue.PublishRating(c);}
    RefreshSelection();UpdateBodies();
@@ -111,6 +114,7 @@ namespace CafeSim
    awaitingRating.Add(c);ratingDue[c.Id]=Queue.Now+reactionReadSeconds;selectedUntil=Queue.Now+reactionReadSeconds+ratingReadSeconds;
    return true;
   }
+  public IEnumerable<Transform> Bodies=>bodies.Values;
   public Transform BodyOf(CafeVisit c)=>c!=null&&bodies.TryGetValue(c.Id,out var body)?body:null;
   void RecordDialogue(CafeVisit c,string kind,string line)
   {

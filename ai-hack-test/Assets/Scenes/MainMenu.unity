@@ -682,11 +682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b02f576009b75643b6c645c1c4767f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameScene: test-loop-merge02
+  gameScene: CafeGame
   startButton: {fileID: 204167886}
   settingsButton: {fileID: 1309823279}
   quitButton: {fileID: 64771947}
   notice: {fileID: 1949347445}
+  optionsFont: {fileID: 12800000, guid: a65369236702f7846af10899275e8b61, type: 3}
 --- !u!114 &1807034844
 MonoBehaviour:
   m_ObjectHideFlags: 0

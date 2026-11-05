@@ -28,6 +28,7 @@ namespace MapleCafe
             set {if(externalUIActive!=value){ignoreLookUntilFrame=Time.frameCount+2;menuChangedFrame=Time.frameCount;}externalUIActive=value;}
         }
         public bool ChoosingMenuCard => choosingMenuCard;
+        public float MouseSensitivity { get => mouseSensitivity; set => mouseSensitivity = Mathf.Clamp(value, CafeSim.CafeSettings.MinSensitivity, CafeSim.CafeSettings.MaxSensitivity); }
         public bool CanInteract => !ExternalUIActive && !choosingMenuCard && menuChangedFrame != Time.frameCount
             && Application.isFocused && Cursor.lockState == CursorLockMode.Locked;
 
