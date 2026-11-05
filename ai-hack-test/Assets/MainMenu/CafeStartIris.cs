@@ -11,16 +11,25 @@ namespace CafeSim
         private const float RevealSeconds = 1.8f;
         private static readonly int Aperture = Shader.PropertyToID("_Aperture");
         private static CafeStartIris current;
+        private static int lastBlockedInputFrame = -1;
         internal static bool Active => current != null;
+        internal static bool BlocksInput => Active || Time.frameCount == lastBlockedInputFrame;
 
         private Material apertureMaterial;
         private bool cursorWasVisible;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetInputLock()
+        {
+            current = null;
+            lastBlockedInputFrame = -1;
+        }
 
         internal static void Play(string scene, Action onLoadFailed)
         {
             if (Active) return;
 
-            var overlay = new GameObject("Cafe start iris", typeof(RectTransform), typeof(Canvas));
+            var overlay = new GameObject("Cafe start iris", typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster));
             current = overlay.AddComponent<CafeStartIris>();
             DontDestroyOnLoad(current.gameObject);
             current.BuildOverlay();
@@ -70,6 +79,8 @@ namespace CafeSim
         {
             if (apertureMaterial != null) Destroy(apertureMaterial);
             if (current != this) return;
+            // Don't let a key press from the last masked frame reach the cafe.
+            lastBlockedInputFrame = Time.frameCount;
             if (!CafeEnding.Active) Cursor.visible = cursorWasVisible;
             current = null;
         }
@@ -86,7 +97,7 @@ namespace CafeSim
             rect.anchorMin = Vector2.zero;
             rect.anchorMax = Vector2.one;
             rect.offsetMin = rect.offsetMax = Vector2.zero;
-            mask.raycastTarget = false;
+            mask.raycastTarget = true;
 
             var shader = Resources.Load<Shader>("CafeStartIris");
             if (shader == null || !shader.isSupported)

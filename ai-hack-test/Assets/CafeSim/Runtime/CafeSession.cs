@@ -127,15 +127,6 @@ namespace CafeSim
   }
   public IEnumerable<Transform> Bodies=>bodies.Values;
   public Transform BodyOf(CafeVisit c)=>c!=null&&bodies.TryGetValue(c.Id,out var body)?body:null;
-  internal bool HasStartedDeparture(CafeVisit visit)
-  {
-   if(visit==null||visit.State!=VisitState.Received||!visit.RatingPublished)return false;
-   var body=BodyOf(visit);
-   if(body==null)return departed.Contains(visit.Id);
-   Vector3 route=ThroughDoor(body.position,entrance.position)-body.position;
-   route.y=0f;
-   return route.sqrMagnitude<.0025f||Vector3.Dot(body.forward,route.normalized)>.8f;
-  }
   void RecordDialogue(CafeVisit c,string kind,string line)
   {
    if(kind=="ARRIVING")return;

@@ -16,6 +16,7 @@ namespace CafeSim
 
         RenderTexture receiptBackdrop;
         bool backdropRequested, backdropReady, receiptPaint;
+        bool receiptAdvanceRequested;
         Texture2D zigzagTex, stampTex, softBoxTex, primaryTex, primaryHoverTex, secondaryTex, secondaryHoverTex;
         GUIStyle rText, rSmall, rTiny, rBold, rTitle, rHead, rTotal, rQuote, rStampLabel, rStampGrade, rBoxStyle, rStampStyle, rPrimary, rSecondary;
         Font receiptFont;
@@ -55,6 +56,8 @@ namespace CafeSim
             secondaryTex = Rounded(32, 8, receiptPaper, receiptInk, 2);
             secondaryHoverTex = Rounded(32, 8, receiptBox, receiptInk, 2);
             rPrimary = ReceiptButton(primaryTex, primaryHoverTex, receiptPaper);
+            rPrimary.font = artFont != null ? artFont : receiptFont;
+            rPrimary.fontStyle = artFont != null ? FontStyle.Normal : FontStyle.Bold;
             rSecondary = ReceiptButton(secondaryTex, secondaryHoverTex, receiptInk);
             paperMat = LoadMaterial("CafeShaders/ReceiptPaper");
             stampWearMat = LoadMaterial("CafeShaders/StampWear");
@@ -151,6 +154,17 @@ namespace CafeSim
 
         // ----- Receipt -----
 
+        bool TryAdvanceFromReceipt()
+        {
+            if (receiptAdvanceRequested || businessDay == null || !businessDay.Closed || notebookOpen || promptOpen || CafeEnding.Active)
+                return false;
+
+            receiptAdvanceRequested = true;
+            if (CafeCollection.Instance.EndingDue) BeginEnding();
+            else businessDay.NextDay();
+            return true;
+        }
+
         void DrawReceipt()
         {
             ReceiptStyles();
@@ -194,11 +208,8 @@ namespace CafeSim
                 collection.MarkEndingPending(CafeBusinessDay.Day + 1);
                 businessDay.ExitToMenu();
             }
-            if (GUI.Button(new Rect(bx + buttonWidth + buttonGap, by, buttonWidth, buttonHeight), "다음 영업일  →", rPrimary))
-            {
-                if (collection.EndingDue) BeginEnding();
-                else businessDay.NextDay();
-            }
+            if (GUI.Button(new Rect(bx + buttonWidth + buttonGap, by, buttonWidth, buttonHeight), "다음 영업일  Enter", rPrimary))
+                TryAdvanceFromReceipt();
             var hint = Center(Derive(rSmall, 12));
             hint.normal.textColor = new Color(1, .95f, .85f, .9f);
             GUI.Label(new Rect(bx, by + buttonHeight + 2, rowWidth, 16), "Q  영업 수첩 보기", hint);

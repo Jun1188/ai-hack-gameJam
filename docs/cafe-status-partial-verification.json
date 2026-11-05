@@ -102,5 +102,22 @@
     "indexOnlyEditorSources": 6,
     "passed": true,
     "separateWorkingTreeDependenciesExcluded": true
+  },
+  "latestBaseIntegration": {
+    "commit": "4dd2b6e74dc34f4b5902ebc60939d1fdbe1054fc",
+    "scopedRuntimeAndEditorCompilePassed": true,
+    "unityRecompilePassed": true,
+    "closedReceiptAdvanceBlockedWhileStatusOpen": true,
+    "receiptAdvanceRequestedWhileStatusOpen": false,
+    "historyInputEnabled": false,
+    "liveInputEnabled": true,
+    "lastIrisFrameBlocksInput": true,
+    "tutorialTabPausesThenOpensCardsAndResumes": true,
+    "receiptProfit": 20900,
+    "clock": 64800,
+    "consoleErrors": 0,
+    "collectionSaveHashUnchanged": true,
+    "restoredScene": "MainMenu",
+    "inputVerification": "method invocation in Editor Play Mode; physical keyboard/full day loop not executed"
   }
 }

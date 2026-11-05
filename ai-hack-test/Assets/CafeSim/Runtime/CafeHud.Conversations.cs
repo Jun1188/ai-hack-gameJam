@@ -14,7 +14,7 @@ namespace CafeSim
         bool ViewingLiveConversation => !conversationFromList && session != null && session.CanChat &&
             session.Selected.Person.id == conversationPersona;
         bool CanSubmitConversation => promptOpen && !conversationListOpen && !RecipeCardsOpen &&
-            ViewingLiveConversation && !session.ChatBusy && !session.ChatClosed && !Halted && !CafeStartIris.Active;
+            ViewingLiveConversation && !session.ChatBusy && !session.ChatClosed && !Halted && !CafeStartIris.BlocksInput;
 
         void OpenLiveConversation()
         {

@@ -36,6 +36,7 @@ namespace CafeSim
         {
             BindKeyboard();
             if(mergedCafe){UpdateMerged();return;}
+            if(CafeStartIris.BlocksInput)return;
             // UI Toolkit control state must not depend on whether IMGUI received a
             // Repaint. Game-view focus, cursor mode and selection can change between them.
             if(chatInput!=null)
@@ -52,6 +53,11 @@ namespace CafeSim
         {
             StopSpeechVoice();
             if (tutorialMenu != null) tutorialMenu.SetTutorialCardFocus(false);
+            if (TutorialTabRequired)
+            {
+                tutorialStage = TutorialStage.Done;
+                EndTutorialTabPrompt();
+            }
             CloseTutorial(false);
             if(speechRoot!=null)speechRoot.gameObject.SetActive(false);
             if(imeKeyboard!=null)imeKeyboard.onIMECompositionChange-=OnComposition;imeKeyboard=null;
@@ -88,6 +94,7 @@ namespace CafeSim
             chatInput.RegisterCallback<FocusOutEvent>(_=>{inputFocused=false;if(player!=null)player.TextInputActive=false;});
             chatInput.RegisterCallback<KeyDownEvent>(e=>
             {
+                if(CafeStartIris.BlocksInput)return;
                 if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
                 // Global overlay shortcuts are processed once in Update, even while this field is focused.
                 // Esc is handled once in Update; Tab must not move focus out of the field.
@@ -178,7 +185,7 @@ namespace CafeSim
         }
         void OnGUI()
         {
-            if (session == null || (mergedCafe && CafeStartIris.Active)) return;
+            if (session == null || CafeStartIris.BlocksInput) return;
             Styles();
             EnsureChatInput();
             if(mergedCafe){DrawMerged();return;}
