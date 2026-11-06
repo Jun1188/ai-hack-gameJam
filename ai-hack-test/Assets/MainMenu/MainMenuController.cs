@@ -274,6 +274,7 @@ public sealed class MainMenuController : MonoBehaviour
 
     private void SetSettingsOpen(bool open)
     {
+        if(open)options?.ReloadModelDraft();
         settingsOpen = open;
         // IMGUI does not block the uGUI buttons underneath, so they stop taking clicks meanwhile.
         if (menuRaycaster != null) menuRaycaster.enabled = !open;

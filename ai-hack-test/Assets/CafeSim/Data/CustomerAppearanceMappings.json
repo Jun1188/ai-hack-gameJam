@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/young_male_black/Appearance.prefab",
+      "personaIds": [
+        "cus_sea",
+        "cus_japan",
+        "cus_chungcheong",
+        "cus_gangwon",
+        "cus_blind"
+      ],
+      "description": "청년 남성 공용 외형 (Black)",
+      "height": 1.75,
+      "mappingReason": "사용자 승인 공용 모델 매핑. 페르소나별 대사·주문·기록은 독립 유지."
+    },
+    {
+      "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Appearance.prefab",
+      "personaIds": [
+        "cus_kim_gyeran",
+        "cus_elder"
+      ],
+      "description": "수염 남성 공용 외형 (김계란·어르신)",
+      "height": 1.75,
+      "mappingReason": "사용자 승인 공용 모델 매핑. 페르소나별 대사·주문·기록은 독립 유지."
+    },
+    {
+      "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/shared_adult_female/Appearance.prefab",
+      "personaIds": [
+        "cus_jeju",
+        "cus_jeolla",
+        "cus_west",
+        "cus_china",
+        "cus_barista",
+        "cus_trainer"
+      ],
+      "description": "성인 여성 공용 외형 · 할머니/20대 여성 모델 수신 전 임시 연결",
+      "height": 1.64,
+      "mappingReason": "사용자 승인 공용 모델 매핑. 제주의 노년 설정 유지, 할머니와 20대 여성 모델 수신 후 교체 예정."
+    }
+  ]
+}

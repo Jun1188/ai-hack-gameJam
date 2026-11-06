@@ -6,6 +6,7 @@ namespace CafeSim
     public sealed partial class CafeHud
     {
         bool conversationListOpen, conversationFromList;
+        bool currentTaskVisible;
         string conversationPersona;
         Vector2 conversationListScroll, conversationScroll;
         int threadEntryCount = -1;

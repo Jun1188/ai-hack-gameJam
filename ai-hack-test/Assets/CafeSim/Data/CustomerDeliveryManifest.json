@@ -192,6 +192,159 @@
           "reused": false
         }
       ]
+    },
+    {
+      "archive": "Pangyo developer.zip",
+      "sha256": "7060b4263c61adf6a9e248ed2c6d4b93634f4b5887d82af2a7a7e13e8244db0a",
+      "personaIds": [
+        "cus_pangyo"
+      ],
+      "files": [
+        {
+          "source": "Idle.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Idle.fbx",
+          "sha256": "24681ce4fffc3f00ef61088923fc2ccf01e2647fd2536b1007fd89d699b7cce1",
+          "reused": false
+        },
+        {
+          "source": "Pangyo developer.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Model.fbx",
+          "sha256": "6acc477239a89564e06249eb486f6d848299be55c84eecc499ee235e3ff8fc3b",
+          "reused": false
+        },
+        {
+          "source": "Pangyo developer_image/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Color.jpg",
+          "sha256": "29b4656214cd024c93654e64ecc6062b69ab1514247a1ff10301b59358d56209",
+          "reused": false
+        },
+        {
+          "source": "Pangyo developer_image/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Normal.png",
+          "sha256": "c21f8b3a56b7586077147c4a77dfe4f3e024069f28641aca85d2d237f5ad35d3",
+          "reused": false
+        },
+        {
+          "source": "Pangyo developer_image/stylized_character_3d_model_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Metallic.jpg",
+          "sha256": "607b606409da924e4988565896b2802c75cbf4664409feda3fdaee7deb0e16b0",
+          "reused": false
+        },
+        {
+          "source": "Pangyo developer_image/stylized_character_3d_model_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Roughness.jpg",
+          "sha256": "d2ccac94d6e99a6c86e6c0d2df3b2c28d9641f7afcdc42c64a1087ce550d3061",
+          "reused": false
+        },
+        {
+          "source": "Walking.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Walk.fbx",
+          "sha256": "7135404d88a1662972f3c740a4402b86665c12077de4bf6d49e73da59dbc166b",
+          "reused": false
+        }
+      ]
+    },
+    {
+      "archive": "japan.zip",
+      "sha256": "57547a5a97f62ccbb2684d40d0a53dabed48a736423e48c3f188380e99ebe58c",
+      "personaIds": [
+        "cus_student"
+      ],
+      "files": [
+        {
+          "source": "Idle (1).fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Idle.fbx",
+          "sha256": "478ea108ddc8c5542bec5c0f9a03b46ab2935e3f7e83c6e254fbda64e944c06d",
+          "reused": false
+        },
+        {
+          "source": "japan.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Model.fbx",
+          "sha256": "ffcacff21344639d40ba89101779cdcd45fb3fa7c26703665b8c42ce2e6a42d5",
+          "reused": false
+        },
+        {
+          "source": "japan/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Color.jpg",
+          "sha256": "20b98a3712bb759ec8adc7aa4682c1c2b855f12ab86f333247d6e9f7126ab184",
+          "reused": false
+        },
+        {
+          "source": "japan/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Normal.png",
+          "sha256": "1b2c86755a0ec780785a8602c5c799ca89761270877233d4bfee8d3bdd504de7",
+          "reused": false
+        },
+        {
+          "source": "japan/school_girl_3d_model_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Metallic.jpg",
+          "sha256": "4659fd1d79699bb428b8d3aec1c81c189d2252dfca2b00325ef0ae7be434e2ad",
+          "reused": false
+        },
+        {
+          "source": "japan/school_girl_3d_model_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Roughness.jpg",
+          "sha256": "3261b4f1e39efe9f178e35b70ca2abe9b97b725bcea774cabb42b55893766c59",
+          "reused": false
+        },
+        {
+          "source": "Walking.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Walk.fbx",
+          "sha256": "2e19f59b7b533c35f7ac2edab8e255146621a951384545912c279d39c878bb9a",
+          "reused": false
+        }
+      ]
+    },
+    {
+      "archive": "gyeongsang.zip",
+      "sha256": "f3533f80fc02606391bcde05903a885d57575836de5dea55eedcee4ddc5654b3",
+      "personaIds": [
+        "cus_gyeongsang"
+      ],
+      "files": [
+        {
+          "source": "gyeongsang.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Model.fbx",
+          "sha256": "1767f5b9ea62e452d27980a14bccfac5e37a7fe05e362ae1d8cafec324268ad2",
+          "reused": false
+        },
+        {
+          "source": "gyeongsang_image/Color.jpg",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Color.jpg",
+          "sha256": "531fb9f37c9bb7a7e6c8719228e301835868c719d06621846c97e9c7703ceea0",
+          "reused": false
+        },
+        {
+          "source": "gyeongsang_image/Normal.png",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Normal.png",
+          "sha256": "93a55b7337dc7ddbc98388db35b42b805013c86b671fd70f9d3685b94a505eb0",
+          "reused": false
+        },
+        {
+          "source": "gyeongsang_image/stylized_character_3d_model_metallic.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Metallic.jpg",
+          "sha256": "85c06e367f946b6e37b3dc4e506826109df09c1503075cd98e23f3809900d882",
+          "reused": false
+        },
+        {
+          "source": "gyeongsang_image/stylized_character_3d_model_roughness.JPEG",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Roughness.jpg",
+          "sha256": "ef54bfce9f06a696e1d84147ea336da838c2a6d48cdf24519e94fa75bb40f8c9",
+          "reused": false
+        },
+        {
+          "source": "Idle.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Idle.fbx",
+          "sha256": "0757f34ea2a415409a1232a21451e470d222480fa86d9c686142acdec6cc57a4",
+          "reused": false
+        },
+        {
+          "source": "Walking.fbx",
+          "assetPath": "ai-hack-test/Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Walk.fbx",
+          "sha256": "c50838507f645bc5fcd9300b55831664a900a7006dc4dc2c093d39a224c2674c",
+          "reused": false
+        }
+      ]
     }
   ]
 }
