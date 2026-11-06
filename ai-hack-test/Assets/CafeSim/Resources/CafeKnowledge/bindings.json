@@ -1,0 +1,3230 @@
+{
+  "items": [
+    {
+      "personaId": "cus_elder",
+      "termId": "t0000",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0001",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0002",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0003",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0004",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0005",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0006",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0007",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0008",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0009",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0010",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0011",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0012",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0013",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0014",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0015",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0016",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0017",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0018",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0019",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0020",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0021",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0022",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0023",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0024",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0025",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0026",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0027",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0028",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0029",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0030",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0031",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0032",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0033",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0034",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0035",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0036",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0037",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0038",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0039",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0040",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0041",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0042",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0043",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0044",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0045",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0046",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0047",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0048",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0049",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0050",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0051",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0052",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0053",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0054",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0055",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0056",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0057",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0058",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0059",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0060",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0061",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0062",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0063",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0064",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0065",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0066",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0067",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0068",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0069",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0070",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0071",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0072",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0073",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0074",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0075",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0076",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0077",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0078",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0079",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0080",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0081",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0082",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0083",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0084",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0085",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0086",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0087",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0088",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0089",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0090",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0091",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0092",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0093",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0094",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0095",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0096",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0097",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0098",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0099",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0100",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0101",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0102",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0103",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0104",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0105",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0106",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0107",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0108",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0109",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0110",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0111",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0112",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0113",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0114",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0115",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0116",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0117",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0118",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0119",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0120",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "termId": "t0121",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0122",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0123",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0124",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0125",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0126",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0127",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0128",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0129",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0130",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0131",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0132",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0133",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeolla",
+      "termId": "t0134",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0135",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0136",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0137",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0138",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0139",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0140",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0141",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0142",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0143",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0144",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0145",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0146",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "termId": "t0147",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0148",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0149",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0150",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0151",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0152",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0153",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0154",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0155",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0156",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0157",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0158",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0159",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_gangwon",
+      "termId": "t0160",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0161",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0162",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0163",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0164",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0165",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0166",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0167",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0168",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0169",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0170",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0171",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0172",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_jeju",
+      "termId": "t0173",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0174",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0175",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0176",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0177",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0178",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0179",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0180",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0181",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0182",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0183",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0184",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0185",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_sea",
+      "termId": "t0186",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0187",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0188",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0189",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0190",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0191",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0192",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0193",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0194",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0195",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0196",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0197",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0198",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_west",
+      "termId": "t0199",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0200",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0201",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0202",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0203",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0204",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0205",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0206",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0207",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0208",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0209",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0210",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0211",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_japan",
+      "termId": "t0212",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0213",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0214",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0215",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0216",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0217",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0218",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0219",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0220",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0221",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0222",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0223",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0224",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_china",
+      "termId": "t0225",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0226",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0227",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0228",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0229",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0230",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0231",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0232",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0233",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0234",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0235",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0236",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0237",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_child",
+      "termId": "t0238",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0239",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0240",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0241",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0242",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0243",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0244",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0245",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0246",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0247",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0248",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0249",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0250",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_student",
+      "termId": "t0251",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0252",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0253",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0254",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0255",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0256",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0257",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0258",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0259",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0260",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0261",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0262",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0263",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_pangyo",
+      "termId": "t0264",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0265",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0266",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0267",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0268",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0269",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0270",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0271",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0272",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0273",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0274",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0275",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0276",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_barista",
+      "termId": "t0277",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0278",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0279",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0280",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0281",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0282",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0283",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0284",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0285",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0286",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0287",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0288",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0289",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_trainer",
+      "termId": "t0290",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0291",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0292",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0293",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0294",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0295",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0296",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0297",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0298",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0299",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0300",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0301",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0302",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_blind",
+      "termId": "t0303",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0304",
+      "slot": "opener",
+      "requires": [
+        "quiet"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_elder",
+      "termId": "t0305",
+      "slot": "match",
+      "requires": [
+        "quiet",
+        "received",
+        "accurate"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_0",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_1",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_2",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_3",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_4",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_5",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_6",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_7",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_8",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_9",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_10",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_11",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_12",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_13",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_14",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_15",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_16",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_17",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "termId": "branch_cus_miku_18",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_0",
+      "slot": "opener",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_1",
+      "slot": "ending",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_2",
+      "slot": "match",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_3",
+      "slot": "wrong",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_4",
+      "slot": "good",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_5",
+      "slot": "bad",
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_6",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_7",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_8",
+      "slot": "chatter",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_9",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_10",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_11",
+      "slot": "chatter",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_12",
+      "slot": "repeat",
+      "requires": [
+        "repeat"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_13",
+      "slot": "waitReview",
+      "requires": [
+        "delayed"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_14",
+      "slot": "timeout",
+      "requires": [
+        "timeout"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_15",
+      "slot": "similar",
+      "requires": [
+        "similar"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_16",
+      "slot": "different",
+      "requires": [
+        "different"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_17",
+      "slot": "partialGood",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "termId": "branch_cus_kim_gyeran_18",
+      "slot": "contrast",
+      "requires": [
+        "received"
+      ],
+      "minWait": 0,
+      "maxWait": 100000
+    }
+  ]
+}

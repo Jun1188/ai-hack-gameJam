@@ -1,0 +1,146 @@
+{
+  "note": "User-approved shared-model appearance adjustments. Dialogue, order preferences and grandma identities remain intact.",
+  "items": [
+    {
+      "id": "cus_elder",
+      "hair": "hair_bald_white_beard",
+      "top": "top_black_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_jeolla",
+      "gender": "청년 여성",
+      "ageDescription": "청년 여성 (20~30대)",
+      "modelBase": "base_adult_f",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_chungcheong",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_gangwon",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_sea",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_west",
+      "gender": "청년 여성",
+      "ageDescription": "청년 여성 (20~30대)",
+      "modelBase": "base_adult_f",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_japan",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_china",
+      "gender": "청년 여성",
+      "ageDescription": "청년 여성 (20~30대)",
+      "modelBase": "base_adult_f",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_student",
+      "gender": "청소년 여성",
+      "ageDescription": "청소년 여성 (10대)",
+      "modelBase": "base_teen_f",
+      "hair": "hair_long",
+      "top": "top_sailor_uniform",
+      "bottom": "bottom_skirt",
+      "accessory": "acc_none"
+    },
+    {
+      "id": "cus_pangyo",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_short",
+      "top": "top_shirt",
+      "bottom": "bottom_slacks",
+      "accessory": "acc_none"
+    },
+    {
+      "id": "cus_barista",
+      "gender": "청년 여성",
+      "ageDescription": "청년 여성 (20~30대)",
+      "modelBase": "base_adult_f",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_trainer",
+      "gender": "청년 여성",
+      "ageDescription": "청년 여성 (20~30대)",
+      "modelBase": "base_adult_f",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_blind",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_dreadlocks",
+      "top": "top_white_polo",
+      "bottom": "bottom_jeans",
+      "accessory": "acc_sunglasses"
+    },
+    {
+      "id": "cus_gyeongsang",
+      "gender": "청년 남성",
+      "ageDescription": "청년 남성 (20~30대)",
+      "modelBase": "base_adult_m",
+      "hair": "hair_short_black",
+      "top": "top_black_hoodie",
+      "bottom": "bottom_black_pants",
+      "accessory": "acc_glasses, acc_backpack",
+      "setting": "무뚝뚝하지만 정이 많음. 질문이 길면 답답해한다. 시원한 블랙커피를 즐기는 남성 손님",
+      "taste": "시원한 블랙커피를 즐기는 남성 손님",
+      "twist": "시원한 블랙커피를 즐기는 남성 손님",
+      "smalltalkTopics": "시장 다녀온 이야기, 무거운 장바구니, 가족 이야기"
+    }
+  ]
+}

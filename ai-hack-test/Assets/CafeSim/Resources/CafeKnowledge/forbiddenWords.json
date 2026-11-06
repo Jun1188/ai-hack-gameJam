@@ -1,0 +1,289 @@
+{
+  "items": [
+    {
+      "menuId": "menu_americano",
+      "language": "ko",
+      "word": "아메리카노"
+    },
+    {
+      "menuId": "menu_americano",
+      "language": "ko",
+      "word": "아아"
+    },
+    {
+      "menuId": "menu_americano",
+      "language": "ko",
+      "word": "뜨아"
+    },
+    {
+      "menuId": "menu_americano",
+      "language": "en",
+      "word": "Americano"
+    },
+    {
+      "menuId": "menu_americano",
+      "language": "ja",
+      "word": "アメリカーノ"
+    },
+    {
+      "menuId": "menu_americano",
+      "language": "zh",
+      "word": "美式咖啡"
+    },
+    {
+      "menuId": "menu_espresso",
+      "language": "ko",
+      "word": "에스프레소"
+    },
+    {
+      "menuId": "menu_espresso",
+      "language": "en",
+      "word": "Espresso"
+    },
+    {
+      "menuId": "menu_espresso",
+      "language": "ja",
+      "word": "エスプレッソ"
+    },
+    {
+      "menuId": "menu_espresso",
+      "language": "zh",
+      "word": "浓缩咖啡"
+    },
+    {
+      "menuId": "menu_espresso",
+      "language": "zh",
+      "word": "意式浓缩"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "ko",
+      "word": "카페라떼"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "ko",
+      "word": "라떼"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "en",
+      "word": "Latte"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "en",
+      "word": "Caffe latte"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "ja",
+      "word": "カフェラテ"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "ja",
+      "word": "ラテ"
+    },
+    {
+      "menuId": "menu_latte",
+      "language": "zh",
+      "word": "拿铁"
+    },
+    {
+      "menuId": "menu_vanilla",
+      "language": "ko",
+      "word": "바닐라라떼"
+    },
+    {
+      "menuId": "menu_vanilla",
+      "language": "en",
+      "word": "Vanilla latte"
+    },
+    {
+      "menuId": "menu_vanilla",
+      "language": "ja",
+      "word": "バニララテ"
+    },
+    {
+      "menuId": "menu_vanilla",
+      "language": "zh",
+      "word": "香草拿铁"
+    },
+    {
+      "menuId": "menu_condensed",
+      "language": "ko",
+      "word": "연유라떼"
+    },
+    {
+      "menuId": "menu_condensed",
+      "language": "en",
+      "word": "Condensed milk latte"
+    },
+    {
+      "menuId": "menu_condensed",
+      "language": "ja",
+      "word": "練乳ラテ"
+    },
+    {
+      "menuId": "menu_condensed",
+      "language": "zh",
+      "word": "炼乳拿铁"
+    },
+    {
+      "menuId": "menu_choco",
+      "language": "ko",
+      "word": "초코라떼"
+    },
+    {
+      "menuId": "menu_choco",
+      "language": "ko",
+      "word": "핫초코"
+    },
+    {
+      "menuId": "menu_choco",
+      "language": "en",
+      "word": "Hot chocolate"
+    },
+    {
+      "menuId": "menu_choco",
+      "language": "en",
+      "word": "Chocolate latte"
+    },
+    {
+      "menuId": "menu_choco",
+      "language": "ja",
+      "word": "ホットチョコレート"
+    },
+    {
+      "menuId": "menu_choco",
+      "language": "zh",
+      "word": "热巧克力"
+    },
+    {
+      "menuId": "menu_matcha",
+      "language": "ko",
+      "word": "녹차라떼"
+    },
+    {
+      "menuId": "menu_matcha",
+      "language": "ko",
+      "word": "말차라떼"
+    },
+    {
+      "menuId": "menu_matcha",
+      "language": "en",
+      "word": "Green tea latte"
+    },
+    {
+      "menuId": "menu_matcha",
+      "language": "en",
+      "word": "Matcha latte"
+    },
+    {
+      "menuId": "menu_matcha",
+      "language": "ja",
+      "word": "抹茶ラテ"
+    },
+    {
+      "menuId": "menu_matcha",
+      "language": "zh",
+      "word": "抹茶拿铁"
+    },
+    {
+      "menuId": "menu_strawberry",
+      "language": "ko",
+      "word": "딸기우유"
+    },
+    {
+      "menuId": "menu_strawberry",
+      "language": "ko",
+      "word": "딸기라떼"
+    },
+    {
+      "menuId": "menu_strawberry",
+      "language": "en",
+      "word": "Strawberry milk"
+    },
+    {
+      "menuId": "menu_strawberry",
+      "language": "ja",
+      "word": "いちごミルク"
+    },
+    {
+      "menuId": "menu_strawberry",
+      "language": "zh",
+      "word": "草莓牛奶"
+    },
+    {
+      "menuId": "menu_yuja",
+      "language": "ko",
+      "word": "유자차"
+    },
+    {
+      "menuId": "menu_yuja",
+      "language": "en",
+      "word": "Yuja tea"
+    },
+    {
+      "menuId": "menu_yuja",
+      "language": "en",
+      "word": "Citron tea"
+    },
+    {
+      "menuId": "menu_yuja",
+      "language": "ja",
+      "word": "ゆず茶"
+    },
+    {
+      "menuId": "menu_yuja",
+      "language": "zh",
+      "word": "柚子茶"
+    },
+    {
+      "menuId": "menu_lemonade",
+      "language": "ko",
+      "word": "레몬에이드"
+    },
+    {
+      "menuId": "menu_lemonade",
+      "language": "en",
+      "word": "Lemonade"
+    },
+    {
+      "menuId": "menu_lemonade",
+      "language": "ja",
+      "word": "レモネード"
+    },
+    {
+      "menuId": "menu_lemonade",
+      "language": "zh",
+      "word": "柠檬水"
+    },
+    {
+      "menuId": "menu_lemonade",
+      "language": "zh",
+      "word": "柠檬汽水"
+    },
+    {
+      "menuId": "menu_ssanghwa",
+      "language": "ko",
+      "word": "쌍화차"
+    },
+    {
+      "menuId": "menu_ssanghwa",
+      "language": "en",
+      "word": "Ssanghwa tea"
+    },
+    {
+      "menuId": "menu_ssanghwa",
+      "language": "ja",
+      "word": "双和茶"
+    },
+    {
+      "menuId": "menu_ssanghwa",
+      "language": "zh",
+      "word": "双和茶"
+    }
+  ]
+}

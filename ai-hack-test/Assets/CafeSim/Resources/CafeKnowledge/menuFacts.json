@@ -1,0 +1,125 @@
+{
+  "items": [
+    {
+      "id": "menu_americano",
+      "coffee": "있음",
+      "milk": "없음",
+      "sweetness": 0,
+      "color": "검정",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "쓰고 깔끔함, 물 탄 커피",
+      "spokenDescription": "쓴맛이 깔끔한 검은 커피"
+    },
+    {
+      "id": "menu_espresso",
+      "coffee": "있음 (진함)",
+      "milk": "없음",
+      "sweetness": 0,
+      "color": "짙은 갈색",
+      "carbonation": "없음",
+      "temperature": "HOT",
+      "flavor": "아주 작은 잔, 진하고 씀",
+      "spokenDescription": "작은 잔에 담는 아주 진한 커피"
+    },
+    {
+      "id": "menu_latte",
+      "coffee": "있음",
+      "milk": "있음",
+      "sweetness": 0,
+      "color": "연한 갈색",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "부드럽고 고소함",
+      "spokenDescription": "우유가 들어가 부드럽고 고소한 커피"
+    },
+    {
+      "id": "menu_vanilla",
+      "coffee": "있음",
+      "milk": "있음",
+      "sweetness": 2,
+      "color": "연한 갈색",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "달고 향긋함",
+      "spokenDescription": "우유와 달콤한 향이 어우러진 커피"
+    },
+    {
+      "id": "menu_condensed",
+      "coffee": "있음",
+      "milk": "있음",
+      "sweetness": 3,
+      "color": "연한 갈색",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "진하고 아주 달다, 베트남식 연유커피와 비슷",
+      "spokenDescription": "우유가 들어가 진하고 아주 단 커피"
+    },
+    {
+      "id": "menu_choco",
+      "coffee": "없음",
+      "milk": "있음",
+      "sweetness": 3,
+      "color": "갈색",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "달콤한 초콜릿 맛",
+      "spokenDescription": "우유에 달콤한 초콜릿 맛이 나는 음료"
+    },
+    {
+      "id": "menu_matcha",
+      "coffee": "없음",
+      "milk": "있음",
+      "sweetness": 1,
+      "color": "초록",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "쌉싸름하고 고소함",
+      "spokenDescription": "초록빛에 쌉싸름하고 고소한 우유 음료"
+    },
+    {
+      "id": "menu_strawberry",
+      "coffee": "없음",
+      "milk": "있음",
+      "sweetness": 3,
+      "color": "분홍",
+      "carbonation": "없음",
+      "temperature": "ICE",
+      "flavor": "딸기 과육, 새콤달콤",
+      "spokenDescription": "분홍빛 딸기 과육이 든 새콤달콤한 우유 음료"
+    },
+    {
+      "id": "menu_yuja",
+      "coffee": "없음",
+      "milk": "없음",
+      "sweetness": 2,
+      "color": "노랑",
+      "carbonation": "없음",
+      "temperature": "HOT/ICE",
+      "flavor": "유자 껍질, 새콤달콤, 향긋함",
+      "spokenDescription": "노란 과일 껍질이 든 향긋하고 새콤달콤한 음료"
+    },
+    {
+      "id": "menu_lemonade",
+      "coffee": "없음",
+      "milk": "없음",
+      "sweetness": 2,
+      "color": "연노랑",
+      "carbonation": "있음",
+      "temperature": "ICE",
+      "flavor": "시큼하고 톡 쏨",
+      "spokenDescription": "연노란 빛에 시큼하고 탄산이 톡 쏘는 음료"
+    },
+    {
+      "id": "menu_ssanghwa",
+      "coffee": "없음",
+      "milk": "없음",
+      "sweetness": 0,
+      "color": "짙은 갈색",
+      "carbonation": "없음",
+      "temperature": "HOT",
+      "flavor": "한약재, 쌉쌀하고 구수함, 견과 토핑",
+      "spokenDescription": "짙은 갈색에 한약재 향이 나고 견과가 올라간 구수한 음료"
+    }
+  ]
+}

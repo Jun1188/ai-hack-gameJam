@@ -1,0 +1,6 @@
+@import url("unity-theme://default");
+
+.cafe-chat-input {
+    --unity-cursor-color: rgb(242, 235, 209);
+    --unity-selection-color: rgba(77, 133, 115, 0.8);
+}

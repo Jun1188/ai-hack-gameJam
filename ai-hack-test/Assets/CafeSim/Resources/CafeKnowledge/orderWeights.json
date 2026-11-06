@@ -1,0 +1,994 @@
+{
+  "items": [
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_espresso",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_lemonade",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_elder",
+      "menuId": "menu_ssanghwa",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_yuja",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_americano",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_vanilla",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_condensed",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_choco",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_strawberry",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeolla",
+      "menuId": "menu_ssanghwa",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_americano",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_latte",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_vanilla",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_lemonade",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_americano",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_choco",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_matcha",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_strawberry",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_gangwon",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_americano",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_matcha",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_yuja",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_jeju",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_americano",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_condensed",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_matcha",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_strawberry",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_lemonade",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_sea",
+      "menuId": "menu_ssanghwa",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_americano",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_espresso",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_yuja",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_west",
+      "menuId": "menu_ssanghwa",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_americano",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_latte",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_matcha",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_strawberry",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_yuja",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_japan",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_americano",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_vanilla",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_yuja",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_lemonade",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_china",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_americano",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_latte",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_choco",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_strawberry",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_lemonade",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_child",
+      "menuId": "menu_ssanghwa",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_vanilla",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_condensed",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_choco",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_matcha",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_strawberry",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_yuja",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_lemonade",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_student",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_espresso",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_vanilla",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_yuja",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_pangyo",
+      "menuId": "menu_ssanghwa",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_espresso",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_lemonade",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_barista",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_espresso",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_matcha",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_yuja",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_trainer",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_americano",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_espresso",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_vanilla",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_choco",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_strawberry",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_yuja",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_lemonade",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_blind",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_espresso",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_latte",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_condensed",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_matcha",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_yuja",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_lemonade",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_miku",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_americano",
+      "weight": 3
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_espresso",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_latte",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_vanilla",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_condensed",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_choco",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_matcha",
+      "weight": 2
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_strawberry",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_yuja",
+      "weight": 0
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_lemonade",
+      "weight": 1
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "menuId": "menu_ssanghwa",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "id": "request_mocha",
+      "name": "카페모카",
+      "temperature": "HOT",
+      "values": [
+        0.8,
+        0.4,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "request_peach",
+      "name": "복숭아 에이드",
+      "temperature": "ICE",
+      "values": [
+        0.7,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "request_cocoa",
+      "name": "진한 코코아",
+      "temperature": "HOT",
+      "values": [
+        0.7,
+        0.2,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "request_milk",
+      "name": "차가운 흰 우유",
+      "temperature": "ICE",
+      "values": [
+        0.1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

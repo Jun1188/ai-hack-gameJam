@@ -1,0 +1,3384 @@
+{
+  "items": [
+    {
+      "id": "cus_elder_t0096",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0096",
+      "anchor": "옛 다방에서 커피 향을 먼저 맡던 일을 떠올리고 있네.",
+      "queries": [],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "옛 다방에서 커피 향을 먼저 맡던 일을 떠올리고 있네.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_elder_t0096_followup",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0096",
+      "anchor": "옛 다방에서 커피 향을 먼저 맡던 일을 떠올리고 있네.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "옛 다방에서는 커피 한 잔 놓고 이런저런 이야기를 오래 나눴지. 그 느긋한 시간이 문득 그리워지는구먼.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_elder_t0097",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0097",
+      "anchor": "차례를 꽤 기다렸구먼. 언제 고를 수 있겠나?",
+      "queries": [],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "차례를 꽤 기다렸구먼. 언제 고를 수 있겠나?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_elder_t0098",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0098",
+      "anchor": "차례를 꽤 기다렸구먼. 언제 고를 수 있겠나? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "차례를 꽤 기다렸구먼. 언제 고를 수 있겠나? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_elder_t0099",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0099",
+      "anchor": "옛 다방에서 커피 향을 먼저 맡던 일을 떠올리고 있네.",
+      "queries": [],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "옛 다방에서 커피 향을 먼저 맡던 일을 떠올리고 있네.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_elder_t0099_followup",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0099",
+      "anchor": "옛 다방에서 커피 향을 먼저 맡던 일을 떠올리고 있네.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "옛 다방에서는 커피 한 잔 놓고 이런저런 이야기를 오래 나눴지. 그 느긋한 시간이 문득 그리워지는구먼.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_elder_t0100",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0100",
+      "anchor": "기다리는 새 옛이야기가 길어졌구먼. 내 잔은 얼마나 남았나?",
+      "queries": [],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "기다리는 새 옛이야기가 길어졌구먼. 내 잔은 얼마나 남았나?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_elder_t0101",
+      "personaId": "cus_elder",
+      "anchorTermId": "t0101",
+      "anchor": "기다리는 새 옛이야기가 길어졌구먼. 내 잔은 얼마나 남았나? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "다방 시절 추억  날씨와 무릎  손주 이야기",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "기다리는 새 옛이야기가 길어졌구먼. 내 잔은 얼마나 남았나? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_elder_hello",
+      "personaId": "cus_elder",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "점잖은 어르신 말투. 탕약, 숭늉, 다방, 양반 같은 옛말과 비유를 섞는다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_gyeongsang_t0109",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0109",
+      "anchor": "시장 골목에서 뭐 샀나 장바구니를 정리하고 있어예.",
+      "queries": [],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "시장 골목에서 뭐 샀나 장바구니를 정리하고 있어예.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gyeongsang_t0109_followup",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0109",
+      "anchor": "시장 골목에서 뭐 샀나 장바구니를 정리하고 있어예.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "장 보고 오니 장바구니가 제법 무겁네예. 잠깐 내려놓고 쉬면서 이야기 좀 하려구예.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gyeongsang_t0110",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0110",
+      "anchor": "장바구니 들고 좀 기다렸네예. 내 차례 됐는교?",
+      "queries": [],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "장바구니 들고 좀 기다렸네예. 내 차례 됐는교?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_gyeongsang_t0111",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0111",
+      "anchor": "장바구니 들고 좀 기다렸네예. 내 차례 됐는교? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "장바구니 들고 좀 기다렸네예. 내 차례 됐는교? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_gyeongsang_t0112",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0112",
+      "anchor": "시장 골목에서 뭐 샀나 장바구니를 정리하고 있어예.",
+      "queries": [],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "시장 골목에서 뭐 샀나 장바구니를 정리하고 있어예.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gyeongsang_t0112_followup",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0112",
+      "anchor": "시장 골목에서 뭐 샀나 장바구니를 정리하고 있어예.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "장 보고 오니 장바구니가 제법 무겁네예. 잠깐 내려놓고 쉬면서 이야기 좀 하려구예.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gyeongsang_t0113",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0113",
+      "anchor": "내 음료는 아직인교? 기다린 시간이 쪼매 기네예.",
+      "queries": [],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "내 음료는 아직인교? 기다린 시간이 쪼매 기네예.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_gyeongsang_t0114",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "t0114",
+      "anchor": "내 음료는 아직인교? 기다린 시간이 쪼매 기네예. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "시장 다녀온 이야기  무거운 장바구니  가족 이야기",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "내 음료는 아직인교? 기다린 시간이 쪼매 기네예. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_gyeongsang_hello",
+      "personaId": "cus_gyeongsang",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "경상도 사투리. 말이 짧고 생략이 많다 (~하이소, ~제, 아이다, 쪼매, 따시게).",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_jeolla_t0122",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0122",
+      "anchor": "친구들이 추천한 드라마 얘기를 떠올리고 있어요잉.",
+      "queries": [],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "친구들이 추천한 드라마 얘기를 떠올리고 있어요잉.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeolla_t0122_followup",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0122",
+      "anchor": "친구들이 추천한 드라마 얘기를 떠올리고 있어요잉.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "친구들이랑 둘러앉아 먹을 얘기 하는 게 즐겁당께요. 맛난 거 생각하면 기다리는 동안도 심심하지 않제라.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeolla_t0123",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0123",
+      "anchor": "거시기, 기다린 시간이 꽤 됐는디 접수 언제 할까잉?",
+      "queries": [],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "거시기, 기다린 시간이 꽤 됐는디 접수 언제 할까잉?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_jeolla_t0124",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0124",
+      "anchor": "거시기, 기다린 시간이 꽤 됐는디 접수 언제 할까잉? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "거시기, 기다린 시간이 꽤 됐는디 접수 언제 할까잉? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_jeolla_t0125",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0125",
+      "anchor": "친구들이 추천한 드라마 얘기를 떠올리고 있어요잉.",
+      "queries": [],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "친구들이 추천한 드라마 얘기를 떠올리고 있어요잉.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeolla_t0125_followup",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0125",
+      "anchor": "친구들이 추천한 드라마 얘기를 떠올리고 있어요잉.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "친구들이랑 둘러앉아 먹을 얘기 하는 게 즐겁당께요. 맛난 거 생각하면 기다리는 동안도 심심하지 않제라.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeolla_t0126",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0126",
+      "anchor": "아까 주문한 잔은 언제 나올까잉? 모임 얘기도 한바탕 했네잉.",
+      "queries": [],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "아까 주문한 잔은 언제 나올까잉? 모임 얘기도 한바탕 했네잉.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_jeolla_t0127",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "t0127",
+      "anchor": "아까 주문한 잔은 언제 나올까잉? 모임 얘기도 한바탕 했네잉. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "친구들 모임  맛집  드라마",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "아까 주문한 잔은 언제 나올까잉? 모임 얘기도 한바탕 했네잉. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_jeolla_hello",
+      "personaId": "cus_jeolla",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "전라도 사투리 (~잉, ~당께, 허벌나게, 거시기). 핵심 단어를 '거시기'로 뭉뚱그리는 버릇이 있다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_chungcheong_t0135",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0135",
+      "anchor": "집에서 기다리는 소식이 있나 휴대폰을 살펴보고 있어유.",
+      "queries": [],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "집에서 기다리는 소식이 있나 휴대폰을 살펴보고 있어유.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_chungcheong_t0135_followup",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0135",
+      "anchor": "집에서 기다리는 소식이 있나 휴대폰을 살펴보고 있어유.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "농사짓다 보면 날씨 소식부터 보게 돼유. 기다리는 김에 비 소식이 있나 살펴보던 참이여유.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_chungcheong_t0136",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0136",
+      "anchor": "아직 기다려도 되긴 하는데유, 순서는 알고 싶어유.",
+      "queries": [],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "아직 기다려도 되긴 하는데유, 순서는 알고 싶어유.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_chungcheong_t0137",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0137",
+      "anchor": "아직 기다려도 되긴 하는데유, 순서는 알고 싶어유. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "아직 기다려도 되긴 하는데유, 순서는 알고 싶어유. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_chungcheong_t0138",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0138",
+      "anchor": "집에서 기다리는 소식이 있나 휴대폰을 살펴보고 있어유.",
+      "queries": [],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "집에서 기다리는 소식이 있나 휴대폰을 살펴보고 있어유.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_chungcheong_t0138_followup",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0138",
+      "anchor": "집에서 기다리는 소식이 있나 휴대폰을 살펴보고 있어유.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "농사짓다 보면 날씨 소식부터 보게 돼유. 기다리는 김에 비 소식이 있나 살펴보던 참이여유.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_chungcheong_t0139",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0139",
+      "anchor": "괜찮긴 한데유, 주문한 지는 꽤 됐슈. 얼마나 남았어유?",
+      "queries": [],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "괜찮긴 한데유, 주문한 지는 꽤 됐슈. 얼마나 남았어유?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_chungcheong_t0140",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "t0140",
+      "anchor": "괜찮긴 한데유, 주문한 지는 꽤 됐슈. 얼마나 남았어유? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "농사  날씨  아들 취직",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "괜찮긴 한데유, 주문한 지는 꽤 됐슈. 얼마나 남았어유? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_chungcheong_hello",
+      "personaId": "cus_chungcheong",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "충청도 사투리 (~유, ~했슈, 괜찮유). 원하는 걸 직접 말하지 않고 돌려 말한다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_gangwon_t0148",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0148",
+      "anchor": "산에서 만난 강아지가 자꾸 생각나드래요.",
+      "queries": [],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "산에서 만난 강아지가 자꾸 생각나드래요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gangwon_t0148_followup",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0148",
+      "anchor": "산에서 만난 강아지가 자꾸 생각나드래요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "산에 두고 온 강아지가 생각나드래요. 돌아가면 반갑게 맞아줄 모습이 눈에 선하구먼요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gangwon_t0149",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0149",
+      "anchor": "꽤 기다렸드래요. 이제 주문할 차례인가요?",
+      "queries": [],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "꽤 기다렸드래요. 이제 주문할 차례인가요?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_gangwon_t0150",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0150",
+      "anchor": "꽤 기다렸드래요. 이제 주문할 차례인가요? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "꽤 기다렸드래요. 이제 주문할 차례인가요? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_gangwon_t0151",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0151",
+      "anchor": "산에서 만난 강아지가 자꾸 생각나드래요.",
+      "queries": [],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "산에서 만난 강아지가 자꾸 생각나드래요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gangwon_t0151_followup",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0151",
+      "anchor": "산에서 만난 강아지가 자꾸 생각나드래요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "산에 두고 온 강아지가 생각나드래요. 돌아가면 반갑게 맞아줄 모습이 눈에 선하구먼요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_gangwon_t0152",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0152",
+      "anchor": "제 잔은 아직인가요? 산 얘기를 한참 할 만큼 기다렸드래요.",
+      "queries": [],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "제 잔은 아직인가요? 산 얘기를 한참 할 만큼 기다렸드래요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_gangwon_t0153",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "t0153",
+      "anchor": "제 잔은 아직인가요? 산 얘기를 한참 할 만큼 기다렸드래요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "감자 농사  산  강아지",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "제 잔은 아직인가요? 산 얘기를 한참 할 만큼 기다렸드래요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_gangwon_hello",
+      "personaId": "cus_gangwon",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "강원도 사투리 (~드래요, ~나요?, 마커). 억양은 강하지만 어휘는 평이하다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_jeju_t0161",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0161",
+      "anchor": "바다 건너 손주에게 귤밭 사진을 보여줄 생각을 하고 있수다.",
+      "queries": [],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "바다 건너 손주에게 귤밭 사진을 보여줄 생각을 하고 있수다.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeju_t0161_followup",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0161",
+      "anchor": "바다 건너 손주에게 귤밭 사진을 보여줄 생각을 하고 있수다.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "제주에 있는 손주 생각을 하고 이서요. 바다 건너에 있으니 얼굴 보고 이야기할 때가 더 반갑주.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeju_t0162",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0162",
+      "anchor": "제 차례는 언제쯤이우꽈? 기다림이 길어졌수다.",
+      "queries": [],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "제 차례는 언제쯤이우꽈? 기다림이 길어졌수다.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_jeju_t0163",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0163",
+      "anchor": "제 차례는 언제쯤이우꽈? 기다림이 길어졌수다. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "제 차례는 언제쯤이우꽈? 기다림이 길어졌수다. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_jeju_t0164",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0164",
+      "anchor": "바다 건너 손주에게 귤밭 사진을 보여줄 생각을 하고 있수다.",
+      "queries": [],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "바다 건너 손주에게 귤밭 사진을 보여줄 생각을 하고 있수다.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeju_t0164_followup",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0164",
+      "anchor": "바다 건너 손주에게 귤밭 사진을 보여줄 생각을 하고 있수다.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "제주에 있는 손주 생각을 하고 이서요. 바다 건너에 있으니 얼굴 보고 이야기할 때가 더 반갑주.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_jeju_t0165",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0165",
+      "anchor": "아까 고른 음료는 언제 나오나요? 기다림이 꽤 길어졌수다.",
+      "queries": [],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "아까 고른 음료는 언제 나오나요? 기다림이 꽤 길어졌수다.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_jeju_t0166",
+      "personaId": "cus_jeju",
+      "anchorTermId": "t0166",
+      "anchor": "아까 고른 음료는 언제 나오나요? 기다림이 꽤 길어졌수다. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "바다  귤밭  육지 손주",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "아까 고른 음료는 언제 나오나요? 기다림이 꽤 길어졌수다. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_jeju_hello",
+      "personaId": "cus_jeju",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "제주 말 (~수다, ~마씸, 혼저, 놓앙). 어휘 자체가 표준어와 다른 경우가 많다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_sea_t0174",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0174",
+      "anchor": "고향 가족에게 오늘 먹은 음식을 어떻게 설명할지 생각하고 있어요.",
+      "queries": [],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "고향 가족에게 오늘 먹은 음식을 어떻게 설명할지 생각하고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_sea_t0174_followup",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0174",
+      "anchor": "고향 가족에게 오늘 먹은 음식을 어떻게 설명할지 생각하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "고향 가족에게 오늘 하루 어땠는지 말하고 싶어요. 한국말로도 조금씩 더 자연스럽게 이야기하고 싶고요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_sea_t0175",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0175",
+      "anchor": "가족 이야기 떠올리다 보니 시간이 꽤 갔네요. 제 순서가 궁금해요.",
+      "queries": [],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "가족 이야기 떠올리다 보니 시간이 꽤 갔네요. 제 순서가 궁금해요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_sea_t0176",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0176",
+      "anchor": "가족 이야기 떠올리다 보니 시간이 꽤 갔네요. 제 순서가 궁금해요. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "가족 이야기 떠올리다 보니 시간이 꽤 갔네요. 제 순서가 궁금해요. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_sea_t0177",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0177",
+      "anchor": "고향 가족에게 오늘 먹은 음식을 어떻게 설명할지 생각하고 있어요.",
+      "queries": [],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "고향 가족에게 오늘 먹은 음식을 어떻게 설명할지 생각하고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_sea_t0177_followup",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0177",
+      "anchor": "고향 가족에게 오늘 먹은 음식을 어떻게 설명할지 생각하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "고향 가족에게 오늘 하루 어땠는지 말하고 싶어요. 한국말로도 조금씩 더 자연스럽게 이야기하고 싶고요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_sea_t0178",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0178",
+      "anchor": "고향 이야기 한참 할 만큼 기다렸네요. 제 잔은 얼마나 남았나요?",
+      "queries": [],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "고향 이야기 한참 할 만큼 기다렸네요. 제 잔은 얼마나 남았나요?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_sea_t0179",
+      "personaId": "cus_sea",
+      "anchorTermId": "t0179",
+      "anchor": "고향 이야기 한참 할 만큼 기다렸네요. 제 잔은 얼마나 남았나요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "고향 가족  일  한국 음식",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "고향 이야기 한참 할 만큼 기다렸네요. 제 잔은 얼마나 남았나요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_sea_hello",
+      "personaId": "cus_sea",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "한국어 회화는 능숙하지만 카페 메뉴명은 모름. 고향 음료에 빗대고, 모국어 단어를 가끔 섞는다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_west_t0187",
+      "personaId": "cus_west",
+      "anchorTermId": "t0187",
+      "anchor": "여행 수첩에 오늘 배운 한국어를 적고 있어요.",
+      "queries": [],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "여행 수첩에 오늘 배운 한국어를 적고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_west_t0187_followup",
+      "personaId": "cus_west",
+      "anchorTermId": "t0187",
+      "anchor": "여행 수첩에 오늘 배운 한국어를 적고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "한국 여행하면서 배운 말을 직접 써 보는 게 재미있어요. 틀린 표현이 있으면 천천히 알려 주세요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_west_t0188",
+      "personaId": "cus_west",
+      "anchorTermId": "t0188",
+      "anchor": "Excuse me, 제 주문 순서가 언제쯤일까요?",
+      "queries": [],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "Excuse me, 제 주문 순서가 언제쯤일까요?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_west_t0189",
+      "personaId": "cus_west",
+      "anchorTermId": "t0189",
+      "anchor": "Excuse me, 제 주문 순서가 언제쯤일까요? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "Excuse me, 제 주문 순서가 언제쯤일까요? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_west_t0190",
+      "personaId": "cus_west",
+      "anchorTermId": "t0190",
+      "anchor": "여행 수첩에 오늘 배운 한국어를 적고 있어요.",
+      "queries": [],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "여행 수첩에 오늘 배운 한국어를 적고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_west_t0190_followup",
+      "personaId": "cus_west",
+      "anchorTermId": "t0190",
+      "anchor": "여행 수첩에 오늘 배운 한국어를 적고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "한국 여행하면서 배운 말을 직접 써 보는 게 재미있어요. 틀린 표현이 있으면 천천히 알려 주세요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_west_t0191",
+      "personaId": "cus_west",
+      "anchorTermId": "t0191",
+      "anchor": "Still waiting, 제 음료가 곧 나올까요? 시간이 꽤 지났어요.",
+      "queries": [],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "Still waiting, 제 음료가 곧 나올까요? 시간이 꽤 지났어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_west_t0192",
+      "personaId": "cus_west",
+      "anchorTermId": "t0192",
+      "anchor": "Still waiting, 제 음료가 곧 나올까요? 시간이 꽤 지났어요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "한국 여행  한국어 공부  K-드라마",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "Still waiting, 제 음료가 곧 나올까요? 시간이 꽤 지났어요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_west_hello",
+      "personaId": "cus_west",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "한국어가 서툴러 영어나 모국어를 섞는다. 한국 문화에 관심이 많다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_japan_t0200",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0200",
+      "anchor": "남은 여행 일정에 어떤 골목을 걸을지 생각하고 있습니다.",
+      "queries": [],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "남은 여행 일정에 어떤 골목을 걸을지 생각하고 있습니다.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_japan_t0200_followup",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0200",
+      "anchor": "남은 여행 일정에 어떤 골목을 걸을지 생각하고 있습니다.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "여행 중에 어디를 더 걸어볼지 생각하고 있어요. 천천히 둘러보면서 한국 음식도 맛보고 싶어요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_japan_t0201",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0201",
+      "anchor": "오래 기다린 것 같아서요. 접수 순서를 확인 부탁드립니다.",
+      "queries": [],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "오래 기다린 것 같아서요. 접수 순서를 확인 부탁드립니다.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_japan_t0202",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0202",
+      "anchor": "오래 기다린 것 같아서요. 접수 순서를 확인 부탁드립니다. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "오래 기다린 것 같아서요. 접수 순서를 확인 부탁드립니다. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_japan_t0203",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0203",
+      "anchor": "남은 여행 일정에 어떤 골목을 걸을지 생각하고 있습니다.",
+      "queries": [],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "남은 여행 일정에 어떤 골목을 걸을지 생각하고 있습니다.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_japan_t0203_followup",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0203",
+      "anchor": "남은 여행 일정에 어떤 골목을 걸을지 생각하고 있습니다.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "여행 중에 어디를 더 걸어볼지 생각하고 있어요. 천천히 둘러보면서 한국 음식도 맛보고 싶어요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_japan_t0204",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0204",
+      "anchor": "아까 부탁한 잔은 얼마나 남았을까요? 여행 일정도 확인해야 해서요.",
+      "queries": [],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "아까 부탁한 잔은 얼마나 남았을까요? 여행 일정도 확인해야 해서요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_japan_t0205",
+      "personaId": "cus_japan",
+      "anchorTermId": "t0205",
+      "anchor": "아까 부탁한 잔은 얼마나 남았을까요? 여행 일정도 확인해야 해서요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "여행 일정  한국 음식  날씨",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "아까 부탁한 잔은 얼마나 남았을까요? 여행 일정도 확인해야 해서요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_japan_hello",
+      "personaId": "cus_japan",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "공손한 한국어에 일본식 외래어를 섞는다 (カフェオレ, ココア 등). 같은 외래어도 한국과 뜻이 다를 수 있다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_china_t0213",
+      "personaId": "cus_china",
+      "anchorTermId": "t0213",
+      "anchor": "마감할 과제와 오늘 장볼 목록을 정리하고 있어요.",
+      "queries": [],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "마감할 과제와 오늘 장볼 목록을 정리하고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_china_t0213_followup",
+      "personaId": "cus_china",
+      "anchorTermId": "t0213",
+      "anchor": "마감할 과제와 오늘 장볼 목록을 정리하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "학교 과제도 있고 한국 생활에서 배울 것도 많아요. 잠깐 쉬면서 이야기하면 기분 전환이 돼요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_china_t0214",
+      "personaId": "cus_china",
+      "anchorTermId": "t0214",
+      "anchor": "기다린 시간이 꽤 길어요. 제 접수 순서를 알려 주세요.",
+      "queries": [],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "기다린 시간이 꽤 길어요. 제 접수 순서를 알려 주세요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_china_t0215",
+      "personaId": "cus_china",
+      "anchorTermId": "t0215",
+      "anchor": "기다린 시간이 꽤 길어요. 제 접수 순서를 알려 주세요. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "기다린 시간이 꽤 길어요. 제 접수 순서를 알려 주세요. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_china_t0216",
+      "personaId": "cus_china",
+      "anchorTermId": "t0216",
+      "anchor": "마감할 과제와 오늘 장볼 목록을 정리하고 있어요.",
+      "queries": [],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "마감할 과제와 오늘 장볼 목록을 정리하고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_china_t0216_followup",
+      "personaId": "cus_china",
+      "anchorTermId": "t0216",
+      "anchor": "마감할 과제와 오늘 장볼 목록을 정리하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "학교 과제도 있고 한국 생활에서 배울 것도 많아요. 잠깐 쉬면서 이야기하면 기분 전환이 돼요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_china_t0217",
+      "personaId": "cus_china",
+      "anchorTermId": "t0217",
+      "anchor": "주문은 했는데 제 잔이 아직이에요. 얼마나 남았나요?",
+      "queries": [],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "주문은 했는데 제 잔이 아직이에요. 얼마나 남았나요?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_china_t0218",
+      "personaId": "cus_china",
+      "anchorTermId": "t0218",
+      "anchor": "주문은 했는데 제 잔이 아직이에요. 얼마나 남았나요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "학교 과제  한국 생활  쇼핑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "주문은 했는데 제 잔이 아직이에요. 얼마나 남았나요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_china_hello",
+      "personaId": "cus_china",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "한국어와 중국어를 섞고, 재료를 한자어로 말한다 (香草, 冰的, 柠檬).",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_child_t0226",
+      "personaId": "cus_child",
+      "anchorTermId": "t0226",
+      "anchor": "유치원에서 친구랑 그린 캐릭터를 생각하고 있어요.",
+      "queries": [],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "유치원에서 친구랑 그린 캐릭터를 생각하고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_child_t0226_followup",
+      "personaId": "cus_child",
+      "anchorTermId": "t0226",
+      "anchor": "유치원에서 친구랑 그린 캐릭터를 생각하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "유치원에서 친구랑 캐릭터 그림을 그렸어요! 생각하니까 또 그리고 싶어요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_child_t0227",
+      "personaId": "cus_child",
+      "anchorTermId": "t0227",
+      "anchor": "아직 주문 못 해요? 그림 그릴 만큼 기다렸어요.",
+      "queries": [],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "아직 주문 못 해요? 그림 그릴 만큼 기다렸어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_child_t0228",
+      "personaId": "cus_child",
+      "anchorTermId": "t0228",
+      "anchor": "아직 주문 못 해요? 그림 그릴 만큼 기다렸어요. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "아직 주문 못 해요? 그림 그릴 만큼 기다렸어요. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_child_t0229",
+      "personaId": "cus_child",
+      "anchorTermId": "t0229",
+      "anchor": "유치원에서 친구랑 그린 캐릭터를 생각하고 있어요.",
+      "queries": [],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "유치원에서 친구랑 그린 캐릭터를 생각하고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_child_t0229_followup",
+      "personaId": "cus_child",
+      "anchorTermId": "t0229",
+      "anchor": "유치원에서 친구랑 그린 캐릭터를 생각하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "유치원에서 친구랑 캐릭터 그림을 그렸어요! 생각하니까 또 그리고 싶어요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_child_t0230",
+      "personaId": "cus_child",
+      "anchorTermId": "t0230",
+      "anchor": "내가 고른 음료는 언제 나와요? 꽤 오래 기다렸어요.",
+      "queries": [],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "내가 고른 음료는 언제 나와요? 꽤 오래 기다렸어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_child_t0231",
+      "personaId": "cus_child",
+      "anchorTermId": "t0231",
+      "anchor": "내가 고른 음료는 언제 나와요? 꽤 오래 기다렸어요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "유치원  좋아하는 캐릭터  엄마",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "내가 고른 음료는 언제 나와요? 꽤 오래 기다렸어요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_child_hello",
+      "personaId": "cus_child",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "아이 말투. 색깔, 맛, 좋아하는 캐릭터로 설명한다. 문장이 짧고 감탄이 많다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_student_t0239",
+      "personaId": "cus_student",
+      "anchorTermId": "t0239",
+      "anchor": "시험 끝나고 들을 플레이리스트를 고르고 있어요.",
+      "queries": [],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "시험 끝나고 들을 플레이리스트를 고르고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_student_t0239_followup",
+      "personaId": "cus_student",
+      "anchorTermId": "t0239",
+      "anchor": "시험 끝나고 들을 플레이리스트를 고르고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "시험 끝나고 듣고 싶은 노래들을 생각하고 있었어요. 공부하다가 좋아하는 노래 들으면 좀 힘이 나잖아요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_student_t0240",
+      "personaId": "cus_student",
+      "anchorTermId": "t0240",
+      "anchor": "대기 시간이 꽤 긴 듯요. 제 순서도 확인 가능할까요?",
+      "queries": [],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "대기 시간이 꽤 긴 듯요. 제 순서도 확인 가능할까요?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_student_t0241",
+      "personaId": "cus_student",
+      "anchorTermId": "t0241",
+      "anchor": "대기 시간이 꽤 긴 듯요. 제 순서도 확인 가능할까요? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "대기 시간이 꽤 긴 듯요. 제 순서도 확인 가능할까요? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_student_t0242",
+      "personaId": "cus_student",
+      "anchorTermId": "t0242",
+      "anchor": "시험 끝나고 들을 플레이리스트를 고르고 있어요.",
+      "queries": [],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "시험 끝나고 들을 플레이리스트를 고르고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_student_t0242_followup",
+      "personaId": "cus_student",
+      "anchorTermId": "t0242",
+      "anchor": "시험 끝나고 들을 플레이리스트를 고르고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "시험 끝나고 듣고 싶은 노래들을 생각하고 있었어요. 공부하다가 좋아하는 노래 들으면 좀 힘이 나잖아요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_student_t0243",
+      "personaId": "cus_student",
+      "anchorTermId": "t0243",
+      "anchor": "시간이 좀 많이 갔는데요. 제 음료 언제쯤 나와요?",
+      "queries": [],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "시간이 좀 많이 갔는데요. 제 음료 언제쯤 나와요?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_student_t0244",
+      "personaId": "cus_student",
+      "anchorTermId": "t0244",
+      "anchor": "시간이 좀 많이 갔는데요. 제 음료 언제쯤 나와요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "시험  학원  아이돌",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "시간이 좀 많이 갔는데요. 제 음료 언제쯤 나와요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_student_hello",
+      "personaId": "cus_student",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "10대 신조어와 줄임말 (국룰, ㄹㅇ, ~st, 달달구리, 얼죽아, 할매니얼).",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_pangyo_t0252",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0252",
+      "anchor": "팀 일정표에서 다음 회의 시간을 확인하고 있어요.",
+      "queries": [],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "팀 일정표에서 다음 회의 시간을 확인하고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_pangyo_t0252_followup",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0252",
+      "anchor": "팀 일정표에서 다음 회의 시간을 확인하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "다음 회의 시간을 확인하던 중이에요. 잠깐이라도 숨 돌리고 들어가면 좋겠네요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_pangyo_t0253",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0253",
+      "anchor": "대기 일정이 길어졌네요. 접수 순서 공유 부탁드려요.",
+      "queries": [],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "대기 일정이 길어졌네요. 접수 순서 공유 부탁드려요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_pangyo_t0254",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0254",
+      "anchor": "대기 일정이 길어졌네요. 접수 순서 공유 부탁드려요. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "대기 일정이 길어졌네요. 접수 순서 공유 부탁드려요. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_pangyo_t0255",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0255",
+      "anchor": "팀 일정표에서 다음 회의 시간을 확인하고 있어요.",
+      "queries": [],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "팀 일정표에서 다음 회의 시간을 확인하고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_pangyo_t0255_followup",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0255",
+      "anchor": "팀 일정표에서 다음 회의 시간을 확인하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "다음 회의 시간을 확인하던 중이에요. 잠깐이라도 숨 돌리고 들어가면 좋겠네요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_pangyo_t0256",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0256",
+      "anchor": "주문 이후 딜레이가 길어졌는데요. 준비 일정 확인 부탁드려요.",
+      "queries": [],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "주문 이후 딜레이가 길어졌는데요. 준비 일정 확인 부탁드려요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_pangyo_t0257",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "t0257",
+      "anchor": "주문 이후 딜레이가 길어졌는데요. 준비 일정 확인 부탁드려요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "야근  회의  출시 일정",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "주문 이후 딜레이가 길어졌는데요. 준비 일정 확인 부탁드려요. 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_pangyo_hello",
+      "personaId": "cus_pangyo",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "판교 사투리: 영어 섞은 IT 업무 용어 (니즈, 싱크, 얼라인, 블로커, 디플로이, ASAP).",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_barista_t0265",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0265",
+      "anchor": "다음 실습에서 비교할 향과 바디감 메모를 정리하고 있어요.",
+      "queries": [],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "다음 실습에서 비교할 향과 바디감 메모를 정리하고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_barista_t0265_followup",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0265",
+      "anchor": "다음 실습에서 비교할 향과 바디감 메모를 정리하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "자격증 실습에서 배운 원두 향을 떠올리고 있었어요. 같은 커피도 향을 차근차근 살펴보는 게 재미있습니다.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_barista_t0266",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0266",
+      "anchor": "대기가 길어져서요. 접수 가능한 순서를 확인하고 싶습니다.",
+      "queries": [],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "대기가 길어져서요. 접수 가능한 순서를 확인하고 싶습니다.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_barista_t0267",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0267",
+      "anchor": "대기가 길어져서요. 접수 가능한 순서를 확인하고 싶습니다. 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "대기가 길어져서요. 접수 가능한 순서를 확인하고 싶습니다. 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_barista_t0268",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0268",
+      "anchor": "다음 실습에서 비교할 향과 바디감 메모를 정리하고 있어요.",
+      "queries": [],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "다음 실습에서 비교할 향과 바디감 메모를 정리하고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_barista_t0268_followup",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0268",
+      "anchor": "다음 실습에서 비교할 향과 바디감 메모를 정리하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "자격증 실습에서 배운 원두 향을 떠올리고 있었어요. 같은 커피도 향을 차근차근 살펴보는 게 재미있습니다.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_barista_t0269",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0269",
+      "anchor": "맛을 비교할 준비는 됐는데 제 잔이 아직이군요. 언제 받을 수 있을까요?",
+      "queries": [],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "맛을 비교할 준비는 됐는데 제 잔이 아직이군요. 언제 받을 수 있을까요?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_barista_t0270",
+      "personaId": "cus_barista",
+      "anchorTermId": "t0270",
+      "anchor": "맛을 비교할 준비는 됐는데 제 잔이 아직이군요. 언제 받을 수 있을까요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "원두  바리스타 자격증  라떼아트",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "맛을 비교할 준비는 됐는데 제 잔이 아직이군요. 언제 받을 수 있을까요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_barista_hello",
+      "personaId": "cus_barista",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "커피 전문 용어 (싱글/더블, 데미타세, 산미, 바디감, 추출).",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_trainer_t0278",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0278",
+      "anchor": "오늘 운동 기록과 쉬는 시간을 정리하고 있어요.",
+      "queries": [],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "오늘 운동 기록과 쉬는 시간을 정리하고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_trainer_t0278_followup",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0278",
+      "anchor": "오늘 운동 기록과 쉬는 시간을 정리하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "오늘 운동 기록이랑 쉬는 시간을 보고 있었어요! 운동만큼 쉬는 시간도 챙겨야 다음에 힘을 낼 수 있거든요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_trainer_t0279",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0279",
+      "anchor": "쉬는 시간이 꽤 지났네요! 제 주문 순서는 언제일까요?",
+      "queries": [],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "쉬는 시간이 꽤 지났네요! 제 주문 순서는 언제일까요?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_trainer_t0280",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0280",
+      "anchor": "쉬는 시간이 꽤 지났네요! 제 주문 순서는 언제일까요? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "쉬는 시간이 꽤 지났네요! 제 주문 순서는 언제일까요? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_trainer_t0281",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0281",
+      "anchor": "오늘 운동 기록과 쉬는 시간을 정리하고 있어요.",
+      "queries": [],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "오늘 운동 기록과 쉬는 시간을 정리하고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_trainer_t0281_followup",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0281",
+      "anchor": "오늘 운동 기록과 쉬는 시간을 정리하고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "오늘 운동 기록이랑 쉬는 시간을 보고 있었어요! 운동만큼 쉬는 시간도 챙겨야 다음에 힘을 낼 수 있거든요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_trainer_t0282",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0282",
+      "anchor": "다음 일정도 있어서요! 주문한 잔은 얼마나 남았나요?",
+      "queries": [],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "다음 일정도 있어서요! 주문한 잔은 얼마나 남았나요?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_trainer_t0283",
+      "personaId": "cus_trainer",
+      "anchorTermId": "t0283",
+      "anchor": "다음 일정도 있어서요! 주문한 잔은 얼마나 남았나요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "운동  회원 이야기  식단",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "다음 일정도 있어서요! 주문한 잔은 얼마나 남았나요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_trainer_hello",
+      "personaId": "cus_trainer",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "운동·식단 용어 (당 제로, 벌크업, 단백질, 카테킨, 프리워크아웃).",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_blind_t0291",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0291",
+      "anchor": "산책하며 들었던 음악의 멜로디를 떠올리고 있어요.",
+      "queries": [],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "산책하며 들었던 음악의 멜로디를 떠올리고 있어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_blind_t0291_followup",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0291",
+      "anchor": "산책하며 들었던 음악의 멜로디를 떠올리고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "산책할 때 들었던 음악과 익숙한 길을 떠올리고 있었어요. 그때 들리던 소리가 기억에 남네요.",
+      "direct": true,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_blind_t0292",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0292",
+      "anchor": "기다린 시간이 길어진 것 같네요. 접수 순서를 알려 주시겠어요?",
+      "queries": [],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "기다린 시간이 길어진 것 같네요. 접수 순서를 알려 주시겠어요?",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_blind_t0293",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0293",
+      "anchor": "기다린 시간이 길어진 것 같네요. 접수 순서를 알려 주시겠어요? 순서를 다시 확인하고 싶어요.",
+      "queries": [],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "기다린 시간이 길어진 것 같네요. 접수 순서를 알려 주시겠어요? 순서를 다시 확인하고 싶어요.",
+      "direct": false,
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_blind_t0294",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0294",
+      "anchor": "산책하며 들었던 음악의 멜로디를 떠올리고 있어요.",
+      "queries": [],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "산책하며 들었던 음악의 멜로디를 떠올리고 있어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_blind_t0294_followup",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0294",
+      "anchor": "산책하며 들었던 음악의 멜로디를 떠올리고 있어요.",
+      "queries": [
+        "무슨 생각 하세요",
+        "무슨 이야기예요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "어땠어요",
+        "왜요",
+        "그렇군요",
+        "재밌겠네요"
+      ],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "산책할 때 들었던 음악과 익숙한 길을 떠올리고 있었어요. 그때 들리던 소리가 기억에 남네요.",
+      "direct": true,
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60
+    },
+    {
+      "id": "cus_blind_t0295",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0295",
+      "anchor": "아까 주문한 음료가 얼마나 남았는지 설명해 주시겠어요?",
+      "queries": [],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "아까 주문한 음료가 얼마나 남았는지 설명해 주시겠어요?",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120
+    },
+    {
+      "id": "cus_blind_t0296",
+      "personaId": "cus_blind",
+      "anchorTermId": "t0296",
+      "anchor": "아까 주문한 음료가 얼마나 남았는지 설명해 주시겠어요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "queries": [],
+      "words": "음악  산책  안내견",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "아까 주문한 음료가 얼마나 남았는지 설명해 주시겠어요? 기다린 시간도 생각해 주시면 좋겠어요.",
+      "direct": false,
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000
+    },
+    {
+      "id": "cus_blind_hello",
+      "personaId": "cus_blind",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "평범한 표준어. 메뉴판을 볼 수 없어 직원에게 어떤 메뉴가 있는지 묻는다.",
+      "response": "안녕하세요. 잠깐 이야기 나누니 반갑네요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_6",
+      "anchor": "다음 작은 무대에서 부를 노래의 첫 소절을 생각하고 있어요.",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_miku_6",
+      "queries": [],
+      "response": "다음 작은 무대에서 부를 노래의 첫 소절을 생각하고 있어요.",
+      "direct": false
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_6",
+      "anchor": "다음 작은 무대에서 부를 노래의 첫 소절을 생각하고 있어요.",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_miku_6_followup",
+      "queries": [
+        "왜요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "무슨 생각 하세요"
+      ],
+      "response": "작은 무대에서 부를 곡을 연습하고 있었어요. 높은 음보다 제가 편하게 이어 부를 수 있는 흐름을 찾는 중이에요.",
+      "direct": true
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_7",
+      "anchor": "연습 쉬는 시간이 조금 지나갔네요. 제 주문 차례는 언제쯤일까요?",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120,
+      "id": "branch_cus_miku_7",
+      "queries": [],
+      "response": "연습 쉬는 시간이 조금 지나갔네요. 제 주문 차례는 언제쯤일까요?",
+      "direct": false
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_8",
+      "anchor": "곧 다시 연습하러 가야 해서요. 주문 순서를 확인하고 싶어요.",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000,
+      "id": "branch_cus_miku_8",
+      "queries": [],
+      "response": "곧 다시 연습하러 가야 해서요. 주문 순서를 확인하고 싶어요.",
+      "direct": false
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_9",
+      "anchor": "오늘은 조용히 쉬면서 좋아하는 리듬을 떠올리고 있어요.",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_miku_9",
+      "queries": [],
+      "response": "오늘은 조용히 쉬면서 좋아하는 리듬을 떠올리고 있어요.",
+      "direct": false
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_9",
+      "anchor": "오늘은 조용히 쉬면서 좋아하는 리듬을 떠올리고 있어요.",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_miku_9_followup",
+      "queries": [
+        "왜요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "무슨 생각 하세요"
+      ],
+      "response": "작은 무대에서 부를 곡을 연습하고 있었어요. 높은 음보다 제가 편하게 이어 부를 수 있는 흐름을 찾는 중이에요.",
+      "direct": true
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_10",
+      "anchor": "주문한 잔을 기다리고 있어요. 다음 연습 전에 마실 수 있을까요?",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120,
+      "id": "branch_cus_miku_10",
+      "queries": [],
+      "response": "주문한 잔을 기다리고 있어요. 다음 연습 전에 마실 수 있을까요?",
+      "direct": false
+    },
+    {
+      "personaId": "cus_miku",
+      "anchorTermId": "branch_cus_miku_11",
+      "anchor": "연습 시작 시간이 가까워졌네요. 제 잔이 얼마나 남았는지 알려 주실래요?",
+      "words": "노래 연습  작은 무대  코스튬  좋아하는 리듬  커피 향",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000,
+      "id": "branch_cus_miku_11",
+      "queries": [],
+      "response": "연습 시작 시간이 가까워졌네요. 제 잔이 얼마나 남았는지 알려 주실래요?",
+      "direct": false
+    },
+    {
+      "id": "cus_miku_hello",
+      "personaId": "cus_miku",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "밝고 장난기 있는 한국어 존댓말. 노래·리듬·무대 비유를 가끔 섞되 같은 구호를 반복하지 않는다.",
+      "response": "안녕하세요. 오늘은 어떤 향으로 쉬어 갈지 기대돼요.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_6",
+      "anchor": "오늘 수업을 마치고 잠깐 회복하는 시간을 갖고 있습니다.",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_kim_gyeran_6",
+      "queries": [],
+      "response": "오늘 수업을 마치고 잠깐 회복하는 시간을 갖고 있습니다.",
+      "direct": false
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_6",
+      "anchor": "오늘 수업을 마치고 잠깐 회복하는 시간을 갖고 있습니다.",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_kim_gyeran_6_followup",
+      "queries": [
+        "왜요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "무슨 생각 하세요"
+      ],
+      "response": "오늘은 수업을 마치고 쉬는 시간을 챙기고 있었습니다. 운동을 오래 이어 가려면 회복도 일정에 넣는 편이 좋더라고요.",
+      "direct": true
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_7",
+      "anchor": "쉬는 시간이 조금 지나갔네요. 제 주문 차례는 언제쯤일까요?",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 60,
+      "maxWait": 120,
+      "id": "branch_cus_kim_gyeran_7",
+      "queries": [],
+      "response": "쉬는 시간이 조금 지나갔네요. 제 주문 차례는 언제쯤일까요?",
+      "direct": false
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_8",
+      "anchor": "다음 수업 시간이 가까워져서요. 주문 순서를 확인하고 싶습니다.",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "inactive"
+      ],
+      "minWait": 120,
+      "maxWait": 100000,
+      "id": "branch_cus_kim_gyeran_8",
+      "queries": [],
+      "response": "다음 수업 시간이 가까워져서요. 주문 순서를 확인하고 싶습니다.",
+      "direct": false
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_9",
+      "anchor": "운동 뒤에는 쉬는 시간도 챙겨야죠. 오늘은 천천히 숨을 고르고 있습니다.",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_kim_gyeran_9",
+      "queries": [],
+      "response": "운동 뒤에는 쉬는 시간도 챙겨야죠. 오늘은 천천히 숨을 고르고 있습니다.",
+      "direct": false
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_9",
+      "anchor": "운동 뒤에는 쉬는 시간도 챙겨야죠. 오늘은 천천히 숨을 고르고 있습니다.",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 0,
+      "maxWait": 60,
+      "id": "branch_cus_kim_gyeran_9_followup",
+      "queries": [
+        "왜요",
+        "좀 더 이야기해 주세요",
+        "더 자세히 들려주세요",
+        "무슨 생각 하세요"
+      ],
+      "response": "오늘은 수업을 마치고 쉬는 시간을 챙기고 있었습니다. 운동을 오래 이어 가려면 회복도 일정에 넣는 편이 좋더라고요.",
+      "direct": true
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_10",
+      "anchor": "주문한 잔을 기다리고 있습니다. 다음 일정 전에 받을 수 있을까요?",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 60,
+      "maxWait": 120,
+      "id": "branch_cus_kim_gyeran_10",
+      "queries": [],
+      "response": "주문한 잔을 기다리고 있습니다. 다음 일정 전에 받을 수 있을까요?",
+      "direct": false
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "branch_cus_kim_gyeran_11",
+      "anchor": "다음 수업을 준비해야 해서요. 제 잔이 얼마나 남았는지 확인 부탁드립니다.",
+      "words": "꾸준한 운동  회원 수업  회복과 휴식  산책  쉬는 날의 한 잔",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "requires": [
+        "active"
+      ],
+      "minWait": 120,
+      "maxWait": 100000,
+      "id": "branch_cus_kim_gyeran_11",
+      "queries": [],
+      "response": "다음 수업을 준비해야 해서요. 제 잔이 얼마나 남았는지 확인 부탁드립니다.",
+      "direct": false
+    },
+    {
+      "id": "cus_kim_gyeran_hello",
+      "personaId": "cus_kim_gyeran",
+      "anchorTermId": "",
+      "anchor": "",
+      "queries": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ],
+      "words": "인사 안녕 반갑",
+      "voice": "편안하고 힘 있는 한국어 존댓말. 짧은 격려와 운동 비유를 자연스럽게 섞으며 질문에는 구체적으로 답한다.",
+      "response": "반갑습니다. 오늘도 잠깐 쉬어 가겠습니다.",
+      "direct": true,
+      "requires": [],
+      "minWait": 0,
+      "maxWait": 100000
+    }
+  ],
+  "wordGroups": [
+    {
+      "words": [
+        "옛날",
+        "예전",
+        "과거",
+        "추억",
+        "옛이야기"
+      ]
+    },
+    {
+      "words": [
+        "다방",
+        "찻집"
+      ]
+    },
+    {
+      "words": [
+        "이야기",
+        "얘기",
+        "말씀"
+      ]
+    },
+    {
+      "words": [
+        "즐겁",
+        "재밌",
+        "재미"
+      ]
+    },
+    {
+      "words": [
+        "고향",
+        "본가"
+      ]
+    },
+    {
+      "words": [
+        "노래",
+        "음악",
+        "플레이리스트"
+      ]
+    },
+    {
+      "words": [
+        "멍멍이",
+        "반려견",
+        "강아지"
+      ]
+    },
+    {
+      "words": [
+        "손자",
+        "손녀",
+        "손주"
+      ]
+    },
+    {
+      "words": [
+        "공부",
+        "학습"
+      ]
+    },
+    {
+      "words": [
+        "일정",
+        "스케줄"
+      ]
+    },
+    {
+      "words": [
+        "안녕하세요",
+        "안녕",
+        "반가워요"
+      ]
+    },
+    {
+      "words": [
+        "들려주세요",
+        "말해주세요",
+        "알려주세요"
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "personaId": "cus_elder",
+      "speech": "허허, 그 이야기는 내가 잘 모르겠구먼. 이야기는 여기까지 하고 잠깐 쉬겠네."
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "speech": "그거는 잘 모르겠네예. 이야기는 이쯤 하고 잠깐 쉬고 있을게예."
+    },
+    {
+      "personaId": "cus_jeolla",
+      "speech": "그 얘기는 잘 모르겠당께요. 이야기는 이만하고 좀 쉬어야 쓰겄어요."
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "speech": "그건 잘 모르겠어유. 이야기는 여기까지 하고 좀 쉴게유."
+    },
+    {
+      "personaId": "cus_gangwon",
+      "speech": "그 이야기는 잘 모르겠드래요. 이야기는 이만하고 쉬겠어요."
+    },
+    {
+      "personaId": "cus_jeju",
+      "speech": "그 이야기는 잘 모르쿠다. 이만 이야기하고 쉬고 이시쿠다."
+    },
+    {
+      "personaId": "cus_sea",
+      "speech": "그 이야기는 잘 모르겠어요. 이야기는 여기까지 하고 조금 쉴게요."
+    },
+    {
+      "personaId": "cus_west",
+      "speech": "그 이야기는 아직 잘 모르겠어요. 오늘 이야기는 여기서 마칠게요."
+    },
+    {
+      "personaId": "cus_japan",
+      "speech": "그 이야기는 잘 모르겠네요. 이야기는 이만하고 잠깐 쉬겠습니다."
+    },
+    {
+      "personaId": "cus_china",
+      "speech": "그건 잘 모르겠어요. 이야기는 여기까지 하고 잠깐 쉬려고요."
+    },
+    {
+      "personaId": "cus_child",
+      "speech": "그건 잘 모르겠어요. 이제 이야기 그만하고 좀 쉴래요."
+    },
+    {
+      "personaId": "cus_student",
+      "speech": "그건 잘 모르겠는데요. 이야기는 여기까지 하고 잠깐 쉴게요."
+    },
+    {
+      "personaId": "cus_pangyo",
+      "speech": "그 주제는 잘 모르겠네요. 대화는 이쯤 마무리하고 쉬겠습니다."
+    },
+    {
+      "personaId": "cus_barista",
+      "speech": "그 이야기는 잘 모르겠습니다. 이야기는 여기까지 하고 잠시 쉬겠습니다."
+    },
+    {
+      "personaId": "cus_trainer",
+      "speech": "그건 잘 모르겠어요! 이야기는 이만하고 잠깐 쉬어야겠네요."
+    },
+    {
+      "personaId": "cus_blind",
+      "speech": "그 이야기는 잘 모르겠어요. 이야기는 여기까지 하고 잠깐 쉬겠습니다."
+    },
+    {
+      "personaId": "cus_miku",
+      "speech": "이야기 즐거웠어요. 다음에 또 만나요."
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "speech": "이야기 잘 나눴습니다. 다음에 또 뵙죠."
+    }
+  ],
+  "replyVocabulary": [
+    {
+      "personaId": "cus_elder",
+      "acknowledgements": [
+        "그렇구먼.",
+        "음, 이야기는 들었네."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 들려주겠나?",
+        "어느 이야기를 하는지 다시 말해 주겠나?"
+      ],
+      "topicQuestion": "{topic}에 관해 어떤 점이 궁금한가?",
+      "greetings": [
+        "반갑네.",
+        "좋은 날이구먼."
+      ]
+    },
+    {
+      "personaId": "cus_gyeongsang",
+      "acknowledgements": [
+        "그렇습니까.",
+        "말씀은 들었습니더."
+      ],
+      "clarifications": [
+        "무슨 뜻인지 조금 더 말해 주이소.",
+        "어느 이야긴지 다시 말해 주시겠습니꺼?"
+      ],
+      "topicQuestion": "{topic}에 관해 뭐가 궁금하십니꺼?",
+      "greetings": [
+        "반갑습니더.",
+        "안녕하십니꺼?"
+      ]
+    },
+    {
+      "personaId": "cus_jeolla",
+      "acknowledgements": [
+        "그렇구만요.",
+        "말씀은 들었당께요."
+      ],
+      "clarifications": [
+        "무슨 뜻인지 쪼까 더 말해 주시겠어요?",
+        "어느 이야긴지 다시 알려 주시겠어요?"
+      ],
+      "topicQuestion": "{topic}에 관해 뭐가 궁금하신가요?",
+      "greetings": [
+        "반갑구만요.",
+        "안녕하세요."
+      ]
+    },
+    {
+      "personaId": "cus_chungcheong",
+      "acknowledgements": [
+        "그렇구먼유.",
+        "말씀은 들었어유."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 말해 주셔유.",
+        "어느 이야긴지 다시 알려 주시겠어유?"
+      ],
+      "topicQuestion": "{topic}에 관해 뭐가 궁금하셔유?",
+      "greetings": [
+        "안녕하세유.",
+        "반가워유."
+      ]
+    },
+    {
+      "personaId": "cus_gangwon",
+      "acknowledgements": [
+        "그렇군드래요.",
+        "말씀은 들었어요."
+      ],
+      "clarifications": [
+        "무슨 뜻인지 조금 더 말해 주시겠어요?",
+        "어느 이야긴지 다시 알려 주시겠어요?"
+      ],
+      "topicQuestion": "{topic}에 관해 어떤 게 궁금하세요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_jeju",
+      "acknowledgements": [
+        "경하우꽈.",
+        "말씀은 들었수다."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 말해 줍서.",
+        "어느 이야긴지 다시 알려 줍서."
+      ],
+      "topicQuestion": "{topic}에 관해 뭐가 궁금하우꽈?",
+      "greetings": [
+        "반갑수다.",
+        "안녕하우꽈?"
+      ]
+    },
+    {
+      "personaId": "cus_sea",
+      "acknowledgements": [
+        "네, 이야기 들었어요.",
+        "그렇군요."
+      ],
+      "clarifications": [
+        "조금 더 쉽게 말해 주실 수 있어요?",
+        "어떤 이야기인지 다시 알려 주세요."
+      ],
+      "topicQuestion": "{topic}에 대해 어떤 점이 궁금해요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_west",
+      "acknowledgements": [
+        "오, 그렇군요.",
+        "네, 말씀은 들었어요."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 설명해 주시겠어요?",
+        "어떤 이야기를 하시는지 다시 알려 주세요."
+      ],
+      "topicQuestion": "{topic}에 대해 어떤 점이 궁금하세요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_japan",
+      "acknowledgements": [
+        "아, 그렇군요.",
+        "네, 말씀은 들었습니다."
+      ],
+      "clarifications": [
+        "죄송하지만 어떤 뜻인지 조금 더 말씀해 주시겠어요?",
+        "어느 이야기인지 다시 알려 주실 수 있을까요?"
+      ],
+      "topicQuestion": "{topic}에 관해 어떤 점이 궁금하신가요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_china",
+      "acknowledgements": [
+        "네, 말씀 들었어요.",
+        "그렇군요."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 말해 주세요.",
+        "어느 이야기인지 다시 알려 주세요."
+      ],
+      "topicQuestion": "{topic}에 대해 뭐가 궁금하세요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_child",
+      "acknowledgements": [
+        "아, 그렇구나!",
+        "응, 들었어요!"
+      ],
+      "clarifications": [
+        "그게 무슨 말이에요? 조금 더 알려 주세요.",
+        "어떤 이야기예요? 다시 말해 주세요!"
+      ],
+      "topicQuestion": "{topic}에 대해 뭐가 궁금해요?",
+      "greetings": [
+        "안녕하세요!",
+        "만나서 반가워요!"
+      ]
+    },
+    {
+      "personaId": "cus_student",
+      "acknowledgements": [
+        "아, 그렇군요.",
+        "네, 들었어요."
+      ],
+      "clarifications": [
+        "무슨 뜻인지 조금만 더 말해 주실래요?",
+        "어느 이야긴지 다시 알려 주실래요?"
+      ],
+      "topicQuestion": "{topic}에 대해 어떤 게 궁금하세요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_pangyo",
+      "acknowledgements": [
+        "네, 말씀 들었습니다.",
+        "아, 그렇군요."
+      ],
+      "clarifications": [
+        "어떤 맥락인지 조금 더 설명해 주시겠어요?",
+        "어느 이야기를 말씀하시는지 다시 알려 주세요."
+      ],
+      "topicQuestion": "{topic}에 관해 어떤 부분이 궁금하세요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_barista",
+      "acknowledgements": [
+        "네, 말씀 들었습니다.",
+        "그렇군요."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 말씀해 주시겠어요?",
+        "어느 이야기인지 다시 알려 주시겠어요?"
+      ],
+      "topicQuestion": "{topic}에 관해 어떤 점이 궁금하신가요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_trainer",
+      "acknowledgements": [
+        "네, 이야기 들었어요!",
+        "아, 그렇군요!"
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 말씀해 주실래요?",
+        "어느 이야기인지 다시 알려 주실래요?"
+      ],
+      "topicQuestion": "{topic}에 대해 어떤 점이 궁금하세요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_blind",
+      "acknowledgements": [
+        "네, 말씀은 들었습니다.",
+        "아, 그렇군요."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 설명해 주시겠어요?",
+        "어느 이야기인지 다시 알려 주시겠어요?"
+      ],
+      "topicQuestion": "{topic}에 관해 어떤 점이 궁금하신가요?",
+      "greetings": [
+        "안녕하세요.",
+        "반갑습니다."
+      ]
+    },
+    {
+      "personaId": "cus_miku",
+      "acknowledgements": [
+        "아, 그렇군요.",
+        "말씀 잘 들었어요."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 이야기해 주실래요?"
+      ],
+      "greetings": [
+        "안녕하세요. 오늘은 어떤 향으로 쉬어 갈지 기대돼요."
+      ],
+      "topicQuestion": "{topic}에 대해 어떤 점이 궁금하세요?"
+    },
+    {
+      "personaId": "cus_kim_gyeran",
+      "acknowledgements": [
+        "아, 그렇군요.",
+        "말씀 잘 들었어요."
+      ],
+      "clarifications": [
+        "어떤 뜻인지 조금 더 이야기해 주실래요?"
+      ],
+      "greetings": [
+        "반갑습니다. 오늘도 잠깐 쉬어 가겠습니다."
+      ],
+      "topicQuestion": "{topic}에 대해 어떤 점이 궁금하세요?"
+    }
+  ]
+}

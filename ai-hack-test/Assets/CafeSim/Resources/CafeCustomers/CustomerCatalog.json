@@ -1,0 +1,150 @@
+{
+    "items": [
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/child/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/child/Appearance",
+            "description": "아동 외형 (파일명 추정)",
+            "mappingReason": "파일명 연령·성별/역할과 기존 페르소나의 외형 참조 일치. 지역·국적·성격은 추정하지 않음.",
+            "status": "ready",
+            "personaIds": [
+                "cus_child"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.2000000476837158
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_gyeongsang/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/cus_gyeongsang/Appearance",
+            "description": "경상도 손님용 외형 (파일의 명시적 ID 기준)",
+            "mappingReason": "파일명에 cus_gyeongsang 명시",
+            "status": "ready",
+            "personaIds": [
+                "cus_gyeongsang"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.75
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_pangyo/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/cus_pangyo/Appearance",
+            "description": "판교 회사원용 외형 (파일의 명시적 ID 기준)",
+            "mappingReason": "파일명에 cus_pangyo 명시",
+            "status": "ready",
+            "personaIds": [
+                "cus_pangyo"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.75
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/cus_student/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/cus_student/Appearance",
+            "description": "학생용 외형 (파일의 명시적 ID 기준)",
+            "mappingReason": "파일명에 cus_student 명시",
+            "status": "ready",
+            "personaIds": [
+                "cus_student"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.600000023841858
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/middle_male_trainer/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/middle_male_trainer/Appearance",
+            "description": "수염 남성 공용 외형 (김계란·어르신)",
+            "mappingReason": "사용자 승인 공용 모델 매핑. 페르소나별 대사·주문·기록은 독립 유지.",
+            "status": "ready",
+            "personaIds": [
+                "cus_kim_gyeran",
+                "cus_elder"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.75
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/shared_adult_female/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/shared_adult_female/Appearance",
+            "description": "성인 여성 공용 외형 · 할머니/20대 여성 모델 수신 전 임시 연결",
+            "mappingReason": "사용자 승인 공용 모델 매핑. 제주의 노년 설정 유지, 할머니와 20대 여성 모델 수신 후 교체 예정.",
+            "status": "ready",
+            "personaIds": [
+                "cus_jeju",
+                "cus_jeolla",
+                "cus_west",
+                "cus_china",
+                "cus_barista",
+                "cus_trainer"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.6399999856948853
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/young_female_miku/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/young_female_miku/Appearance",
+            "description": "청년 여성 · 통통한 미쿠 전용 외형",
+            "mappingReason": "사용자 지정 독립 분기만 연결. 기존 연령·성별 범주의 페르소나는 유지.",
+            "status": "ready",
+            "personaIds": [
+                "cus_miku"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.6399999856948853
+        },
+        {
+            "source": "Assets/CafeSim/Resources/CafeCustomers/Incoming/young_male_black/Appearance.prefab",
+            "resource": "CafeCustomers/Incoming/young_male_black/Appearance",
+            "description": "청년 남성 공용 외형 (Black)",
+            "mappingReason": "사용자 승인 공용 모델 매핑. 페르소나별 대사·주문·기록은 독립 유지.",
+            "status": "ready",
+            "personaIds": [
+                "cus_sea",
+                "cus_japan",
+                "cus_chungcheong",
+                "cus_gangwon",
+                "cus_blind"
+            ],
+            "issues": [],
+            "idleResource": "",
+            "idleClip": "",
+            "walkResource": "",
+            "walkClip": "",
+            "controllerParameter": "Walking",
+            "height": 1.75
+        }
+    ]
+}
