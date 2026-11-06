@@ -50,6 +50,7 @@ namespace CafeSim
         public const string FailedDrinkId = "failed_drink";
         public const string FailedDrinkName = "신비한 음료";
         public const double MikuArrivalChance = .05;
+        public const double MinimumFemaleArrivalChance = .40;
         public readonly List<CafeVisit> Inactive=new List<CafeVisit>(),Active=new List<CafeVisit>();
         public readonly List<CafeVisit> Completed=new List<CafeVisit>();
         public readonly CafeQueueSettings Settings;
@@ -62,11 +63,19 @@ namespace CafeSim
         internal static Persona ChoosePersona(Persona[] candidates, System.Random random)
         {
             int miku = Array.FindIndex(candidates, p => p.id == "cus_miku");
-            // A one-person MVP must remain directly selectable; ordinary casts retain uniform selection.
-            if (miku < 0 || candidates.Length == 1) return candidates[random.Next(candidates.Length)];
-            if (random.NextDouble() < MikuArrivalChance) return candidates[miku];
-            int other = random.Next(candidates.Length - 1);
-            return candidates[other >= miku ? other + 1 : other];
+            // The floor is a draw probability, not a quota over a short run of visitors.
+            if (candidates.Length == 1) return candidates[0];
+            if (miku >= 0 && random.NextDouble() < MikuArrivalChance) return candidates[miku];
+            var ordinary = Array.FindAll(candidates, p => p.id != "cus_miku");
+            var women = Array.FindAll(ordinary, p => (p.gender ?? "").Contains("여성"));
+            double specialChance = miku >= 0 ? MikuArrivalChance : 0;
+            double required = (MinimumFemaleArrivalChance - specialChance) / (1 - specialChance);
+            // Retain equal odds when the existing cast already meets the floor, or has no women.
+            if (women.Length == 0 || (double)women.Length / ordinary.Length >= required)
+                return ordinary[random.Next(ordinary.Length)];
+            var pool = random.NextDouble() < required ? women :
+                Array.FindAll(ordinary, p => !(p.gender ?? "").Contains("여성"));
+            return pool[random.Next(pool.Length)];
         }
         public CafeQueueSim(Persona[] people,MenuTable menu,CafeKnowledge knowledge,CafeQueueSettings settings,int seed)
         {
