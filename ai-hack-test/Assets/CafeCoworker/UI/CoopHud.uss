@@ -1,0 +1,28 @@
+.screen { position: absolute; left: 0; top: 0; right: 0; bottom: 0; color: rgb(246, 239, 222); font-size: 17px; }
+.task-card { display: none; position: absolute; left: 22px; top: 22px; width: 360px; padding: 20px; background-color: rgba(31, 44, 41, 0.94); border-radius: 12px; }
+.eyebrow { color: rgb(224, 185, 119); font-size: 15px; margin-bottom: 10px; }
+.work { white-space: normal; font-size: 19px; }
+.notice { white-space: normal; font-size: 14px; color: rgb(208, 211, 190); margin-top: 14px; }
+.navigation { position: absolute; right: 22px; top: 22px; flex-direction: row; }
+Button { min-height: 38px; padding: 7px 12px; margin: 3px; background-color: rgb(67, 89, 78); color: rgb(255, 246, 226); border-width: 1px; border-color: rgb(135, 151, 123); border-radius: 6px; font-size: 16px; white-space: normal; }
+Button:hover { background-color: rgb(85, 114, 96); }
+Button:disabled { opacity: 0.45; }
+.interact { position: absolute; bottom: 22px; left: 22px; right: 22px; align-items: center; }
+.hint { white-space: normal; background-color: rgba(24, 35, 32, 0.94); padding: 10px 16px; border-radius: 6px; margin-top: 7px; }
+.modal { display: none; position: absolute; right: 22px; top: 100px; bottom: 100px; width: 470px; padding: 20px; background-color: rgb(35, 47, 42); border-width: 1px; border-color: rgb(194, 165, 111); border-radius: 12px; }
+.close { align-self: flex-end; margin-bottom: 8px; }
+.content { flex-grow: 1; min-height: 0; }
+.title { font-size: 23px; color: rgb(239, 206, 150); margin-bottom: 14px; white-space: normal; }
+.thread { flex-grow: 1; min-height: 60px; margin-bottom: 10px; }
+.message { background-color: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 6px; margin-bottom: 9px; }
+.speaker { color: rgb(229, 190, 121); font-size: 14px; margin-bottom: 5px; }
+.speech { white-space: normal; margin-bottom: 8px; }
+.input { min-height: 44px; margin-top: 10px; }
+.input .unity-text-field__input { background-color: rgb(244, 237, 219); color: rgb(26, 38, 32); padding: 8px; font-size: 18px; }
+.actions { flex-direction: row; flex-wrap: wrap; }
+.record { min-height: 62px; margin-bottom: 12px; }
+.speech-bubble { display: none; position: absolute; width: 320px; max-height: 180px; padding: 14px; color: rgb(40, 43, 35); background-color: rgb(250, 238, 205); border-radius: 12px; border-width: 2px; border-color: rgb(176, 140, 83); white-space: normal; font-size: 18px; }
+.compact .task-card { width: 300px; font-size: 15px; left: 12px; top: 12px; }
+.compact .navigation { right: 12px; top: 12px; flex-direction: column; }
+.compact .navigation Button { min-height: 28px; font-size: 13px; }
+.compact .modal { width: 410px; right: 12px; top: 140px; bottom: 82px; }

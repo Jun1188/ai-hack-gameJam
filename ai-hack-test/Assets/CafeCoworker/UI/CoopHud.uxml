@@ -1,0 +1,46 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="CoopHud.uss" />
+    <ui:VisualElement name="screen" class="screen" picking-mode="Ignore">
+        <ui:VisualElement name="taskCard" class="task-card">
+            <ui:Label text="함께 일하는 카페" class="eyebrow" />
+            <ui:Label name="work" class="work" />
+            <ui:Label name="notice" class="notice" />
+        </ui:VisualElement>
+        <ui:VisualElement class="navigation">
+            <ui:Button name="currentCustomer" text="진행 중 대화 · 손님" />
+            <ui:Button name="records" text="이전 대화 · F2" />
+            <ui:Button name="pause" text="메뉴" />
+        </ui:VisualElement>
+        <ui:Label name="speechBubble" class="speech-bubble" picking-mode="Ignore" />
+        <ui:VisualElement class="interact" picking-mode="Ignore">
+            <ui:Button name="talk" text="E · 동료와 대화" />
+            <ui:Label name="hint" class="hint" />
+        </ui:VisualElement>
+        <ui:VisualElement name="modal" class="modal">
+            <ui:Button name="close" text="닫기 · Esc" class="close" />
+            <ui:VisualElement name="threadPanel" class="content">
+                <ui:Label name="threadTitle" class="title" />
+                <ui:ScrollView name="thread" class="thread" />
+                <ui:Label name="provider" class="notice" />
+                <ui:TextField name="input" max-length="300" multiline="false" class="input" />
+                <ui:VisualElement class="actions">
+                    <ui:Button name="send" text="전송" />
+                    <ui:Button name="cancelReply" text="응답 중단" />
+                    <ui:Button name="back" text="기록 목록" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="historyPanel" class="content">
+                <ui:Label text="이전 대화 목록" class="title" />
+                <ui:ScrollView name="history" class="thread" />
+            </ui:VisualElement>
+            <ui:VisualElement name="pausePanel" class="content">
+                <ui:Label text="잠깐 쉬어 가요" class="title" />
+                <ui:Label text="메뉴를 연 동안 작업과 대기 시간은 멈춥니다." class="speech" />
+                <ui:Button name="resume" text="계속하기" />
+                <ui:Button name="newOrder" text="주문 벨 울리기" />
+                <ui:Button name="cancelOrder" text="현재 주문 취소" />
+                <ui:Button name="restart" text="처음부터 다시" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -4,6 +4,8 @@ namespace CafeSim
 {
     public sealed partial class CafeHud
     {
+        [SerializeField, Range(.75f, 2.5f)] float recipeGuideArrowScale = 1.65f;
+        [SerializeField, Min(0)] float recipeGuideArrowTipGap = 14f;
         bool TryRecipeStep(out Collider target, out string instruction)
         {
             target = null; instruction = null;
@@ -21,21 +23,33 @@ namespace CafeSim
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 720f);
             Vector2 offset = (new Vector2(Screen.width, Screen.height) - new Vector2(1280f, 720f) * scale) * .5f;
             Vector2 ui = (new Vector2(point.x, Screen.height - point.y) - offset) / scale;
+            float arrowScale = Mathf.Clamp(recipeGuideArrowScale, .75f, 2.5f);
+            float headHeight = 14f * arrowScale, headWidth = 28f * arrowScale;
+            float arrowHeight = 42f * arrowScale;
+            float tipGap = Mathf.Max(0, recipeGuideArrowTipGap);
+            float topLimit = 155f + Mathf.Max(0, arrowHeight - 42f) + tipGap;
             // An offscreen target is described explicitly, instead of pinning a downward arrow to an unrelated object.
-            if (point.z <= 0 || ui.x < 40 || ui.x > 940 || ui.y < 155 || ui.y > 610)
+            if (point.z <= 0 || ui.x < 40 || ui.x > 940 || ui.y < topLimit || ui.y > 610)
             {
-                string direction = point.z <= 0 ? "뒤쪽" : ui.x < 40 ? "왼쪽" : ui.x > 940 ? "오른쪽" : ui.y < 155 ? "위쪽" : "아래쪽";
+                string direction = point.z <= 0 ? "뒤쪽" : ui.x < 40 ? "왼쪽" : ui.x > 940 ? "오른쪽" : ui.y < topLimit ? "위쪽" : "아래쪽";
                 Paper(new Rect(420, 116, 360, 34));
                 GUI.Label(new Rect(432, 122, 336, 24), "다음 위치 · " + direction + "을 둘러보세요", artSmall);
                 return;
             }
             float bob = Mathf.Sin(Time.unscaledTime * 3f) * 4f;
+            float tipY = ui.y - tipGap + bob;
             var previous = GUI.color;
             GUI.color = TutorialHighlightColor;
-            GUI.DrawTexture(new Rect(ui.x - 3, ui.y - 42 + bob, 6, 25), Texture2D.whiteTexture);
+            float shaftWidth = 6f * arrowScale;
+            GUI.DrawTexture(new Rect(ui.x - shaftWidth * .5f, tipY - arrowHeight,
+                shaftWidth, arrowHeight - headHeight + 1), Texture2D.whiteTexture);
             // Filled downward triangle, independent of the font's arrow glyph coverage.
-            for (int row = 0; row < 14; row++)
-                GUI.DrawTexture(new Rect(ui.x - 14 + row, ui.y - 18 + bob + row, 28 - row * 2, 1.5f), Texture2D.whiteTexture);
+            int rows = Mathf.CeilToInt(headHeight);
+            for (int row = 0; row <= rows; row++)
+            {
+                float width = Mathf.Max(1, headWidth * (1f - (float)row / rows));
+                GUI.DrawTexture(new Rect(ui.x - width * .5f, tipY - headHeight + row, width, 1.5f), Texture2D.whiteTexture);
+            }
             GUI.color = previous;
         }
     }

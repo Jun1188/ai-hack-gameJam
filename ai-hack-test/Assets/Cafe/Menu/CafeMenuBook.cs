@@ -56,6 +56,12 @@ namespace MapleCafe
         internal bool AllowConversationToggle { get; set; }
         internal bool HasCards => cards != null && cards.Length > 0;
         internal bool TutorialTabRequired { private get; set; }
+        internal void CloseForConversation()
+        {
+            if(!isOpen)return;
+            FinishSelection(false);
+            PlayCardSound(closeSound);
+        }
 
         internal void SetTutorialCardFocus(bool choosingFirstCard)
         {
