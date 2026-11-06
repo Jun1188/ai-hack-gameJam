@@ -13,6 +13,7 @@ namespace CafeCoworker
         public CoopSession session;
         public Font font;
         public event Action ModelSettingsRequested;
+        public event Action MainMenuRequested;
         public bool ExternalModal { get; set; }
         int inputBlockedUntil=-1;
         public void BlockInputForThisFrame(){inputBlockedUntil=Time.frameCount+1;}
@@ -55,6 +56,7 @@ namespace CafeCoworker
             root.Q<Button>("resume").clicked += Close;
             root.Q<Button>("restart").clicked += () => { session.ResetDay(); Close(); };
             root.Q<Button>("modelSettings").clicked += () => ModelSettingsRequested?.Invoke();
+            root.Q<Button>("mainMenu").clicked += () => MainMenuRequested?.Invoke();
             root.Q<Button>("cancelReply").clicked += () => session.dialogue.Cancel();
             send.clicked += Submit;
             input.RegisterCallback<KeyDownEvent>(evt =>
@@ -102,7 +104,7 @@ namespace CafeCoworker
             UpdateBubble();
             talk.style.display = session.CanTalk && view == View.None ? DisplayStyle.Flex : DisplayStyle.None;
             hint.text = view != View.None ? "" : session.TalkDiscovery ? "E · 가까운 동료와 이야기할 수 있어요" :
-                session.CanWork ? session.WorkHint : "WASD 이동 · 마우스 시점 · H 할 일 · B 주문 벨 · F 작업 유지 · F2 기록 · Esc 메뉴";
+                "WASD 이동 · 마우스 시점 · H 할 일 · B 주문 벨 · F 작업 유지 · F2 기록 · Esc 메뉴";
             if (Time.unscaledTime < refreshAt) return;
             refreshAt = Time.unscaledTime + .12f;
             string summary = session.DescribeWork();

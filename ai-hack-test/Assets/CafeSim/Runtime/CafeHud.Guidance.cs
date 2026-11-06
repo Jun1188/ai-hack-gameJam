@@ -28,14 +28,9 @@ namespace CafeSim
             float arrowHeight = 42f * arrowScale;
             float tipGap = Mathf.Max(0, recipeGuideArrowTipGap);
             float topLimit = 155f + Mathf.Max(0, arrowHeight - 42f) + tipGap;
-            // An offscreen target is described explicitly, instead of pinning a downward arrow to an unrelated object.
+            // Offscreen targets do not add a central instruction popup.
             if (point.z <= 0 || ui.x < 40 || ui.x > 940 || ui.y < topLimit || ui.y > 610)
-            {
-                string direction = point.z <= 0 ? "뒤쪽" : ui.x < 40 ? "왼쪽" : ui.x > 940 ? "오른쪽" : ui.y < topLimit ? "위쪽" : "아래쪽";
-                Paper(new Rect(420, 116, 360, 34));
-                GUI.Label(new Rect(432, 122, 336, 24), "다음 위치 · " + direction + "을 둘러보세요", artSmall);
                 return;
-            }
             float bob = Mathf.Sin(Time.unscaledTime * 3f) * 4f;
             float tipY = ui.y - tipGap + bob;
             var previous = GUI.color;

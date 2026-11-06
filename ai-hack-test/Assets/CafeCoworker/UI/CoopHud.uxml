@@ -41,6 +41,7 @@
                 <ui:Button name="newOrder" text="주문 벨 울리기" />
                 <ui:Button name="cancelOrder" text="현재 주문 취소" />
                 <ui:Button name="restart" text="처음부터 다시" />
+                <ui:Button name="mainMenu" text="메인 메뉴로" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

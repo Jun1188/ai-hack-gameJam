@@ -41352,6 +41352,7 @@ MonoBehaviour:
   session: {fileID: 573826151}
   host: {fileID: 573826156}
   font: {fileID: 12800000, guid: a65369236702f7846af10899275e8b61, type: 3}
+  mainMenuScene: MainMenu2
 --- !u!1 &573960447
 GameObject:
   m_ObjectHideFlags: 0
