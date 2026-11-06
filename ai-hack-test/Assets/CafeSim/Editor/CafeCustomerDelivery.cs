@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CafeSim
 {
-    // Explicit asset preparation for the four approved Downloads archives. Never edits a scene.
+    // Explicit asset preparation for approved Downloads archives. Never edits a scene.
     public static class CafeCustomerDelivery
     {
         const string Base = "Assets/CafeSim/Resources/CafeCustomers/";
@@ -16,22 +16,26 @@ namespace CafeSim
             new[] { "young_female_miku", "Miku" },
             new[] { "young_male_black", "Black" },
             new[] { "middle_male_trainer", "Incoming/middle_male_trainer" },
-            new[] { "child", "Incoming/child" }
+            new[] { "child", "Incoming/child" },
+            new[] { "cus_pangyo", "Incoming/cus_pangyo" },
+            new[] { "cus_student", "Incoming/cus_student" },
+            new[] { "cus_gyeongsang", "Incoming/cus_gyeongsang" },
+            new[] { "shared_adult_female", "Black", "Female.fbx" }
         };
 
         [UnityEditor.MenuItem("Tools/Cafe/Prepare Downloaded Customer Models")]
         public static void Prepare()
         {
-            foreach (var family in Families) PrepareFamily(family[0], Base + family[1] + "/");
+            foreach (var family in Families) PrepareFamily(family[0], Base + family[1] + "/", family.Length > 2 ? family[2] : "Model.fbx");
             AssetDatabase.SaveAssets();
             CafeCustomerCatalogImport.Rebuild();
         }
 
-        static void PrepareFamily(string name, string source)
+        static void PrepareFamily(string name, string source, string modelFile = "Model.fbx")
         {
             string folder = Base + "Incoming/" + name;
             if (!AssetDatabase.IsValidFolder(folder)) AssetDatabase.CreateFolder(Base + "Incoming", name);
-            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(source + "Model.fbx");
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(source + modelFile);
             if (prefab == null) throw new InvalidOperationException("Customer source missing: " + source);
             var idle = Clip(source + "Idle.fbx");
             var walk = Clip(File.Exists(folder + "/Walk.fbx") ? folder + "/Walk.fbx" : source + "Walk.fbx");

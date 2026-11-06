@@ -23,7 +23,10 @@ public static class CafePersonaBranchCheck
         var kb = new CafeKnowledge(); var conversation = new CafeConversation();
         CafeCustomerCatalog.Reload();
         foreach (string id in new[] { "cus_west", "cus_china", "cus_barista", "cus_trainer", "cus_chungcheong", "cus_gangwon", "cus_blind" })
-            Check(CafeCustomerCatalog.Choose(id, new System.Random(4)) == null, "Branch appearance leaked to original: " + id);
+        {
+            var appearance = CafeCustomerCatalog.Choose(id, new System.Random(4));
+            Check(appearance != null && !appearance.resource.Contains("miku") && !appearance.resource.Contains("middle_male_trainer"), "Approved shared appearance missing or branch leaked: " + id);
+        }
         var output = new System.Collections.Generic.List<string>();
         var preview = new PreviewRenderUtility();
         try
@@ -40,7 +43,8 @@ public static class CafePersonaBranchCheck
                 visit.LastThought = kb.Retrieve(visit, "chatter", 0);
                 Check(conversation.TryDirect(visit, "더 자세히 들려주세요", out var reply), "Branch follow-up missing");
                 Check(CafePrompts.ValidSpeech(reply), "Invalid branch follow-up");
-                Check(CafeCustomerCatalog.Choose(p.id, new System.Random(4))?.personaIds.Single() == p.id, "Exclusive branch model");
+                var mapped = CafeCustomerCatalog.Choose(p.id, new System.Random(4));
+                Check(mapped != null && (p.id == "cus_miku" ? mapped.personaIds.Single() == p.id : mapped.personaIds.OrderBy(x => x).SequenceEqual(new[] { "cus_elder", "cus_kim_gyeran" })), "Branch appearance sharing contract");
                 var spawn = typeof(CafeCustomerAppearance).GetMethod("Spawn", BindingFlags.Static | BindingFlags.NonPublic);
                 var root = (Transform)spawn.Invoke(null, new object[] { session, visit, new System.Random(4) }); preview.AddSingleGO(root.gameObject);
                 var grip = typeof(CafeCustomerAppearance).GetMethod("PrepareMugGrip", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(root.GetComponent<CafeCustomerAppearance>(), null);

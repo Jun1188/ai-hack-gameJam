@@ -31,6 +31,7 @@ namespace CafeSim
         GUIStyle artText, artSmall, artLabel, artCap, artButton, paperBox;
         RectTransform speechRoot, speechShadow, speechPaper, speechTail;
         Text speechLabel, speechStars;
+        CafeSpeechTextEffect speechEffect;
         float speechWidth, speechTextHeight, speechTextScale;
         static readonly Regex SentenceBreak = new Regex(
             @"([.!?。！？…]+[""'”’」』）)]*)(?:[ \t]+(?=\S)|(?=[가-힣]))");
@@ -65,7 +66,7 @@ namespace CafeSim
         void SetPrompt(bool value)
         {
             promptOpen=value;
-            if(!value){chatInput?.Blur();inputFocused=false;}
+            if(!value){chatInput?.Blur();inputFocused=false;ResetComposition();}
             ApplyOverlayControls();
             if(value&&!conversationListOpen&&chatInput!=null)chatInput.schedule.Execute(()=>{if(promptOpen&&!conversationListOpen&&ViewingLiveConversation&&!RecipeCardsOpen)chatInput.Focus();}).ExecuteLater(80);
         }
@@ -87,7 +88,12 @@ namespace CafeSim
             {
                 bool enterPressed = keys.enterKey.wasPressedThisFrame || keys.numpadEnterKey.wasPressedThisFrame;
                 // The tutorial owns Enter/Esc while it is open; otherwise E talks, Q opens the 영업 수첩, Esc pauses.
-                if (TutorialTabRequired)
+                if(keys.eKey.wasPressedThisFrame&&!promptOpen&&(TutorialTabRequired||TutorialOpen))
+                {
+                    DismissTutorialForConversation();
+                    HandleOverlayKey(KeyCode.E);
+                }
+                else if (TutorialTabRequired)
                 {
                     if (keys.tabKey.wasPressedThisFrame) AdvanceTutorialTabPrompt();
                 }
@@ -96,6 +102,8 @@ namespace CafeSim
                     if (enterPressed || keys.escapeKey.wasPressedThisFrame) CloseTutorial(true);
                 }
                 else if (enterPressed && TryAdvanceFromReceipt()) return;
+                else if(keys.hKey.wasPressedThisFrame&&!promptOpen&&!Halted&&!RecipeCardsOpen)
+                {currentTaskVisible=!currentTaskVisible;ShowHint(currentTaskVisible?"H · 작업 안내 닫기":"H · 작업 안내 보기");}
                 else if(keys.eKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.E);
                 else if(keys.f2Key.wasPressedThisFrame)HandleOverlayKey(KeyCode.F2);
                 else if(keys.qKey.wasPressedThisFrame)HandleOverlayKey(KeyCode.Q);
@@ -174,11 +182,15 @@ namespace CafeSim
         void HandleOverlayKey(KeyCode key)
         {
             if(shortcutFrame==Time.frameCount||CafeEnding.Active||CafeStartIris.BlocksInput)return;
-            if(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1)return;
+            if(promptOpen&&inputFocused&&(!string.IsNullOrEmpty(composition)||Time.frameCount-compositionFrame<=1))return;
             // While typing, E is a letter (and the first jamo of ㄷ); only Esc closes the field.
             if((key==KeyCode.E||key==KeyCode.Q)&&promptOpen&&!conversationListOpen&&!conversationFromList&&(inputFocused||GUIUtility.keyboardControl!=0))return;
             // The drink cards own the cursor and Esc while they are open.
-            if(barista!=null&&barista.ChoosingMenuCard)return;
+            if(barista!=null&&barista.ChoosingMenuCard)
+            {
+                if(key!=KeyCode.E)return;
+                tutorialMenu?.CloseForConversation();
+            }
             if(key==KeyCode.Escape&&cardsWereOpen)return;
             if(key==KeyCode.F2&&(businessDay==null||!businessDay.Paused)){shortcutFrame=Time.frameCount;ToggleConversationList();return;}
             if(key==KeyCode.Escape&&promptOpen)
@@ -269,7 +281,7 @@ namespace CafeSim
             Vector2 offset=new Vector2((Screen.width-1280*scale)*.5f,(Screen.height-720*scale)*.5f);
             GUI.matrix=Matrix4x4.TRS(offset,Quaternion.identity,Vector3.one*scale);
             DayStyles();
-            if(!Halted&&!RecipeCardsOpen){DrawCurrentTask();DrawRecipeGuide();}
+            if(!Halted&&!RecipeCardsOpen){if(currentTaskVisible&&!promptOpen)DrawCurrentTask();DrawRecipeGuide();}
             if(promptOpen&&!RecipeCardsOpen)DrawChat(scale);
             if(!Halted)DrawControls();
             if (TutorialTabRequired) DrawTutorialTabPrompt(scale, offset);
@@ -302,6 +314,10 @@ namespace CafeSim
             speechLabel = AddSpeechGraphic<Text>("Dialogue");
             speechLabel.fontSize = 20;
             speechLabel.color = ink;
+            // Clue words in colour, the customer's own way of talking bobbing above a shadow.
+            speechEffect = speechLabel.gameObject.AddComponent<CafeSpeechTextEffect>();
+            speechEffect.clueColor = new Color32(196, 92, 36, 255);
+            speechEffect.shadowColor = new Color(ink.r, ink.g, ink.b, .28f);
             foreach (var label in new[] { speechStars, speechLabel })
             {
                 label.font = customerSpeechFont != null ? customerSpeechFont : artText.font;
@@ -365,6 +381,7 @@ namespace CafeSim
             if (speechLabel.text != latestSpeech || speechTextScale != textScale)
             {
                 speechLabel.text = latestSpeech;
+                speechEffect.SetMarks(latestSpeech, CafeSpeechStyle.Analyze(latestSpeech, speaker?.Person?.id));
                 speechTextScale = textScale;
                 speechWidth = MeasureSpeechWidth(latestSpeech, padX * 2);
                 speechTextHeight = MeasureSpeechHeight(latestSpeech, speechWidth - padX * 2);
@@ -402,7 +419,7 @@ namespace CafeSim
                 float w=artSmall.CalcSize(new GUIContent(hint)).x+36;var r=new Rect(1256-w,668,w,38);
                 Paper(r);GUI.Label(new Rect(r.x+18,r.y+10,w,24),hint,artSmall);return;
             }
-            var keys=promptOpen?new[]{"Tab","레시피","F2","현황","Esc","나가기"}:new[]{"E","대화","F2","현황","Tab","레시피","F","제조 · 서빙","Q","수첩","Esc","일시정지"};
+            var keys=promptOpen?new[]{"Tab","레시피","F2","현황","Esc","나가기"}:new[]{"E","대화","H","할 일","F2","현황","Tab","레시피","F","제조 · 서빙","Q","수첩","Esc","일시정지"};
             float total=20;
             for(int i=0;i<keys.Length;i+=2)total+=Mathf.Max(32,artCap.CalcSize(new GUIContent(keys[i])).x)+8+artSmall.CalcSize(new GUIContent(keys[i+1])).x+18;
             Rect panel=new Rect(1256-total,664,total,42);Paper(panel);

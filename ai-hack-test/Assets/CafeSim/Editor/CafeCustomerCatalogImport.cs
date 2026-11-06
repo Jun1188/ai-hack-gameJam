@@ -13,6 +13,7 @@ namespace CafeSim
         public const string DropPath = "Assets/CafeSim/Resources/CafeCustomers/Incoming/";
         const string CatalogPath = "Assets/CafeSim/Resources/CafeCustomers/CustomerCatalog.json";
         const string PersonaPath = "Assets/CafeSim/Data/personas.json";
+        const string MappingPath = "Assets/CafeSim/Data/CustomerAppearanceMappings.json";
         static bool queued;
         static CafeCustomerCatalogImport() { Schedule(); }
         static void Schedule()
@@ -24,7 +25,7 @@ namespace CafeSim
         static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] oldPaths)
         {
             foreach (var paths in new[] { imported, deleted, moved, oldPaths })
-                if (Array.Exists(paths, p => p.StartsWith(DropPath, StringComparison.Ordinal) || p == PersonaPath)) { Schedule(); break; }
+                if (Array.Exists(paths, p => p.StartsWith(DropPath, StringComparison.Ordinal) || p == PersonaPath || p == MappingPath)) { Schedule(); break; }
         }
 
         internal static bool MotionFile(string path) => Array.Exists(new[] { "idle", "walk" }, motion =>
@@ -66,6 +67,7 @@ namespace CafeSim
         {
             if (!File.Exists(PersonaPath)) return;
             var people = JsonUtility.FromJson<PersonaTable>(File.ReadAllText(PersonaPath)).items;
+            var mappings = File.Exists(MappingPath) ? JsonUtility.FromJson<CustomerAssetTable>(File.ReadAllText(MappingPath)).items : Array.Empty<CustomerAssetEntry>();
             var entries = new List<CustomerAssetEntry>();
             if (Directory.Exists(DropPath))
             {
@@ -85,6 +87,16 @@ namespace CafeSim
                     var entry = CafeCustomerNames.Describe(name, people);
                     entry.source = path;
                     entry.resource = Resource(path);
+                    var mapping = Array.Find(mappings, e => e.source == path);
+                    if (mapping != null)
+                    {
+                        entry.personaIds = mapping.personaIds;
+                        entry.description = mapping.description;
+                        entry.mappingReason = mapping.mappingReason;
+                        entry.height = mapping.height;
+                        foreach (string id in entry.personaIds)
+                            if (!Array.Exists(people, p => p.id == id)) throw new InvalidOperationException("Unknown mapped persona: " + id);
+                    }
                     Validate(entry, path);
                     entries.Add(entry);
                 }

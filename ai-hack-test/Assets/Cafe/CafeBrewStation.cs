@@ -150,7 +150,6 @@ namespace MapleCafe
             Collider target = FindTarget();
 
             var ingredient = target == null ? null : Array.Find(ingredients, item => item.target == target);
-            prompt.text = busy ? "" : Describe(target, ingredient);
             if (!busy && Keyboard.current?.fKey.wasPressedThisFrame == true)
                 Interact(target, ingredient);
         }
@@ -712,6 +711,7 @@ namespace MapleCafe
             scale.referenceResolution = new Vector2(1920f, 1080f);
             MakeLabel(hud.transform, "+", new Vector2(.5f, .5f), Vector2.zero, 20);
             prompt = MakeLabel(hud.transform, "", new Vector2(.5f, .5f), new Vector2(0f, -34f), 22);
+            prompt.enabled = false;
             status = MakeLabel(hud.transform, "", new Vector2(.5f, 0f), new Vector2(0f, 60f), 22);
             mugName = MakeLabel(hud.transform, "", new Vector2(.5f, .5f), Vector2.zero, 23);
         }

@@ -109,6 +109,16 @@ namespace CafeSim
                 Cursor.visible = false;
             }
         }
+        void DismissTutorialForConversation()
+        {
+            if(TutorialTabRequired)
+            {
+                tutorialStage=TutorialStage.ChooseCard;
+                EndTutorialTabPrompt();
+            }
+            else if(TutorialOpen)CloseTutorial(true);
+            ApplyOverlayControls();
+        }
 
         void DrawTutorialHint()
         {

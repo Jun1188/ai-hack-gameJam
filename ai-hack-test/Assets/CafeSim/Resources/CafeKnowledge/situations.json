@@ -43,8 +43,8 @@
     {
       "id": "sit_05",
       "personaId": "cus_gyeongsang",
-      "context": "손주 학원 끝나길 기다리는 중",
-      "spokenContext": "손주 학원 마칠 때까지 기다릴 참입니더.",
+      "context": "가족 학원 끝나길 기다리는 중",
+      "spokenContext": "가족 학원 마칠 때까지 기다릴 참입니더.",
       "effect": "시간 남아서 평소보다 말이 많음",
       "weightRule": "변화 없음",
       "hotDelta": 0,

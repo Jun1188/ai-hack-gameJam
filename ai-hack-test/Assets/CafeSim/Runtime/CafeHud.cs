@@ -91,7 +91,7 @@ namespace CafeSim
             chatInput.style.color=InputText;chatInput.style.backgroundColor=InputBack;
             chatInput.RegisterValueChangedCallback(e=>draft=e.newValue);
             chatInput.RegisterCallback<FocusInEvent>(_=>{inputFocused=true;if(player!=null)player.TextInputActive=true;});
-            chatInput.RegisterCallback<FocusOutEvent>(_=>{inputFocused=false;if(player!=null)player.TextInputActive=false;});
+            chatInput.RegisterCallback<FocusOutEvent>(_=>{inputFocused=false;ResetComposition();if(player!=null)player.TextInputActive=false;});
             chatInput.RegisterCallback<KeyDownEvent>(e=>
             {
                 if(CafeStartIris.BlocksInput)return;
@@ -106,7 +106,14 @@ namespace CafeSim
             },TrickleDown.TrickleDown);
             root.Add(chatInput);
         }
-        void OnComposition(UnityEngine.InputSystem.LowLevel.IMECompositionString value){composition=value.ToString();compositionFrame=Time.frameCount;}
+        void ResetComposition(){composition="";compositionFrame=-10;}
+        void OnComposition(UnityEngine.InputSystem.LowLevel.IMECompositionString value)
+        {
+            if(!inputFocused||(mergedCafe&&!promptOpen)){ResetComposition();return;}
+            composition=value.ToString();compositionFrame=Time.frameCount;
+        }
+        void OnApplicationFocus(bool focused)
+        {if(!focused){ResetComposition();chatInput?.Blur();inputFocused=false;}}
         readonly Color panel = new Color(0.075f, 0.105f, 0.105f, 0.96f);
         readonly Color cream = new Color(0.95f, 0.92f, 0.82f);
         Color InputText=>mergedCafe?ink:cream;
