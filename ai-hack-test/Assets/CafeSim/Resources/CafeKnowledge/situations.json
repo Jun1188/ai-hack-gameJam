@@ -1,0 +1,374 @@
+{
+  "items": [
+    {
+      "id": "sit_01",
+      "personaId": "cus_elder",
+      "context": "비 오는 날 무릎이 쑤셔서 들렀다",
+      "spokenContext": "비가 오니 무릎도 뻐근하구먼.",
+      "effect": "날씨·무릎 이야기를 꺼냄",
+      "weightRule": "HOT +20%",
+      "hotDelta": 0.2,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_02",
+      "personaId": "cus_elder",
+      "context": "손주가 이 카페를 추천했다",
+      "spokenContext": "손주가 여기를 추천해 줬다네.",
+      "effect": "손주 자랑, 요즘 젊은이 입맛 궁금해함",
+      "weightRule": "평소와 다른 메뉴에 가중치 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_03",
+      "personaId": "cus_elder",
+      "context": "오랜 친구 기일이라 조용하다",
+      "spokenContext": "오늘은 먼저 떠난 친구를 조용히 생각하고 있네.",
+      "effect": "말수가 적고 짧게 답함",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_04",
+      "personaId": "cus_gyeongsang",
+      "context": "시장에서 장 보고 와서 덥다",
+      "spokenContext": "시장서 장 보니 덥네예.",
+      "effect": "짐 무겁다고 툴툴댐",
+      "weightRule": "ICE +30%",
+      "hotDelta": -0.3,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_05",
+      "personaId": "cus_gyeongsang",
+      "context": "가족 학원 끝나길 기다리는 중",
+      "spokenContext": "가족 학원 마칠 때까지 기다릴 참입니더.",
+      "effect": "시간 남아서 평소보다 말이 많음",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_06",
+      "personaId": "cus_jeolla",
+      "context": "계모임 끝나고 2차로 왔다",
+      "spokenContext": "친구들 모임 마치고 한 잔 더 하러 왔당께요.",
+      "effect": "신나서 수다, 친구 이야기",
+      "weightRule": "단 메뉴 가중치 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_07",
+      "personaId": "cus_jeolla",
+      "context": "다이어트 중이라고 선언했다",
+      "spokenContext": "단 걸 줄인다고 말은 해 놨는디 고민이여.",
+      "effect": "단 걸 참으려다 결국 고민함",
+      "weightRule": "단 메뉴 가중치 -1 (흔들림)",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_08",
+      "personaId": "cus_chungcheong",
+      "context": "아들 면접 결과를 기다리는 중",
+      "spokenContext": "아들 면접 소식을 기다리는 중이유.",
+      "effect": "초조하지만 티 안 냄, 더 돌려 말함",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_09",
+      "personaId": "cus_chungcheong",
+      "context": "처음으로 혼자 카페에 와봤다",
+      "spokenContext": "혼자 카페에 온 건 처음이라 좀 둘러보는 중이유.",
+      "effect": "주변을 두리번, 직원 추천을 은근히 기대",
+      "weightRule": "직원 제안 수용 확률 ↑",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_10",
+      "personaId": "cus_gangwon",
+      "context": "산에서 내려와 몸이 언 상태",
+      "spokenContext": "산에서 내려오니 몸이 꽤 춥드래요.",
+      "effect": "춥다는 이야기부터",
+      "weightRule": "HOT +30%",
+      "hotDelta": 0.3,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_11",
+      "personaId": "cus_gangwon",
+      "context": "딸이 단 거 줄이라고 잔소리했다",
+      "spokenContext": "딸이 단 걸 줄이라 했는데 오늘은 조금 당기네요.",
+      "effect": "몰래 단 거 먹는다며 쑥스러워함",
+      "weightRule": "단 메뉴 가중치 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_12",
+      "personaId": "cus_jeju",
+      "context": "육지 사는 손주 보러 올라왔다",
+      "spokenContext": "육지 손주 보러 올라왔수다.",
+      "effect": "육지 날씨·물가 이야기, 제주 자랑",
+      "weightRule": "제주 특산(녹차·유자) +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_13",
+      "personaId": "cus_jeju",
+      "context": "배 멀미가 아직 안 가셨다",
+      "spokenContext": "배 멀미가 아직 남아서 순한 쪽으로 고르고 싶수다.",
+      "effect": "속이 안 좋다며 순한 걸 찾음",
+      "weightRule": "커피 메뉴 가중치 -1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_14",
+      "personaId": "cus_sea",
+      "context": "월급날이라 기분이 좋다",
+      "spokenContext": "월급날이라 오늘은 기분 좋게 골라 보고 싶어요.",
+      "effect": "밝고 수다스러움, 고향 송금 이야기",
+      "weightRule": "단 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_15",
+      "personaId": "cus_sea",
+      "context": "야간 근무 끝나고 피곤하다",
+      "spokenContext": "야간 근무를 마쳐서 조금 피곤하네요.",
+      "effect": "말이 느리고 짧음, 진한 걸 찾음",
+      "weightRule": "커피 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_16",
+      "personaId": "cus_west",
+      "context": "오늘 처음 한국에 도착했다",
+      "spokenContext": "오늘 한국에 처음 도착했어요.",
+      "effect": "모든 게 신기함, 한국어 단어를 물어봄",
+      "weightRule": "전통차 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_17",
+      "personaId": "cus_west",
+      "context": "한국어 시험을 막 끝냈다",
+      "spokenContext": "한국어 시험을 마쳐서 배운 말을 써 보고 싶어요.",
+      "effect": "배운 한국어를 써보려고 애씀",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_18",
+      "personaId": "cus_japan",
+      "context": "여행 마지막 날이다",
+      "spokenContext": "오늘이 여행 마지막 날이라 한 잔을 잘 고르고 싶습니다.",
+      "effect": "아쉬워하며 추천을 부탁함",
+      "weightRule": "직원 제안 수용 확률 ↑",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_19",
+      "personaId": "cus_japan",
+      "context": "길을 잃었다가 겨우 들어왔다",
+      "spokenContext": "길을 헤매다가 겨우 이쪽으로 왔습니다.",
+      "effect": "미안해하며 길도 함께 물어봄",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_20",
+      "personaId": "cus_china",
+      "context": "과제 마감 전날 밤샘 예정",
+      "spokenContext": "과제 때문에 오늘 밤을 새워야 해요.",
+      "effect": "급하고 카페인 강조",
+      "weightRule": "커피 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_21",
+      "personaId": "cus_china",
+      "context": "룸메이트 것까지 대신 사러 왔다",
+      "spokenContext": "룸메이트 취향도 들었지만 우선 제 한 잔부터 고를게요.",
+      "effect": "룸메이트 취향을 전해 들은 대로 설명 (간접 정보)",
+      "weightRule": "추가 주문 1잔 가능 (후반 난이도)",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_22",
+      "personaId": "cus_child",
+      "context": "유치원에서 상을 받았다",
+      "spokenContext": "오늘 유치원에서 상 받았어요!",
+      "effect": "자랑부터 함",
+      "weightRule": "단 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_23",
+      "personaId": "cus_child",
+      "context": "방금 넘어져서 울다 왔다",
+      "spokenContext": "아까 넘어져서 아직 조금 속상해요.",
+      "effect": "훌쩍이며 짧게 말함, 달래주면 회복",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_24",
+      "personaId": "cus_student",
+      "context": "시험 끝난 날",
+      "spokenContext": "오늘 시험 끝나서 진짜 해방된 기분이에요!",
+      "effect": "해방감, 신조어 폭발",
+      "weightRule": "단 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_25",
+      "personaId": "cus_student",
+      "context": "학원 가기 전 10분밖에 없다",
+      "spokenContext": "학원 가기 전에 시간이 십 분쯤 남았어요.",
+      "effect": "급하게 말함, 질문 많으면 초조",
+      "weightRule": "인내심 -20%",
+      "hotDelta": 0,
+      "patienceScale": 0.8
+    },
+    {
+      "id": "sit_26",
+      "personaId": "cus_pangyo",
+      "context": "출시 당일 야근 확정",
+      "spokenContext": "오늘 출시라 야근 일정이 잡혔어요.",
+      "effect": "피곤, 업무 용어 폭발",
+      "weightRule": "커피 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_27",
+      "personaId": "cus_pangyo",
+      "context": "팀장님 몫까지 사러 왔다",
+      "spokenContext": "팀장님 취향도 전달받았는데 우선 이 주문부터 정리할게요.",
+      "effect": "팀장 취향을 회의록처럼 전달",
+      "weightRule": "추가 주문 1잔 가능 (후반 난이도)",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_28",
+      "personaId": "cus_barista",
+      "context": "자격증 실기 시험 전날",
+      "spokenContext": "내일 실기 시험이라 맛의 차이를 잘 느껴 보고 싶어요.",
+      "effect": "예민하고 디테일에 집착",
+      "weightRule": "에스프레소·아메리카노 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_29",
+      "personaId": "cus_barista",
+      "context": "다른 카페 탐방 중",
+      "spokenContext": "오늘은 다른 카페의 맛을 비교해 보는 중이에요.",
+      "effect": "직원에게 원두를 물어보며 테스트",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_30",
+      "personaId": "cus_trainer",
+      "context": "치팅데이",
+      "spokenContext": "오늘은 치팅데이라 평소와 다른 맛도 골라 볼게요!",
+      "effect": "오늘만큼은 단 거 먹겠다고 선언",
+      "weightRule": "단 메뉴 +2",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_31",
+      "personaId": "cus_trainer",
+      "context": "회원 PT 끝나고 쉬는 시간",
+      "spokenContext": "회원 수업을 마치고 잠깐 쉬는 중이에요.",
+      "effect": "회원 이야기, 성분 질문 많음",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_32",
+      "personaId": "cus_blind",
+      "context": "새로 생긴 카페라 처음 와봤다",
+      "spokenContext": "새로 생긴 곳이라 어떤 메뉴가 있는지 궁금합니다.",
+      "effect": "메뉴 구성을 처음부터 물어봄",
+      "weightRule": "직원 설명 의존도 ↑",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_33",
+      "personaId": "cus_blind",
+      "context": "딸 생일 케이크 사러 가는 길",
+      "spokenContext": "딸 생일 케이크 사러 가는 길이라 기분이 좋네요.",
+      "effect": "기분 좋음, 딸 이야기",
+      "weightRule": "단 메뉴 +1",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_miku_0",
+      "personaId": "cus_miku",
+      "context": "잠깐 쉬러 들른 날",
+      "spokenContext": "노래 연습을 마치고 잠깐 쉬러 왔어요.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_miku_1",
+      "personaId": "cus_miku",
+      "context": "다음 일정을 준비하는 날",
+      "spokenContext": "다음 작은 무대에서 부를 노래를 고르는 중이에요.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_kim_gyeran_0",
+      "personaId": "cus_kim_gyeran",
+      "context": "잠깐 쉬러 들른 날",
+      "spokenContext": "회원 수업을 마치고 잠깐 쉬러 왔습니다.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    },
+    {
+      "id": "sit_cus_kim_gyeran_1",
+      "personaId": "cus_kim_gyeran",
+      "context": "다음 일정을 준비하는 날",
+      "spokenContext": "다음 수업 전에 회복하는 시간을 챙기고 있습니다.",
+      "effect": "기존 주문 흐름 유지",
+      "weightRule": "변화 없음",
+      "hotDelta": 0,
+      "patienceScale": 1
+    }
+  ]
+}
