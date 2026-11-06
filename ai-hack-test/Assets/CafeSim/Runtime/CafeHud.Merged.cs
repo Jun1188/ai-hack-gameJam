@@ -31,6 +31,7 @@ namespace CafeSim
         GUIStyle artText, artSmall, artLabel, artCap, artButton, paperBox;
         RectTransform speechRoot, speechShadow, speechPaper, speechTail;
         Text speechLabel, speechStars;
+        CafeSpeechTextEffect speechEffect;
         float speechWidth, speechTextHeight, speechTextScale;
         static readonly Regex SentenceBreak = new Regex(
             @"([.!?。！？…]+[""'”’」』）)]*)(?:[ \t]+(?=\S)|(?=[가-힣]))");
@@ -302,6 +303,10 @@ namespace CafeSim
             speechLabel = AddSpeechGraphic<Text>("Dialogue");
             speechLabel.fontSize = 20;
             speechLabel.color = ink;
+            // Clue words in colour, the customer's own way of talking bobbing above a shadow.
+            speechEffect = speechLabel.gameObject.AddComponent<CafeSpeechTextEffect>();
+            speechEffect.clueColor = new Color32(196, 92, 36, 255);
+            speechEffect.shadowColor = new Color(ink.r, ink.g, ink.b, .28f);
             foreach (var label in new[] { speechStars, speechLabel })
             {
                 label.font = customerSpeechFont != null ? customerSpeechFont : artText.font;
@@ -365,6 +370,7 @@ namespace CafeSim
             if (speechLabel.text != latestSpeech || speechTextScale != textScale)
             {
                 speechLabel.text = latestSpeech;
+                speechEffect.SetMarks(latestSpeech, CafeSpeechStyle.Analyze(latestSpeech, speaker?.Person?.id));
                 speechTextScale = textScale;
                 speechWidth = MeasureSpeechWidth(latestSpeech, padX * 2);
                 speechTextHeight = MeasureSpeechHeight(latestSpeech, speechWidth - padX * 2);

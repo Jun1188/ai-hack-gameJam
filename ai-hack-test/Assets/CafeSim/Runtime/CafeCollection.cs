@@ -111,6 +111,11 @@ namespace CafeSim
         }
         public CollectionCustomerInfo Info(string id) => Customers.Find(c => c.id == id);
         public IReadOnlyList<PhraseRecord> Phrases => save.phrases;
+        // Every expression in this customer's phrase table (used to animate them in speech bubbles).
+        public IEnumerable<string> PhraseTexts(string personaId)
+        {
+            foreach (var p in lexicon) if (p.customer == personaId && !string.IsNullOrEmpty(p.text)) yield return p.text;
+        }
         public IReadOnlyList<string> Stamps => save.stamps;
         public int RegularCount { get { int n = 0; foreach (var c in Customers) if (Record(c.id).state == "regular") n++; return n; } }
         public int RequiredCount => Customers.FindAll(c => !c.optional).Count;
