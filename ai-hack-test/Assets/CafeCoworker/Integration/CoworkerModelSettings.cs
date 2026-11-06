@@ -1,6 +1,7 @@
 using CafeSim;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace CafeCoworker.Integration
@@ -12,11 +13,31 @@ namespace CafeCoworker.Integration
         public CoopSession session;
         public ExistingCafeTransportHost host;
         public Font font;
+        public string mainMenuScene = "MainMenu2";
         CafeOptionsGui options;
         bool opened;
         bool previousPause,previousMenu,previousMotor;
         string previousRouting, previousKey;
-        void Awake(){hud.ModelSettingsRequested+=Open;session.player.MouseSensitivity=CafeSettings.MouseSensitivity;}
+        void Awake()
+        {
+            hud.ModelSettingsRequested+=Open;
+            hud.MainMenuRequested+=ReturnToMenu;
+            session.player.MouseSensitivity=CafeSettings.MouseSensitivity;
+        }
+        bool returningToMenu;
+        void ReturnToMenu()
+        {
+            if(returningToMenu)return;
+            if(!Application.CanStreamedLevelBeLoaded(mainMenuScene))
+            {
+                Debug.LogError($"'{mainMenuScene}' 씬이 빌드 씬 목록에 없습니다.",this);
+                return;
+            }
+            returningToMenu=true;
+            session.dialogue.Cancel();session.guests.Cancel();
+            session.Paused=true;session.player.MenuOpen=true;session.player.Lock(false);
+            SceneManager.LoadScene(mainMenuScene);
+        }
         public void Open()
         {
             if(opened)return;
@@ -51,6 +72,10 @@ namespace CafeCoworker.Integration
             if(options.Draw(new Rect(640-CafeOptionsGui.Width*.5f,360-CafeOptionsGui.Height*.5f,CafeOptionsGui.Width,CafeOptionsGui.Height)))Close();
             GUI.matrix=prior;
         }
-        void OnDestroy(){if(hud!=null)hud.ModelSettingsRequested-=Open;options?.Dispose();previousKey="";}
+        void OnDestroy()
+        {
+            if(hud!=null){hud.ModelSettingsRequested-=Open;hud.MainMenuRequested-=ReturnToMenu;}
+            options?.Dispose();previousKey="";
+        }
     }
 }
