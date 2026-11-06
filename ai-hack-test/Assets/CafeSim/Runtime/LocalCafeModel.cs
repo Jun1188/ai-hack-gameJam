@@ -121,14 +121,16 @@ namespace CafeSim
         {
             if(!string.IsNullOrWhiteSpace(runtimeApiKey))return runtimeApiKey.Trim();
             var direct=CafeApiRuntimeSettings.Load();
-            if(direct.directInput)return direct.apiKey?.Trim();
+            if(direct.directInput&&AllowsBundledGeminiKey)return direct.apiKey?.Trim();
             string key=string.IsNullOrWhiteSpace(apiKeyEnvironmentVariable)?null:Environment.GetEnvironmentVariable(apiKeyEnvironmentVariable);
 #if UNITY_EDITOR
             string keyPath=Path.Combine(Application.dataPath,"../UserSettings/CafeChatApiKey.txt");
-            if(string.IsNullOrWhiteSpace(key)&&backend==CafeResponseBackend.Gemini&&File.Exists(keyPath))key=File.ReadAllText(keyPath).Trim();
+            if(string.IsNullOrWhiteSpace(key)&&AllowsBundledGeminiKey&&File.Exists(keyPath))key=File.ReadAllText(keyPath).Trim();
 #endif
             return key;
         }
+        bool AllowsBundledGeminiKey => backend==CafeResponseBackend.Gemini&&
+            Uri.TryCreate(apiEndpoint,UriKind.Absolute,out var uri)&&uri.Scheme=="https"&&uri.Host=="generativelanguage.googleapis.com";
         IEnumerator BootLocal()
         {
             if(localReady&&server!=null&&!server.HasExited)yield break;
@@ -194,13 +196,14 @@ namespace CafeSim
         }
         void ApplyLaunchOptions()
         {
+            CafeModelPreferences.Apply(this);
             var args=Environment.GetCommandLineArgs();
             for(int i=0;i+1<args.Length;i++)
             {
                 switch(args[i])
                 {
-                    case "--cafe-chat-provider":string provider=args[++i];if(provider=="gemini")ConfigureGemini();else backend=provider=="api"?CafeResponseBackend.CompatibleApi:CafeResponseBackend.LocalModel;break;
-                    case "--cafe-chat-endpoint":apiEndpoint=args[++i];break;
+                    case "--cafe-chat-provider":string provider=args[++i];if(provider=="gemini")ConfigureGemini();else {backend=provider=="api"?CafeResponseBackend.CompatibleApi:CafeResponseBackend.LocalModel;apiKeyEnvironmentVariable="CAFE_CHAT_API_KEY";runtimeApiKey="";}break;
+                    case "--cafe-chat-endpoint":apiEndpoint=args[++i];runtimeApiKey="";break;
                     case "--cafe-chat-model":apiModel=args[++i];break;
                     case "--cafe-chat-key-env":apiKeyEnvironmentVariable=args[++i];break;
                 }

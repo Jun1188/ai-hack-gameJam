@@ -41236,6 +41236,7 @@ GameObject:
   - component: {fileID: 573826153}
   - component: {fileID: 573826155}
   - component: {fileID: 573826156}
+  - component: {fileID: 573826157}
   m_Layer: 0
   m_Name: Coworker lab | independent composition
   m_TagString: Untagged
@@ -41335,6 +41336,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66971f3dda675ad4ab1e79391e69e212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CafeCoworker.Integration.ExistingCafeTransportHost
+--- !u!114 &573826157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573826150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d23235dc47a02c4599749390eaa5d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CafeCoworker.Integration.CoworkerModelSettings
+  hud: {fileID: 1960661945}
+  session: {fileID: 573826151}
+  host: {fileID: 573826156}
+  font: {fileID: 12800000, guid: a65369236702f7846af10899275e8b61, type: 3}
 --- !u!1 &573960447
 GameObject:
   m_ObjectHideFlags: 0

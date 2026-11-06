@@ -9,6 +9,7 @@ namespace CafeCoworker
         public Camera eyes;
         public bool MenuOpen { get; set; }
         public float walkSpeed = 2.6f;
+        public float MouseSensitivity { get; set; } = .13f;
         CharacterController body;
         float pitch, vertical;
         bool previousMenu;
@@ -25,7 +26,7 @@ namespace CafeCoworker
             var mouse = Mouse.current; var key = Keyboard.current;
             if (mouse != null && Cursor.lockState == CursorLockMode.Locked&&Time.frameCount>ignoreLookUntilFrame)
             {
-                Vector2 look = mouse.delta.ReadValue() * .12f;
+                Vector2 look = mouse.delta.ReadValue() * MouseSensitivity;
                 transform.Rotate(0, look.x, 0);
                 pitch = Mathf.Clamp(pitch - look.y, -75, 75);
                 eyes.transform.localRotation = Quaternion.Euler(pitch, 0, 0);

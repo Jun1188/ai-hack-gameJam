@@ -118,6 +118,7 @@ namespace CafeCoworker.Editor
                 document.panelSettings = panel;
                 document.visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(Root + "/UI/CoopHud.uxml");
                 var hud = uiRoot.AddComponent<CoopHud>(); hud.session = session; hud.font = font;
+                var settings=root.AddComponent<CoworkerModelSettings>();settings.hud=hud;settings.session=session;settings.host=host;settings.font=font;
                 CreateCustomer(font);
                 Physics.SyncTransforms();
                 foreach (var station in session.stations)

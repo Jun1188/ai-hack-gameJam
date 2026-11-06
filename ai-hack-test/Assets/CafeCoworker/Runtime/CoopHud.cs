@@ -12,6 +12,10 @@ namespace CafeCoworker
     {
         public CoopSession session;
         public Font font;
+        public event Action ModelSettingsRequested;
+        public bool ExternalModal { get; set; }
+        int inputBlockedUntil=-1;
+        public void BlockInputForThisFrame(){inputBlockedUntil=Time.frameCount+1;}
         VisualElement root, modal, threadPanel, historyPanel, pausePanel;
         VisualElement workCard;
         bool workCardVisible;
@@ -50,6 +54,7 @@ namespace CafeCoworker
             root.Q<Button>("cancelOrder").clicked += () => session.CancelOrder();
             root.Q<Button>("resume").clicked += Close;
             root.Q<Button>("restart").clicked += () => { session.ResetDay(); Close(); };
+            root.Q<Button>("modelSettings").clicked += () => ModelSettingsRequested?.Invoke();
             root.Q<Button>("cancelReply").clicked += () => session.dialogue.Cancel();
             send.clicked += Submit;
             input.RegisterCallback<KeyDownEvent>(evt =>
@@ -79,6 +84,7 @@ namespace CafeCoworker
         void Update()
         {
             if (!uiBound || session.Scheduler == null) return;
+            if(ExternalModal||Time.frameCount<=inputBlockedUntil)return;
             var key = Keyboard.current;
             if (key != null&&Application.isFocused)
             {

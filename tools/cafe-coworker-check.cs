@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 var results = new List<string>();
 void Check(bool condition, string name) { if (!condition) throw new Exception(name); results.Add(name); }
 var tables = JsonUtility.FromJson<BaristaTables>(AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/CafeCoworker/Data/BaristaTables.json").text);
+Check(tables.profile.reminderDelay>=60&&tables.profile.reminderCooldown>=60,"coworker reminders wait at least one minute");
 foreach (var recipe in tables.recipes)
 {
     var scheduler = new WorkScheduler(); var order = scheduler.Add(recipe, 0);

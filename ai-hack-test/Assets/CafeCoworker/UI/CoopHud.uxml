@@ -37,6 +37,7 @@
                 <ui:Label text="잠깐 쉬어 가요" class="title" />
                 <ui:Label text="메뉴를 연 동안 작업과 대기 시간은 멈춥니다." class="speech" />
                 <ui:Button name="resume" text="계속하기" />
+                <ui:Button name="modelSettings" text="대화 모델 설정" />
                 <ui:Button name="newOrder" text="주문 벨 울리기" />
                 <ui:Button name="cancelOrder" text="현재 주문 취소" />
                 <ui:Button name="restart" text="처음부터 다시" />

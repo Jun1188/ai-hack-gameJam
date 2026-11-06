@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-06",
+  "unity": "6000.6.8f1",
+  "routing": {
+    "scope": "Routing, validation and persistence only; no paid API calls or model downloads",
+    "checks": [
+      "default Gemini routing validates",
+      "local selection saves",
+      "local selection never chooses API routing",
+      "API routing saves",
+      "API key is not persisted with preferences",
+      "Gemini selection receives its own session key",
+      "provider change requires an explicit model name",
+      "provider switch does not reuse another provider's key",
+      "OpenAI routing saves without a plaintext key",
+      "OpenAI routing and credential source are separate from Gemini",
+      "non-Gemini provider cannot use a bundled Gemini credential",
+      "loopback compatible endpoint allowed",
+      "remote plaintext HTTP endpoint rejected",
+      "credentials in endpoint URL rejected",
+      "changing API origin does not reuse the old origin's key",
+      "backend choice reloads from persisted preferences"
+    ]
+  },
+  "play": {
+    "mainMenuSettingsVisible": true,
+    "coworkerSettingsVisible": true,
+    "pausesWorkAndInput": true,
+    "appliesSavedRoutingToSharedHost": true,
+    "originalPreferencesRestored": true
+  },
+  "notRun": [
+    "new-provider network requests",
+    "new player build",
+    "other PC",
+    "full coworker work/conversation/retry loop"
+  ]
+}

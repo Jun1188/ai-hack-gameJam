@@ -30,6 +30,13 @@ namespace CafeCoworker.Integration
             if(!ReferenceEquals(owner,channel))return;
             model?.CancelRequest();owner=null;
         }
+        public void Reboot()
+        {
+            if(model==null)return;
+            owner=null;model.CancelRequest();
+            if(boot!=null)StopCoroutine(boot);
+            model.Shutdown();boot=StartCoroutine(model.Boot());
+        }
         void OnDisable(){if(boot!=null)StopCoroutine(boot);model?.Shutdown();owner=null;}
     }
 }
