@@ -164,7 +164,8 @@ namespace CafeSim
    LastReplySeconds=Time.realtimeSinceStartup-start;
    if(Selected==c&&CanChat)
    {
-    if(error==null&&CafeConversation.Parse(json,out var speech,out bool endConversation))
+    // A fluent reply that ignores an order question falls through to the data-backed answer.
+    if(error==null&&CafeConversation.Parse(json,out var speech,out bool endConversation)&&Conversation.AnswersInput(c,input,speech,Queue.Knowledge))
     {
      if(endConversation&&CafeConversation.WantsToEnd(input)){closedChats.Add(c.Id);LastReplySource="closing";ChatStatus="대화를 마쳤어요";}
      else {if(!Conversation.TryNewMenuReply(c,input,Menu,out _))speech=Queue.Knowledge.MaskMenuNames(speech);LastReplySource=model.LastSource;ChatStatus="답변 완료";}
