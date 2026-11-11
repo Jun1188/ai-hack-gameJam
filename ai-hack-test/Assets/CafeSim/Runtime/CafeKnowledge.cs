@@ -102,6 +102,7 @@ namespace CafeSim
             // A different item can be similar, but never represented as an exact match.
             return Mathf.Min(.95f,.8f*(1-distance/total)+(requestedTemp==servedTemp?.2f:0));
         }
+        public MenuFact Fact(string id)=>Array.Find(facts,x=>x.id==id);
         public string Describe(string id,string fallback)
         {
             var f=Array.Find(facts,x=>x.id==id);
