@@ -156,11 +156,12 @@ namespace CafeSim
             var f=knowledge.Fact(c.Order.menuId);string normalized=Normalize(input);
             if(f!=null)
             {
-                if(normalized.Contains("우유"))return f.milk.StartsWith("있음")?"네, 우유가 들어가요.":"아니요, 우유는 안 들어가요.";
-                if(normalized.Contains("커피"))return f.coffee.StartsWith("있음")?"네, 커피가 들어가요.":"아니요, 커피는 안 들어가요.";
-                if(normalized.Contains("탄산"))return f.carbonation.StartsWith("있음")?"네, 탄산이 있어요.":"아니요, 탄산은 없어요.";
+                // Properties first: "커피" and "우유" often just name the drink ("이 커피 달아요?").
                 if(normalized.Contains("단맛")||normalized.Contains("달아")||normalized.Contains("달콤"))
                     return f.sweetness==0?"아니요, 달지 않아요.":f.sweetness==1?"살짝 달아요.":"네, 달콤해요.";
+                if(normalized.Contains("탄산"))return f.carbonation.StartsWith("있음")?"네, 탄산이 있어요.":"아니요, 탄산은 없어요.";
+                if(normalized.Contains("우유"))return f.milk.StartsWith("있음")?"네, 우유가 들어가요.":"아니요, 우유는 안 들어가요.";
+                if(normalized.Contains("커피"))return f.coffee.StartsWith("있음")?"네, 커피가 들어가요.":"아니요, 커피는 안 들어가요.";
             }
             return knowledge.Describe(c.Order.menuId,c.RequestedName)+"를 "+OrderTemperature(c)+" 한 잔 부탁드렸어요.";
         }
